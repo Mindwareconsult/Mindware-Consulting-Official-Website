@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import { EASE } from "../lib/utils";
+import { FadeInSection } from "../components/FadeInSection";
 
 export function Portfolio() {
   const [filter, setFilter] = useState("All");
@@ -17,7 +18,7 @@ export function Portfolio() {
   return (
     <div className="bg-mw-dark">
       {/* Hero */}
-      <section className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
@@ -33,13 +34,14 @@ export function Portfolio() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* Filters & Grid */}
-      <section className="py-24">
+      <FadeInSection className="py-24">
         <div className="container mx-auto px-6 md:px-12">
+          <h2 className="sr-only">Our Work</h2>
           
-          <div className="flex flex-wrap gap-4 mb-16">
+          <div className="flex flex-wrap gap-4 mb-16" role="group" aria-label="Filter portfolio by industry">
             {industries.map(ind => (
               <button
                 key={ind}
@@ -91,13 +93,13 @@ export function Portfolio() {
           </div>
           
         </div>
-      </section>
+      </FadeInSection>
 
       {/* CTA */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
         className="py-24 border-t border-white/5"
       >

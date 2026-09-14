@@ -2,42 +2,16 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { EASE } from "../lib/utils";
+import { FadeInSection } from "../components/FadeInSection";
+import { INSIGHTS } from "../data/insights";
 
 export function Insights() {
-  const articles = [
-    {
-      id: "why-your-website-isnt-converting",
-      title: "Why Your Business Website Isn't Converting (And How to Fix It)",
-      category: "Website Design",
-      date: "Oct 12, 2026",
-      readTime: "5 min read",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
-      excerpt: "Traffic without conversion is just noise. Learn the key UX and strategic flaws that stop visitors from becoming customers."
-    },
-    {
-      id: "seo-for-nigerian-smes",
-      title: "The Ultimate Local SEO Guide for Nigerian SMEs",
-      category: "SEO",
-      date: "Sep 28, 2026",
-      readTime: "8 min read",
-      image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=80&w=800",
-      excerpt: "How to ensure your business shows up when local customers are actively searching for your services on Google."
-    },
-    {
-      id: "ai-in-digital-marketing",
-      title: "How AI is Reshaping Digital Marketing Strategy",
-      category: "Strategy",
-      date: "Sep 15, 2026",
-      readTime: "6 min read",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800",
-      excerpt: "Move beyond the hype. Practical ways to integrate AI into your content, analytics, and customer engagement workflows."
-    }
-  ];
+  
 
   return (
     <div className="bg-mw-dark">
       {/* Hero */}
-      <section className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
@@ -54,21 +28,23 @@ export function Insights() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* Articles Grid */}
-      <section className="py-24">
+      <FadeInSection className="py-24">
+        <h2 className="sr-only">Latest Articles</h2>
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article, i) => (
-              <motion.article
+            {INSIGHTS.map((article, i) => (
+              <motion.div
                 key={article.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group cursor-pointer flex flex-col h-full"
+                className="h-full"
               >
+                <Link to={`/insights/${article.id}`} className="group cursor-pointer flex flex-col h-full">
                 <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-white/5">
                    <img 
                      src={article.image} 
@@ -99,17 +75,18 @@ export function Insights() {
                 <div className="inline-flex items-center gap-2 text-sm font-medium mt-auto text-white group-hover:text-mw-orange transition-colors">
                   Read Article <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                 </div>
-              </motion.article>
+              </Link>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* CTA */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
         className="py-24 border-t border-white/5 bg-white/5"
       >
@@ -122,6 +99,7 @@ export function Insights() {
             <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input 
               id="newsletter-email"
+              name="newsletter-email"
               type="email" 
               required
               placeholder="Your email address" 

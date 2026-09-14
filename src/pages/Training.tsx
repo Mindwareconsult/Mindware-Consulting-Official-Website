@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, GraduationCap, Clock, Calendar } from "lucide-react";
 import { EASE } from "../lib/utils";
+import { FadeInSection } from "../components/FadeInSection";
 
 export function Training() {
   const programs = [
@@ -34,7 +35,7 @@ export function Training() {
   return (
     <div className="bg-mw-dark">
       {/* Hero */}
-      <section className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
@@ -54,10 +55,11 @@ export function Training() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* Programs */}
-      <section className="py-24">
+      <FadeInSection className="py-24">
+        <h2 className="sr-only">Our Training Programs</h2>
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {programs.map((program, i) => (
@@ -72,7 +74,7 @@ export function Training() {
                 <div className="mb-6 inline-flex px-3 py-1 rounded-full bg-white/10 text-xs font-medium text-white/80">
                   {program.category}
                 </div>
-                <h2 className="text-2xl font-bold mb-4">{program.title}</h2>
+                <h3 className="text-2xl font-bold mb-4">{program.title}</h3>
                 <p className="text-white/60 mb-8 flex-grow">{program.description}</p>
                 
                 <div className="space-y-3 mb-8">
@@ -97,13 +99,13 @@ export function Training() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* Value Prop */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
         className="py-32 bg-white/5"
       >

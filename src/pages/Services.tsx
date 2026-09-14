@@ -3,12 +3,13 @@ import { SERVICES } from "../data/content";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { cn, EASE } from "../lib/utils";
+import { FadeInSection } from "../components/FadeInSection";
 
 export function Services() {
   return (
     <div className="bg-mw-dark">
       {/* Hero */}
-      <section className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
@@ -25,10 +26,11 @@ export function Services() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* Services List */}
-      <section className="py-24">
+      <FadeInSection className="py-24">
+        <h2 className="sr-only">Our Core Capabilities</h2>
         <div className="container mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16 lg:gap-y-24">
             {SERVICES.map((service, i) => {
@@ -46,7 +48,7 @@ export function Services() {
                     <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-mw-orange/20 transition-colors duration-500 border border-white/10 group-hover:border-mw-orange/30 group-hover:scale-105">
                       <Icon className="w-8 h-8 text-white group-hover:text-mw-orange transition-colors" />
                     </div>
-                    <h2 className="text-3xl font-bold mb-4 tracking-tight">{service.title}</h2>
+                    <h3 className="text-3xl font-bold mb-4 tracking-tight">{service.title}</h3>
                     <p className="text-xl font-medium text-mw-orange mb-4">{service.tagline}</p>
                     <p className="text-white/60 leading-relaxed mb-8 max-w-md">
                       {service.description}
@@ -71,7 +73,7 @@ export function Services() {
             })}
           </div>
         </div>
-      </section>
+      </FadeInSection>
     </div>
   );
 }

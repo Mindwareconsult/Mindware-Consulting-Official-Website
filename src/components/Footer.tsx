@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { NAVIGATION, SERVICES } from "../data/content";
-import { ArrowRight, Mail } from "lucide-react";
+import { Mail, Linkedin, Facebook, Youtube, Instagram, Twitter, MapPin } from "lucide-react";
 import { useState } from "react";
 
 export function Footer() {
@@ -38,6 +38,8 @@ export function Footer() {
                   <Mail className="absolute left-4 w-4 h-4 text-white/40" />
                   <input
                     type="email"
+                    name="newsletter-email"
+                    aria-label="Email address for newsletter"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -85,22 +87,47 @@ export function Footer() {
             <h4 className="text-white font-medium mb-6">Contact</h4>
             <ul className="space-y-4 text-sm text-white/60">
               <li>
-                <a href="mailto:hello@mindwareconsult.com.ng" className="hover:text-white transition-colors">
-                  hello@mindwareconsult.com.ng
+                <a href="mailto:contact@mindwareconsult.com.ng" className="hover:text-white transition-colors">
+                  contact@mindwareconsult.com.ng
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Chat on WhatsApp
+                <a href="https://wa.me/2348125082354" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  Phone/WhatsApp: +2348125082354
                 </a>
+              </li>
+              <li>
+                Address: Nigeria
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm text-white/40">
-          <p>© {new Date().getFullYear()} Mindware Consulting Ltd. All rights reserved.</p>
-          <div className="flex items-center gap-6 mt-4 md:mt-0">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm text-white/40 gap-6 md:gap-0">
+          <p className="text-center md:text-left">© {new Date().getFullYear()} Mindware Consulting Ltd. All rights reserved.</p>
+          
+          <div className="flex items-center gap-5">
+            <a href="https://www.linkedin.com/company/100696775/admin/page-posts/published/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="LinkedIn">
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a href="https://web.facebook.com/mindwareconsultingltd/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="Facebook">
+              <Facebook className="w-4 h-4" />
+            </a>
+            <a href="https://twitter.com/mindwareconsult" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="Twitter">
+              <Twitter className="w-4 h-4" />
+            </a>
+            <a href="https://www.instagram.com/chikeonyekachukwu" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="Instagram">
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a href="https://www.youtube.com/mindwareconsultingltd" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="YouTube">
+              <Youtube className="w-4 h-4" />
+            </a>
+            <a href="https://www.google.com/search?q=Mindware+Consulting+Ltd&stick=H4sIAAAAAAAA_-NgU1I1qDA0MDFJtTS2MLBMNTNKSk6zMqhINEsysjAyMjFMS0lMtkg1X8Qq7puZl1KeWJSq4JyfV1yaU5KZl67gU5ICALWmAE9DAAAA&hl=en&mat=CdZoZHhpsRv_ElcBa0lj__MndSaQbJwWpEz2_Wq3R8Sa6fOrq35cYkYMqwd7H60xu_ap2_6N6qEUuzALZ1VcZfQYOgAv4xDo81WRFryNzigqmZnOjbHxOG8xXdfDQfyxwZw&authuser=0" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" aria-label="Google Business">
+              <MapPin className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="flex items-center gap-6">
             <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>

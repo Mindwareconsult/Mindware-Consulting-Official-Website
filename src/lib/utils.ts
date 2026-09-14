@@ -5,4 +5,4 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const EASE = [0.22, 1, 0.36, 1];
+export const EASE: any = [0.22, 1, 0.36, 1];

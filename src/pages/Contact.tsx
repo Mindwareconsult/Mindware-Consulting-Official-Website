@@ -3,6 +3,7 @@ import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { SERVICES } from "../data/content";
 import { EASE } from "../lib/utils";
+import { FadeInSection } from "../components/FadeInSection";
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,7 +22,7 @@ export function Contact() {
   return (
     <div className="bg-mw-dark">
       {/* Hero */}
-      <section className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
@@ -38,12 +39,12 @@ export function Contact() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </FadeInSection>
 
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
         className="py-24"
       >
@@ -79,29 +80,29 @@ export function Contact() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="fullName" className="text-sm font-medium text-white/80">Full Name</label>
-                      <input id="fullName" required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="John Doe" />
+                      <input id="fullName" name="fullName" required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="John Doe" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="businessName" className="text-sm font-medium text-white/80">Business Name</label>
-                      <input id="businessName" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="Company Ltd" />
+                      <input id="businessName" name="businessName" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="Company Ltd" />
                     </div>
                   </div>
                   
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="emailAddress" className="text-sm font-medium text-white/80">Email Address</label>
-                      <input id="emailAddress" required type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="john@example.com" />
+                      <input id="emailAddress" name="emailAddress" required type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="john@example.com" />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="phoneNumber" className="text-sm font-medium text-white/80">Phone / WhatsApp</label>
-                      <input id="phoneNumber" type="tel" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="+234..." />
+                      <input id="phoneNumber" name="phoneNumber" type="tel" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="+234..." />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label htmlFor="serviceNeeded" className="text-sm font-medium text-white/80">Service Needed</label>
-                    <select id="serviceNeeded" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors appearance-none text-white/80">
-                      <option value="" disabled selected>Select a service...</option>
+                    <select id="serviceNeeded" name="serviceNeeded" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors appearance-none text-white/80" defaultValue="">
+                      <option value="" disabled>Select a service...</option>
                       {SERVICES.map(s => (
                         <option key={s.id} value={s.id} className="bg-mw-dark">{s.title}</option>
                       ))}
@@ -111,15 +112,15 @@ export function Contact() {
 
                   <div className="space-y-2">
                     <label htmlFor="projectDesc" className="text-sm font-medium text-white/80">Project Description</label>
-                    <textarea id="projectDesc" required rows={5} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors resize-none" placeholder="Tell us about your goals..." />
+                    <textarea id="projectDesc" name="projectDesc" required rows={5} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors resize-none" placeholder="Tell us about your goals..." />
                   </div>
 
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-white text-mw-dark px-8 py-4 rounded-xl font-medium transition-transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="w-full bg-white text-mw-dark px-8 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] transition-transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-[0_0_30px_-10px_rgba(255,255,255,0.3)]"
                   >
-                    {isSubmitting ? "Sending..." : "Send Project Enquiry"}
+                    {isSubmitting ? "SENDING..." : "SEND PROJECT ENQUIRY"}
                     {!isSubmitting && <ArrowRight className="w-4 h-4" />}
                   </button>
                 </form>
@@ -137,7 +138,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold mb-1">Email Us</h4>
-                    <a href="mailto:hello@mindwareconsult.com.ng" className="text-white/60 hover:text-white transition-colors">hello@mindwareconsult.com.ng</a>
+                    <a href="mailto:contact@mindwareconsult.com.ng" className="text-white/60 hover:text-white transition-colors">contact@mindwareconsult.com.ng</a>
                   </div>
                 </div>
                 
@@ -147,7 +148,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold mb-1">Call / WhatsApp</h4>
-                    <p className="text-white/60">+234 (XXX) XXX XXXX</p>
+                    <a href="https://wa.me/2348125082354" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">+234 812 508 2354</a>
                   </div>
                 </div>
 
@@ -156,8 +157,8 @@ export function Contact() {
                     <MapPin className="w-6 h-6 text-mw-orange" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold mb-1">Office</h4>
-                    <p className="text-white/60">Nigeria<br/>(Address placeholder)</p>
+                    <h4 className="text-lg font-semibold mb-1">Location</h4>
+                    <p className="text-white/60">Nigeria</p>
                   </div>
                 </div>
               </div>
@@ -168,7 +169,7 @@ export function Contact() {
                   Message us directly on WhatsApp for faster communication regarding your project.
                 </p>
                 <a
-                  href="https://wa.me/message/xyz" // Replace with real WhatsApp if provided
+                  href="https://wa.me/2348125082354"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-mw-orange text-white px-6 py-3 rounded-full font-medium transition-transform hover:scale-105 active:scale-95"

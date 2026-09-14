@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { METRICS } from "../data/content";
 import { EASE } from "../lib/utils";
+import { FadeInSection } from "../components/FadeInSection";
 
 export function About() {
   return (
     <div className="bg-mw-dark">
       {/* Hero */}
-      <section className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <motion.div
@@ -25,10 +26,11 @@ export function About() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* Metrics */}
-      <section className="py-24 border-b border-white/5">
+      <FadeInSection className="py-24 border-b border-white/5">
+         <h2 className="sr-only">Our Impact Metrics</h2>
          <div className="container mx-auto px-6 md:px-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                {METRICS.map((metric, i) => (
@@ -39,19 +41,19 @@ export function About() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
                   >
-                     <h3 className="text-5xl font-bold font-display text-mw-orange mb-2">{metric.value}</h3>
+                     <div className="text-5xl font-bold font-display text-mw-orange mb-2">{metric.value}</div>
                      <p className="text-white/60 font-medium">{metric.label}</p>
                   </motion.div>
                ))}
             </div>
          </div>
-      </section>
+      </FadeInSection>
 
       {/* Philosophy */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
         className="py-24 md:py-32"
       >
@@ -85,35 +87,55 @@ export function About() {
         </div>
       </motion.section>
 
-      {/* Leadership (Placeholder for CEO) */}
+      {/* Leadership */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="py-24 bg-white/5"
+        className="py-24 md:py-32 bg-[#02040a] relative overflow-hidden"
       >
-        <div className="container mx-auto px-6 md:px-12 text-center">
-          <h2 className="text-4xl font-bold mb-16">Leadership</h2>
-          <div className="inline-flex flex-col items-center">
-             <div className="w-48 h-48 rounded-full overflow-hidden mb-6 bg-mw-dark border-4 border-mw-orange/20">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-mw-orange/5 rounded-full blur-[100px] pointer-events-none" />
+        
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <div className="text-center mb-16 md:mb-20">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">Leadership</h2>
+            <p className="text-white/50 max-w-2xl mx-auto text-lg md:text-xl font-light">
+              Guiding our mission to empower businesses with transformative digital experiences.
+            </p>
+          </div>
+
+          <div className="max-w-xl mx-auto relative group">
+            {/* Beautiful Frame Glow */}
+            <div className="absolute -inset-0.5 md:-inset-1 bg-gradient-to-br from-mw-orange via-orange-600/50 to-mw-dark rounded-3xl blur-md opacity-40 group-hover:opacity-100 transition duration-700" />
+            
+            <div className="relative bg-mw-dark rounded-3xl p-2 sm:p-3 border border-white/10 shadow-2xl overflow-hidden transition-all duration-500 group-hover:border-mw-orange/30 group-hover:-translate-y-2">
+              {/* Image Box */}
+              <div className="aspect-[4/5] sm:aspect-square md:aspect-[3/4] rounded-2xl overflow-hidden relative bg-[#0a0a0a]">
                 <img 
-                  src="/assets/aistudio/MINDWARE CEO.png" 
-                  alt="Chike Onyekachukwu, Founder and CEO of Mindware Consulting"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover"
+                  src="/mindware-ceo.png" 
+                  alt="Chike Onyekachukwu - Founder, MD and CEO"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   onError={(e) => {
-                     // Fallback if image not available
-                     e.currentTarget.src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400";
+                     e.currentTarget.src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800";
                   }}
                 />
-             </div>
-             <h3 className="text-2xl font-bold mb-2">Chike Onyekachukwu</h3>
-             <p className="text-mw-orange font-medium mb-4">Founder / MD / CEO</p>
-             <p className="text-white/60 max-w-md mx-auto text-sm">
-                Leading the vision to empower businesses with the strategy and technology needed to thrive in the digital economy.
-             </p>
+                
+                {/* Gradient Overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-mw-dark/95 via-mw-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                
+                {/* Content Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                   <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">Chike Onyekachukwu</h3>
+                   <div className="inline-block bg-mw-orange text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-4 shadow-xl">
+                      Founder / MD / CEO
+                   </div>
+                   <p className="text-white/80 text-sm md:text-base leading-relaxed md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      Leading the vision to empower businesses with the strategy and technology needed to thrive in the digital economy.
+                   </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -122,7 +144,7 @@ export function About() {
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
         className="py-24 md:py-32"
       >
@@ -150,7 +172,7 @@ export function About() {
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
         className="py-24 border-t border-white/5"
       >

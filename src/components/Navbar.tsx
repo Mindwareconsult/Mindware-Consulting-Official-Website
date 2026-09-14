@@ -116,15 +116,15 @@ export function Navbar() {
             animate={{ opacity: 1, backdropFilter: "blur(16px)" }}
             exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#02040a]/95 flex flex-col pt-32 px-6 pb-6"
+            className="fixed inset-0 z-40 bg-[#02040a]/95 flex flex-col pt-32 px-6 pb-6 overflow-y-auto"
           >
-            <nav className="flex flex-col gap-6 text-2xl font-display font-medium">
+            <nav className="flex flex-col gap-6 text-3xl font-display font-medium tracking-tight mb-8">
               {NAVIGATION.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   className={cn(
-                    "transition-colors flex items-center justify-between group py-2 border-b border-white/5",
+                    "transition-colors flex items-center justify-between group py-3 border-b border-white/5",
                     location.pathname === item.path
                       ? "text-mw-orange"
                       : "text-white hover:text-white/80"
@@ -132,19 +132,19 @@ export function Navbar() {
                 >
                   {item.name}
                   <ArrowRight className={cn(
-                    "w-5 h-5 transition-transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0",
+                    "w-6 h-6 transition-transform opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0",
                     location.pathname === item.path ? "opacity-100 translate-x-0" : ""
                   )} />
                 </Link>
               ))}
             </nav>
-            <div className="mt-auto pb-8">
+            <div className="mt-auto pb-8 pt-8">
               <Link
                 to="/contact"
-                className="flex items-center justify-center gap-2 bg-mw-orange text-white w-full py-4 rounded-xl text-lg font-bold shadow-lg shadow-mw-orange/20"
+                className="flex items-center justify-center gap-3 bg-white text-mw-dark w-full py-5 rounded-full text-xs font-bold uppercase tracking-widest transition-transform active:scale-95 shadow-[0_0_30px_-10px_rgba(255,255,255,0.3)]"
               >
-                Get Started
-                <ArrowRight className="w-5 h-5" />
+                Start A Project
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </motion.div>
