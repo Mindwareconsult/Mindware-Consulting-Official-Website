@@ -4,10 +4,12 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { METRICS } from "../data/content";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
+import { SEO } from "../components/SEO";
 
 export function About() {
   return (
     <div className="bg-mw-dark">
+      <SEO title="About Us | Mindware Consulting" description="Learn about Mindware Consulting, our vision, and our leadership." />
       {/* Hero */}
       <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />

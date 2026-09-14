@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
+import { SEO } from "../components/SEO";
 
 export function ServiceDetail() {
   const { id } = useParams();
@@ -17,6 +18,7 @@ export function ServiceDetail() {
 
   return (
     <div className="bg-mw-dark">
+      <SEO title={`${service.title} | Mindware Consulting`} description={service.tagline} />
       {/* Hero */}
       <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-mw-orange/5 rounded-full blur-[100px] mix-blend-screen pointer-events-none" />

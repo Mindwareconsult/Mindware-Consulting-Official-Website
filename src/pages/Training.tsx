@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, GraduationCap, Clock, Calendar } from "lucide-react";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
+import { SEO } from "../components/SEO";
 
 export function Training() {
   const programs = [
@@ -34,6 +35,7 @@ export function Training() {
 
   return (
     <div className="bg-mw-dark">
+      <SEO title="Training & Workshops | Mindware Consulting" description="Corporate training and digital upskilling programs." />
       {/* Hero */}
       <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />

@@ -5,6 +5,7 @@ import { SERVICES } from "../data/content";
 import { cn, EASE } from "../lib/utils";
 import { useRef, useState, useEffect } from "react";
 import { FadeInSection } from "../components/FadeInSection";
+import { SEO } from "../components/SEO";
 
 function Hero() {
   const containerRef = useRef(null);
@@ -726,6 +727,7 @@ function CTASection() {
 export function Home() {
   return (
     <div className="bg-mw-dark">
+      <SEO title="Mindware Consulting | Digital Growth Lab" description="Mindware Consulting empowers businesses with strategy and technology." />
       <Hero />
       <GrowthMetrics />
       <TrustedBy />

@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { INSIGHTS } from "../data/insights";
 import { FadeInSection } from "../components/FadeInSection";
+import { SEO } from "../components/SEO";
 
 export function InsightDetail() {
   const { id } = useParams();
@@ -11,6 +12,7 @@ export function InsightDetail() {
   if (!article) {
     return (
       <div className="min-h-screen bg-mw-dark pt-40 pb-24 flex items-center justify-center">
+        <SEO title="Article Not Found | Mindware Consulting" description="The requested article could not be found." />
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-6 text-white">Article Not Found</h1>
           <Link to="/insights" className="text-mw-orange hover:text-white transition-colors inline-flex items-center gap-2">
@@ -23,6 +25,7 @@ export function InsightDetail() {
 
   return (
     <div className="bg-mw-dark min-h-screen">
+      <SEO title={`${article.title} | Mindware Consulting`} description={article.excerpt} />
       {/* Hero Header */}
       <FadeInSection className="pt-32 md:pt-48 pb-16 md:pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
