@@ -62,7 +62,11 @@ export function Portfolio() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-x-8 gap-y-12 md:gap-y-16">
-            {filteredPortfolio.map((project, i) => (
+            {filteredPortfolio.map((project, i) => {
+              const ContentWrapper = (project as any).link ? 'a' : 'div';
+              const wrapperProps = (project as any).link ? { href: (project as any).link, target: "_blank", rel: "noopener noreferrer" } : {};
+              
+              return (
               <motion.article
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -70,28 +74,30 @@ export function Portfolio() {
                 transition={{ delay: i * 0.1 }}
                 className="group cursor-pointer"
               >
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-white/5">
-                   <img 
-                     src={project.image} 
-                     alt={project.title}
-                     loading="lazy"
-                     decoding="async"
-                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                   />
-                   <div className="absolute inset-0 bg-mw-dark/20 group-hover:bg-transparent transition-colors duration-500" />
-                   <div className="absolute top-6 right-6 w-12 h-12 bg-white text-mw-dark rounded-full flex items-center justify-center opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                     <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
-                   </div>
-                </div>
-                <div className="flex items-center gap-4 text-sm font-medium text-mw-orange mb-3">
-                  <span>{project.industry}</span>
-                  <span className="w-1 h-1 rounded-full bg-white/20" />
-                  <span className="text-white/60">{project.service}</span>
-                </div>
-                <h3 className="text-3xl font-bold mb-3 group-hover:text-mw-orange transition-colors">{project.title}</h3>
-                <p className="text-white/60 text-lg leading-relaxed">{project.challenge}</p>
+                <ContentWrapper {...wrapperProps} className="block">
+                  <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-white/5">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-mw-dark/20 group-hover:bg-transparent transition-colors duration-500" />
+                    <div className="absolute top-6 right-6 w-12 h-12 bg-white text-mw-dark rounded-full flex items-center justify-center opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 text-sm font-medium text-mw-orange mb-3">
+                    <span>{project.industry}</span>
+                    <span className="w-1 h-1 rounded-full bg-white/20" />
+                    <span className="text-white/60">{project.service}</span>
+                  </div>
+                  <h3 className="text-3xl font-bold mb-3 group-hover:text-mw-orange transition-colors">{project.title}</h3>
+                  <p className="text-white/60 text-lg leading-relaxed">{project.challenge}</p>
+                </ContentWrapper>
               </motion.article>
-            ))}
+            )})}
           </div>
           
         </div>
