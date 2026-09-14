@@ -40,7 +40,7 @@ export function MindwareGrowthEngine({ scrollProgress }: MindwareGrowthEnginePro
             isMobile={isMobile} 
             reducedMotion={reducedMotion} 
           />
-          <EffectComposer disableNormalPass>
+          <EffectComposer enableNormalPass={false}>
             <Bloom luminanceThreshold={1} mipmapBlur intensity={1.2} />
             <DepthOfField target={[2.5, 0, 0]} focalLength={0.02} bokehScale={3} height={480} />
           </EffectComposer>
