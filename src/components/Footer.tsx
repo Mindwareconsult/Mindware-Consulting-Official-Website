@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { NAVIGATION, SERVICES } from "../data/content";
 import { Mail, Linkedin, Facebook, Youtube, Instagram, Twitter, MapPin } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export function Footer() {
   const [email, setEmail] = useState("");

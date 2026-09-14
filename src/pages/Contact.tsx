@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { SERVICES } from "../data/content";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
