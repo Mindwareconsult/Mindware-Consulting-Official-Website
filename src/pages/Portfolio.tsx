@@ -6,6 +6,7 @@ import { useState } from "react";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
+import { MetricChart } from "../components/MetricChart";
 
 export function Portfolio() {
   const [filter, setFilter] = useState("All");
@@ -70,15 +71,16 @@ export function Portfolio() {
               <motion.article
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1, ease: EASE }}
                 className="group cursor-pointer"
               >
                 <ContentWrapper {...wrapperProps} className="block">
                   <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-white/5">
                     <img 
                       src={project.image} 
-                      alt={project.title}
+                      alt={`Portfolio preview showing ${project.title} designed for ${project.client}`}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -95,6 +97,22 @@ export function Portfolio() {
                   </div>
                   <h3 className="text-3xl font-bold mb-3 group-hover:text-mw-orange transition-colors">{project.title}</h3>
                   <p className="text-white/60 text-lg leading-relaxed">{project.challenge}</p>
+
+                  {(project as any).projectMetrics && (
+                    <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <MetricChart value={(project as any).projectMetrics.growth} />
+                        <div>
+                          <div className="text-sm font-medium text-white/50">Growth</div>
+                          <div className="text-lg font-bold text-mw-orange">+{(project as any).projectMetrics.growth}%</div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm font-medium text-white/50">Duration</div>
+                        <div className="text-lg font-bold text-white">{(project as any).projectMetrics.duration} Weeks</div>
+                      </div>
+                    </div>
+                  )}
                 </ContentWrapper>
               </motion.article>
             )})}

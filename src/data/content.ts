@@ -70,30 +70,71 @@ export const PORTFOLIO = [
         client: "Temamost Nigeria Ltd",
         industry: "Construction & Engineering",
         service: "Website Design",
-        image: "/assets/Temamost Website Design.png",
+        image: "/assets/Temamost Website Design compressed.jpg",
         challenge: "Needed a professional digital presence to showcase their engineering projects and attract high-value contracts in Port Harcourt.",
         result: "Designed and built a responsive, portfolio-driven website establishing strong digital authority.",
-        link: "https://www.constructionstemamost.com/"
+        link: "https://www.constructionstemamost.com/",
+        projectMetrics: { growth: 45, duration: 4 }
     },
     {
-        id: "ecommerce-growth",
-        title: "Retail eCommerce Scaling",
-        client: "RetailBrand",
-        industry: "Retail",
-        service: "Website Design & SEO",
-        image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800",
-        challenge: "Stagnant online sales despite high offline brand awareness.",
-        result: "200% increase in organic traffic and 150% boost in online sales YoY."
-    },
-    {
-        id: "corporate-rebrand",
-        title: "Real Estate Digital Presence",
-        client: "Prime Properties",
-        industry: "Real Estate",
+        id: "watech-integrated",
+        title: "Construction & Engineering Portal",
+        client: "Watech Nigeria Ltd",
+        industry: "Construction & Concrete Solutions",
         service: "Website Design",
-        image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800",
-        challenge: "Outdated website failing to attract high-net-worth investors.",
-        result: "Generated 50+ qualified enterprise leads in the first quarter."
+        image: "/assets/Watech Website Design.jpg",
+        challenge: "Needed a powerful digital platform to showcase their top-tier concrete solutions and large-scale construction projects in Lagos.",
+        result: "Designed and developed an immersive, fast-loading corporate website to attract high-value infrastructure contracts.",
+        link: "https://watechconcretesolutions.com/",
+        projectMetrics: { growth: 60, duration: 3 }
+    },
+    {
+        id: "cosmozel-construction",
+        title: "Civil Engineering Digital Identity",
+        client: "Cosmozel Nigeria Limited",
+        industry: "Civil Engineering & Construction",
+        service: "Website Design",
+        image: "/assets/Csmozel website design.jpg",
+        challenge: "Required a trusted online platform to highlight their civil engineering capabilities and showcase past successful projects.",
+        result: "Delivered a modern, professional website that transformed their ideas into a compelling digital reality, boosting industry trust.",
+        link: "https://cosmozelconstructions.com.ng/",
+        projectMetrics: { growth: 35, duration: 5 }
+    },
+    {
+        id: "efudo-construction",
+        title: "Construction & Manufacturing Platform",
+        client: "Efudo General Construction Company",
+        industry: "Construction & Manufacturing",
+        service: "Website Design",
+        image: "/assets/Efudo Website Design.jpg",
+        challenge: "Needed a comprehensive online presence to highlight their dual expertise in general construction and premium building product manufacturing across Nigeria.",
+        result: "Created an engaging and robust corporate website that effectively showcases their wide array of services and nationwide impact.",
+        link: "https://efudoconstruction.com.ng/",
+        projectMetrics: { growth: 80, duration: 4 }
+    },
+    {
+        id: "infinite-downstream",
+        title: "Energy & Logistics Platform",
+        client: "Infinite Downstream Logistics Limited",
+        industry: "Logistics & Energy",
+        service: "Website Design",
+        image: "/assets/Infinite Downstream Website Design.jpg",
+        challenge: "Required a professional digital footprint to communicate their core mission of moving energy forward safely and efficiently.",
+        result: "Developed a modern, secure, and highly reliable corporate website that solidifies their brand authority in the downstream sector.",
+        link: "https://infinitedownstreamlogistics.com.ng/",
+        projectMetrics: { growth: 50, duration: 6 }
+    },
+    {
+        id: "royalty-finishing",
+        title: "Premium Flooring & Finishing Portal",
+        client: "Royalty Speed Finishing Enterprises",
+        industry: "Interior & Finishing",
+        service: "Website Design",
+        image: "/assets/Royalty Website Design.jpg",
+        challenge: "Needed an elegant digital showcase for their superior terrazzo, marble, and epoxy flooring solutions in Lagos.",
+        result: "Created a visually stunning and highly engaging portfolio website that effectively highlights their premium finishing craftsmanship.",
+        link: "https://royaltyfinishing.com.ng/",
+        projectMetrics: { growth: 70, duration: 3 }
     }
 ];
 

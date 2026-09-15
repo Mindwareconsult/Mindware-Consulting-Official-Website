@@ -69,6 +69,7 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   to={item.path}
+                  aria-label={`Navigate to ${item.name} page`}
                   className={cn(
                     "text-sm font-medium tracking-wide transition-colors hover:text-white relative",
                     location.pathname === item.path
@@ -123,6 +124,7 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   to={item.path}
+                  aria-label={`Navigate to ${item.name} page`}
                   className={cn(
                     "transition-colors flex items-center justify-between group py-3 border-b border-white/5",
                     location.pathname === item.path
