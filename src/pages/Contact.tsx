@@ -1,14 +1,31 @@
 import { motion } from "motion/react";
-import { ArrowRight, Mail, Phone, MapPin } from "lucide-react";
-import React, { useState } from "react";
+import { ArrowRight, Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { SERVICES } from "../data/content";
+import { PRICING_TIERS } from "../data/pricing";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
 
 export function Contact() {
+  const [searchParams] = useSearchParams();
+  const selectedPackageName = searchParams.get("package") || "";
+  const selectedTierId = searchParams.get("tier") || "";
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [projectDesc, setProjectDesc] = useState("");
+  const [serviceNeeded, setServiceNeeded] = useState(selectedTierId ? `pkg-${selectedTierId}` : "");
+
+  useEffect(() => {
+    if (selectedPackageName) {
+      setProjectDesc(`I would like to get started with the ${selectedPackageName} package.`);
+      if (selectedTierId) {
+        setServiceNeeded(`pkg-${selectedTierId}`);
+      }
+    }
+  }, [selectedPackageName, selectedTierId]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,6 +96,23 @@ export function Contact() {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {selectedPackageName && (
+                    <div className="p-4 rounded-2xl bg-mw-orange/10 border border-mw-orange/30 flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-mw-orange shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs uppercase font-bold tracking-widest text-mw-orange">
+                          Selected Package
+                        </div>
+                        <div className="text-base font-bold text-white">
+                          {selectedPackageName}
+                        </div>
+                        <p className="text-xs text-white/60 mt-1">
+                          Submit your inquiry below and our solutions team will prepare your onboarding setup immediately.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="fullName" className="text-sm font-medium text-white/80">Full Name</label>
@@ -102,19 +136,43 @@ export function Contact() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="serviceNeeded" className="text-sm font-medium text-white/80">Service Needed</label>
-                    <select id="serviceNeeded" name="serviceNeeded" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors appearance-none text-white/80" defaultValue="">
-                      <option value="" disabled>Select a service...</option>
-                      {SERVICES.map(s => (
-                        <option key={s.id} value={s.id} className="bg-mw-dark">{s.title}</option>
-                      ))}
-                      <option value="other" className="bg-mw-dark">Not sure yet / Other</option>
+                    <label htmlFor="serviceNeeded" className="text-sm font-medium text-white/80">Package / Service Needed</label>
+                    <select 
+                      id="serviceNeeded" 
+                      name="serviceNeeded" 
+                      value={serviceNeeded}
+                      onChange={(e) => setServiceNeeded(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors appearance-none text-white/80"
+                    >
+                      <option value="" disabled className="bg-mw-dark">Select a package or service...</option>
+                      <optgroup label="Digital Growth Packages" className="bg-mw-dark text-white font-semibold">
+                        {PRICING_TIERS.map(tier => (
+                          <option key={tier.id} value={`pkg-${tier.id}`} className="bg-mw-dark">
+                            Tier {tier.tierNumber}: {tier.name} ({tier.price})
+                          </option>
+                        ))}
+                      </optgroup>
+                      <optgroup label="Individual Services" className="bg-mw-dark text-white font-semibold">
+                        {SERVICES.map(s => (
+                          <option key={s.id} value={s.id} className="bg-mw-dark">{s.title}</option>
+                        ))}
+                      </optgroup>
+                      <option value="other" className="bg-mw-dark">Not sure yet / Custom Solution</option>
                     </select>
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="projectDesc" className="text-sm font-medium text-white/80">Project Description</label>
-                    <textarea id="projectDesc" name="projectDesc" required rows={5} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors resize-none" placeholder="Tell us about your goals..." />
+                    <label htmlFor="projectDesc" className="text-sm font-medium text-white/80">Project Description / Requirements</label>
+                    <textarea 
+                      id="projectDesc" 
+                      name="projectDesc" 
+                      required 
+                      rows={5} 
+                      value={projectDesc}
+                      onChange={(e) => setProjectDesc(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors resize-none" 
+                      placeholder="Tell us about your goals, timelines, and current company status..." 
+                    />
                   </div>
 
                   <button 

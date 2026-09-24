@@ -77,13 +77,13 @@ export function Portfolio() {
                 className="group cursor-pointer"
               >
                 <ContentWrapper {...wrapperProps} className="block">
-                  <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-white/5">
+                  <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-white/5 flex items-center justify-center p-2">
                     <img 
                       src={project.image} 
                       alt={`Portfolio preview showing ${project.title} designed for ${project.client}`}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-mw-dark/20 group-hover:bg-transparent transition-colors duration-500" />
                     <div className="absolute top-6 right-6 w-12 h-12 bg-white text-mw-dark rounded-full flex items-center justify-center opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">

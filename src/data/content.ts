@@ -135,6 +135,78 @@ export const PORTFOLIO = [
         result: "Created a visually stunning and highly engaging portfolio website that effectively highlights their premium finishing craftsmanship.",
         link: "https://royaltyfinishing.com.ng/",
         projectMetrics: { growth: 70, duration: 3 }
+    },
+    {
+        id: "eclectic-seals",
+        title: "Premium Design & Construction Platform",
+        client: "Eclectic Seals Int'l",
+        industry: "Construction & Engineering",
+        service: "Website Design & SEO",
+        image: "/assets/Eclectic Seals Website Design And SEO.jpg",
+        challenge: "Required a high-end digital presence to showcase their premium interior, building, and landscape solutions in Abuja.",
+        result: "Delivered a visually elegant and SEO-optimized corporate platform that significantly elevated their brand visibility and lead generation.",
+        link: "https://eclecticseals.com.ng/",
+        projectMetrics: { growth: 85, duration: 5 }
+    },
+    {
+        id: "priziangori-global",
+        title: "Integrated Industrial Services Platform",
+        client: "Priziangori Global Services Limited",
+        industry: "Oil & Gas, Aviation & Environmental",
+        service: "Website Design & SEO",
+        image: "/assets/Priziangori Website Design and SEO.jpg",
+        challenge: "Needed a cohesive digital platform to highlight their diverse integrated solutions across Oil & Gas, Aviation Fuel, Environmental, and Hospitality sectors in Nigeria.",
+        result: "Created a robust, SEO-optimized corporate website that successfully communicates their expertise and positions them as a trusted industrial partner.",
+        link: "https://priziangoriglobalservices.com.ng/",
+        projectMetrics: { growth: 65, duration: 4 }
+    },
+    {
+        id: "bcale-associates",
+        title: "Architectural & Building Construction Platform",
+        client: "Bcale Associates",
+        industry: "Construction & Engineering",
+        service: "Website Design & SEO",
+        image: "/assets/Bcale web design and seo.jpg",
+        challenge: "Required a reputable digital showcase for their certified architectural planning, building construction, and project management services across Nigeria.",
+        result: "Delivered a modern, SEO-optimized digital platform that highlights their NIOB & CORBON certified expertise and attracts high-value residential and commercial developments.",
+        link: "https://bcaleassociates.com.ng/",
+        projectMetrics: { growth: 75, duration: 4 }
+    },
+    {
+        id: "crescon-projects",
+        title: "Civil Engineering & Building Construction Platform",
+        client: "Crescon Projects Ltd",
+        industry: "Construction & Engineering",
+        service: "Website Design & SEO",
+        image: "/assets/crescon web design and seo.jpg",
+        challenge: "Needed a commanding digital identity to showcase their architectural design, structural engineering, and turnkey building construction capabilities across Lagos, Nigeria.",
+        result: "Designed and developed an authoritative, SEO-driven corporate platform highlighting their proven construction process and elevating client acquisition.",
+        link: "https://cresconprojectsltd.com.ng/",
+        projectMetrics: { growth: 80, duration: 5 }
+    },
+    {
+        id: "harmostructs-engineering",
+        title: "Civil & Structural Engineering Platform",
+        client: "Harmostructs Engineering Company Limited",
+        industry: "Construction & Engineering",
+        service: "Website Design & SEO",
+        image: "/assets/harmostructs ltd.jpg",
+        challenge: "Required an authoritative digital presence to present their comprehensive civil & structural engineering, building construction, agricultural infrastructure, and project delivery capabilities across Nigeria.",
+        result: "Designed and engineered a high-performance, SEO-optimized corporate platform that establishes technical credibility, highlights multidisciplinary expertise, and attracts commercial infrastructure projects.",
+        link: "https://harmostructsengineering.com.ng/",
+        projectMetrics: { growth: 85, duration: 4 }
+    },
+    {
+        id: "quanxi-limited",
+        title: "Agricultural & Construction Machinery Platform",
+        client: "Quanxi Limited",
+        industry: "Machinery & Heavy Equipment",
+        service: "Website Design & SEO",
+        image: "/assets/Quanxi ltd.jpg",
+        challenge: "Required a robust, authoritative digital platform to showcase their premier agricultural machinery, tractors, and high-performance road construction equipment across Nigeria and regional markets.",
+        result: "Engineered an engaging, SEO-optimized corporate platform that establishes strong commercial credibility, streamlines machinery sourcing, and accelerates industrial B2B inquiries.",
+        link: "https://quanxilimited.com.ng/",
+        projectMetrics: { growth: 85, duration: 4 }
     }
 ];
 
@@ -149,6 +221,7 @@ export const NAVIGATION = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
+    { name: "Pricing", path: "/pricing" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "Training", path: "/training" },
     { name: "Insights", path: "/insights" },

@@ -1,11 +1,12 @@
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent } from "motion/react";
 import { ArrowRight, ArrowUpRight, BarChart3, Globe2, Lightbulb, ChevronLeft, ChevronRight, Quote, Plus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { SERVICES } from "../data/content";
+import { SERVICES, PORTFOLIO } from "../data/content";
 import { cn, EASE } from "../lib/utils";
 import { useRef, useState, useEffect } from "react";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
+import { MetricChart } from "../components/MetricChart";
 
 function Hero() {
   const containerRef = useRef(null);
@@ -48,13 +49,19 @@ function Hero() {
             </p>
           </div>
 
-          <div className="flex-shrink-0 md:pb-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 flex-shrink-0 md:pb-4">
+            <Link
+              to="/pricing"
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-8 py-5 rounded-full font-bold text-sm md:text-base transition-all hover:scale-105 active:scale-95 shadow-xl"
+            >
+              <span>Explore Packages</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
             <Link
               to="/contact"
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-mw-orange text-white px-8 py-5 rounded-full font-bold text-sm md:text-base transition-all hover:bg-orange-600 hover:scale-105 active:scale-95"
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 text-white border border-white/10 px-8 py-5 rounded-full font-bold text-sm md:text-base transition-all hover:scale-105 active:scale-95"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              Book Consultation
+              <span>Book Consultation</span>
             </Link>
           </div>
         </motion.div>
@@ -134,6 +141,8 @@ function GrowthMetrics() {
 
 function TrustedBy() {
   const partnerLogos = [
+    "/logos/quanxi.jpg",
+    "/logos/harmostructs.jpg",
     "/logos/bcale.jpg",
     "/logos/C1.jpg",
     "/logos/C2.jpg",
@@ -396,6 +405,131 @@ function ServicesOverview() {
               </motion.div>
             )
           })}
+        </div>
+      </div>
+    </FadeInSection>
+  );
+}
+
+function LatestWork() {
+  const featuredIds = ["quanxi-limited", "harmostructs-engineering", "eclectic-seals", "crescon-projects", "bcale-associates"];
+  const featured = featuredIds
+    .map(id => PORTFOLIO.find(p => p.id === id))
+    .filter((p): p is typeof PORTFOLIO[0] => Boolean(p));
+
+  const projectsToDisplay = featured.length >= 4 ? featured : PORTFOLIO.slice(0, 4);
+
+  return (
+    <FadeInSection className="py-32 lg:py-48 bg-[#02040a] border-t border-white/5 relative overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-mw-orange/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-3 mb-8">
+              <div className="w-1.5 h-1.5 rounded-full bg-mw-orange animate-pulse" />
+              <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-white/50">Our Latest Work</span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-sans font-bold mb-6 tracking-tight leading-tight text-white">
+              Selected Projects.<br />Proven Outcomes.
+            </h2>
+            <p className="text-xl md:text-2xl text-white/50 font-light leading-relaxed">
+              Explore high-performance digital platforms, architectural portals, and SEO-driven systems we have engineered for forward-thinking brands.
+            </p>
+          </div>
+
+          <Link
+            to="/portfolio"
+            aria-label="View all projects in portfolio"
+            className="group hidden sm:inline-flex items-center gap-3 text-mw-orange font-medium hover:text-orange-400 transition-colors pb-4 border-b border-mw-orange/30 hover:border-mw-orange/80 shrink-0"
+          >
+            <span className="uppercase tracking-[0.2em] text-xs font-bold">View all projects</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+
+        {/* Featured Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-20">
+          {projectsToDisplay.map((project, i) => {
+            const ContentWrapper = project.link ? "a" : "div";
+            const wrapperProps = project.link
+              ? { href: project.link, target: "_blank", rel: "noopener noreferrer", "aria-label": `Visit live website for ${project.title}` }
+              : {};
+
+            return (
+              <motion.article
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: (i % 2) * 0.1, ease: EASE }}
+                className="group cursor-pointer rounded-[2rem] border border-white/5 bg-white/[0.015] hover:bg-white/[0.035] hover:border-white/20 p-6 md:p-8 transition-all duration-500 flex flex-col justify-between"
+              >
+                <ContentWrapper {...wrapperProps} className="block">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-white/5 flex items-center justify-center p-3">
+                    <img
+                      src={project.image}
+                      alt={`Portfolio preview showing ${project.title} designed for ${project.client}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-mw-dark/20 group-hover:bg-transparent transition-colors duration-500" />
+                    <div className="absolute top-5 right-5 w-12 h-12 bg-white text-mw-dark rounded-full flex items-center justify-center opacity-0 -translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+                      <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-xs font-semibold text-mw-orange mb-3">
+                    <span>{project.industry}</span>
+                    <span className="w-1 h-1 rounded-full bg-white/20" />
+                    <span className="text-white/60">{project.service}</span>
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white group-hover:text-mw-orange transition-colors">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8 font-light">
+                    {project.challenge}
+                  </p>
+
+                  {project.projectMetrics && (
+                    <div className="pt-6 border-t border-white/10 flex items-center justify-between mt-auto">
+                      <div className="flex items-center gap-4">
+                        <MetricChart value={project.projectMetrics.growth} />
+                        <div>
+                          <div className="text-xs font-medium text-white/50 uppercase tracking-wider">Growth</div>
+                          <div className="text-lg font-bold text-mw-orange">+{project.projectMetrics.growth}%</div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs font-medium text-white/50 uppercase tracking-wider">Duration</div>
+                        <div className="text-lg font-bold text-white">{project.projectMetrics.duration} Weeks</div>
+                      </div>
+                    </div>
+                  )}
+                </ContentWrapper>
+              </motion.article>
+            );
+          })}
+        </div>
+
+        {/* Action Button to see more projects */}
+        <div className="flex flex-col items-center justify-center text-center pt-4">
+          <Link
+            to="/portfolio"
+            aria-label="See more projects on the portfolio page"
+            className="group inline-flex items-center justify-center gap-3 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-10 py-5 rounded-full font-bold text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-2xl shadow-black/50"
+          >
+            <span>See More Projects</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+          </Link>
+          <p className="text-sm text-white/40 mt-4 font-light">
+            Explore our complete collection of case studies and industry solutions.
+          </p>
         </div>
       </div>
     </FadeInSection>
@@ -734,6 +868,7 @@ export function Home() {
       <SelfSelection />
       <Ecosystem />
       <ServicesOverview />
+      <LatestWork />
       <GrowthSystem />
       <FAQ />
       <Testimonials />
