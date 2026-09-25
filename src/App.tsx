@@ -16,6 +16,8 @@ const Portfolio = lazy(() => import("./pages/Portfolio").then(module => ({ defau
 const About = lazy(() => import("./pages/About").then(module => ({ default: module.About })));
 const Training = lazy(() => import("./pages/Training").then(module => ({ default: module.Training })));
 const Pricing = lazy(() => import("./pages/Pricing").then(module => ({ default: module.Pricing })));
+const CaseStudies = lazy(() => import("./pages/CaseStudies").then(module => ({ default: module.CaseStudies })));
+const CaseStudyDetail = lazy(() => import("./pages/CaseStudyDetail").then(module => ({ default: module.CaseStudyDetail })));
 const Insights = lazy(() => import("./pages/Insights").then(module => ({ default: module.Insights })));
 const InsightDetail = lazy(() => import("./pages/InsightDetail").then(module => ({ default: module.InsightDetail })));
 
@@ -39,6 +41,8 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/services/:id" element={<ServiceDetail />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
             <Route path="/training" element={<Training />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/insights" element={<Insights />} />

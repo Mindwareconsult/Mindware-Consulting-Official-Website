@@ -207,6 +207,18 @@ export const PORTFOLIO = [
         result: "Engineered an engaging, SEO-optimized corporate platform that establishes strong commercial credibility, streamlines machinery sourcing, and accelerates industrial B2B inquiries.",
         link: "https://quanxilimited.com.ng/",
         projectMetrics: { growth: 85, duration: 4 }
+    },
+    {
+        id: "osines-group",
+        title: "Architectural & Building Construction Platform",
+        client: "OSINES GROUP",
+        industry: "Construction & Engineering",
+        service: "Website Design & SEO",
+        image: "/assets/OSINES GROUP Web Design and SEO Strategy.jpg",
+        challenge: "Needed a prestigious, high-converting digital platform to present their premier architectural design, residential luxury duplexes, commercial construction, and project development capabilities in Awka, Anambra State and across Nigeria.",
+        result: "Designed and engineered an elite, SEO-optimized web platform and digital strategy that elevates their brand authority, showcases landmark developments, and drives qualified construction client inquiries.",
+        link: "https://www.osinesgroup.com.ng/",
+        projectMetrics: { growth: 85, duration: 4 }
     }
 ];
 
@@ -223,6 +235,7 @@ export const NAVIGATION = [
     { name: "Services", path: "/services" },
     { name: "Pricing", path: "/pricing" },
     { name: "Portfolio", path: "/portfolio" },
+    { name: "Case Studies", path: "/case-studies" },
     { name: "Training", path: "/training" },
     { name: "Insights", path: "/insights" },
     { name: "Contact", path: "/contact" }

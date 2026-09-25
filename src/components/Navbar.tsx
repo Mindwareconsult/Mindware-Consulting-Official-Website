@@ -49,7 +49,7 @@ export function Navbar() {
           className={cn(
             "w-full transition-all duration-500 pointer-events-auto",
             isScrolled
-              ? "max-w-5xl rounded-2xl bg-[#02040a]/70 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+              ? "max-w-6xl rounded-2xl bg-[#02040a]/70 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
               : "bg-transparent border-b border-transparent"
           )}
         >
@@ -64,14 +64,14 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
+            <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 2xl:gap-7">
               {NAVIGATION.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   aria-label={`Navigate to ${item.name} page`}
                   className={cn(
-                    "text-sm font-medium tracking-wide transition-colors hover:text-white relative",
+                    "text-[13px] xl:text-sm font-medium tracking-wide transition-colors hover:text-white relative whitespace-nowrap",
                     location.pathname === item.path
                       ? "text-white after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-mw-orange after:rounded-full"
                       : "text-white/60"
