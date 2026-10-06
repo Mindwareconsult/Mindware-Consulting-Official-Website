@@ -41,19 +41,19 @@ export function Contact() {
     <div className="bg-mw-dark">
       <SEO title="Contact Us | Mindware Consulting" description="Get in touch with Mindware Consulting." />
       {/* Hero */}
-      <FadeInSection className="pt-40 pb-24 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-32 sm:pt-40 pb-16 sm:pb-24 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-6 md:mb-8 leading-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-4 sm:mb-8 leading-tight text-white">
               Let's Build Your Next <br />
               <span className="text-gradient">Digital Advantage.</span>
             </h1>
-            <p className="text-xl text-white/60 max-w-2xl leading-relaxed">
+            <p className="text-base sm:text-xl text-white/60 max-w-2xl leading-relaxed">
               Tell us what you're building. Not sure what you need? We'll help you figure it out.
             </p>
           </motion.div>
@@ -65,9 +65,9 @@ export function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-20%" }}
         transition={{ duration: 0.8, ease: EASE }}
-        className="py-24"
+        className="py-12 sm:py-24"
       >
-        <div className="container mx-auto px-6 md:px-12">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
             
             {/* Contact Form */}
@@ -223,16 +223,16 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="bg-mw-orange/10 border border-mw-orange/20 rounded-3xl p-8">
+              <div className="bg-mw-orange/10 border border-mw-orange/20 rounded-3xl p-6 sm:p-8">
                 <h4 className="text-xl font-bold mb-4 text-mw-orange">Need a quick response?</h4>
-                <p className="text-white/80 mb-6">
+                <p className="text-sm sm:text-base text-white/80 mb-6">
                   Message us directly on WhatsApp for faster communication regarding your project.
                 </p>
                 <a
                   href="https://wa.me/2348125082354"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-mw-orange text-white px-6 py-3 rounded-full font-medium transition-transform hover:scale-105 active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-mw-orange text-white px-6 py-3 rounded-full font-medium transition-transform hover:scale-105 active:scale-95"
                 >
                   Chat on WhatsApp
                 </a>

@@ -1,25 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
   --color-mw-orange: #f97316;
+  --color-mw-orange-hover: #ea580c;
   --color-mw-blue: #0f172a;
   --color-mw-light: #f8fafc;
-  --color-mw-dark: #020617;
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
+  --color-mw-dark: #02040a;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    width: 100%;
   }
   body {
-    @apply bg-mw-dark text-mw-light font-sans antialiased overflow-x-hidden;
+    @apply bg-[#02040a] text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-orange-500/30 selection:text-white;
+    width: 100%;
+    min-height: 100%;
+    touch-action: manipulation;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  /* Ensure form inputs on mobile do not zoom viewport on iOS */
+  @media (max-width: 640px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
   }
 }
 
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600;
+/* Touch and scroll utilities */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500;
+}
+
+@media print {
+  header, footer, nav, button, .no-print {
+    display: none !important;
+  }
+  body, html {
+    background: #ffffff !important;
+    color: #111827 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  #mindware-cv-document {
+    background: #ffffff !important;
+    color: #111827 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  #mindware-cv-document * {
+    color: #111827 !important;
+  }
+}
+
 

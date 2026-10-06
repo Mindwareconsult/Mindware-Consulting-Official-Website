@@ -62,31 +62,31 @@ export function Pricing() {
       />
 
       {/* Hero Section */}
-      <FadeInSection className="pt-40 pb-20 border-b border-white/5 relative overflow-hidden">
+      <FadeInSection className="pt-32 sm:pt-40 pb-16 sm:pb-20 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/10 via-mw-orange/5 to-transparent blur-3xl pointer-events-none" />
         <div className="absolute top-1/3 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-md">
+            <div className="inline-flex items-center gap-3 px-3.5 sm:px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 sm:mb-8 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-mw-orange animate-pulse" />
-              <span className="text-[11px] font-sans font-semibold tracking-widest uppercase text-white/70">
+              <span className="text-[10px] sm:text-[11px] font-sans font-semibold tracking-widest uppercase text-white/70">
                 Mindware Consulting Ltd · RC 1309926
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.08] text-white">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-6 sm:mb-8 leading-[1.08] text-white">
               Our 6-Tier <br />
               <span className="text-gradient">Digital Growth</span> Packages.
             </h1>
 
-            <p className="text-xl md:text-2xl text-white/60 leading-relaxed font-light mb-10 max-w-3xl">
+            <p className="text-lg sm:text-xl md:text-2xl text-white/60 leading-relaxed font-light mb-8 sm:mb-10 max-w-3xl">
               We offer done-for-you digital solutions tailored for construction companies. 
               From websites to automation, training, and safety compliance — everything your business needs under one roof.
             </p>
 
             {/* Inclusions Banner */}
-            <div className="inline-flex flex-wrap items-center gap-3 px-5 py-3 rounded-2xl bg-white/[0.03] border border-white/10 text-white/80 text-sm">
+            <div className="inline-flex flex-wrap items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-3 rounded-2xl bg-white/[0.03] border border-white/10 text-white/80 text-xs sm:text-sm">
               <div className="flex items-center gap-2 text-emerald-400 font-semibold">
                 <CheckCircle2 className="w-4 h-4" />
                 <span>All Packages Include:</span>
@@ -98,13 +98,13 @@ export function Pricing() {
       </FadeInSection>
 
       {/* Filter Tabs */}
-      <section className="py-10 border-b border-white/5 bg-white/[0.01]">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-white/5 border border-white/10 w-full sm:w-auto">
+      <section className="py-8 sm:py-10 border-b border-white/5 bg-white/[0.01]">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+            <div className="flex overflow-x-auto pb-1 scrollbar-none items-center gap-2 p-1.5 rounded-2xl bg-white/5 border border-white/10 w-full sm:w-auto touch-pan-x">
               <button
                 onClick={() => setActiveTab("all")}
-                className={`px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
                   activeTab === "all"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -114,7 +114,7 @@ export function Pricing() {
               </button>
               <button
                 onClick={() => setActiveTab("core")}
-                className={`px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
                   activeTab === "core"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -124,7 +124,7 @@ export function Pricing() {
               </button>
               <button
                 onClick={() => setActiveTab("automation")}
-                className={`px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
                   activeTab === "automation"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -134,7 +134,7 @@ export function Pricing() {
               </button>
               <button
                 onClick={() => setActiveTab("workforce")}
-                className={`px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
                   activeTab === "workforce"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -156,9 +156,9 @@ export function Pricing() {
       </section>
 
       {/* Main Pricing Cards Grid */}
-      <section className="py-20 lg:py-28 relative">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-12 sm:py-20 lg:py-28 relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <AnimatePresence mode="popLayout">
               {filteredTiers.map((tier, idx) => {
                 const isPopular = tier.isPopular;
@@ -172,7 +172,7 @@ export function Pricing() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.5, delay: idx * 0.06, ease: EASE }}
-                    className={`relative rounded-3xl p-8 transition-all duration-500 flex flex-col justify-between ${
+                    className={`relative rounded-3xl p-6 sm:p-8 transition-all duration-500 flex flex-col justify-between ${
                       isPopular
                         ? "bg-gradient-to-b from-white/[0.08] to-white/[0.02] border-2 border-mw-orange shadow-[0_0_50px_rgba(249,115,22,0.15)]"
                         : isFlagship

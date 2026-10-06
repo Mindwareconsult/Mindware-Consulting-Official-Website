@@ -1,72 +1,504 @@
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useMotionValueEvent } from "motion/react";
-import { ArrowRight, ArrowUpRight, BarChart3, Globe2, Lightbulb, ChevronLeft, ChevronRight, Quote, Plus } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BarChart3,
+  Globe2,
+  Lightbulb,
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  Plus,
+  Sparkles,
+  Briefcase,
+  GraduationCap,
+  ShieldCheck,
+  CheckCircle2,
+  Pause,
+  Play
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { SERVICES, PORTFOLIO } from "../data/content";
 import { cn, EASE } from "../lib/utils";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
 import { MetricChart } from "../components/MetricChart";
+import { HomeVideoTestimonials } from "../components/home/HomeVideoTestimonials";
+
+interface HeroSlide {
+  id: string;
+  tabLabel: string;
+  categoryBadge: string;
+  badgeType: "orange" | "blue" | "emerald" | "purple" | "amber";
+  titleLead: string;
+  titleAccent: string;
+  titleEnd?: string;
+  subtitle: string;
+  image: string;
+  alt: string;
+  primaryCta: { label: string; path: string };
+  secondaryCta: { label: string; path: string };
+  statsBadge: { value: string; label: string };
+  highlights: string[];
+}
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: "agency",
+    tabLabel: "Digital Agency",
+    categoryBadge: "Premium Digital Growth Partner",
+    badgeType: "orange",
+    titleLead: "We Build Digital",
+    titleAccent: "Experiences",
+    titleEnd: "That Grow Businesses.",
+    subtitle: "Mindware Consulting helps ambitious enterprises build world-class digital platforms, generate high-intent demand, and convert online visitors into sustainable revenue.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=85",
+    alt: "Mindware Consulting digital agency team engineering custom software and web platforms",
+    primaryCta: { label: "Explore Our Work", path: "/portfolio" },
+    secondaryCta: { label: "View Pricing Packages", path: "/pricing" },
+    statsBadge: { value: "150+", label: "Successful Deployments" },
+    highlights: ["Custom Web Architecture", "High-Converting UI/UX", "Enterprise SEO", "Scalable Cloud Hosting"]
+  },
+  {
+    id: "service-areas",
+    tabLabel: "36 States & FCT",
+    categoryBadge: "Nationwide Reach • 36 States & FCT Abuja",
+    badgeType: "purple",
+    titleLead: "Local SEO & Web Authority Across",
+    titleAccent: "All 36 States",
+    titleEnd: "And Abuja FCT.",
+    subtitle: "From the commercial towers of Lagos and Abuja to the oilfield hubs of Port Harcourt, Warri, and trading markets in Kano and Onitsha — we engineer localized digital supremacy for Nigerian enterprises.",
+    image: "/src/assets/images/talent_matching_network_1790617842281.jpg",
+    alt: "Mindware Consulting nationwide local SEO and territorial web engineering across Nigeria",
+    primaryCta: { label: "Explore 37 State Portals", path: "/service-areas" },
+    secondaryCta: { label: "View Lagos Hub", path: "/service-areas/lagos" },
+    statsBadge: { value: "37 Portals", label: "774 LGAs Full Coverage" },
+    highlights: ["Google Maps Local Pack 3", "State Commercial Hubs", "Landmark SEO Geo-Targeting", "100% Nationwide Delivery"]
+  },
+  {
+    id: "industry-solutions",
+    tabLabel: "Industry Solutions",
+    categoryBadge: "Specialized B2B Sector Architecture",
+    badgeType: "amber",
+    titleLead: "Tender-Ready Portals For",
+    titleAccent: "Nigeria's Core Industries",
+    titleEnd: "& Heavy EPC.",
+    subtitle: "We build custom NipeX-ready oilfield platforms, off-plan diaspora real estate portals, civil engineering BPP due diligence engines, and sub-second e-commerce stores.",
+    image: "/src/assets/images/training_pmp_session_1790960928930.jpg",
+    alt: "Specialized digital engineering for energy, real estate, automotive, and infrastructure enterprises",
+    primaryCta: { label: "Explore Industry Portals", path: "/industries" },
+    secondaryCta: { label: "Oil & Gas / Marine", path: "/industries/oil-and-gas-marine" },
+    statsBadge: { value: "₦2.5B+", label: "Client Pipeline Enabled" },
+    highlights: ["NipeX & IOC Tender Ready", "Diaspora Real Estate Funnels", "Sub-Second E-Commerce", "Civil Plant & Equipment Portals"]
+  },
+  {
+    id: "digital-skills",
+    tabLabel: "Digital Skills Academy",
+    categoryBadge: "Training Track 1: Digital Skills",
+    badgeType: "orange",
+    titleLead: "Master High-Income",
+    titleAccent: "Digital Skills",
+    titleEnd: "That Deliver.",
+    subtitle: "Hands-on, project-driven bootcamps in Web Design, Video Editing, Social Media Ads, Python Data Analytics, and Full-Stack App Engineering led by active agency consultants.",
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=2000&q=85",
+    alt: "Digital skills student learning modern web design, coding, and video editing in a high-tech studio",
+    primaryCta: { label: "Digital Skills Track", path: "/training/digital-skills" },
+    secondaryCta: { label: "All Academy Programs", path: "/training" },
+    statsBadge: { value: "100%", label: "Live Project Capstones" },
+    highlights: ["Web Design & CMS", "Video Editing & Reels", "Data Analytics & SQL", "App Development"]
+  },
+  {
+    id: "professional-dev",
+    tabLabel: "Professional & HSE",
+    categoryBadge: "Training Track 2: Executive Certifications",
+    badgeType: "blue",
+    titleLead: "Accredited Global",
+    titleAccent: "Certifications",
+    titleEnd: "for Leaders & Teams.",
+    subtitle: "PMI-aligned Project Management Professional (PMP®), Strategic HRM, Enterprise CRM Systems, and accredited Health, Safety & Environment (HSE Levels 1, 2, 3) for corporate excellence.",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=85",
+    alt: "Corporate executives and safety engineers in a professional development masterclass",
+    primaryCta: { label: "Professional & HSE Track", path: "/training/professional-development" },
+    secondaryCta: { label: "Request Corporate Proposal", path: "/contact" },
+    statsBadge: { value: "Levels 1-3", label: "Accredited HSE Safety" },
+    highlights: ["PMP® Project Management", "Strategic HRM & Labour Law", "CRM Pipeline Automation", "HSE Levels 1, 2, 3"]
+  },
+  {
+    id: "seo-growth",
+    tabLabel: "SEO & Growth",
+    categoryBadge: "Search Domination & Analytics",
+    badgeType: "emerald",
+    titleLead: "Dominate Google &",
+    titleAccent: "Scale Organic Leads",
+    titleEnd: "With Precision.",
+    subtitle: "Deploy data-backed technical SEO audits, keyword dominance strategies, and conversion tracking that propel corporate brands to Page 1 of search engines.",
+    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=2000&q=85",
+    alt: "Digital growth strategists analyzing SEO rankings and conversion dashboards",
+    primaryCta: { label: "Read Case Studies", path: "/portfolio/case-studies" },
+    secondaryCta: { label: "Book Strategy Call", path: "/contact" },
+    statsBadge: { value: "Up to 300%", label: "Client ROI Avg" },
+    highlights: ["Google Page 1 Ranking", "Technical SEO Audits", "B2B Lead Pipelines", "Conversion Analytics"]
+  },
+  {
+    id: "careers-talent",
+    tabLabel: "Talent & Careers",
+    categoryBadge: "Careers & AI Talent Network",
+    badgeType: "blue",
+    titleLead: "Hire Pre-Vetted Tech Talent &",
+    titleAccent: "Build ATS-Optimized",
+    titleEnd: "Professional CVs.",
+    subtitle: "Bridge the gap between verified Nigerian software engineers, project managers, and HSE specialists and top employers. Utilize our AI CV Builder and talent network to accelerate your career.",
+    image: "/src/assets/images/careers_hero_workspace_1790617831121.jpg",
+    alt: "African software engineers and corporate recruiters in a modern talent collaboration workspace",
+    primaryCta: { label: "Launch AI CV Builder", path: "/careers/cv-builder" },
+    secondaryCta: { label: "Hire Verified Talent", path: "/careers/employers" },
+    statsBadge: { value: "500+", label: "Vetted Professionals" },
+    highlights: ["AI ATS CV Builder", "Direct Employer Matching", "Zero Recruitment Friction", "Verified Alumni Network"]
+  }
+];
 
 function Hero() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-  
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const touchStartXRef = useRef<number | null>(null);
+
+  const SLIDE_DURATION = 6500; // 6.5 seconds per slide
+  const TICK_INTERVAL = 50;
+
+  // Auto-advance timer with progress bar
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        const increment = (TICK_INTERVAL / SLIDE_DURATION) * 100;
+        if (prev + increment >= 100) {
+          setCurrentSlide((curr) => (curr + 1) % HERO_SLIDES.length);
+          return 0;
+        }
+        return prev + increment;
+      });
+    }, TICK_INTERVAL);
+
+    return () => clearInterval(timer);
+  }, [isPaused, currentSlide]);
+
+  const handleSelectSlide = (index: number) => {
+    setCurrentSlide(index);
+    setProgress(0);
+  };
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((curr) => (curr - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+    setProgress(0);
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((curr) => (curr + 1) % HERO_SLIDES.length);
+    setProgress(0);
+  };
+
+  // Touch swipe support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartXRef.current === null) return;
+    const diff = touchStartXRef.current - e.changedTouches[0].clientX;
+    if (diff > 50) {
+      handleNextSlide();
+    } else if (diff < -50) {
+      handlePrevSlide();
+    }
+    touchStartXRef.current = null;
+  };
+
+  const activeSlide = HERO_SLIDES[currentSlide];
 
   return (
-    <FadeInSection ref={containerRef} className="relative min-h-[100vh] flex items-center pt-24 overflow-hidden bg-mw-dark">
-      {/* Background Effect */}
-      <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-mw-orange/10 via-mw-dark to-mw-dark" />
-      </motion.div>
+    <section
+      aria-label="Mindware Consulting Showcase"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      className="relative min-h-[92vh] lg:min-h-[96vh] flex flex-col justify-between pt-28 md:pt-36 pb-12 overflow-hidden bg-[#02040a]"
+    >
+      {/* Background Image Slider with Smooth Crossfade & Subtle Ken Burns Zoom */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={activeSlide.id}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1.02 }}
+            exit={{ opacity: 0, scale: 1 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0"
+          >
+            <img
+              src={activeSlide.image}
+              alt={activeSlide.alt}
+              className="w-full h-full object-cover object-center"
+            />
+          </motion.div>
+        </AnimatePresence>
 
-      <div className="container relative z-10 mx-auto px-6 md:px-12">
+        {/* Cinematic Vignette, Darkening, and Theme Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-[#02040a]/85 to-[#02040a]/75" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#02040a] via-[#02040a]/90 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/[0.04] via-transparent to-transparent pointer-events-none" />
+
+        {/* Dynamic ambient color glow based on slide */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: EASE }}
-          className="max-w-6xl flex flex-col md:flex-row md:items-end justify-between gap-12"
-        >
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-3 mb-10">
-               <div className="w-1.5 h-1.5 rounded-full bg-mw-orange animate-pulse" />
-               <span className="text-sm font-bold tracking-[0.2em] uppercase text-white/60">Premium Digital Growth Partner</span>
-            </div>
-            
-            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] font-bold font-sans tracking-tight mb-8 leading-[1.05] md:leading-[1] text-white">
-              We Build Digital <br className="hidden md:block" />
-              <span className="text-mw-orange inline-block">Experiences</span> That <br className="hidden md:block" />
-              Grow Businesses.
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-white/60 max-w-2xl leading-relaxed font-normal">
-              Mindware Consulting helps businesses build stronger digital presence, attract the right audience, and turn online interactions into sustainable growth.
-            </p>
+          key={`glow-${activeSlide.id}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.15 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+          className={cn(
+            "absolute -top-32 right-0 w-[600px] h-[600px] rounded-full blur-[140px] mix-blend-screen pointer-events-none",
+            activeSlide.badgeType === "orange" && "bg-mw-orange",
+            activeSlide.badgeType === "blue" && "bg-blue-600",
+            activeSlide.badgeType === "emerald" && "bg-emerald-500",
+            activeSlide.badgeType === "purple" && "bg-purple-600",
+            activeSlide.badgeType === "amber" && "bg-amber-500"
+          )}
+        />
+      </div>
+
+      {/* Main Hero Content Area */}
+      <div className="container relative z-10 mx-auto px-6 md:px-12 flex-1 flex flex-col justify-center">
+        <div className="max-w-4xl lg:max-w-5xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSlide.id}
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Category Pill / Badge */}
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.07] border border-white/10 backdrop-blur-md mb-6 md:mb-8 shadow-sm">
+                <span
+                  className={cn(
+                    "w-2 h-2 rounded-full animate-pulse",
+                    activeSlide.badgeType === "orange" && "bg-mw-orange shadow-[0_0_8px_#ff4d00]",
+                    activeSlide.badgeType === "blue" && "bg-blue-400 shadow-[0_0_8px_#3b82f6]",
+                    activeSlide.badgeType === "emerald" && "bg-emerald-400 shadow-[0_0_8px_#10b981]",
+                    activeSlide.badgeType === "purple" && "bg-purple-400 shadow-[0_0_8px_#a855f7]",
+                    activeSlide.badgeType === "amber" && "bg-amber-400 shadow-[0_0_8px_#f59e0b]"
+                  )}
+                />
+                <span className="text-xs md:text-sm font-semibold tracking-wider uppercase text-white/90">
+                  {activeSlide.categoryBadge}
+                </span>
+                <span className="text-white/30 text-xs">|</span>
+                <span className="text-[11px] font-medium text-white/60 hidden sm:inline">
+                  Slide {String(currentSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Main Headline with Highlight Accent */}
+              <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold font-display tracking-tight mb-6 md:mb-8 leading-[1.08] text-white">
+                {activeSlide.titleLead}{" "}
+                <span
+                  className={cn(
+                    "inline-block",
+                    activeSlide.badgeType === "orange" && "text-transparent bg-clip-text bg-gradient-to-r from-mw-orange via-orange-400 to-amber-300",
+                    activeSlide.badgeType === "blue" && "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300",
+                    activeSlide.badgeType === "emerald" && "text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-green-300",
+                    activeSlide.badgeType === "purple" && "text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-300 to-indigo-300",
+                    activeSlide.badgeType === "amber" && "text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-300"
+                  )}
+                >
+                  {activeSlide.titleAccent}
+                </span>{" "}
+                {activeSlide.titleEnd}
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-lg md:text-2xl text-white/70 max-w-3xl leading-relaxed font-normal mb-8 md:mb-10">
+                {activeSlide.subtitle}
+              </p>
+
+              {/* Interactive Key Highlights Tags */}
+              <div className="flex flex-wrap items-center gap-2 mb-10">
+                {activeSlide.highlights.map((item, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-xs md:text-sm text-white/80 backdrop-blur-sm"
+                  >
+                    <CheckCircle2
+                      className={cn(
+                        "w-3.5 h-3.5",
+                        activeSlide.badgeType === "orange" && "text-mw-orange",
+                        activeSlide.badgeType === "blue" && "text-blue-400",
+                        activeSlide.badgeType === "emerald" && "text-emerald-400",
+                        activeSlide.badgeType === "purple" && "text-purple-400",
+                        activeSlide.badgeType === "amber" && "text-amber-400"
+                      )}
+                    />
+                    <span>{item}</span>
+                  </span>
+                ))}
+              </div>
+
+              {/* Call-to-Action Group */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <Link
+                  to={activeSlide.primaryCta.path}
+                  className={cn(
+                    "inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-sm md:text-base transition-all duration-300 shadow-xl hover:scale-105 active:scale-95 text-white w-full sm:w-auto text-center",
+                    activeSlide.badgeType === "orange" && "bg-mw-orange hover:bg-mw-orange-hover shadow-mw-orange/25",
+                    activeSlide.badgeType === "blue" && "bg-blue-600 hover:bg-blue-500 shadow-blue-600/25",
+                    activeSlide.badgeType === "emerald" && "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-600/25",
+                    activeSlide.badgeType === "purple" && "bg-purple-600 hover:bg-purple-500 shadow-purple-600/25",
+                    activeSlide.badgeType === "amber" && "bg-amber-600 hover:bg-amber-500 shadow-amber-600/25"
+                  )}
+                >
+                  <span>{activeSlide.primaryCta.label}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
+                <Link
+                  to={activeSlide.secondaryCta.path}
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full font-semibold text-sm md:text-base text-white/90 bg-white/5 hover:bg-white/10 border border-white/15 backdrop-blur-md transition-all hover:scale-105 active:scale-95 hover:border-white/30 w-full sm:w-auto text-center"
+                >
+                  <span>{activeSlide.secondaryCta.label}</span>
+                </Link>
+
+                {/* Floating Metric Pill */}
+                <div className="hidden lg:inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/[0.03] border border-white/10 ml-2">
+                  <div
+                    className={cn(
+                      "text-lg font-bold font-sans",
+                      activeSlide.badgeType === "orange" && "text-mw-orange",
+                      activeSlide.badgeType === "blue" && "text-blue-400",
+                      activeSlide.badgeType === "emerald" && "text-emerald-400",
+                      activeSlide.badgeType === "purple" && "text-purple-400",
+                      activeSlide.badgeType === "amber" && "text-amber-400"
+                    )}
+                  >
+                    {activeSlide.statsBadge.value}
+                  </div>
+                  <div className="text-xs text-white/60 uppercase tracking-wider leading-tight">
+                    {activeSlide.statsBadge.label}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Slider Control Deck & Live Indicator Tabs */}
+      <div className="container relative z-20 mx-auto px-6 md:px-12 mt-12 md:mt-16">
+        <div className="p-3 md:p-4 rounded-2xl md:rounded-3xl bg-[#090d16]/80 border border-white/10 backdrop-blur-xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Slide Tabs Navigation */}
+          <div className="flex overflow-x-auto pb-1.5 scrollbar-none sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-2 w-full md:w-auto flex-1 flex-nowrap sm:flex-wrap">
+            {HERO_SLIDES.map((slide, idx) => {
+              const isActive = currentSlide === idx;
+              return (
+                <button
+                  key={slide.id}
+                  onClick={() => handleSelectSlide(idx)}
+                  className={cn(
+                    "relative text-left p-2.5 sm:p-3 rounded-xl transition-all duration-300 overflow-hidden flex flex-col justify-between min-w-[130px] sm:min-w-0 shrink-0",
+                    isActive
+                      ? "bg-white/[0.08] border border-white/15"
+                      : "bg-transparent hover:bg-white/[0.03] border border-transparent"
+                  )}
+                >
+                  <div className="flex items-center justify-between w-full mb-1">
+                    <span className="text-[10px] sm:text-[11px] font-mono text-white/50">
+                      0{idx + 1}
+                    </span>
+                    {isActive && (
+                      <span
+                        className={cn(
+                          "w-1.5 h-1.5 rounded-full",
+                          slide.badgeType === "orange" && "bg-mw-orange",
+                          slide.badgeType === "blue" && "bg-blue-400",
+                          slide.badgeType === "emerald" && "bg-emerald-400",
+                          slide.badgeType === "purple" && "bg-purple-400",
+                          slide.badgeType === "amber" && "bg-amber-400"
+                        )}
+                      />
+                    )}
+                  </div>
+                  <span
+                    className={cn(
+                      "text-[11px] sm:text-xs font-semibold truncate",
+                      isActive ? "text-white" : "text-white/60 hover:text-white/90"
+                    )}
+                  >
+                    {slide.tabLabel}
+                  </span>
+
+                  {/* Real-time Progress Bar for Active Slide */}
+                  {isActive && (
+                    <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-white/10 overflow-hidden">
+                      <motion.div
+                        className={cn(
+                          "h-full",
+                          slide.badgeType === "orange" && "bg-mw-orange",
+                          slide.badgeType === "blue" && "bg-blue-400",
+                          slide.badgeType === "emerald" && "bg-emerald-400",
+                          slide.badgeType === "purple" && "bg-purple-400",
+                          slide.badgeType === "amber" && "bg-amber-400"
+                        )}
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                  )}
+                </button>
+              );
+            })}
           </div>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 flex-shrink-0 md:pb-4">
-            <Link
-              to="/pricing"
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-8 py-5 rounded-full font-bold text-sm md:text-base transition-all hover:scale-105 active:scale-95 shadow-xl"
+          {/* Controls: Prev / Next / Pause / Counter */}
+          <div className="flex items-center justify-between md:justify-end gap-3 w-full md:w-auto shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-white/5">
+            {/* Slide Index Counter */}
+            <div className="text-xs font-mono text-white/50 px-2">
+              <strong className="text-white font-sans text-sm">0{currentSlide + 1}</strong>
+              <span className="mx-1">/</span>
+              <span>0{HERO_SLIDES.length}</span>
+            </div>
+
+            {/* Play/Pause Button */}
+            <button
+              onClick={() => setIsPaused(!isPaused)}
+              aria-label={isPaused ? "Play slider" : "Pause slider"}
+              className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+              title={isPaused ? "Resume autoplay" : "Pause autoplay"}
             >
-              <span>Explore Packages</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white/10 hover:bg-white/20 text-white border border-white/10 px-8 py-5 rounded-full font-bold text-sm md:text-base transition-all hover:scale-105 active:scale-95"
+              {isPaused ? <Play className="w-3.5 h-3.5 fill-current" /> : <Pause className="w-3.5 h-3.5" />}
+            </button>
+
+            {/* Prev Button */}
+            <button
+              onClick={handlePrevSlide}
+              aria-label="Previous slide"
+              className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
             >
-              <span>Book Consultation</span>
-            </Link>
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Next Button */}
+            <button
+              onClick={handleNextSlide}
+              aria-label="Next slide"
+              className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </FadeInSection>
+    </section>
   );
 }
 
@@ -115,7 +547,7 @@ function GrowthMetrics() {
       <h2 className="sr-only">Our Growth Metrics</h2>
       <div className="absolute inset-0 bg-gradient-to-b from-mw-orange/5 to-transparent mix-blend-screen pointer-events-none" />
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-16 md:gap-8 divide-x divide-white/5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-8 md:divide-x divide-white/5">
           {metrics.map((metric, i) => (
             <motion.div
               key={metric.label}
@@ -125,7 +557,7 @@ function GrowthMetrics() {
               transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
               className={cn("flex flex-col items-center md:items-start text-center md:text-left", i !== 0 && "pl-0 md:pl-8 lg:pl-12")}
             >
-              <div className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
                 <AnimatedCounter end={metric.value} suffix={metric.suffix} prefix={metric.prefix} />
               </div>
               <p className="text-white/50 font-medium uppercase tracking-[0.2em] text-[10px] md:text-xs">
@@ -218,7 +650,7 @@ function SelfSelection() {
                  <div className="w-1.5 h-1.5 rounded-full bg-mw-orange" />
                  <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-white/50">Your Objective</span>
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold mb-8 tracking-tight leading-[1.1]">What can we <br/>help you achieve?</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 tracking-tight leading-[1.1] text-white">What can we <br/>help you achieve?</h2>
               <p className="text-xl text-white/50 max-w-md font-light leading-relaxed">Select your primary business objective to discover how our integrated approach can accelerate your growth.</p>
            </div>
            
@@ -233,21 +665,21 @@ function SelfSelection() {
                 >
                   <Link 
                     to={opt.path}
-                    className="group relative flex items-center justify-between p-8 md:p-12 border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/20 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mw-orange rounded-2xl overflow-hidden"
+                    className="group relative flex items-center justify-between p-5 sm:p-8 md:p-12 border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/20 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mw-orange rounded-2xl overflow-hidden"
                   >
                     <div className="absolute -left-6 -top-10 text-[8rem] md:text-[12rem] font-sans font-bold text-white/[0.02] group-hover:text-white/[0.04] transition-colors duration-500 pointer-events-none select-none leading-none">
                       {opt.id}
                     </div>
                     
-                    <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-12 w-full">
-                       <div className="flex-1">
-                          <h3 className="text-3xl md:text-4xl font-sans font-bold tracking-tight mb-3 group-hover:text-mw-orange transition-colors text-white/90">{opt.label}</h3>
-                          <p className="text-lg text-white/50 group-hover:text-white/70 transition-colors font-light">{opt.desc}</p>
+                    <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-2 sm:gap-4 md:gap-12 w-full min-w-0">
+                       <div className="flex-1 min-w-0">
+                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold tracking-tight mb-2 sm:mb-3 group-hover:text-mw-orange transition-colors text-white/90">{opt.label}</h3>
+                          <p className="text-sm sm:text-lg text-white/50 group-hover:text-white/70 transition-colors font-light">{opt.desc}</p>
                        </div>
                     </div>
                     
-                    <div className="relative z-10 w-16 h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-mw-orange group-hover:border-mw-orange transition-all duration-500 shrink-0">
-                       <ArrowRight className="w-6 h-6 text-white/50 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
+                    <div className="relative z-10 w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-mw-orange group-hover:border-mw-orange transition-all duration-500 shrink-0 ml-3">
+                       <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
                     </div>
                   </Link>
                 </motion.div>
@@ -274,7 +706,7 @@ function Ecosystem() {
     <FadeInSection className="py-32 lg:py-48 relative overflow-hidden bg-[#02040A]">
       <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
         <div className="max-w-4xl mx-auto mb-32">
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 tracking-tight">One Business.<br/>One Connected System.</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 tracking-tight text-white">One Business.<br/>One Connected System.</h2>
           <p className="text-xl md:text-2xl text-white/50 font-light max-w-2xl mx-auto">
             Mindware does not operate disconnected services. We build intelligent, connected digital growth systems where strategy, technology, and marketing work in unison.
           </p>
@@ -344,7 +776,7 @@ function ServicesOverview() {
                <div className="w-1.5 h-1.5 rounded-full bg-mw-orange" />
                <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-white/50">Core Expertise</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-sans font-bold mb-8 tracking-tight leading-tight">Digital Systems<br />Engineered for Growth.</h2>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-8 tracking-tight leading-tight text-white">Digital Systems<br />Engineered for Growth.</h2>
             <p className="text-2xl text-white/50 font-light leading-relaxed">
               We design the digital infrastructure businesses need to become visible, credible, and fundamentally easier to buy from.
             </p>
@@ -373,26 +805,26 @@ function ServicesOverview() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
                 className={cn(
-                  "group relative p-10 lg:p-14 rounded-[2.5rem] border border-white/5 bg-gradient-to-br from-white/[0.04] to-transparent flex flex-col h-full overflow-hidden hover:border-mw-orange/50 transition-all duration-700",
+                  "group relative p-6 sm:p-10 lg:p-14 rounded-3xl lg:rounded-[2.5rem] border border-white/5 bg-gradient-to-br from-white/[0.04] to-transparent flex flex-col h-full overflow-hidden hover:border-mw-orange/50 transition-all duration-700",
                   colSpan
                 )}
               >
                 <div className="absolute inset-0 bg-mw-orange/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
-                <div className="absolute top-0 right-0 p-10 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0">
-                  <ArrowUpRight className="w-10 h-10 text-mw-orange/80" />
+                <div className="absolute top-0 right-0 p-6 sm:p-10 opacity-0 group-hover:opacity-100 transition-all duration-700 translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0">
+                  <ArrowUpRight className="w-8 h-8 sm:w-10 sm:h-10 text-mw-orange/80" />
                 </div>
                 
                 <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-10 group-hover:bg-mw-orange/10 group-hover:border-mw-orange/30 transition-all duration-500">
-                     <Icon className="w-7 h-7 text-mw-orange group-hover:scale-110 transition-transform duration-500" />
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6 sm:mb-10 group-hover:bg-mw-orange/10 group-hover:border-mw-orange/30 transition-all duration-500">
+                     <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-mw-orange group-hover:scale-110 transition-transform duration-500" />
                   </div>
                   
-                  <h3 className={cn("font-sans font-bold tracking-tight mb-4", i === 0 ? "text-4xl lg:text-5xl" : "text-3xl lg:text-4xl")}>
+                  <h3 className={cn("font-sans font-bold tracking-tight mb-3 sm:mb-4", i === 0 ? "text-2xl sm:text-4xl lg:text-5xl" : "text-xl sm:text-3xl lg:text-4xl")}>
                     {service.title}
                   </h3>
                   
-                  <p className="text-white/50 mb-12 flex-grow text-lg font-light leading-relaxed max-w-xl group-hover:text-white/70 transition-colors">
+                  <p className="text-white/50 mb-8 sm:mb-12 flex-grow text-base sm:text-lg font-light leading-relaxed max-w-xl group-hover:text-white/70 transition-colors">
                     {service.tagline}
                   </p>
                 </div>
@@ -433,7 +865,7 @@ function LatestWork() {
               <div className="w-1.5 h-1.5 rounded-full bg-mw-orange animate-pulse" />
               <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-white/50">Our Latest Work</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-sans font-bold mb-6 tracking-tight leading-tight text-white">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-6 tracking-tight leading-tight text-white">
               Selected Projects.<br />Proven Outcomes.
             </h2>
             <p className="text-xl md:text-2xl text-white/50 font-light leading-relaxed">
@@ -443,7 +875,7 @@ function LatestWork() {
 
           <div className="flex flex-wrap items-center gap-4">
             <Link
-              to="/case-studies"
+              to="/portfolio/case-studies"
               className="inline-flex items-center gap-2 text-mw-orange font-medium hover:text-orange-400 transition-colors pb-4 border-b border-mw-orange/30 hover:border-mw-orange/80 shrink-0"
             >
               <span className="uppercase tracking-[0.2em] text-xs font-bold">Case Studies</span>
@@ -474,7 +906,7 @@ function LatestWork() {
               <div>
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-white/5 flex items-center justify-center p-3">
                   <Link
-                    to={`/case-studies/${project.id}`}
+                    to={`/portfolio/case-studies/${project.id}`}
                     aria-label={`View case study for ${project.title}`}
                     className="w-full h-full flex items-center justify-center block"
                   >
@@ -490,7 +922,7 @@ function LatestWork() {
                   
                   {/* Floating Case Study Tab */}
                   <Link
-                    to={`/case-studies/${project.id}`}
+                    to={`/portfolio/case-studies/${project.id}`}
                     className="absolute top-4 left-4 bg-[#02040a]/80 backdrop-blur-md border border-white/10 hover:border-mw-orange text-white px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
                   >
                     <span>Case Study</span>
@@ -517,7 +949,7 @@ function LatestWork() {
 
                 <div className="text-sm font-medium text-white/50 mb-1">{project.client}</div>
                 <h3 className="text-2xl md:text-3xl font-bold mb-3 text-white group-hover:text-mw-orange transition-colors">
-                  <Link to={`/case-studies/${project.id}`} className="hover:underline">
+                  <Link to={`/portfolio/case-studies/${project.id}`} className="hover:underline">
                     {project.title}
                   </Link>
                 </h3>
@@ -546,7 +978,7 @@ function LatestWork() {
               {/* Action Buttons */}
               <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
                 <Link
-                  to={`/case-studies/${project.id}`}
+                  to={`/portfolio/case-studies/${project.id}`}
                   className="inline-flex items-center gap-2 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md group/btn"
                 >
                   <span>Read Case Study</span>
@@ -610,7 +1042,7 @@ function GrowthSystem() {
                    <div className="w-1.5 h-1.5 rounded-full bg-mw-orange" />
                    <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-black/40">The Framework</span>
                  </div>
-                 <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold mb-8 tracking-tight leading-[1.05]">The Mindware<br/>Growth System.</h2>
+                 <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold mb-8 tracking-tight leading-[1.05]">The Mindware<br/>Growth System.</h2>
                  <p className="text-xl md:text-2xl text-black/50 font-light leading-relaxed max-w-md">
                     A systematic, battle-tested framework turning digital complexity into measurable, continuous growth.
                  </p>
@@ -684,7 +1116,7 @@ function FAQ() {
                  <div className="w-1.5 h-1.5 rounded-full bg-mw-orange" />
                  <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-white/40">Knowledge Base</span>
               </div>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white mb-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white mb-6">
                 Common<br/>Questions.
               </h2>
               <p className="text-xl text-white/50 font-light mb-12 max-w-md">
@@ -750,127 +1182,6 @@ function FAQ() {
   );
 }
 
-const TESTIMONIALS = [
-  {
-    id: 1,
-    quote: "Mindware didn't just build our platform; they re-architected our entire digital acquisition engine. The ROI was visible within weeks.",
-    author: "Sarah Jenkins",
-    role: "CMO, TechFlow Solutions",
-  },
-  {
-    id: 2,
-    quote: "Their grasp of both brand aesthetics and technical performance is unmatched. They elevate everything they touch.",
-    author: "Marcus Adebayo",
-    role: "Founder, Zenith Retail",
-  },
-  {
-    id: 3,
-    quote: "A rare combination of strategic foresight and flawless execution. They are true partners in our growth journey.",
-    author: "Elena Rodriguez",
-    role: "VP Digital, OmniCorp",
-  }
-];
-
-function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const paginate = (newDirection: number) => {
-    setCurrentIndex((prev) => (prev + newDirection + TESTIMONIALS.length) % TESTIMONIALS.length);
-  };
-
-  return (
-    <FadeInSection className="py-32 bg-mw-dark relative overflow-hidden border-t border-white/5">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-mw-orange/5 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-20%" }}
-            transition={{ duration: 0.8, ease: EASE }}
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4">
-              Trusted by Ambitious Brands
-            </h2>
-            <p className="text-xl text-white/60 max-w-2xl font-light">
-              Don't just take our word for it. Here's what our partners say about the Mindware experience.
-            </p>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
-            className="flex items-center gap-4"
-          >
-            <button
-              onClick={() => paginate(-1)}
-              aria-label="Previous testimonial"
-              className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-all active:scale-95"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={() => paginate(1)}
-              aria-label="Next testimonial"
-              className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 transition-all active:scale-95"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </motion.div>
-        </div>
-
-        <div className="relative min-h-[300px] md:min-h-[250px]">
-          <Quote className="absolute -top-10 -left-6 md:-top-16 md:-left-12 w-24 h-24 md:w-40 md:h-40 text-white/5 z-0" />
-          
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: EASE }}
-              className="relative z-10 w-full"
-            >
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-snug md:leading-tight text-white mb-10 max-w-5xl">
-                "{TESTIMONIALS[currentIndex].quote}"
-              </h3>
-              
-              <div className="flex items-center gap-5">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-mw-orange/20 to-orange-600/20 border border-mw-orange/30 flex items-center justify-center text-mw-orange font-bold text-xl shadow-lg shadow-mw-orange/10">
-                  {TESTIMONIALS[currentIndex].author.charAt(0)}
-                </div>
-                <div>
-                  <div className="text-white font-bold text-lg">{TESTIMONIALS[currentIndex].author}</div>
-                  <div className="text-white/60">{TESTIMONIALS[currentIndex].role}</div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        
-        {/* Pagination Dots */}
-        <div className="flex items-center gap-3 mt-12 md:mt-16" role="tablist">
-          {TESTIMONIALS.map((_, index) => (
-            <button
-              key={index}
-              role="tab"
-              aria-selected={index === currentIndex}
-              aria-label={`Go to testimonial ${index + 1}`}
-              onClick={() => setCurrentIndex(index)}
-              className={cn(
-                "w-2.5 h-2.5 rounded-full transition-all duration-500 ease-out",
-                index === currentIndex ? "bg-mw-orange w-10 shadow-[0_0_12px_rgba(249,115,22,0.5)]" : "bg-white/20 hover:bg-white/40"
-              )}
-            />
-          ))}
-        </div>
-      </div>
-    </FadeInSection>
-  );
-}
-
 function CTASection() {
   return (
     <FadeInSection className="py-32 lg:py-48 relative overflow-hidden bg-mw-orange">
@@ -881,25 +1192,25 @@ function CTASection() {
              <div className="w-1.5 h-1.5 rounded-full bg-mw-dark" />
              <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-mw-dark/60">Let's Talk</span>
           </div>
-          <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-sans font-bold mb-8 md:mb-10 tracking-tight leading-tight md:leading-[0.9]">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-display font-bold mb-8 md:mb-10 tracking-tight leading-tight md:leading-[0.95] text-mw-dark">
             Your next customer is already online.
           </h2>
-          <p className="text-xl md:text-2xl opacity-70 max-w-2xl mx-auto mb-16 font-medium tracking-tight">
+          <p className="text-lg md:text-2xl opacity-75 max-w-2xl mx-auto mb-14 font-medium tracking-tight">
             Let's build the digital experience that helps them find you, trust you, and choose you.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
             <Link
               to="/contact"
-              className="w-full sm:w-auto bg-mw-dark text-white px-12 py-6 rounded-full font-bold text-[10px] tracking-widest uppercase transition-transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3"
+              className="w-full sm:w-auto bg-mw-dark text-white px-10 py-5 rounded-full font-bold text-xs tracking-widest uppercase transition-transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-xl"
             >
               Start Your Project
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href="https://wa.me/message/xyz" 
+              href="https://wa.me/2348125082354?text=Hello%20Mindware%20Consulting%2C%20I%20would%20like%20to%20start%20a%20project%20with%20your%20team." 
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-white/20 hover:bg-white text-mw-dark px-12 py-6 rounded-full font-bold text-[10px] tracking-widest uppercase transition-all hover:scale-105 active:scale-95 backdrop-blur-sm"
+              className="w-full sm:w-auto bg-white/20 hover:bg-white text-mw-dark px-10 py-5 rounded-full font-bold text-xs tracking-widest uppercase transition-all hover:scale-105 active:scale-95 backdrop-blur-sm"
             >
               Chat on WhatsApp
             </a>
@@ -922,8 +1233,8 @@ export function Home() {
       <ServicesOverview />
       <LatestWork />
       <GrowthSystem />
+      <HomeVideoTestimonials />
       <FAQ />
-      <Testimonials />
       <CTASection />
     </div>
   );

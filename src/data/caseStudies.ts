@@ -309,7 +309,12 @@ export const BESPOKE_CASE_STUDIES: Record<string, Partial<CaseStudyDetail>> = {
       { label: "Bounce Rate Reduction", value: "-52%", subtext: "Clear sector navigation" },
       { label: "Delivery Duration", value: "4 Weeks", subtext: "On-schedule launch" }
     ],
-    projectDuration: "4 Weeks"
+    projectDuration: "4 Weeks",
+    testimonial: {
+      quote: "Mindware Consulting unified our diverse industrial operations across oil & gas, aviation, and environmental servicing into an authoritative corporate digital identity that commands international trust.",
+      author: "Chief Peters",
+      role: "Chief Executive Officer & Managing Director, Priziangori Global Services Limited"
+    }
   },
   "eclectic-seals": {
     tagline: "Premium Interior, Building & Landscape Design Platform in Abuja",

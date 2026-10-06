@@ -21,7 +21,7 @@ export function Insights() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-6 md:mb-8 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-6 md:mb-8 leading-tight text-white">
               Mindware <br />
               Digital Growth <span className="text-gradient">Lab.</span>
             </h1>

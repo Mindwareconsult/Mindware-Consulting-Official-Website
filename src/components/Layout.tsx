@@ -37,7 +37,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <main className="flex-grow">{children}</main>
       <Footer />
 
-      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex flex-col items-end gap-4 pointer-events-none">
+      <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50 flex flex-col items-end gap-3 sm:gap-4 pointer-events-none">
         <AnimatePresence>
           {showBackToTop && (
             <motion.button
@@ -46,20 +46,21 @@ export function Layout({ children }: { children: ReactNode }) {
               exit={{ opacity: 0, y: 20, scale: 0.8 }}
               transition={{ duration: 0.3 }}
               onClick={scrollToTop}
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-[#02040a]/80 border border-white/10 backdrop-blur-md text-white shadow-lg hover:bg-white/10 hover:-translate-y-1 transition-all active:scale-95 pointer-events-auto"
+              className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-[#02040a]/80 border border-white/10 backdrop-blur-md text-white shadow-lg hover:bg-white/10 hover:-translate-y-1 transition-all active:scale-95 pointer-events-auto"
               aria-label="Back to top"
             >
-              <ArrowUp className="w-5 h-5" />
+              <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
           )}
         </AnimatePresence>
         
         <Link
           to="/contact"
-          className="group flex items-center gap-3 bg-mw-orange text-white px-6 py-3.5 rounded-full font-bold shadow-[0_4px_24px_rgba(249,115,22,0.4)] hover:bg-orange-500 hover:shadow-[0_4px_32px_rgba(249,115,22,0.6)] hover:-translate-y-1 transition-all active:scale-95 pointer-events-auto"
+          className="group flex items-center justify-center gap-2.5 bg-mw-orange text-white p-3.5 sm:px-6 sm:py-3.5 rounded-full font-bold shadow-[0_4px_24px_rgba(249,115,22,0.4)] hover:bg-orange-500 hover:shadow-[0_4px_32px_rgba(249,115,22,0.6)] hover:-translate-y-1 transition-all active:scale-95 pointer-events-auto"
+          aria-label="Book Consultation"
         >
-          <Calendar className="w-5 h-5 transition-transform group-hover:scale-110" />
-          <span>Book Consultation</span>
+          <Calendar className="w-5 h-5 transition-transform group-hover:scale-110 shrink-0" />
+          <span className="hidden sm:inline">Book Consultation</span>
         </Link>
       </div>
     </div>

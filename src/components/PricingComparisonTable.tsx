@@ -95,12 +95,12 @@ export function PricingComparisonTable() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 p-4 rounded-2xl bg-white/[0.02] border border-white/10">
           
           {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
+          <div className="flex overflow-x-auto pb-1 scrollbar-none sm:flex-wrap items-center gap-2 w-full md:w-auto flex-nowrap sm:flex-wrap">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all whitespace-nowrap shrink-0 ${
                   selectedCategory === cat.id
                     ? "bg-mw-orange text-white shadow-md shadow-mw-orange/20"
                     : "bg-white/5 text-white/60 hover:text-white hover:bg-white/10 border border-white/5"
@@ -120,7 +120,7 @@ export function PricingComparisonTable() {
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
                 placeholder="Filter deliverables..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-mw-orange transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-2 text-base sm:text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-mw-orange transition-colors"
               />
             </div>
 
@@ -158,15 +158,15 @@ export function PricingComparisonTable() {
                   {/* Sticky First Column for Deliverables */}
                   <th 
                     scope="col"
-                    className="sticky left-0 z-30 py-6 px-6 bg-[#040814] w-[260px] min-w-[260px] border-r border-white/10 shadow-[4px_0_16px_rgba(0,0,0,0.4)]"
+                    className="sticky left-0 z-30 py-4 sm:py-6 px-3 sm:px-6 bg-[#040814] w-[160px] sm:w-[260px] min-w-[160px] sm:min-w-[260px] border-r border-white/10 shadow-[4px_0_16px_rgba(0,0,0,0.4)]"
                   >
-                    <div className="text-xs uppercase font-bold tracking-widest text-white/50 mb-1">
+                    <div className="text-[10px] sm:text-xs uppercase font-bold tracking-widest text-white/50 mb-1">
                       Deliverables Matrix
                     </div>
-                    <div className="text-base font-bold text-white">
-                      All 18 Specifications
+                    <div className="text-sm sm:text-base font-bold text-white">
+                      All 18 Specs
                     </div>
-                    <div className="text-xs text-white/40 font-light mt-1">
+                    <div className="text-[11px] sm:text-xs text-white/40 font-light mt-1 hidden xs:block">
                       1-yr hosting &amp; domain in all plans
                     </div>
                   </th>
@@ -254,7 +254,7 @@ export function PricingComparisonTable() {
                       <tr className="bg-white/[0.04] border-t border-b border-white/10">
                         <td 
                           colSpan={7}
-                          className="sticky left-0 py-3 px-6 text-xs font-bold uppercase tracking-widest text-mw-orange bg-[#050b1b] z-20"
+                          className="sticky left-0 py-2.5 sm:py-3 px-3 sm:px-6 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-mw-orange bg-[#050b1b] z-20"
                         >
                           <div className="flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-mw-orange" />
@@ -275,13 +275,13 @@ export function PricingComparisonTable() {
                           {/* Sticky Feature Name Cell */}
                           <td 
                             scope="row"
-                            className="sticky left-0 z-20 py-4 px-6 bg-[#040814] group-hover:bg-[#060c1d] border-r border-white/10 shadow-[4px_0_16px_rgba(0,0,0,0.35)] transition-colors"
+                            className="sticky left-0 z-20 py-3 sm:py-4 px-3 sm:px-6 bg-[#040814] group-hover:bg-[#060c1d] border-r border-white/10 shadow-[4px_0_16px_rgba(0,0,0,0.35)] transition-colors w-[160px] sm:w-[260px] min-w-[160px] sm:min-w-[260px]"
                           >
-                            <div className="text-sm font-medium text-white/90">
+                            <div className="text-xs sm:text-sm font-medium text-white/90 leading-tight">
                               {row.feature}
                             </div>
                             {row.tooltip && (
-                              <p className="text-[11px] text-white/40 font-light mt-0.5 leading-snug">
+                              <p className="text-[10px] sm:text-[11px] text-white/40 font-light mt-0.5 leading-snug line-clamp-2 sm:line-clamp-none">
                                 {row.tooltip}
                               </p>
                             )}

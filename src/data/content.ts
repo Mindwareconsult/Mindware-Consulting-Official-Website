@@ -47,11 +47,16 @@ export const SERVICES = [
     },
     {
         id: "training",
-        title: "Training",
-        tagline: "Learn digital skills you can actually use.",
-        description: "Practical, career-focused training programs in web design, digital marketing, and modern technologies.",
+        title: "Training & Workforce Development",
+        tagline: "Divided into 2 specialized academies: Digital Skills & Professional Certifications.",
+        description: "Practical, career-focused learning accelerators structured into two dedicated academies: Digital Skills (Web Design, Social Media Marketing, Video Editing, Data Analytics, SEO, App Development) and Professional Development & Employability (PMP®, HRM, CRM Systems, HSE Levels 1, 2, 3, and Executive Leadership).",
         icon: GraduationCap,
-        features: ["Web Design & WordPress", "Digital Marketing", "AI Tools", "Data Analysis"]
+        features: [
+            "Digital Skills Track: Web Design, Social Media, Video Editing, Data Analytics, SEO, App Dev",
+            "Professional Development Track: PMP® Project Management, HRM, CRM Systems, HSE Levels 1, 2, 3",
+            "Practical Capstone Projects, Portfolio Reviews & Industry Mentorship",
+            "Accredited Certifications, PMI PMBOK Standards, HSE Compliance & Corporate Bootcamps"
+        ]
     },
     {
         id: "consultancy",
@@ -235,8 +240,8 @@ export const NAVIGATION = [
     { name: "Services", path: "/services" },
     { name: "Pricing", path: "/pricing" },
     { name: "Portfolio", path: "/portfolio" },
-    { name: "Case Studies", path: "/case-studies" },
-    { name: "Training", path: "/training" },
+    { name: "Academy", path: "/training" },
+    { name: "Careers", path: "/careers" },
     { name: "Insights", path: "/insights" },
     { name: "Contact", path: "/contact" }
 ];

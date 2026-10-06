@@ -33,7 +33,7 @@ export function CaseStudyDetail() {
             The project case study you're looking for doesn't exist or may have been updated.
           </p>
           <Link
-            to="/case-studies"
+            to="/portfolio/case-studies"
             className="inline-flex items-center gap-2 bg-white text-mw-dark px-6 py-3 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-mw-orange hover:text-white transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -67,10 +67,14 @@ export function CaseStudyDetail() {
             transition={{ duration: 0.7, ease: EASE }}
             className="max-w-4xl"
           >
-            {/* Breadcrumb / Back link */}
-            <div className="flex items-center gap-3 text-xs uppercase tracking-wider text-white/50 mb-8">
-              <Link to="/case-studies" className="hover:text-mw-orange transition-colors inline-flex items-center gap-1.5">
-                <ArrowLeft className="w-3.5 h-3.5" />
+            {/* Breadcrumb Hierarchy */}
+            <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-white/50 mb-8 flex-wrap">
+              <Link to="/portfolio" className="hover:text-mw-orange transition-colors inline-flex items-center gap-1">
+                <Layers className="w-3.5 h-3.5 text-mw-orange" />
+                <span>Portfolio</span>
+              </Link>
+              <span>/</span>
+              <Link to="/portfolio/case-studies" className="hover:text-mw-orange transition-colors">
                 <span>Case Studies</span>
               </Link>
               <span>/</span>
@@ -343,7 +347,7 @@ export function CaseStudyDetail() {
                 <p className="text-white/50 text-sm mt-1">Discover other transformative projects we've engineered.</p>
               </div>
               <Link
-                to="/case-studies"
+                to="/portfolio/case-studies"
                 className="hidden sm:inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-mw-orange hover:text-white transition-colors"
               >
                 <span>View All Studies</span>
@@ -355,7 +359,7 @@ export function CaseStudyDetail() {
               {otherStudies.map((other) => (
                 <Link
                   key={other.id}
-                  to={`/case-studies/${other.id}`}
+                  to={`/portfolio/case-studies/${other.id}`}
                   className="group p-6 rounded-3xl border border-white/10 bg-white/[0.015] hover:bg-white/[0.035] hover:border-white/20 transition-all duration-300 block"
                 >
                   <div className="aspect-[16/9] rounded-2xl overflow-hidden bg-black/40 mb-6 p-3 flex items-center justify-center">
@@ -403,7 +407,7 @@ export function CaseStudyDetail() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              to="/case-studies"
+              to="/portfolio/case-studies"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white px-8 py-4 rounded-full font-medium text-xs uppercase tracking-wider transition-colors"
             >
               <span>Back to All Case Studies</span>

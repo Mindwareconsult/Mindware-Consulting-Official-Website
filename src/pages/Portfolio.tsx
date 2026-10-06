@@ -34,7 +34,7 @@ export function Portfolio() {
               <span>Selected Works & Platform Portfolio</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-6 md:mb-8 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-6 md:mb-8 leading-tight text-white">
               Selected <span className="text-gradient">Work.</span>
             </h1>
             <p className="text-xl text-white/60 max-w-2xl leading-relaxed mb-8">
@@ -42,30 +42,62 @@ export function Portfolio() {
             </p>
 
             <Link
-              to="/case-studies"
+              to="/portfolio/case-studies"
               className="inline-flex items-center gap-2 text-sm font-semibold text-mw-orange hover:text-white transition-colors pb-1 border-b border-mw-orange/40 hover:border-white"
             >
               <BookOpen className="w-4 h-4" />
-              <span>Explore All In-Depth Case Studies & Technical Breakdowns</span>
+              <span>Explore In-Depth Case Studies & Technical Breakdowns (Subpage)</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         </div>
       </FadeInSection>
 
+      {/* Portfolio Subpage Navigation Bar */}
+      <div className="bg-[#040812] border-b border-white/10 sticky top-[60px] sm:top-[68px] z-30 backdrop-blur-xl">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 py-2.5 sm:py-3 flex items-center justify-start sm:justify-between gap-3 sm:gap-4 overflow-x-auto scrollbar-none touch-pan-x">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white/40 shrink-0">
+            <span>Portfolio Sections:</span>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white text-mw-dark shadow-sm transition-all"
+            >
+              <Layers className="w-3.5 h-3.5 text-mw-dark" />
+              <span>Selected Works</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-mw-dark/10 text-mw-dark font-mono font-bold">
+                {PORTFOLIO.length}
+              </span>
+            </Link>
+
+            <Link
+              to="/portfolio/case-studies"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider text-white/70 hover:text-white hover:bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+            >
+              <BookOpen className="w-3.5 h-3.5 text-mw-orange" />
+              <span>Case Studies</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-mw-orange/20 text-mw-orange font-bold">
+                Subpage
+              </span>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Filters & Grid */}
       <FadeInSection className="py-24">
         <div className="container mx-auto px-6 md:px-12">
           <h2 className="sr-only">Our Work</h2>
           
-          <div className="flex flex-wrap gap-4 mb-16" role="group" aria-label="Filter portfolio by industry">
+          <div className="flex overflow-x-auto pb-2 scrollbar-none sm:flex-wrap gap-2.5 sm:gap-4 mb-12 sm:mb-16 flex-nowrap sm:flex-wrap" role="group" aria-label="Filter portfolio by industry">
             {industries.map(ind => (
               <button
                 key={ind}
                 type="button"
                 aria-pressed={filter === ind}
                 onClick={() => setFilter(ind)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-colors border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mw-orange focus-visible:ring-offset-2 focus-visible:ring-offset-mw-dark ${
+                className={`px-5 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors border whitespace-nowrap shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mw-orange focus-visible:ring-offset-2 focus-visible:ring-offset-mw-dark ${
                   filter === ind 
                     ? "bg-white text-mw-dark border-white" 
                     : "bg-transparent text-white/60 border-white/20 hover:border-white/40 hover:text-white"
@@ -90,7 +122,7 @@ export function Portfolio() {
                   {/* Thumbnail linking to Case Study */}
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-white/5 flex items-center justify-center p-3">
                     <Link
-                      to={`/case-studies/${project.id}`}
+                      to={`/portfolio/case-studies/${project.id}`}
                       aria-label={`Read case study for ${project.title}`}
                       className="w-full h-full flex items-center justify-center block"
                     >
@@ -106,7 +138,7 @@ export function Portfolio() {
                     
                     {/* Floating Tab linking directly to Case Study */}
                     <Link
-                      to={`/case-studies/${project.id}`}
+                      to={`/portfolio/case-studies/${project.id}`}
                       className="absolute top-4 left-4 bg-[#02040a]/80 backdrop-blur-md border border-white/10 hover:border-mw-orange text-white px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
                     >
                       <BookOpen className="w-3.5 h-3.5 text-mw-orange" />
@@ -136,7 +168,7 @@ export function Portfolio() {
 
                   <div className="text-sm font-medium text-white/50 mb-1">{project.client}</div>
                   <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-mw-orange transition-colors">
-                    <Link to={`/case-studies/${project.id}`} className="hover:underline">
+                    <Link to={`/portfolio/case-studies/${project.id}`} className="hover:underline">
                       {project.title}
                     </Link>
                   </h3>
@@ -162,7 +194,7 @@ export function Portfolio() {
                 {/* Project Links & Tabs Bar */}
                 <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
                   <Link
-                    to={`/case-studies/${project.id}`}
+                    to={`/portfolio/case-studies/${project.id}`}
                     className="inline-flex items-center gap-2 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md group/btn"
                   >
                     <span>Read Case Study</span>
@@ -206,7 +238,7 @@ export function Portfolio() {
               Start Your Project
             </Link>
             <Link
-              to="/case-studies"
+              to="/portfolio/case-studies"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white px-8 py-4 rounded-full font-medium text-xs uppercase tracking-wider transition-colors"
             >
               Explore Case Studies
