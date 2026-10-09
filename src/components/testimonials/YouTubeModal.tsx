@@ -35,15 +35,15 @@ export function YouTubeModal({ testimonial, onClose }: YouTubeModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="video-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/85 backdrop-blur-xl animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-10 bg-black/85 backdrop-blur-xl animate-fade-in"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-[#090d16] border border-white/15 rounded-3xl overflow-hidden shadow-2xl shadow-black/90 flex flex-col max-h-[92vh]"
+        className="relative w-full max-w-4xl bg-[#090d16] border border-white/15 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-black/90 flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-white/[0.02] gap-3">
+        <div className="flex items-center justify-between px-3 sm:px-6 py-2.5 sm:py-4 border-b border-white/10 bg-white/[0.02] gap-3">
           <div className="flex items-center gap-3 min-w-0 flex-1">
             <div className="w-8 h-8 rounded-lg bg-red-600/20 border border-red-500/30 flex items-center justify-center text-red-500 shrink-0">
               <Youtube className="w-4 h-4 fill-current" />
@@ -92,8 +92,8 @@ export function YouTubeModal({ testimonial, onClose }: YouTubeModalProps) {
         </div>
 
         {/* Video Meta & Testimonial Details */}
-        <div className="p-6 md:p-8 bg-[#090d16] overflow-y-auto space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+        <div className="p-4 sm:p-6 md:p-8 bg-[#090d16] overflow-y-auto space-y-3 sm:space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 pb-3 sm:pb-4 border-b border-white/10">
             <div className="flex items-center gap-4">
               <img
                 src={testimonial.avatar}

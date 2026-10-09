@@ -31,10 +31,11 @@ interface HeroSlide {
   tabLabel: string;
   categoryBadge: string;
   badgeType: "orange" | "blue" | "emerald" | "purple" | "amber";
-  titleLead: string;
-  titleAccent: string;
-  titleEnd?: string;
-  subtitle: string;
+  overarchingAnchor: string;
+  headlineLead: string;
+  headlineAccent: string;
+  headlineEnd?: string;
+  supportingCaption: string;
   image: string;
   alt: string;
   primaryCta: { label: string; path: string };
@@ -45,116 +46,142 @@ interface HeroSlide {
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    id: "agency",
-    tabLabel: "Digital Agency",
-    categoryBadge: "Premium Digital Growth Partner",
+    id: "website-design",
+    tabLabel: "Website Design",
+    categoryBadge: "High-Converting Web Architecture",
     badgeType: "orange",
-    titleLead: "We Build Digital",
-    titleAccent: "Experiences",
-    titleEnd: "That Grow Businesses.",
-    subtitle: "Mindware Consulting helps ambitious enterprises build world-class digital platforms, generate high-intent demand, and convert online visitors into sustainable revenue.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=85",
-    alt: "Mindware Consulting digital agency team engineering custom software and web platforms",
-    primaryCta: { label: "Explore Our Work", path: "/portfolio" },
-    secondaryCta: { label: "View Pricing Packages", path: "/pricing" },
-    statsBadge: { value: "150+", label: "Successful Deployments" },
-    highlights: ["Custom Web Architecture", "High-Converting UI/UX", "Enterprise SEO", "Scalable Cloud Hosting"]
-  },
-  {
-    id: "service-areas",
-    tabLabel: "36 States & FCT",
-    categoryBadge: "Nationwide Reach • 36 States & FCT Abuja",
-    badgeType: "purple",
-    titleLead: "Local SEO & Web Authority Across",
-    titleAccent: "All 36 States",
-    titleEnd: "And Abuja FCT.",
-    subtitle: "From the commercial towers of Lagos and Abuja to the oilfield hubs of Port Harcourt, Warri, and trading markets in Kano and Onitsha — we engineer localized digital supremacy for Nigerian enterprises.",
-    image: "/src/assets/images/talent_matching_network_1790617842281.jpg",
-    alt: "Mindware Consulting nationwide local SEO and territorial web engineering across Nigeria",
-    primaryCta: { label: "Explore 37 State Portals", path: "/service-areas" },
-    secondaryCta: { label: "View Lagos Hub", path: "/service-areas/lagos" },
-    statsBadge: { value: "37 Portals", label: "774 LGAs Full Coverage" },
-    highlights: ["Google Maps Local Pack 3", "State Commercial Hubs", "Landmark SEO Geo-Targeting", "100% Nationwide Delivery"]
-  },
-  {
-    id: "industry-solutions",
-    tabLabel: "Industry Solutions",
-    categoryBadge: "Specialized B2B Sector Architecture",
-    badgeType: "amber",
-    titleLead: "Tender-Ready Portals For",
-    titleAccent: "Nigeria's Core Industries",
-    titleEnd: "& Heavy EPC.",
-    subtitle: "We build custom NipeX-ready oilfield platforms, off-plan diaspora real estate portals, civil engineering BPP due diligence engines, and sub-second e-commerce stores.",
-    image: "/src/assets/images/training_pmp_session_1790960928930.jpg",
-    alt: "Specialized digital engineering for energy, real estate, automotive, and infrastructure enterprises",
-    primaryCta: { label: "Explore Industry Portals", path: "/industries" },
-    secondaryCta: { label: "Oil & Gas / Marine", path: "/industries/oil-and-gas-marine" },
-    statsBadge: { value: "₦2.5B+", label: "Client Pipeline Enabled" },
-    highlights: ["NipeX & IOC Tender Ready", "Diaspora Real Estate Funnels", "Sub-Second E-Commerce", "Civil Plant & Equipment Portals"]
-  },
-  {
-    id: "digital-skills",
-    tabLabel: "Digital Skills Academy",
-    categoryBadge: "Training Track 1: Digital Skills",
-    badgeType: "orange",
-    titleLead: "Master High-Income",
-    titleAccent: "Digital Skills",
-    titleEnd: "That Deliver.",
-    subtitle: "Hands-on, project-driven bootcamps in Web Design, Video Editing, Social Media Ads, Python Data Analytics, and Full-Stack App Engineering led by active agency consultants.",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=2000&q=85",
-    alt: "Digital skills student learning modern web design, coding, and video editing in a high-tech studio",
-    primaryCta: { label: "Digital Skills Track", path: "/training/digital-skills" },
-    secondaryCta: { label: "All Academy Programs", path: "/training" },
-    statsBadge: { value: "100%", label: "Live Project Capstones" },
-    highlights: ["Web Design & CMS", "Video Editing & Reels", "Data Analytics & SQL", "App Development"]
-  },
-  {
-    id: "professional-dev",
-    tabLabel: "Professional & HSE",
-    categoryBadge: "Training Track 2: Executive Certifications",
-    badgeType: "blue",
-    titleLead: "Accredited Global",
-    titleAccent: "Certifications",
-    titleEnd: "for Leaders & Teams.",
-    subtitle: "PMI-aligned Project Management Professional (PMP®), Strategic HRM, Enterprise CRM Systems, and accredited Health, Safety & Environment (HSE Levels 1, 2, 3) for corporate excellence.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=85",
-    alt: "Corporate executives and safety engineers in a professional development masterclass",
-    primaryCta: { label: "Professional & HSE Track", path: "/training/professional-development" },
-    secondaryCta: { label: "Request Corporate Proposal", path: "/contact" },
-    statsBadge: { value: "Levels 1-3", label: "Accredited HSE Safety" },
-    highlights: ["PMP® Project Management", "Strategic HRM & Labour Law", "CRM Pipeline Automation", "HSE Levels 1, 2, 3"]
+    overarchingAnchor: "We build digital experiences that power business growth",
+    headlineLead: "Turn Clicks Into Customers With",
+    headlineAccent: "Websites Engineered",
+    headlineEnd: "to Sell.",
+    supportingCaption:
+      "High-performance, modern business websites and conversion funnels engineered to build instant credibility, load in milliseconds, and turn casual visitors into paying clients.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=2000&q=85",
+    alt: "Mindware Consulting modern multi-screen UI/UX design studio displaying dark-mode responsive web layouts and live analytics",
+    primaryCta: { label: "Explore Web Design", path: "/services/website-design" },
+    secondaryCta: { label: "View Pricing", path: "/pricing" },
+    statsBadge: { value: "Sub-Second", label: "Ultra-Fast Load Speed" },
+    highlights: [
+      "Custom UI/UX Architecture",
+      "Mobile-First Responsive",
+      "Fast Load Times",
+      "High-Converting Landing Pages"
+    ]
   },
   {
     id: "seo-growth",
     tabLabel: "SEO & Growth",
-    categoryBadge: "Search Domination & Analytics",
+    categoryBadge: "Google Search Supremacy & Growth",
     badgeType: "emerald",
-    titleLead: "Dominate Google &",
-    titleAccent: "Scale Organic Leads",
-    titleEnd: "With Precision.",
-    subtitle: "Deploy data-backed technical SEO audits, keyword dominance strategies, and conversion tracking that propel corporate brands to Page 1 of search engines.",
-    image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=2000&q=85",
-    alt: "Digital growth strategists analyzing SEO rankings and conversion dashboards",
-    primaryCta: { label: "Read Case Studies", path: "/portfolio/case-studies" },
-    secondaryCta: { label: "Book Strategy Call", path: "/contact" },
-    statsBadge: { value: "Up to 300%", label: "Client ROI Avg" },
-    highlights: ["Google Page 1 Ranking", "Technical SEO Audits", "B2B Lead Pipelines", "Conversion Analytics"]
+    overarchingAnchor: "We build digital experiences that power business growth",
+    headlineLead: "Dominate Page 1 on Google &",
+    headlineAccent: "Capture High-Intent",
+    headlineEnd: "Buyers.",
+    supportingCaption:
+      "Data-driven technical SEO, local geo-targeting across Nigeria, and content strategies that outrank competitors and generate consistent organic leads.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=85",
+    alt: "Data intelligence center with search query graphs, keyword ranking trajectories, and organic traffic growth dashboards",
+    primaryCta: { label: "Explore SEO Services", path: "/services/seo" },
+    secondaryCta: { label: "Get Free SEO Audit", path: "/contact?service=seo" },
+    statsBadge: { value: "Page #1", label: "Organic Search Target" },
+    highlights: [
+      "Google Page 1 Rankings",
+      "Technical SEO Audits",
+      "Local Maps Geo-Targeting",
+      "Keyword Supremacy"
+    ]
   },
   {
-    id: "careers-talent",
-    tabLabel: "Talent & Careers",
-    categoryBadge: "Careers & AI Talent Network",
+    id: "social-media",
+    tabLabel: "Social Media",
+    categoryBadge: "Audience Attraction & Retention",
+    badgeType: "purple",
+    overarchingAnchor: "We build digital experiences that power business growth",
+    headlineLead: "Stop The Scroll. Build An",
+    headlineAccent: "Irresistible Brand",
+    headlineEnd: "Community.",
+    supportingCaption:
+      "High-impact visual storytelling, viral social campaigns, and precision paid ad funnels that command audience attention and convert followers into brand advocates.",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=2000&q=85",
+    alt: "Dynamic digital creator creative studio with video content creation, engagement metrics, and social campaign visual production",
+    primaryCta: { label: "Explore Social Marketing", path: "/services/social-media-marketing" },
+    secondaryCta: { label: "Schedule Campaign Call", path: "/contact?service=social-media" },
+    statsBadge: { value: "3.5x+", label: "Average Campaign ROAS" },
+    highlights: [
+      "Scroll-Stopping Content",
+      "Paid Social Ads Funnels",
+      "Community Building",
+      "Influencer & Campaign ROI"
+    ]
+  },
+  {
+    id: "app-development",
+    tabLabel: "App Development",
+    categoryBadge: "Custom Software Engineering",
     badgeType: "blue",
-    titleLead: "Hire Pre-Vetted Tech Talent &",
-    titleAccent: "Build ATS-Optimized",
-    titleEnd: "Professional CVs.",
-    subtitle: "Bridge the gap between verified Nigerian software engineers, project managers, and HSE specialists and top employers. Utilize our AI CV Builder and talent network to accelerate your career.",
-    image: "/src/assets/images/careers_hero_workspace_1790617831121.jpg",
-    alt: "African software engineers and corporate recruiters in a modern talent collaboration workspace",
-    primaryCta: { label: "Launch AI CV Builder", path: "/careers/cv-builder" },
-    secondaryCta: { label: "Hire Verified Talent", path: "/careers/employers" },
-    statsBadge: { value: "500+", label: "Vetted Professionals" },
-    highlights: ["AI ATS CV Builder", "Direct Employer Matching", "Zero Recruitment Friction", "Verified Alumni Network"]
+    overarchingAnchor: "We build digital experiences that power business growth",
+    headlineLead: "Transform Your Vision Into A",
+    headlineAccent: "Scalable, Market-Ready",
+    headlineEnd: "App.",
+    supportingCaption:
+      "Bespoke mobile and web applications built with modern architectures — delivering seamless user experiences, enterprise security, and frictionless scalability.",
+    image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=2000&q=85",
+    alt: "Futuristic mobile app engineering environment with glowing iOS/Android device wireframes, code IDEs, and app interface flows",
+    primaryCta: { label: "Explore App Development", path: "/services/app-development" },
+    secondaryCta: { label: "Request App Estimate", path: "/contact?service=app-development" },
+    statsBadge: { value: "99.9%", label: "Uptime & Scalability" },
+    highlights: [
+      "iOS & Android Native/Hybrid",
+      "Cloud-Backed Web Apps",
+      "Custom Business Portals",
+      "Enterprise Security"
+    ]
+  },
+  {
+    id: "training-workforce",
+    tabLabel: "Training & Workforce",
+    categoryBadge: "Executive Academy & Skills",
+    badgeType: "amber",
+    overarchingAnchor: "We build digital experiences that power business growth",
+    headlineLead: "Empower Your Team With",
+    headlineAccent: "Tomorrow’s High-Income",
+    headlineEnd: "Tech & Leadership Skills.",
+    supportingCaption:
+      "Hands-on bootcamps across our 2 specialized tracks: Digital Skills (Coding, Design, Analytics) & Professional Certifications (PMP®, HSE 1-3, Strategic HR, CRM Systems).",
+    image: "/src/assets/images/training_web_lab_1790960908174.jpg",
+    alt: "High-energy executive corporate training workshop and modern tech lab at Mindware Consulting",
+    primaryCta: { label: "Explore Academy Tracks", path: "/training" },
+    secondaryCta: { label: "Corporate Training Proposal", path: "/contact?topic=training" },
+    statsBadge: { value: "2 Tracks", label: "Digital Skills & Certs" },
+    highlights: [
+      "Digital Skills Bootcamps",
+      "PMP® & HSE 1-3 Certifications",
+      "Live Project Capstones",
+      "Corporate Team Upskilling"
+    ]
+  },
+  {
+    id: "consultancy",
+    tabLabel: "Consultancy",
+    categoryBadge: "Enterprise Strategy & Advisory",
+    badgeType: "orange",
+    overarchingAnchor: "We build digital experiences that power business growth",
+    headlineLead: "Cut Through Complexity With",
+    headlineAccent: "Strategic Roadmaps That",
+    headlineEnd: "Multiply Revenue.",
+    supportingCaption:
+      "Senior advisory on digital transformation, technology audits, operational automation, and growth systems tailored to Nigerian and global market realities.",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2000&q=85",
+    alt: "Executive boardroom strategy session with enterprise growth blueprints and tech roadmaps",
+    primaryCta: { label: "Explore Advisory Services", path: "/services/consultancy" },
+    secondaryCta: { label: "Book Strategy Session", path: "/contact?service=consultancy" },
+    statsBadge: { value: "Senior Tier", label: "Executive Advisory" },
+    highlights: [
+      "Digital Transformation Strategy",
+      "Tech Stack & Architecture Audits",
+      "Process Automation",
+      "Market Expansion Advisory"
+    ]
   }
 ];
 
@@ -225,7 +252,7 @@ function Hero() {
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative min-h-[92vh] lg:min-h-[96vh] flex flex-col justify-between pt-28 md:pt-36 pb-12 overflow-hidden bg-[#02040a]"
+      className="relative min-h-[92vh] lg:min-h-[96vh] flex flex-col justify-between pt-24 sm:pt-36 pb-8 sm:pb-12 overflow-hidden bg-[#02040a]"
     >
       {/* Background Image Slider with Smooth Crossfade & Subtle Ken Burns Zoom */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -270,7 +297,7 @@ function Hero() {
       </div>
 
       {/* Main Hero Content Area */}
-      <div className="container relative z-10 mx-auto px-6 md:px-12 flex-1 flex flex-col justify-center">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 md:px-12 flex-1 flex flex-col justify-center">
         <div className="max-w-4xl lg:max-w-5xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -280,30 +307,37 @@ function Hero() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Category Pill / Badge */}
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.07] border border-white/10 backdrop-blur-md mb-6 md:mb-8 shadow-sm">
-                <span
-                  className={cn(
-                    "w-2 h-2 rounded-full animate-pulse",
-                    activeSlide.badgeType === "orange" && "bg-mw-orange shadow-[0_0_8px_#ff4d00]",
-                    activeSlide.badgeType === "blue" && "bg-blue-400 shadow-[0_0_8px_#3b82f6]",
-                    activeSlide.badgeType === "emerald" && "bg-emerald-400 shadow-[0_0_8px_#10b981]",
-                    activeSlide.badgeType === "purple" && "bg-purple-400 shadow-[0_0_8px_#a855f7]",
-                    activeSlide.badgeType === "amber" && "bg-amber-400 shadow-[0_0_8px_#f59e0b]"
-                  )}
-                />
-                <span className="text-xs md:text-sm font-semibold tracking-wider uppercase text-white/90">
-                  {activeSlide.categoryBadge}
-                </span>
-                <span className="text-white/30 text-xs">|</span>
-                <span className="text-[11px] font-medium text-white/60 hidden sm:inline">
-                  Slide {String(currentSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
-                </span>
+              {/* Overarching Strategic Anchor & Category Pill */}
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-6 md:mb-8">
+                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.07] border border-white/10 backdrop-blur-md shadow-sm">
+                  <span
+                    className={cn(
+                      "w-2 h-2 rounded-full animate-pulse",
+                      activeSlide.badgeType === "orange" && "bg-mw-orange shadow-[0_0_8px_#ff4d00]",
+                      activeSlide.badgeType === "blue" && "bg-blue-400 shadow-[0_0_8px_#3b82f6]",
+                      activeSlide.badgeType === "emerald" && "bg-emerald-400 shadow-[0_0_8px_#10b981]",
+                      activeSlide.badgeType === "purple" && "bg-purple-400 shadow-[0_0_8px_#a855f7]",
+                      activeSlide.badgeType === "amber" && "bg-amber-400 shadow-[0_0_8px_#f59e0b]"
+                    )}
+                  />
+                  <span className="text-xs md:text-sm font-semibold tracking-wider uppercase text-white/90">
+                    {activeSlide.categoryBadge}
+                  </span>
+                  <span className="text-white/30 text-xs">|</span>
+                  <span className="text-[11px] font-medium text-white/60 hidden sm:inline">
+                    Slide {String(currentSlide + 1).padStart(2, "0")} / {String(HERO_SLIDES.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-mw-orange/10 border border-mw-orange/25 text-mw-orange text-xs md:text-sm font-semibold tracking-wide">
+                  <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                  <span>{activeSlide.overarchingAnchor}</span>
+                </div>
               </div>
 
               {/* Main Headline with Highlight Accent */}
               <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-bold font-display tracking-tight mb-6 md:mb-8 leading-[1.08] text-white">
-                {activeSlide.titleLead}{" "}
+                {activeSlide.headlineLead}{" "}
                 <span
                   className={cn(
                     "inline-block",
@@ -314,14 +348,14 @@ function Hero() {
                     activeSlide.badgeType === "amber" && "text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-300"
                   )}
                 >
-                  {activeSlide.titleAccent}
+                  {activeSlide.headlineAccent}
                 </span>{" "}
-                {activeSlide.titleEnd}
+                {activeSlide.headlineEnd}
               </h1>
 
-              {/* Subtitle */}
+              {/* Supporting Caption */}
               <p className="text-lg md:text-2xl text-white/70 max-w-3xl leading-relaxed font-normal mb-8 md:mb-10">
-                {activeSlide.subtitle}
+                {activeSlide.supportingCaption}
               </p>
 
               {/* Interactive Key Highlights Tags */}
@@ -395,10 +429,10 @@ function Hero() {
       </div>
 
       {/* Slider Control Deck & Live Indicator Tabs */}
-      <div className="container relative z-20 mx-auto px-6 md:px-12 mt-12 md:mt-16">
+      <div className="container relative z-20 mx-auto px-4 sm:px-6 md:px-12 mt-8 sm:mt-12 md:mt-16">
         <div className="p-3 md:p-4 rounded-2xl md:rounded-3xl bg-[#090d16]/80 border border-white/10 backdrop-blur-xl shadow-2xl flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Slide Tabs Navigation */}
-          <div className="flex overflow-x-auto pb-1.5 scrollbar-none sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-2 w-full md:w-auto flex-1 flex-nowrap sm:flex-wrap">
+          <div className="flex overflow-x-auto pb-1.5 scrollbar-none touch-pan-x sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-2 w-full md:w-auto flex-1 flex-nowrap sm:flex-wrap">
             {HERO_SLIDES.map((slide, idx) => {
               const isActive = currentSlide === idx;
               return (
@@ -543,11 +577,11 @@ function GrowthMetrics() {
   ];
 
   return (
-    <FadeInSection className="py-32 bg-[#02040a] border-t border-white/5 relative z-10 overflow-hidden">
+    <FadeInSection className="py-16 sm:py-24 md:py-32 bg-[#02040a] border-t border-white/5 relative z-10 overflow-hidden">
       <h2 className="sr-only">Our Growth Metrics</h2>
       <div className="absolute inset-0 bg-gradient-to-b from-mw-orange/5 to-transparent mix-blend-screen pointer-events-none" />
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-8 md:divide-x divide-white/5">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:divide-x divide-white/5">
           {metrics.map((metric, i) => (
             <motion.div
               key={metric.label}
@@ -557,7 +591,7 @@ function GrowthMetrics() {
               transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
               className={cn("flex flex-col items-center md:items-start text-center md:text-left", i !== 0 && "pl-0 md:pl-8 lg:pl-12")}
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+              <div className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white mb-2 sm:mb-4 drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]">
                 <AnimatedCounter end={metric.value} suffix={metric.suffix} prefix={metric.prefix} />
               </div>
               <p className="text-white/50 font-medium uppercase tracking-[0.2em] text-[10px] md:text-xs">
@@ -599,20 +633,20 @@ function TrustedBy() {
   ];
 
   return (
-    <FadeInSection className="py-24 bg-[#02040a] relative overflow-hidden border-t border-white/5">
+    <FadeInSection className="py-12 sm:py-20 md:py-24 bg-[#02040a] relative overflow-hidden border-t border-white/5">
       <h2 className="sr-only">Our Partners</h2>
-      <div className="container mx-auto px-6 md:px-12 mb-12 relative z-20">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 mb-8 sm:mb-12 relative z-20">
         <p className="text-center text-white/40 text-[10px] uppercase tracking-[0.3em] font-semibold">
           Trusted by innovative companies worldwide
         </p>
       </div>
       
       <div className="relative flex overflow-hidden">
-        <div className="absolute inset-y-0 left-0 w-24 md:w-64 bg-gradient-to-r from-[#02040a] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 md:w-64 bg-gradient-to-l from-[#02040a] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-24 md:w-64 bg-gradient-to-r from-[#02040a] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-24 md:w-64 bg-gradient-to-l from-[#02040a] to-transparent z-10 pointer-events-none" />
         
         <motion.div
-          className="flex items-center gap-10 md:gap-16 min-w-max pr-10 md:pr-16"
+          className="flex items-center gap-8 sm:gap-10 md:gap-16 min-w-max pr-8 sm:pr-10 md:pr-16"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 50, ease: "linear", repeat: Infinity }}
         >
@@ -621,7 +655,7 @@ function TrustedBy() {
               <img 
                 src={logo} 
                 alt="Client logo" 
-                className="h-20 md:h-24 w-auto object-contain opacity-80 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 rounded-md"
+                className="h-16 sm:h-20 md:h-24 w-auto object-contain opacity-80 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 rounded-md"
               />
             </div>
           ))}
@@ -639,22 +673,22 @@ function SelfSelection() {
   ];
 
   return (
-    <FadeInSection className="py-32 lg:py-48 bg-mw-dark relative z-10 border-t border-white/5 overflow-hidden">
+    <FadeInSection className="py-16 sm:py-24 lg:py-48 bg-mw-dark relative z-10 border-t border-white/5 overflow-hidden">
       {/* Editorial background element */}
       <div className="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent pointer-events-none" />
       
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-20">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-20">
            <div className="lg:col-span-5 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-3 mb-8">
+              <div className="inline-flex items-center gap-3 mb-6 sm:mb-8">
                  <div className="w-1.5 h-1.5 rounded-full bg-mw-orange" />
                  <span className="text-[10px] font-sans tracking-[0.2em] uppercase font-bold text-white/50">Your Objective</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 tracking-tight leading-[1.1] text-white">What can we <br/>help you achieve?</h2>
-              <p className="text-xl text-white/50 max-w-md font-light leading-relaxed">Select your primary business objective to discover how our integrated approach can accelerate your growth.</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 sm:mb-8 tracking-tight leading-[1.1] text-white">What can we <br/>help you achieve?</h2>
+              <p className="text-base sm:text-xl text-white/50 max-w-md font-light leading-relaxed">Select your primary business objective to discover how our integrated approach can accelerate your growth.</p>
            </div>
            
-           <div className="lg:col-span-7 flex flex-col gap-6">
+           <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-6">
               {options.map((opt, i) => (
                 <motion.div
                   key={opt.label}
@@ -665,21 +699,21 @@ function SelfSelection() {
                 >
                   <Link 
                     to={opt.path}
-                    className="group relative flex items-center justify-between p-5 sm:p-8 md:p-12 border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/20 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mw-orange rounded-2xl overflow-hidden"
+                    className="group relative flex items-center justify-between p-4 sm:p-8 md:p-12 border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/20 transition-all duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mw-orange rounded-2xl overflow-hidden"
                   >
-                    <div className="absolute -left-6 -top-10 text-[8rem] md:text-[12rem] font-sans font-bold text-white/[0.02] group-hover:text-white/[0.04] transition-colors duration-500 pointer-events-none select-none leading-none">
+                    <div className="absolute -left-6 -top-10 text-[6rem] sm:text-[8rem] md:text-[12rem] font-sans font-bold text-white/[0.02] group-hover:text-white/[0.04] transition-colors duration-500 pointer-events-none select-none leading-none">
                       {opt.id}
                     </div>
                     
-                    <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-2 sm:gap-4 md:gap-12 w-full min-w-0">
+                    <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-1.5 sm:gap-4 md:gap-12 w-full min-w-0">
                        <div className="flex-1 min-w-0">
-                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold tracking-tight mb-2 sm:mb-3 group-hover:text-mw-orange transition-colors text-white/90">{opt.label}</h3>
-                          <p className="text-sm sm:text-lg text-white/50 group-hover:text-white/70 transition-colors font-light">{opt.desc}</p>
+                          <h3 className="text-xl sm:text-3xl md:text-4xl font-sans font-bold tracking-tight mb-1 sm:mb-3 group-hover:text-mw-orange transition-colors text-white/90">{opt.label}</h3>
+                          <p className="text-xs sm:text-lg text-white/50 group-hover:text-white/70 transition-colors font-light">{opt.desc}</p>
                        </div>
                     </div>
                     
-                    <div className="relative z-10 w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-mw-orange group-hover:border-mw-orange transition-all duration-500 shrink-0 ml-3">
-                       <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
+                    <div className="relative z-10 w-9 h-9 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-mw-orange group-hover:border-mw-orange transition-all duration-500 shrink-0 ml-3">
+                       <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/50 group-hover:text-white group-hover:-rotate-45 transition-all duration-500" />
                     </div>
                   </Link>
                 </motion.div>
@@ -703,32 +737,32 @@ function Ecosystem() {
   ];
 
   return (
-    <FadeInSection className="py-32 lg:py-48 relative overflow-hidden bg-[#02040A]">
-      <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
-        <div className="max-w-4xl mx-auto mb-32">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 tracking-tight text-white">One Business.<br/>One Connected System.</h2>
-          <p className="text-xl md:text-2xl text-white/50 font-light max-w-2xl mx-auto">
+    <FadeInSection className="py-16 sm:py-24 lg:py-48 relative overflow-hidden bg-[#02040A]">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto mb-12 sm:mb-24 md:mb-32">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold mb-4 sm:mb-8 tracking-tight text-white">One Business.<br/>One Connected System.</h2>
+          <p className="text-base sm:text-xl md:text-2xl text-white/50 font-light max-w-2xl mx-auto">
             Mindware does not operate disconnected services. We build intelligent, connected digital growth systems where strategy, technology, and marketing work in unison.
           </p>
         </div>
 
-        <div className="relative h-[400px] md:h-[600px] flex items-center justify-center max-w-5xl mx-auto overflow-hidden md:overflow-visible">
+        <div className="relative h-[360px] sm:h-[450px] md:h-[600px] flex items-center justify-center max-w-5xl mx-auto overflow-hidden md:overflow-visible">
            {/* Radar Rings */}
-           <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none scale-[0.5] md:scale-100">
+           <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none scale-[0.6] sm:scale-[0.75] md:scale-100">
               <div className="w-[300px] h-[300px] border border-white/40 rounded-full absolute" />
               <div className="w-[500px] h-[500px] border border-white/20 rounded-full absolute border-dashed" />
               <div className="w-[700px] h-[700px] border border-white/10 rounded-full absolute" />
            </div>
 
-           <div className="relative flex items-center justify-center scale-[0.5] md:scale-100 w-full h-full">
+           <div className="relative flex items-center justify-center scale-[0.6] sm:scale-[0.75] md:scale-100 w-full h-full">
              {/* Center Node */}
              <motion.div 
                animate={{ boxShadow: ["0 0 40px -10px rgba(249,115,22,0.3)", "0 0 80px 10px rgba(249,115,22,0.6)", "0 0 40px -10px rgba(249,115,22,0.3)"] }}
                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="relative z-20 w-40 h-40 rounded-full bg-mw-dark border border-mw-orange/50 flex flex-col items-center justify-center text-center shadow-2xl"
+               className="relative z-20 w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-mw-dark border border-mw-orange/50 flex flex-col items-center justify-center text-center shadow-2xl"
              >
                 <div className="absolute inset-2 rounded-full bg-gradient-to-br from-mw-orange to-orange-700 flex items-center justify-center">
-                   <span className="font-sans font-bold text-xl leading-tight text-white tracking-wide">YOUR<br/>BUSINESS</span>
+                   <span className="font-sans font-bold text-lg sm:text-xl leading-tight text-white tracking-wide">YOUR<br/>BUSINESS</span>
                 </div>
              </motion.div>
   
@@ -753,7 +787,7 @@ function Ecosystem() {
                      <div className={cn("w-4 h-4 rounded-full relative z-10", el.color)} />
                      <div className={cn("w-4 h-4 rounded-full absolute inset-0 animate-ping opacity-50", el.color)} />
                    </div>
-                   <span className="text-sm font-bold tracking-wider uppercase text-white/70 bg-mw-dark/80 px-3 py-1 rounded-full backdrop-blur-sm border border-white/10">{el.name}</span>
+                   <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-white/70 bg-mw-dark/80 px-2.5 sm:px-3 py-1 rounded-full backdrop-blur-sm border border-white/10 whitespace-nowrap">{el.name}</span>
                  </motion.div>
                );
              })}

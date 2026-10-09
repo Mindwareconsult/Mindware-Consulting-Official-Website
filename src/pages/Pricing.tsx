@@ -15,7 +15,12 @@ import {
   MessageSquare,
   BadgePercent,
   CheckCircle2,
-  Globe
+  Globe,
+  HelpCircle,
+  Clock,
+  FileCheck2,
+  Lock,
+  Compass
 } from "lucide-react";
 import { PRICING_TIERS, PricingTier } from "../data/pricing";
 import { FadeInSection } from "../components/FadeInSection";
@@ -26,8 +31,49 @@ import { PricingComparisonTable } from "../components/PricingComparisonTable";
 
 type FilterTab = "all" | "core" | "automation" | "workforce";
 
+interface RecommenderOption {
+  goal: string;
+  recommendedTierId: string;
+  reason: string;
+}
+
+const RECOMMENDER_GOALS: RecommenderOption[] = [
+  {
+    goal: "Get online with a certified, high-converting digital presence",
+    recommendedTierId: "starter-build",
+    reason: "Tier 1 provides a 5-page SEO-ready website, custom domain, and corporate email setup for instant credibility."
+  },
+  {
+    goal: "Win corporate tenders & automate client inquiries with CRM",
+    recommendedTierId: "growth-engine",
+    reason: "Tier 2 equips you with multi-page project portfolios, advanced SEO, and automated lead capture funnels."
+  },
+  {
+    goal: "Cut bookkeeping costs & automate project invoice workflows",
+    recommendedTierId: "pro-automation",
+    reason: "Tier 3 saves ~₦150k/month by integrating automated bookkeeping, customer intake, and invoicing."
+  },
+  {
+    goal: "Centralize corporate operations, job recruiting & contractor bids",
+    recommendedTierId: "enterprise-suite",
+    reason: "Tier 4 delivers a full enterprise architecture with applicant tracking, custom subcontractor portals, and automated bids."
+  },
+  {
+    goal: "Certify workforce in PMP project delivery & OSHA/HSE safety",
+    recommendedTierId: "workforce-academy",
+    reason: "Tier 5 includes dedicated internal Learning & HSE safety training portals with certified course management."
+  },
+  {
+    goal: "Total institutional modernization across web, automation & safety",
+    recommendedTierId: "institutional-excellence",
+    reason: "Tier 6 is our ultimate turnkey flagship combining web engineering, full ERP automation, and complete workforce safety governance."
+  }
+];
+
 export function Pricing() {
   const [activeTab, setActiveTab] = useState<FilterTab>("all");
+  const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
+  const [highlightedTierId, setHighlightedTierId] = useState<string | null>(null);
 
   const filteredTiers = PRICING_TIERS.filter((tier) => {
     if (activeTab === "core") return tier.tierNumber <= 2;
@@ -35,6 +81,17 @@ export function Pricing() {
     if (activeTab === "workforce") return tier.tierNumber >= 5;
     return true;
   });
+
+  const handleSelectGoal = (goalObj: RecommenderOption) => {
+    setSelectedGoal(goalObj.goal);
+    setHighlightedTierId(goalObj.recommendedTierId);
+    setActiveTab("all"); // Ensure tier is visible
+    // Smooth scroll to the tier element
+    const el = document.getElementById(`tier-${goalObj.recommendedTierId}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
 
   const getTierIcon = (tierNum: number) => {
     switch (tierNum) {
@@ -54,17 +111,48 @@ export function Pricing() {
     }
   };
 
+  // Schema.org PriceSpecification JSON-LD
+  const schemaPricing = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Mindware Consulting Turnkey Digital Packages",
+    "description": "Six-tier done-for-you digital growth solutions for construction, engineering, and corporate enterprises in Nigeria.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Mindware Consulting Ltd"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "NGN",
+      "lowPrice": "175000",
+      "highPrice": "595000",
+      "offerCount": "6",
+      "offers": PRICING_TIERS.map((tier) => ({
+        "@type": "Offer",
+        "name": tier.name,
+        "price": tier.priceNumeric.toString(),
+        "priceCurrency": "NGN",
+        "description": tier.targetAudience,
+        "availability": "https://schema.org/InStock"
+      }))
+    }
+  };
+
   return (
-    <div className="bg-[#02040a] text-white min-h-screen">
+    <div className="bg-[#02040a] text-white min-h-screen selection:bg-mw-orange selection:text-white">
       <SEO 
         title="Pricing & Digital Growth Packages | Mindware Consulting" 
         description="Explore Mindware Consulting's 6-tier done-for-you digital solutions tailored for construction and engineering companies in Nigeria. From SEO websites to workflow automation, PMP, and HSE training." 
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaPricing) }}
+      />
 
       {/* Hero Section */}
-      <FadeInSection className="pt-32 sm:pt-40 pb-16 sm:pb-20 border-b border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/10 via-mw-orange/5 to-transparent blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+      <FadeInSection className="pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-20 border-b border-white/5 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-3/5 h-full bg-gradient-to-l from-mw-orange/15 via-mw-orange/5 to-transparent blur-3xl mix-blend-screen pointer-events-none" />
+        <div className="absolute top-1/3 left-0 w-80 sm:w-96 h-80 sm:h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <div className="max-w-4xl">
@@ -80,31 +168,100 @@ export function Pricing() {
               <span className="text-gradient">Digital Growth</span> Packages.
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl text-white/60 leading-relaxed font-light mb-8 sm:mb-10 max-w-3xl">
-              We offer done-for-you digital solutions tailored for construction companies. 
-              From websites to automation, training, and safety compliance — everything your business needs under one roof.
+            <p className="text-base sm:text-xl md:text-2xl text-white/70 leading-relaxed font-light mb-8 sm:mb-10 max-w-3xl">
+              Turnkey, done-for-you digital solutions engineered specifically for construction firms, engineering contractors, and corporate enterprises across Nigeria. Everything managed under one certified roof.
             </p>
 
-            {/* Inclusions Banner */}
-            <div className="inline-flex flex-wrap items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-3 rounded-2xl bg-white/[0.03] border border-white/10 text-white/80 text-xs sm:text-sm">
-              <div className="flex items-center gap-2 text-emerald-400 font-semibold">
-                <CheckCircle2 className="w-4 h-4" />
-                <span>All Packages Include:</span>
+            {/* Inclusions & Guarantees Banner */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
+              <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-3">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span className="text-xs sm:text-sm text-white/80">1-Year Domain & Cloud Hosting Included</span>
               </div>
-              <span className="text-white/70">1-Year Domain Name Registration &amp; High-Speed Web Hosting</span>
+              <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-3">
+                <FileCheck2 className="w-4 h-4 text-mw-orange shrink-0" />
+                <span className="text-xs sm:text-sm text-white/80">60% Mobilization / 40% Handover Milestone</span>
+              </div>
+              <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center gap-3">
+                <Lock className="w-4 h-4 text-blue-400 shrink-0" />
+                <span className="text-xs sm:text-sm text-white/80">Formal Corporate Invoices (RC 1309926)</span>
+              </div>
             </div>
           </div>
         </div>
       </FadeInSection>
 
+      {/* Interactive Package Recommender Wizard */}
+      <section className="py-8 sm:py-12 bg-[#050814] border-b border-white/5">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12">
+          <div className="max-w-4xl mx-auto p-5 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#090e1f] border border-white/10 shadow-2xl">
+            <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-mw-orange mb-3">
+              <Compass className="w-4 h-4" />
+              <span>Interactive Package Finder</span>
+            </div>
+            <h2 className="text-lg sm:text-2xl font-bold mb-2">What is your primary operational goal right now?</h2>
+            <p className="text-xs sm:text-sm text-white/60 mb-5">
+              Select your priority to receive an immediate recommendation tailored to your budget and growth targets:
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-2.5">
+              {RECOMMENDER_GOALS.map((opt, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => handleSelectGoal(opt)}
+                  className={`p-3.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-all flex items-start gap-3 border ${
+                    selectedGoal === opt.goal
+                      ? "bg-mw-orange/15 border-mw-orange text-white shadow-md shadow-mw-orange/20"
+                      : "bg-white/[0.02] border-white/10 text-white/70 hover:bg-white/[0.05] hover:text-white"
+                  }`}
+                >
+                  <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold ${
+                    selectedGoal === opt.goal ? "bg-mw-orange text-white" : "bg-white/10 text-white/50"
+                  }`}>
+                    {i + 1}
+                  </div>
+                  <span className="leading-snug">{opt.goal}</span>
+                </button>
+              ))}
+            </div>
+
+            {selectedGoal && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-5 p-4 rounded-xl bg-mw-orange/10 border border-mw-orange/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              >
+                <div>
+                  <div className="text-[11px] font-mono uppercase text-mw-orange font-bold">Recommended Solution:</div>
+                  <div className="text-xs sm:text-sm text-white/90 mt-1">
+                    {RECOMMENDER_GOALS.find(g => g.goal === selectedGoal)?.reason}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById(`tier-${highlightedTierId}`);
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                  }}
+                  className="px-4 py-2 rounded-full bg-mw-orange text-white text-xs font-bold uppercase tracking-wider shrink-0 hover:bg-orange-600 transition-colors"
+                >
+                  Jump to Tier Card ↓
+                </button>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* Filter Tabs */}
-      <section className="py-8 sm:py-10 border-b border-white/5 bg-white/[0.01]">
+      <section className="py-6 sm:py-8 border-b border-white/5 bg-white/[0.01]">
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="flex overflow-x-auto pb-1 scrollbar-none items-center gap-2 p-1.5 rounded-2xl bg-white/5 border border-white/10 w-full sm:w-auto touch-pan-x">
               <button
                 onClick={() => setActiveTab("all")}
-                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 min-h-[44px] ${
                   activeTab === "all"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -114,7 +271,7 @@ export function Pricing() {
               </button>
               <button
                 onClick={() => setActiveTab("core")}
-                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 min-h-[44px] ${
                   activeTab === "core"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -124,7 +281,7 @@ export function Pricing() {
               </button>
               <button
                 onClick={() => setActiveTab("automation")}
-                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 min-h-[44px] ${
                   activeTab === "automation"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -134,7 +291,7 @@ export function Pricing() {
               </button>
               <button
                 onClick={() => setActiveTab("workforce")}
-                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 ${
+                className={`px-4 sm:px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider font-bold transition-all whitespace-nowrap shrink-0 min-h-[44px] ${
                   activeTab === "workforce"
                     ? "bg-white text-mw-dark shadow-md"
                     : "text-white/60 hover:text-white hover:bg-white/5"
@@ -146,7 +303,7 @@ export function Pricing() {
 
             <a
               href="#comparison"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-mw-orange hover:text-orange-400 transition-colors py-2 px-4 rounded-xl border border-mw-orange/20 hover:border-mw-orange/50 bg-mw-orange/5"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-mw-orange hover:text-orange-400 transition-colors py-2 px-4 rounded-xl border border-mw-orange/20 hover:border-mw-orange/50 bg-mw-orange/5 min-h-[44px]"
             >
               <span>Compare All Features Matrix</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -163,17 +320,21 @@ export function Pricing() {
               {filteredTiers.map((tier, idx) => {
                 const isPopular = tier.isPopular;
                 const isFlagship = tier.isFlagship;
+                const isHighlighted = highlightedTierId === tier.id;
 
                 return (
                   <motion.div
                     key={tier.id}
+                    id={`tier-${tier.id}`}
                     layout
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.5, delay: idx * 0.06, ease: EASE }}
                     className={`relative rounded-3xl p-6 sm:p-8 transition-all duration-500 flex flex-col justify-between ${
-                      isPopular
+                      isHighlighted
+                        ? "ring-4 ring-mw-orange bg-[#0b1022] border-2 border-mw-orange shadow-[0_0_60px_rgba(249,115,22,0.3)]"
+                        : isPopular
                         ? "bg-gradient-to-b from-white/[0.08] to-white/[0.02] border-2 border-mw-orange shadow-[0_0_50px_rgba(249,115,22,0.15)]"
                         : isFlagship
                         ? "bg-gradient-to-b from-white/[0.06] to-white/[0.015] border-2 border-amber-500/40 shadow-[0_0_50px_rgba(245,158,11,0.12)]"
@@ -223,9 +384,12 @@ export function Pricing() {
                           {tier.price}
                         </span>
                       </div>
-                      <p className="text-xs text-white/40 mt-1.5 font-mono">
-                        Done-For-You Package · Domain &amp; Hosting Included
+                      <p className="text-xs text-white/50 mt-1.5 font-mono">
+                        Turnkey Package · Domain &amp; Hosting Included
                       </p>
+                      <div className="mt-2 text-[11px] text-emerald-400 font-medium">
+                        Payment terms: 60% Mobilization / 40% Final Handover
+                      </div>
                     </div>
 
                     {/* Key Deliverables */}
@@ -256,7 +420,7 @@ export function Pricing() {
                     <div className="space-y-3 pt-2">
                       <Link
                         to={`/contact?package=${encodeURIComponent(tier.name)}&tier=${tier.id}`}
-                        className={`w-full py-4 px-6 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group ${
+                        className={`w-full py-4 px-6 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group min-h-[48px] ${
                           isPopular
                             ? "bg-mw-orange text-white hover:bg-orange-500 shadow-lg shadow-mw-orange/30 hover:scale-[1.02] active:scale-[0.98]"
                             : isFlagship
@@ -274,7 +438,7 @@ export function Pricing() {
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full py-2.5 px-4 rounded-full text-center text-xs font-medium text-white/50 hover:text-white transition-colors flex items-center justify-center gap-1.5"
+                        className="w-full py-2.5 px-4 rounded-full text-center text-xs font-medium text-white/60 hover:text-white transition-colors flex items-center justify-center gap-1.5 min-h-[40px]"
                       >
                         <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
                         <span>Instant WhatsApp Inquiry</span>
@@ -373,7 +537,7 @@ export function Pricing() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="w-full sm:w-auto px-10 py-5 rounded-full bg-white text-mw-dark font-bold text-xs uppercase tracking-widest hover:bg-mw-orange hover:text-white transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-10 py-5 rounded-full bg-white text-mw-dark font-bold text-xs uppercase tracking-widest hover:bg-mw-orange hover:text-white transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 min-h-[48px]"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Strategy Consultation</span>
@@ -383,7 +547,7 @@ export function Pricing() {
               href="https://wa.me/2348125082354"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 py-5 rounded-full bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-5 rounded-full bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center gap-2 min-h-[48px]"
             >
               <MessageSquare className="w-4 h-4 text-emerald-400" />
               <span>Speak on WhatsApp</span>
@@ -394,3 +558,4 @@ export function Pricing() {
     </div>
   );
 }
+

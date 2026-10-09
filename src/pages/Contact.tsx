@@ -1,7 +1,19 @@
 import { motion } from "motion/react";
-import { ArrowRight, Mail, Phone, MapPin, CheckCircle2 } from "lucide-react";
+import { 
+  ArrowRight, 
+  Mail, 
+  Phone, 
+  MapPin, 
+  CheckCircle2, 
+  Sparkles, 
+  Clock, 
+  ShieldCheck, 
+  MessageSquare,
+  Building2,
+  Send
+} from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { SERVICES } from "../data/content";
 import { PRICING_TIERS } from "../data/pricing";
 import { EASE } from "../lib/utils";
@@ -12,11 +24,18 @@ export function Contact() {
   const [searchParams] = useSearchParams();
   const selectedPackageName = searchParams.get("package") || "";
   const selectedTierId = searchParams.get("tier") || "";
+  const selectedService = searchParams.get("service") || "";
+  const selectedCaseStudy = searchParams.get("case_study") || "";
+  const selectedTopic = searchParams.get("topic") || "";
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [projectDesc, setProjectDesc] = useState("");
   const [serviceNeeded, setServiceNeeded] = useState(selectedTierId ? `pkg-${selectedTierId}` : "");
+  const [fullName, setFullName] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
     if (selectedPackageName) {
@@ -24,8 +43,18 @@ export function Contact() {
       if (selectedTierId) {
         setServiceNeeded(`pkg-${selectedTierId}`);
       }
+    } else if (selectedCaseStudy) {
+      setProjectDesc(`I am interested in achieving similar results to the ${selectedCaseStudy} case study.`);
+      if (selectedService) {
+        setServiceNeeded(selectedService);
+      }
+    } else if (selectedTopic) {
+      setProjectDesc(`I would like to consult on the topic: "${selectedTopic}".`);
+    } else if (selectedService) {
+      setServiceNeeded(selectedService);
+      setProjectDesc(`I am interested in Mindware's ${selectedService} solutions.`);
     }
-  }, [selectedPackageName, selectedTierId]);
+  }, [selectedPackageName, selectedTierId, selectedCaseStudy, selectedTopic, selectedService]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,28 +63,74 @@ export function Contact() {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-    }, 1500);
+    }, 1200);
+  };
+
+  // Schema.org ContactPage JSON-LD
+  const schemaContact = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Mindware Consulting Ltd",
+    "description": "Schedule a strategic consultation with Mindware Consulting's digital engineering directors.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Mindware Consulting Ltd",
+      "telephone": "+2348125082354",
+      "email": "contact@mindwareconsult.com.ng",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "NG"
+      }
+    }
   };
 
   return (
-    <div className="bg-mw-dark">
-      <SEO title="Contact Us | Mindware Consulting" description="Get in touch with Mindware Consulting." />
+    <div className="bg-mw-dark min-h-screen text-white selection:bg-mw-orange selection:text-white">
+      <SEO title="Contact Us & Strategic Consultation | Mindware Consulting" description="Schedule a strategic consultation with Mindware Consulting." />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaContact) }}
+      />
       {/* Hero */}
-      <FadeInSection className="pt-32 sm:pt-40 pb-16 sm:pb-24 border-b border-white/5 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
+      <FadeInSection className="pt-28 sm:pt-36 md:pt-44 pb-14 sm:pb-20 border-b border-white/5 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-3/5 h-full bg-gradient-to-l from-mw-orange/15 via-mw-orange/5 to-transparent blur-3xl mix-blend-screen pointer-events-none" />
+        <div className="absolute top-1/4 left-5 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+
         <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl"
           >
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-4 sm:mb-8 leading-tight text-white">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-mw-orange/10 border border-mw-orange/20 text-mw-orange text-xs font-bold uppercase tracking-wider mb-6">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Direct Strategic Access · RC 1309926</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-4 sm:mb-8 leading-[1.08] text-white">
               Let's Build Your Next <br />
               <span className="text-gradient">Digital Advantage.</span>
             </h1>
-            <p className="text-base sm:text-xl text-white/60 max-w-2xl leading-relaxed">
-              Tell us what you're building. Not sure what you need? We'll help you figure it out.
+            <p className="text-base sm:text-xl text-white/70 max-w-2xl leading-relaxed font-light mb-6">
+              Tell us what you're building. Whether you need a turnkey growth package, an enterprise web application, or corporate PMP/HSE workforce certification, we are ready.
             </p>
+
+            <div className="flex flex-wrap items-center gap-3 text-xs text-white/60">
+              <div className="flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-emerald-400" />
+                <span>Response in &lt;4 hours</span>
+              </div>
+              <span className="text-white/20">·</span>
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-mw-orange" />
+                <span>Verified Corporate Contracts</span>
+              </div>
+              <span className="text-white/20">·</span>
+              <div className="flex items-center gap-1.5">
+                <Building2 className="w-4 h-4 text-blue-400" />
+                <span>RC 1309926 Invoicing</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </FadeInSection>
@@ -116,22 +191,56 @@ export function Contact() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="fullName" className="text-sm font-medium text-white/80">Full Name</label>
-                      <input id="fullName" name="fullName" required type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="John Doe" />
+                      <input 
+                        id="fullName" 
+                        name="fullName" 
+                        required 
+                        type="text" 
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" 
+                        placeholder="John Doe" 
+                      />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="businessName" className="text-sm font-medium text-white/80">Business Name</label>
-                      <input id="businessName" name="businessName" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="Company Ltd" />
+                      <input 
+                        id="businessName" 
+                        name="businessName" 
+                        type="text" 
+                        value={businessName}
+                        onChange={(e) => setBusinessName(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" 
+                        placeholder="Company Ltd" 
+                      />
                     </div>
                   </div>
                   
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="emailAddress" className="text-sm font-medium text-white/80">Email Address</label>
-                      <input id="emailAddress" name="emailAddress" required type="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="john@example.com" />
+                      <input 
+                        id="emailAddress" 
+                        name="emailAddress" 
+                        required 
+                        type="email" 
+                        value={emailAddress}
+                        onChange={(e) => setEmailAddress(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" 
+                        placeholder="john@example.com" 
+                      />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="phoneNumber" className="text-sm font-medium text-white/80">Phone / WhatsApp</label>
-                      <input id="phoneNumber" name="phoneNumber" type="tel" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" placeholder="+234..." />
+                      <input 
+                        id="phoneNumber" 
+                        name="phoneNumber" 
+                        type="tel" 
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base focus:outline-none focus:border-mw-orange focus:bg-white/10 transition-colors" 
+                        placeholder="+234..." 
+                      />
                     </div>
                   </div>
 
@@ -178,7 +287,7 @@ export function Contact() {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-white text-mw-dark px-8 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] transition-transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-[0_0_30px_-10px_rgba(255,255,255,0.3)]"
+                    className="w-full bg-mw-orange hover:bg-orange-600 text-white px-8 py-5 rounded-full font-bold uppercase tracking-widest text-xs transition-all shadow-xl shadow-mw-orange/20 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 min-h-[48px]"
                   >
                     {isSubmitting ? "SENDING..." : "SEND PROJECT ENQUIRY"}
                     {!isSubmitting && <ArrowRight className="w-4 h-4" />}
