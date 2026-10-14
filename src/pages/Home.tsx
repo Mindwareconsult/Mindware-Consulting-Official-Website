@@ -607,9 +607,6 @@ function GrowthMetrics() {
 
 function TrustedBy() {
   const partnerLogos = [
-    "/logos/osines.jpg",
-    "/logos/quanxi.jpg",
-    "/logos/harmostructs.jpg",
     "/logos/bcale.jpg",
     "/logos/C1.jpg",
     "/logos/C2.jpg",
