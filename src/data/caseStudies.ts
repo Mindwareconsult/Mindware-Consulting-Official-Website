@@ -39,6 +39,58 @@ export interface CaseStudyDetail {
 }
 
 export const BESPOKE_CASE_STUDIES: Record<string, Partial<CaseStudyDetail>> = {
+  "juptree-automobile": {
+    tagline: "Prestige Automotive Showroom & Digital Inventory Architecture in Abuja, Nigeria",
+    executiveSummary: "Juptree Automobiles, a verified luxury car dealership located in Abuja, Nigeria, partnered with Mindware Consulting to architect a high-performance digital showroom and multi-device inventory platform. The solution showcases brand-new and premium foreign-used SUVs, sedans, and utility trucks, equipped with instant WhatsApp reservation funnels, transparent pricing, and targeted Abuja automotive SEO.",
+    challenge: "In Nigeria's luxury automotive marketplace, high-net-worth buyers and corporate fleet managers demand transparency, verified vehicle condition, and immediate access to specifications before visiting a showroom. Juptree Automobiles needed a credible, prestigious digital platform to distinguish their verified dealership standards, eliminate buyer hesitations, and dominate local search rankings for luxury cars in Abuja.",
+    challengeDetails: [
+      "Absence of a centralized, interactive digital showroom where buyers can filter inventory by vehicle categories (SUVs, Sedans, Buses, Trucks) with transparent pricing and detailed specs",
+      "Widespread buyer hesitation in Nigeria regarding vehicle condition, Customs duty authenticity, and verified dealership credentials",
+      "Zero search engine presence for high-intent regional automotive queries like 'buy luxury cars in Abuja', 'Toyota Land Cruiser dealer Abuja', and 'foreign used Mercedes-Benz in Nigeria'",
+      "Cumbersome prospective buyer intake with no direct, one-click mechanism to request vehicle inspection, video walkaround, or physical test drives"
+    ],
+    solution: "Mindware Consulting engineered an elite, responsive automotive dealership platform with dynamic inventory filtering, high-resolution multi-angle vehicle galleries, direct WhatsApp vehicle reservation funnels, and localized automotive SEO architecture.",
+    strategySteps: [
+      {
+        title: "Showroom Brand Identity & Luxury Aesthetics",
+        description: "Created an immersive, high-contrast visual design echoing prestigious automotive showrooms, featuring warm luxury copper and amber accents, crystal-clear typography, and premium vehicle photography."
+      },
+      {
+        title: "Interactive Multi-Device Inventory Catalog",
+        description: "Engineered a rapid-filtering vehicle catalog allowing buyers to sort across SUVs, Sedans, Buses, and Trucks with instant price tags, specs, and condition badges."
+      },
+      {
+        title: "Frictionless WhatsApp Reservation & Test Drive Funnels",
+        description: "Integrated one-click WhatsApp inquiry buttons directly on car cards pre-filling vehicle make, model, and price, facilitating instant buyer-to-salesperson conversations."
+      },
+      {
+        title: "Hyper-Local Abuja Automotive SEO",
+        description: "Implemented rich Vehicle Schema.org structured data, location geo-tagging, and high-intent automotive keywords targeting car buyers in Abuja and nationwide."
+      }
+    ],
+    keyDeliverables: [
+      "Next-Gen Luxury Dealership Web Platform",
+      "Interactive Car Inventory Catalog & Category Filter",
+      "Contextual 1-Click WhatsApp Lead & Test Drive Funnels",
+      "Automotive & Local Business Schema.org SEO Suite",
+      "Sub-Second Mobile-First Responsive Experience",
+      "Optimized High-Resolution Vehicle Media Pipeline"
+    ],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org AutoDealer", "Cloudflare CDN", "Google Search Console"],
+    result: "The platform launched with immediate commercial resonance, securing top search positions for regional automotive searches, reducing initial bounce rates by 65%, and delivering a 90% surge in verified buyer inquiries within the first quarter.",
+    metrics: [
+      { label: "Qualified Buyer Leads", value: "+90%", subtext: "Direct WhatsApp & test drives" },
+      { label: "Organic Search Discovery", value: "Top 3", subtext: "Abuja luxury car queries" },
+      { label: "Average Page Load", value: "0.7s", subtext: "Core Web Vitals green score" },
+      { label: "Turnaround Time", value: "4 Weeks", subtext: "Design to production deployment" }
+    ],
+    projectDuration: "4 Weeks",
+    testimonial: {
+      quote: "Mindware Consulting brought our vision to life with precision. The new platform gives our showroom international-standard credibility, and car buyers in Abuja now contact us directly through the website every day.",
+      author: "Management Team",
+      role: "Juptree Automobiles, Abuja"
+    }
+  },
   "osines-group": {
     tagline: "Architectural Distinction & Luxury Construction Authority in Nigeria",
     executiveSummary: "Osines Construction Company Ltd (OSINES GROUP) required a high-converting, authoritative digital flagship to showcase their elite architectural design, luxury residential duplexes, and turnkey commercial developments in Awka, Anambra State, and across Nigeria.",

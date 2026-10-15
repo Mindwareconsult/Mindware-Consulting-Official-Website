@@ -416,12 +416,12 @@ export const INDUSTRIES: IndustryData[] = [
       }
     ],
     caseStudy: {
-      clientName: "Chief Emeka K.",
-      companyName: "Apex Prestige Motors (Lagos & Abuja)",
-      serviceProvided: "Luxury Automotive Digital Showroom & Inventory Management",
-      resultQuote: "Mindware's digital showroom transformed our dealership. Clients now research our inventory online, verify the Customs documentation before arriving, and close purchases twice as fast.",
-      metrics: "Average vehicle days-on-lot reduced from 42 days to 16 days",
-      link: "/contact"
+      clientName: "Management Team",
+      companyName: "Juptree Automobiles (Abuja)",
+      serviceProvided: "Luxury Automotive Digital Showroom & Inventory Architecture",
+      resultQuote: "Mindware Consulting brought our vision to life with precision. The new platform gives our showroom international-standard credibility, and car buyers in Abuja now contact us directly through the website every day.",
+      metrics: "+90% qualified buyer leads via WhatsApp & sub-0.7s page speed",
+      link: "/portfolio/case-studies/juptree-automobile"
     },
     keyServiceAreas: [
       { name: "Lagos (Berger, Ikeja & Lekki)", slug: "lagos", reason: "The primary automotive clearing port and largest retail car market in West Africa" },

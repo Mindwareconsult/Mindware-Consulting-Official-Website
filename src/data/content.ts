@@ -224,6 +224,18 @@ export const PORTFOLIO = [
         result: "Designed and engineered an elite, SEO-optimized web platform and digital strategy that elevates their brand authority, showcases landmark developments, and drives qualified construction client inquiries.",
         link: "https://www.osinesgroup.com.ng/",
         projectMetrics: { growth: 85, duration: 4 }
+    },
+    {
+        id: "juptree-automobile",
+        title: "Luxury Automotive Dealership & Inventory Platform",
+        client: "Juptree Automobiles",
+        industry: "Automotive & Luxury Dealership",
+        service: "Website Design & SEO",
+        image: "/assets/Juptree Automobiles Responsive Showcase.jpg",
+        challenge: "Required an elite, transparent digital showroom and multi-device car inventory portal to showcase luxury new and foreign-used vehicles in Abuja, combat gray-market distrust, and convert high-intent car buyers.",
+        result: "Engineered a high-performance, mobile-first automotive platform featuring categorized vehicle listings, sub-second search speeds, instant WhatsApp test drive funnels, and dominant local Abuja SEO.",
+        link: "https://juptreeautomobile.com/",
+        projectMetrics: { growth: 90, duration: 4 }
     }
 ];
 

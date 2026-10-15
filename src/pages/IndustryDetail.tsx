@@ -341,8 +341,19 @@ export function IndustryDetail() {
               <div className="text-mw-orange mt-0.5">{industryData.caseStudy.serviceProvided}</div>
             </div>
 
-            <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-white/80 font-mono">
-              Key Metric: <strong className="text-emerald-400">{industryData.caseStudy.metrics}</strong>
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-white/80 font-mono">
+                Key Metric: <strong className="text-emerald-400">{industryData.caseStudy.metrics}</strong>
+              </div>
+              {industryData.caseStudy.link && (
+                <Link
+                  to={industryData.caseStudy.link}
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-mw-orange text-white text-xs font-bold uppercase tracking-wider hover:bg-mw-orange/90 transition-all shadow-md"
+                >
+                  <span>View Case Study</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
             </div>
           </div>
         </FadeInSection>

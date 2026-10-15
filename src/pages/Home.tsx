@@ -607,6 +607,7 @@ function GrowthMetrics() {
 
 function TrustedBy() {
   const partnerLogos = [
+    "/logos/Juptree Automobile Logo.jpeg",
     "/logos/bcale.jpg",
     "/logos/C1.jpg",
     "/logos/C2.jpg",
@@ -876,7 +877,7 @@ function ServicesOverview() {
 }
 
 function LatestWork() {
-  const featuredIds = ["osines-group", "quanxi-limited", "harmostructs-engineering", "eclectic-seals", "crescon-projects", "bcale-associates"];
+  const featuredIds = ["juptree-automobile", "osines-group", "quanxi-limited", "harmostructs-engineering", "eclectic-seals", "crescon-projects", "bcale-associates"];
   const featured = featuredIds
     .map(id => PORTFOLIO.find(p => p.id === id))
     .filter((p): p is typeof PORTFOLIO[0] => Boolean(p));

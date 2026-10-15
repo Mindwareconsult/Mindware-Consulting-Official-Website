@@ -177,7 +177,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
         answer: "Yes, every website built by Mindware Consulting includes comprehensive foundational technical SEO: semantic HTML5 structures, optimized heading hierarchies (H1-H4), meta tags, XML sitemaps, robots.txt, and fast loading speeds."
       }
     ],
-    relatedCaseStudyIds: ["harmostructs-engineering", "quanxi-limited", "osines-group", "priziangori-global", "crescon-projects"],
+    relatedCaseStudyIds: ["juptree-automobile", "harmostructs-engineering", "quanxi-limited", "osines-group", "priziangori-global", "crescon-projects"],
     pricingPackageAnchor: "packages"
   },
 
