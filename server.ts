@@ -213,6 +213,9 @@ Return ONLY a JSON object:
 
 // Full-stack Vite dev middleware or production static serving
 async function startServer() {
+  // Always serve public directory assets cleanly
+  app.use(express.static(path.resolve(__dirname, "public")));
+
   if (process.env.NODE_ENV !== "production") {
     const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({

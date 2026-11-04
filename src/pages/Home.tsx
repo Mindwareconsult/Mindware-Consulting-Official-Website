@@ -25,6 +25,7 @@ import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
 import { MetricChart } from "../components/MetricChart";
 import { HomeVideoTestimonials } from "../components/home/HomeVideoTestimonials";
+import { CertificationsSection } from "../components/home/CertificationsSection";
 
 interface HeroSlide {
   id: string;
@@ -1260,6 +1261,7 @@ export function Home() {
       <Hero />
       <GrowthMetrics />
       <TrustedBy />
+      <CertificationsSection />
       <SelfSelection />
       <Ecosystem />
       <ServicesOverview />

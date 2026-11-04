@@ -139,13 +139,13 @@ export function YouTubeModal({ testimonial, onClose }: YouTubeModalProps) {
           <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-white/40">
             <span>Video ID: <code className="text-white/60 font-mono">{testimonial.youtubeVideoId}</code></span>
             <a
-              href="https://www.youtube.com/mindwareconsultingltd"
+              href="https://www.youtube.com/@MindwareConsultingLtd"
               target="_blank"
               rel="noopener noreferrer"
               className="text-red-400 hover:text-red-300 font-semibold flex items-center gap-1.5 transition-colors"
             >
               <Youtube className="w-3.5 h-3.5 fill-current" />
-              <span>Subscribe to @mindwareconsultingltd on YouTube</span>
+              <span>Subscribe to @MindwareConsultingLtd on YouTube</span>
             </a>
           </div>
         </div>

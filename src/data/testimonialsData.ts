@@ -412,8 +412,8 @@ export const STUDENT_TESTIMONIALS: StudentGraduateTestimonial[] = [
 
 export const OFFICIAL_YOUTUBE_CHANNEL = {
   name: "Mindware Consulting Ltd",
-  handle: "@mindwareconsultingltd",
-  url: "https://www.youtube.com/mindwareconsultingltd",
+  handle: "@MindwareConsultingLtd",
+  url: "https://www.youtube.com/@MindwareConsultingLtd",
   description: "Subscribe for deep-dive client project breakdowns, student success spotlights, digital marketing masterclasses, and executive project management insights.",
   subscribersCount: "5.4K+",
   videoCount: "48+"

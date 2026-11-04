@@ -6,6 +6,7 @@ import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
 import { AboutSubNav } from "../components/about/AboutSubNav";
+import { AboutCertifications } from "../components/about/AboutCertifications";
 
 export function About() {
   return (
@@ -346,6 +347,9 @@ export function About() {
           </div>
         </div>
       </motion.section>
+
+      {/* Institutional Accreditations & Regulatory Standing */}
+      <AboutCertifications />
 
       {/* Why Choose Us */}
       <motion.section 
