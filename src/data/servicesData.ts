@@ -177,7 +177,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
         answer: "Yes, every website built by Mindware Consulting includes comprehensive foundational technical SEO: semantic HTML5 structures, optimized heading hierarchies (H1-H4), meta tags, XML sitemaps, robots.txt, and fast loading speeds."
       }
     ],
-    relatedCaseStudyIds: ["juptree-automobile", "harmostructs-engineering", "quanxi-limited", "osines-group", "priziangori-global", "crescon-projects"],
+    relatedCaseStudyIds: ["temamost-construction", "solugans-construction", "juptree-automobile", "harmostructs-engineering", "quanxi-limited", "osines-group", "priziangori-global", "crescon-projects"],
     pricingPackageAnchor: "packages"
   },
 
@@ -315,7 +315,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
         answer: "Yes! Our Local SEO service optimizes your Google Business Profile, geo-targeted content, and local citations so your business appears prominently in the Google Maps 3-Pack when local customers search in your target metropolitan areas."
       }
     ],
-    relatedCaseStudyIds: ["crescon-projects", "harmostructs-engineering", "priziangori-global", "osines-group", "bcale-associates"],
+    relatedCaseStudyIds: ["solugans-construction", "crescon-projects", "harmostructs-engineering", "priziangori-global", "osines-group", "bcale-associates"],
     pricingPackageAnchor: "packages"
   },
 

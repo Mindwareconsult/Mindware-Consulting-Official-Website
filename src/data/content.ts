@@ -71,15 +71,15 @@ export const SERVICES = [
 export const PORTFOLIO = [
     {
         id: "temamost-construction",
-        title: "Construction Company Website",
+        title: "Civil Engineering & Construction Website Upgrade",
         client: "Temamost Nigeria Ltd",
         industry: "Construction & Engineering",
-        service: "Website Design",
-        image: "/assets/Temamost Website Design compressed.jpg",
-        challenge: "Needed a professional digital presence to showcase their engineering projects and attract high-value contracts in Port Harcourt.",
-        result: "Designed and built a responsive, portfolio-driven website establishing strong digital authority.",
+        service: "Website Upgrade & Redesign",
+        image: "/assets/Temamost Website Upgrade Showcase.jpg",
+        challenge: "Their original website had an outdated legacy architecture, lacked mobile responsiveness, and failed to communicate their technical construction capabilities, resulting in lost tender bids and low digital engagement in Port Harcourt.",
+        result: "Executed an end-to-end modern website redesign featuring seamless multi-device adaptation (desktop to smartwatch), signature navy, red, and white branding, and interactive project galleries that accelerated contract inquiries.",
         link: "https://www.constructionstemamost.com/",
-        projectMetrics: { growth: 45, duration: 4 }
+        projectMetrics: { growth: 92, duration: 4 }
     },
     {
         id: "watech-integrated",
@@ -236,6 +236,18 @@ export const PORTFOLIO = [
         result: "Engineered a high-performance, mobile-first automotive platform featuring categorized vehicle listings, sub-second search speeds, instant WhatsApp test drive funnels, and dominant local Abuja SEO.",
         link: "https://juptreeautomobile.com/",
         projectMetrics: { growth: 90, duration: 4 }
+    },
+    {
+        id: "solugans-construction",
+        title: "Civil Engineering, Architecture & Turnkey Construction Platform",
+        client: "Solugans & Associates Engineering Ltd",
+        industry: "Construction & Engineering",
+        service: "Website Design & SEO",
+        image: "/assets/Solugans Construction Digital Showcase.jpg",
+        challenge: "Needed an authoritative, high-performance corporate platform to showcase their multi-disciplinary engineering capacity, landmark residential estates, commercial complexes, and public infrastructure developments in Awka, Anambra State, and nationwide.",
+        result: "Engineered an elite, SEO-optimized engineering showcase featuring interactive project portfolios, BOQ consultation funnels, and top-tier local rankings for high-intent engineering and construction queries in southeastern Nigeria.",
+        link: "https://www.solugansconstruction.com.ng/",
+        projectMetrics: { growth: 88, duration: 4 }
     }
 ];
 

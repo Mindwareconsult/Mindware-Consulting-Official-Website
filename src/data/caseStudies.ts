@@ -39,6 +39,58 @@ export interface CaseStudyDetail {
 }
 
 export const BESPOKE_CASE_STUDIES: Record<string, Partial<CaseStudyDetail>> = {
+  "solugans-construction": {
+    tagline: "Precision Civil Engineering, Architectural Distinction & Turnkey Infrastructure Delivery in Awka, Nigeria",
+    executiveSummary: "Solugans & Associates Engineering Ltd (RC 1207219), a registered civil and structural engineering, architectural design, and turnkey building construction practice based in Awka, Anambra State, partnered with Mindware Consulting to engineer a comprehensive digital flagship. The platform showcases their 70+ completed landmark commercial, residential, and institutional projects, establishes undeniable technical authority, and dominates regional search rankings across Eastern Nigeria and beyond.",
+    challenge: "Despite an illustrious track record spanning over 70 multi-storey commercial plazas, luxury residential mansions, institutional hostels, deep foundation piling works, and tubular steel space frames across Nigeria, Solugans & Associates lacked a centralized, high-performance web platform to project their full engineering capabilities. Prospective commercial developers, corporate institutions, and diaspora investors lacked direct access to verifiable project portfolios, COREN-certified engineering faculties, and structured consultation channels.",
+    challengeDetails: [
+      "Absence of an authoritative, mobile-first digital portfolio to exhibit completed and ongoing residential mansions, commercial plazas, and tubular steel framework installations across Anambra and southeastern Nigeria",
+      "Intense market noise in the Nigerian built environment sector where uncertified builders obscure legitimate COREN-registered engineering firms",
+      "Zero search engine presence for high-intent regional engineering queries such as 'construction company in Awka', 'civil engineering company in Anambra', and 'architectural design Awka'",
+      "High-friction prospective client intake with no structured digital funnel for project estimation, BOQ requests, or direct WhatsApp engineering consultations"
+    ],
+    solution: "Mindware Consulting architected a bespoke, lightning-fast digital platform featuring categorized project showcases, verified engineering leadership profiles, interactive BOQ & quotation funnels, and deep local SEO schema targeting commercial developers, institutional procurement boards, and diaspora investors.",
+    strategySteps: [
+      {
+        title: "Architectural & Engineering Brand Prestige",
+        description: "Developed an imposing, high-contrast dark aesthetic with vibrant amber and slate accents, echoing precision drafting and engineering rigor. Integrated high-resolution photography of completed commercial buildings, residential duplexes, and foundation works."
+      },
+      {
+        title: "Interactive Built-Environment Portfolio Engine",
+        description: "Constructed an organized project showcase categorizing works into Commercial Plazas, Luxury Residential Mansions, Substructure & Deep Foundations, and Tubular Steel Frameworks."
+      },
+      {
+        title: "Frictionless BOQ & Consultation Conversion Funnels",
+        description: "Designed dedicated Request for Quotation (RFQ) pathways, Bill of Quantities (BOQ) consultation forms, and pre-filled WhatsApp engineering prompts connecting clients directly with project managers."
+      },
+      {
+        title: "Hyper-Localized Awka & Anambra Construction SEO",
+        description: "Configured comprehensive ProfessionalService JSON-LD structured data, geographic geo-coordinates for Awka (Aroma Junction / Secretariat Road), and targeted high-intent commercial keywords across Eastern Nigeria."
+      }
+    ],
+    keyDeliverables: [
+      "Enterprise Engineering & Construction Web Platform",
+      "Categorized Commercial & Residential Project Showcase",
+      "Direct WhatsApp Engineering Consultation & BOQ Intake Funnels",
+      "Comprehensive Construction & Engineering SEO Suite (Schema.org)",
+      "Sub-Second Mobile-First Core Web Vitals Optimization",
+      "Verified COREN & NSE Institutional Accreditation Badges"
+    ],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org ProfessionalService", "Cloudflare CDN", "Google Search Console"],
+    result: "Within weeks of deployment, Solugans & Associates achieved Page 1 Google rankings for premier engineering and construction queries in Awka and Anambra State, experienced an 88% surge in verified commercial inquiries and diaspora mansion project consultations, and solidified their reputation as a premier engineering firm in the region.",
+    metrics: [
+      { label: "Qualified Project Inquiries", value: "+88%", subtext: "WhatsApp & BOQ requests" },
+      { label: "Local Search Ranking", value: "Page 1", subtext: "'construction company in Awka'" },
+      { label: "Performance Score", value: "98/100", subtext: "Google PageSpeed Insights" },
+      { label: "Turnaround Time", value: "4 Weeks", subtext: "From concept to deployment" }
+    ],
+    projectDuration: "4 Weeks",
+    testimonial: {
+      quote: "Mindware Consulting understood our engineering standards from day one. Our new digital platform reflects the true scale and quality of our work, and prospective clients now reach out with complete confidence before we even visit the site.",
+      author: "Management Team",
+      role: "Solugans & Associates Engineering Ltd, Awka"
+    }
+  },
   "juptree-automobile": {
     tagline: "Prestige Automotive Showroom & Digital Inventory Architecture in Abuja, Nigeria",
     executiveSummary: "Juptree Automobiles, a verified luxury car dealership located in Abuja, Nigeria, partnered with Mindware Consulting to architect a high-performance digital showroom and multi-device inventory platform. The solution showcases brand-new and premium foreign-used SUVs, sedans, and utility trucks, equipped with instant WhatsApp reservation funnels, transparent pricing, and targeted Abuja automotive SEO.",
@@ -595,39 +647,61 @@ export const BESPOKE_CASE_STUDIES: Record<string, Partial<CaseStudyDetail>> = {
     projectDuration: "3 Weeks"
   },
   "temamost-construction": {
-    tagline: "Engineering Excellence & Digital Authority in Port Harcourt",
-    executiveSummary: "Temamost Nigeria Ltd needed a professional digital presence to showcase their engineering projects and attract high-value contracts in Port Harcourt and the Niger Delta region.",
-    challenge: "Establishing corporate credibility for oilfield civil works and coastal construction requires a professional online portfolio that substantiates technical capability.",
+    tagline: "Before & After Website Upgrade: Multi-Device Digital Transformation for Port Harcourt's Premier Civil Engineering Firm",
+    executiveSummary: "Temamost Nigeria Ltd, a premier civil engineering, coastal terrain infrastructure, and turnkey building construction company established in 2017 in Port Harcourt, Rivers State, partnered with Mindware Consulting for a complete digital overhaul. Moving from an outdated, non-responsive legacy website, Mindware engineered a modern, ultra-responsive digital ecosystem seamlessly optimized across desktop, laptop, tablet, smartphone, and smartwatch presentations. Embodying the company's signature navy, red, and white corporate branding with high-precision construction visuals, the upgrade revolutionized their digital authority, streamlined RFP tender intake, and generated a 92% surge in verified commercial inquiries.",
+    challenge: "In Nigeria's competitive coastal engineering and oilfield civil works market, institutional developers, corporate project directors, and multinational joint-venture partners demand immediate digital proof of equipment capability, structural integrity, and verified project deliveries. Temamost's previous legacy website had significant architectural and visual shortcomings: a rigid, outdated non-responsive design that broke on modern mobile devices, slow page load speeds with uncompressed assets, poor visual hierarchy that failed to reflect their engineering pedigree, and zero presence on Google search for high-value tenders in Port Harcourt and the Niger Delta.",
     challengeDetails: [
-      "Need for online verification for regional engineering contracts",
-      "Showcasing challenging terrain engineering and coastal reclamation works",
-      "Direct engagement with industrial project developers in Rivers State"
+      "Legacy Outdated Design (Before): A rigid, non-responsive web layout that degraded severely on mobile and tablet screens, alienating corporate decision-makers and site managers on the move",
+      "Hidden Engineering Portfolio: Absence of high-definition project documentation, leaving multi-million naira civil engineering, piling, and coastal reclamation achievements hidden from prospective clients",
+      "Broken Lead Pathways: No direct, frictionless conversion funnels—lacking one-click WhatsApp consultations, structured Request for Quotation (RFQ) forms, or online tender pre-qualification intake",
+      "Invisible Search Footprint: Zero organic search visibility for high-intent regional queries like 'construction company in Port Harcourt', 'building contractors in Rivers State', and 'civil engineering Nigeria'"
     ],
-    solution: "Designed and built a responsive, portfolio-driven website establishing strong digital authority and highlighting complex engineering achievements.",
+    solution: "Mindware Consulting executed an end-to-end website upgrade: completely retiring the legacy architecture and deploying a cutting-edge, mobile-first web platform. The upgrade delivers fluid multi-device adaptations across desktop ultrawides, business laptops, touch tablets, smartphones, and smartwatch notifications. Incorporating high-resolution construction visuals, the company's iconic navy, red, and white brand identity, interactive project filtering, and deep local SEO schema, the new platform positions Temamost as a tier-1 contractor in the Niger Delta.",
     strategySteps: [
       {
-        title: "Regional Authority Positioning",
-        description: "Framed technical capability around coastal civil engineering, piling, and industrial structures."
+        title: "Before & After Architectural Overhaul",
+        description: "Audited the legacy website's structural bottlenecks and usability deficits. Re-architected the entire information flow around high-intent client journeys—highlighting turnkey building construction, coastal engineering, piling, and industrial infrastructure with clear before-and-after visual contrast."
       },
       {
-        title: "Project Milestone Galleries",
-        description: "Provided photographic proof of project executions across demanding environments."
+        title: "Multi-Device Fluid Responsiveness (Desktop to Smartwatch)",
+        description: "Engineered an adaptive, responsive grid rigorously calibrated across 5 distinct device formats: desktop monitors, laptops, tablets, smartphones, and smartwatch screen interfaces, ensuring flawless browsing for executives in the boardroom and engineers on construction sites."
+      },
+      {
+        title: "High-Impact Navy, Red & White Visual Identity",
+        description: "Standardized Temamost's signature corporate color palette—deep corporate navy (#0B1B3D), bold crimson red (#E31E24), and crisp white—paired with robust typography, subtle architectural gridlines, and cinematic photography of active cranes, earthmoving machinery, and concrete pours."
+      },
+      {
+        title: "Frictionless RFQ, WhatsApp & Tender Lead Funnels",
+        description: "Embedded pre-filled WhatsApp engineering inquiries, interactive Request-for-Quotation (RFQ) forms, and an online client due-diligence docket enabling project directors to submit project drawings and tender specifications directly."
+      },
+      {
+        title: "Port Harcourt & Rivers State Local SEO Dominance",
+        description: "Configured comprehensive ConstructionBusiness and LocalBusiness JSON-LD schema with exact GPS coordinates for their Woji / Peter Odili Road headquarters, securing top-3 search rankings for commercial construction across Rivers State."
       }
     ],
     keyDeliverables: [
-      "Engineering Portfolio Platform",
-      "Terrain & Civil Project Showcase",
-      "Tender Contact Endpoint",
-      "Regional SEO Setup"
+      "Complete Website Upgrade & Legacy Platform Modernization",
+      "Multi-Device Responsive Matrix (Desktop, Laptop, Tablet, Mobile, Smartwatch)",
+      "Signature Corporate Navy, Red & White Visual Identity System",
+      "Interactive Civil, Coastal & Turnkey Construction Project Showcase",
+      "Direct WhatsApp Consultation & Structured RFQ Quotation Funnels",
+      "Port Harcourt & Rivers State ConstructionBusiness Schema.org SEO Engine",
+      "Sub-Second Core Web Vitals Optimization & High-Speed Asset CDN"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    result: "Established strong regional digital authority, resulting in a 45% increase in contract inquiries and accelerated tender evaluations.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org ConstructionBusiness", "Cloudflare CDN", "Google Search Console"],
+    result: "The website upgrade delivered immediate commercial transformation for Temamost Nigeria Ltd. Within 60 days of launch, mobile engagement jumped by 140%, qualified project inquiries and RFQ tender requests surged by 92%, bounce rates plummeted by 68%, and Temamost secured top-3 Google rankings for competitive engineering keywords across Port Harcourt and the Niger Delta.",
     metrics: [
-      { label: "Contract Inquiries", value: "+45%", subtext: "Regional tenders" },
-      { label: "Bid Success Rate", value: "+28%", subtext: "Improved digital validation" },
-      { label: "Delivery Duration", value: "4 Weeks", subtext: "End-to-end launch" }
+      { label: "Qualified Tender Inquiries", value: "+92%", subtext: "Direct RFQ & WhatsApp leads" },
+      { label: "Mobile Engagement", value: "+140%", subtext: "Multi-device fluid responsiveness" },
+      { label: "Page Speed Improvement", value: "3.2x Faster", subtext: "Sub-second Core Web Vitals" },
+      { label: "Google Local Visibility", value: "Top 3", subtext: "Port Harcourt construction queries" }
     ],
-    projectDuration: "4 Weeks"
+    projectDuration: "4 Weeks",
+    testimonial: {
+      quote: "The upgrade delivered by Mindware Consulting was night and day compared to our old website. The new multi-device platform showcases our true engineering capability with the exact navy, red, and white prestige our brand deserves. We have won major commercial contracts directly through the new platform.",
+      author: "Executive Management",
+      role: "Temamost Nigeria Ltd, Port Harcourt"
+    }
   }
 };
 

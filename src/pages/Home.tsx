@@ -878,7 +878,7 @@ function ServicesOverview() {
 }
 
 function LatestWork() {
-  const featuredIds = ["juptree-automobile", "osines-group", "quanxi-limited", "harmostructs-engineering", "eclectic-seals", "crescon-projects", "bcale-associates"];
+  const featuredIds = ["temamost-construction", "solugans-construction", "juptree-automobile", "osines-group", "quanxi-limited", "harmostructs-engineering", "eclectic-seals", "crescon-projects", "bcale-associates"];
   const featured = featuredIds
     .map(id => PORTFOLIO.find(p => p.id === id))
     .filter((p): p is typeof PORTFOLIO[0] => Boolean(p));
