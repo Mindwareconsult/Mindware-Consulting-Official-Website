@@ -7,6 +7,7 @@ import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
 import { AboutSubNav } from "../components/about/AboutSubNav";
 import { AboutCertifications } from "../components/about/AboutCertifications";
+import { GoogleClientReviews } from "../components/reviews/GoogleClientReviews";
 
 export function About() {
   return (
@@ -378,6 +379,13 @@ export function About() {
           </div>
         </div>
       </motion.section>
+
+      {/* Google Client Reviews */}
+      <GoogleClientReviews
+        variant="about"
+        heading="Trusted by Businesses. Valued by Clients."
+        supportingText="At Mindware Consulting Limited, we believe that successful business relationships are built on trust, consistent delivery and genuine value. Here is what some of our clients have shared about their experience working with us."
+      />
 
       {/* CTA */}
       <motion.section 

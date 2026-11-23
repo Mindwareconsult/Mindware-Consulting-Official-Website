@@ -26,6 +26,7 @@ import { SEO } from "../components/SEO";
 import { MetricChart } from "../components/MetricChart";
 import { HomeVideoTestimonials } from "../components/home/HomeVideoTestimonials";
 import { CertificationsSection } from "../components/home/CertificationsSection";
+import { GoogleClientReviews } from "../components/reviews/GoogleClientReviews";
 
 interface HeroSlide {
   id: string;
@@ -1266,6 +1267,11 @@ export function Home() {
       <Ecosystem />
       <ServicesOverview />
       <LatestWork />
+      <GoogleClientReviews
+        variant="homepage"
+        heading="Real Businesses. Real Projects. Genuine Client Feedback."
+        supportingText="Discover what businesses and professionals have to say about their experience working with Mindware Consulting Limited. Our commitment to quality, reliability and measurable business value is reflected in the feedback of our clients."
+      />
       <GrowthSystem />
       <HomeVideoTestimonials />
       <FAQ />
