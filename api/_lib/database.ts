@@ -61,29 +61,28 @@ export interface ClaimedOutboxRow {
   max_attempts: number;
 }
 
-function getSupabaseHeaders(serviceRoleKey: string): Record<string, string> {
+function getSupabaseHeaders(secretKey: string): Record<string, string> {
   return {
-    apikey: serviceRoleKey,
-    Authorization: `Bearer ${serviceRoleKey}`,
+    apikey: secretKey,
     "Content-Type": "application/json",
   };
 }
 
 function assertProductionPersistenceReady():
-  | { mode: "supabase"; url: string; serviceRoleKey: string }
+  | { mode: "supabase"; url: string; secretKey: string }
   | { mode: "local-ndjson" } {
   const supa = getSupabaseConfig();
   if (supa.configured) {
     return {
       mode: "supabase",
       url: supa.url,
-      serviceRoleKey: supa.serviceRoleKey,
+      secretKey: supa.secretKey,
     };
   }
 
   if (isProductionMode()) {
     throw new PersistenceUnavailableError(
-      "Production database persistence is not configured. SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required."
+      "Production database persistence is not configured. SUPABASE_URL and SUPABASE_SECRET_KEY are required."
     );
   }
 
@@ -242,7 +241,7 @@ export async function saveBusinessEnquiry(
     `${target.url}/rest/v1/rpc/create_business_enquiry_atomic`,
     {
       method: "POST",
-      headers: getSupabaseHeaders(target.serviceRoleKey),
+      headers: getSupabaseHeaders(target.secretKey),
       body: JSON.stringify({
         p_reference_id: referenceId,
         p_full_name: input.fullName,
@@ -360,7 +359,7 @@ export async function saveCareerApplication(
     `${target.url}/rest/v1/rpc/create_career_application_atomic`,
     {
       method: "POST",
-      headers: getSupabaseHeaders(target.serviceRoleKey),
+      headers: getSupabaseHeaders(target.secretKey),
       body: JSON.stringify({
         p_reference_id: referenceId,
         p_application_mode: input.mode,
@@ -451,7 +450,7 @@ export async function upsertNewsletterSubscriber(
     `${target.url}/rest/v1/rpc/upsert_newsletter_subscriber_atomic`,
     {
       method: "POST",
-      headers: getSupabaseHeaders(target.serviceRoleKey),
+      headers: getSupabaseHeaders(target.secretKey),
       body: JSON.stringify({
         p_email: input.email,
         p_source: input.source,
@@ -500,7 +499,7 @@ export async function unsubscribeNewsletterSubscriber(
     `${target.url}/rest/v1/rpc/unsubscribe_newsletter_subscriber_atomic`,
     {
       method: "POST",
-      headers: getSupabaseHeaders(target.serviceRoleKey),
+      headers: getSupabaseHeaders(target.secretKey),
       body: JSON.stringify({ p_email: normalized }),
       signal: AbortSignal.timeout(3500),
     }
@@ -536,7 +535,7 @@ export async function isTargetAlreadyNotified(
       )}&limit=1`,
       {
         method: "GET",
-        headers: getSupabaseHeaders(supa.serviceRoleKey),
+        headers: getSupabaseHeaders(supa.secretKey),
         signal: AbortSignal.timeout(Math.max(300, Math.min(1500, timeoutMs))),
       }
     );
@@ -561,7 +560,7 @@ export async function markOutboxDelivered(
       {
         method: "PATCH",
         headers: {
-          ...getSupabaseHeaders(supa.serviceRoleKey),
+          ...getSupabaseHeaders(supa.secretKey),
           Prefer: "return=minimal",
         },
         body: JSON.stringify({
@@ -599,7 +598,7 @@ export async function markOutboxRetryOrDeadLetter(
       {
         method: "PATCH",
         headers: {
-          ...getSupabaseHeaders(supa.serviceRoleKey),
+          ...getSupabaseHeaders(supa.secretKey),
           Prefer: "return=minimal",
         },
         body: JSON.stringify({
@@ -626,7 +625,7 @@ export async function releaseUnattemptedOutboxRow(
   try {
     await fetch(`${supa.url}/rest/v1/rpc/release_unattempted_outbox_row`, {
       method: "POST",
-      headers: getSupabaseHeaders(supa.serviceRoleKey),
+      headers: getSupabaseHeaders(supa.secretKey),
       body: JSON.stringify({ p_outbox_id: outboxId }),
       signal: AbortSignal.timeout(Math.max(250, Math.min(1500, timeoutMs))),
     });
@@ -650,7 +649,7 @@ export async function claimDueOutboxBatch(
     `${supa.url}/rest/v1/rpc/claim_notification_outbox_batch`,
     {
       method: "POST",
-      headers: getSupabaseHeaders(supa.serviceRoleKey),
+      headers: getSupabaseHeaders(supa.secretKey),
       body: JSON.stringify({ p_limit: limit }),
       signal: AbortSignal.timeout(Math.max(500, Math.min(3000, timeoutMs))),
     }
@@ -700,7 +699,7 @@ export async function recordDeliveryAudit(
       {
         method: "PATCH",
         headers: {
-          ...getSupabaseHeaders(supa.serviceRoleKey),
+          ...getSupabaseHeaders(supa.secretKey),
           Prefer: "return=minimal",
         },
         body: JSON.stringify(patchBody),

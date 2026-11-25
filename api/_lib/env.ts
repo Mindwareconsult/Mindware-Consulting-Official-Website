@@ -1,6 +1,6 @@
 export interface SupabaseConfig {
   url: string;
-  serviceRoleKey: string;
+  secretKey: string;
   configured: boolean;
 }
 
@@ -29,7 +29,7 @@ const PLACEHOLDER_VALUES = new Set([
   "MY_GEMINI_API_KEY",
   "MY_APP_URL",
   "YOUR_SUPABASE_URL",
-  "YOUR_SUPABASE_SERVICE_ROLE_KEY",
+  "YOUR_SUPABASE_SECRET_KEY",
   "YOUR_RESEND_API_KEY",
   "YOUR_UPSTASH_REDIS_REST_URL",
   "YOUR_UPSTASH_REDIS_REST_TOKEN",
@@ -58,9 +58,9 @@ export function isProductionMode(): boolean {
 
 export function getSupabaseConfig(): SupabaseConfig {
   const url = readEnv("SUPABASE_URL").replace(/\/+$/, "");
-  const serviceRoleKey = readEnv("SUPABASE_SERVICE_ROLE_KEY");
-  const configured = Boolean(url && serviceRoleKey && url.startsWith("https://"));
-  return { url, serviceRoleKey, configured };
+  const secretKey = readEnv("SUPABASE_SECRET_KEY");
+  const configured = Boolean(url && secretKey && url.startsWith("https://"));
+  return { url, secretKey, configured };
 }
 
 export function getUpstashConfig(): UpstashConfig {
@@ -110,19 +110,11 @@ export function getGeminiApiKey(): string {
 }
 
 export function getRateLimitSalt(): string {
-  return (
-    readEnv("RATE_LIMIT_SALT") ||
-    readEnv("SUPABASE_SERVICE_ROLE_KEY") ||
-    "mindware-local-dev-rate-salt"
-  );
+  return readEnv("RATE_LIMIT_SALT") || "mindware-local-dev-rate-salt";
 }
 
 export function getNewsletterSigningSecret(): string {
-  return (
-    readEnv("NEWSLETTER_SIGNING_SECRET") ||
-    readEnv("SUPABASE_SERVICE_ROLE_KEY") ||
-    "mindware-local-dev-newsletter-secret"
-  );
+  return readEnv("NEWSLETTER_SIGNING_SECRET") || "mindware-local-dev-newsletter-secret";
 }
 
 export function getNewsletterPreviousSigningSecret(): string {

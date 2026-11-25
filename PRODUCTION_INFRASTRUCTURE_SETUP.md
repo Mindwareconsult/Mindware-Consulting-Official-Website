@@ -22,9 +22,9 @@ All API routes execute identically in local development (`tsx server.ts`) and in
    - RLS is enabled on all four tables.
    - All permissions for `PUBLIC`, `anon`, and `authenticated` roles are explicitly revoked (`REVOKE ALL`).
    - Only `service_role` may access tables or execute the atomic RPCs server-side.
-5. Copy from **Project Settings -> API**:
+5. Copy from **Project Settings -> API Keys**:
    - `SUPABASE_URL`
-   - `SUPABASE_SERVICE_ROLE_KEY` (server-side only; never use `VITE_`)
+   - `SUPABASE_SECRET_KEY` (new `sb_secret_...` server-only Secret API key sent via `apikey` header; never expose in frontend `VITE_*` code or commit to source control)
 
 > **Production Safety Rule**: When running on Vercel (`VERCEL=1`) or `NODE_ENV=production`, missing Supabase credentials return HTTP `503` immediately rather than falling back to ephemeral local files.
 
@@ -80,7 +80,7 @@ Configure under **Vercel Project -> Settings -> Environment Variables**:
 | Variable | Required in Production | Purpose |
 | --- | --- | --- |
 | `SUPABASE_URL` | **Yes** | Supabase project HTTPS URL |
-| `SUPABASE_SERVICE_ROLE_KEY` | **Yes** | Server-side DB & RPC credentials |
+| `SUPABASE_SECRET_KEY` | **Yes** | Server-only Supabase Secret API key (`sb_secret_...`) sent in `apikey` header; never expose in frontend code or commit to source control |
 | `RESEND_API_KEY` | Recommended | Transactional notification emails |
 | `ENQUIRY_FROM_EMAIL` | Recommended | Verified Resend sender identity |
 | `ENQUIRY_NOTIFICATION_EMAIL` | Recommended | Lead alert recipient inbox |
