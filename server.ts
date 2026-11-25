@@ -11,8 +11,8 @@ import {
   handleNewsletterRequest,
   handleNewsletterUnsubscribeRequest,
   handleProcessOutboxRequest,
-} from "./api/_lib/handlers";
-import { sendJson } from "./api/_lib/http";
+} from "./api/_lib/handlers.js";
+import { sendJson } from "./api/_lib/http.js";
 
 dotenv.config();
 

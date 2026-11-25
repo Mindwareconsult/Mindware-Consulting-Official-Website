@@ -14,21 +14,21 @@ import {
   saveCareerApplication,
   unsubscribeNewsletterSubscriber,
   upsertNewsletterSubscriber,
-} from "../api/_lib/database";
+} from "../api/_lib/database.js";
 import {
   getNewsletterPreviousSigningSecret,
   getNewsletterSigningSecret,
   getRateLimitSalt,
   getSupabaseConfig,
-} from "../api/_lib/env";
+} from "../api/_lib/env.js";
 import {
   handleCareerApplicationRequest,
   handleEnquiriesRequest,
   handleNewsletterRequest,
   handleProcessOutboxRequest,
-} from "../api/_lib/handlers";
-import { createUnsubscribeToken, verifyUnsubscribeToken } from "../api/_lib/newsletterTokens";
-import { enforceRateLimit, resetMemoryRateLimitForTests } from "../api/_lib/rateLimit";
+} from "../api/_lib/handlers.js";
+import { createUnsubscribeToken, verifyUnsubscribeToken } from "../api/_lib/newsletterTokens.js";
+import { enforceRateLimit, resetMemoryRateLimitForTests } from "../api/_lib/rateLimit.js";
 
 const TEST_SB_URL = "https://example-staging.supabase.co";
 const TEST_SB_SECRET = "sb_secret_test_staging_key_0123456789abcdef";

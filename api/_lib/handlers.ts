@@ -7,14 +7,14 @@ import {
   saveCareerApplication,
   unsubscribeNewsletterSubscriber,
   upsertNewsletterSubscriber,
-} from "./database";
-import { getCronSecret } from "./env";
+} from "./database.js";
+import { getCronSecret } from "./env.js";
 import {
   enhanceExperienceBullets,
   GeminiUnavailableError,
   generateCoverLetterContent,
   generateCvContent,
-} from "./gemini";
+} from "./gemini.js";
 import {
   applyApiSecurityHeaders,
   getHashedClientIp,
@@ -24,26 +24,26 @@ import {
   sendJson,
   type ApiRequest,
   type ApiResponse,
-} from "./http";
+} from "./http.js";
 import {
   buildUnsubscribeUrl,
   verifyUnsubscribeToken,
-} from "./newsletterTokens";
+} from "./newsletterTokens.js";
 import {
   buildCareerNotificationPlan,
   buildEnquiryNotificationPlan,
   dispatchFastPathAndAudit,
   dispatchNewsletterWebhookIfNew,
   processDueOutboxBatch,
-} from "./notifications";
-import { applyRateLimitHeaders, enforceRateLimit } from "./rateLimit";
+} from "./notifications.js";
+import { applyRateLimitHeaders, enforceRateLimit } from "./rateLimit.js";
 import {
   escapeHtml,
   validateCareerApplicationPayload,
   validateEnquiryPayload,
   validateNewsletterPayload,
   type DnsLookupFn,
-} from "./validation";
+} from "./validation.js";
 
 export const REQUEST_DEADLINE_BUDGET_MS = 7800;
 

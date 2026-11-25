@@ -1,6 +1,6 @@
 import { GoogleGenAI, ThinkingLevel, Type } from "@google/genai";
-import { getGeminiApiKey } from "./env";
-import { sanitizeText } from "./validation";
+import { getGeminiApiKey } from "./env.js";
+import { sanitizeText } from "./validation.js";
 
 export const GEMINI_MODEL = "gemini-4-hydrogen";
 const GEMINI_TIMEOUT_MS = 8000;

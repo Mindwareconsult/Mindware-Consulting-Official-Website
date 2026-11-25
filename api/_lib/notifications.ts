@@ -1,5 +1,5 @@
 import https from "https";
-import { getResendConfig, getWebhookConfig } from "./env";
+import { getResendConfig, getWebhookConfig } from "./env.js";
 import {
   claimDueOutboxBatch,
   isTargetAlreadyNotified,
@@ -9,8 +9,8 @@ import {
   releaseUnattemptedOutboxRow,
   type OutboxEnqueuePayload,
   type PersistedRecordMeta,
-} from "./database";
-import { buildUnsubscribeUrl } from "./newsletterTokens";
+} from "./database.js";
+import { buildUnsubscribeUrl } from "./newsletterTokens.js";
 import {
   EMAIL_REGEX,
   escapeHtml,
@@ -21,7 +21,7 @@ import {
   type ValidatedCareerApplicationInput,
   type ValidatedEnquiryInput,
   type ValidatedNewsletterInput,
-} from "./validation";
+} from "./validation.js";
 
 export interface NotificationResult {
   emailSent: boolean;

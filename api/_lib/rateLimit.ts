@@ -1,5 +1,5 @@
-import { getUpstashConfig, isProductionMode } from "./env";
-import type { ApiResponse } from "./http";
+import { getUpstashConfig, isProductionMode } from "./env.js";
+import type { ApiResponse } from "./http.js";
 
 export type RateLimitScope = "enquiries" | "careers" | "newsletter" | "gemini";
 

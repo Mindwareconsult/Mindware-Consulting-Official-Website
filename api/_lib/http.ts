@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import type { IncomingMessage, ServerResponse } from "http";
-import { getRateLimitSalt } from "./env";
+import { getRateLimitSalt } from "./env.js";
 
 export interface ApiRequest extends IncomingMessage {
   body?: unknown;

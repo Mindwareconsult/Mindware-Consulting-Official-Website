@@ -1,11 +1,11 @@
 import fsPromises from "fs/promises";
 import path from "path";
-import { getSupabaseConfig, isProductionMode } from "./env";
+import { getSupabaseConfig, isProductionMode } from "./env.js";
 import type {
   ValidatedCareerApplicationInput,
   ValidatedEnquiryInput,
   ValidatedNewsletterInput,
-} from "./validation";
+} from "./validation.js";
 
 const DUPLICATE_WINDOW_MS = 10 * 60 * 1000;
 const localRecentFingerprints = new Map<string, number>();

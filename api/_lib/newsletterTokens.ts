@@ -3,8 +3,8 @@ import {
   getAppOriginUrl,
   getNewsletterPreviousSigningSecret,
   getNewsletterSigningSecret,
-} from "./env";
-import { EMAIL_REGEX } from "./validation";
+} from "./env.js";
+import { EMAIL_REGEX } from "./validation.js";
 
 const TOKEN_TTL_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
 
