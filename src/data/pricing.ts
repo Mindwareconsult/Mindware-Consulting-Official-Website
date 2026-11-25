@@ -1,6 +1,19 @@
+export type PricingLevel = "BUILD" | "GROW" | "TRANSFORM";
+
+export interface EngagementModelDescriptor {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  bestFor: string;
+  billingFormat: string;
+}
+
 export interface PricingTier {
   id: string;
   tierNumber: number;
+  level: PricingLevel;
+  engagementModel: "Fixed-Scope Package" | "Fixed-Scope + Retainer Ready" | "Custom / Advisory Suite";
   name: string;
   price: string;
   priceNumeric: number;
@@ -8,319 +21,365 @@ export interface PricingTier {
   isPopular?: boolean;
   isFlagship?: boolean;
   targetAudience: string;
-  summaryFeatures: string[];
   costSavings: string;
   ctaText: string;
+  summaryFeatures: string[];
   highlights: {
     website: string;
     emails: number;
     socialMedia: string;
-    seo: "Basic" | "Advanced";
-    crm: "Basic" | "Advanced";
+    seo: "Foundation" | "Growth & Local SEO";
+    crm: "Core Inquiry Funnel" | "Integrated Workflow";
     management: boolean;
     automation: string;
-    training: string;
+    enablement: string;
   };
 }
+
+export const ENGAGEMENT_MODELS: EngagementModelDescriptor[] = [
+  {
+    id: "fixed-scope",
+    title: "Fixed-Scope Packages",
+    subtitle: "Transparent Turnkey Delivery",
+    description:
+      "Defined corporate builds and digital growth packages with clear deliverables, 1-year domain & hosting setup, and structured milestone schedules.",
+    bestFor: "Corporate websites, legacy upgrades, and immediate credibility",
+    billingFormat: "60% Mobilization / 40% Handover"
+  },
+  {
+    id: "monthly-retainers",
+    title: "Monthly Retainers",
+    subtitle: "Compounding Visibility & Uptime",
+    description:
+      "Continuous post-launch SEO governance, Google Ads & paid social optimization, software updates, security monitoring, and downtime prevention.",
+    bestFor: "Sustained lead acquisition & ongoing technical care",
+    billingFormat: "Monthly or Quarterly Retainer"
+  },
+  {
+    id: "custom-projects",
+    title: "Custom Projects",
+    subtitle: "Bespoke Systems & Portals",
+    description:
+      "Scoped custom business software, client/vendor portals, operational dashboards, and CRM/API integrations tailored to complex workflows.",
+    bestFor: "Custom portals, software tools & workflow systems",
+    billingFormat: "Scoped Milestone Proposal"
+  },
+  {
+    id: "consulting-engagements",
+    title: "Consulting Engagements",
+    subtitle: "Advisory & Organizational Enablement",
+    description:
+      "Executive growth strategy, business development structuring, operational process mapping, and corporate systems onboarding workshops.",
+    bestFor: "Digital transformation planning & B2B governance",
+    billingFormat: "Advisory Sprint or Retainer"
+  }
+];
 
 export const PRICING_TIERS: PricingTier[] = [
   {
     id: "starter-build",
     tierNumber: 1,
+    level: "BUILD",
+    engagementModel: "Fixed-Scope Package",
     name: "Starter Build",
     price: "₦175,000",
     priceNumeric: 175000,
-    targetAudience: "Perfect for startups and small businesses getting online for the first time.",
-    costSavings: "No need to pay separately for website hosting or basic digital setup.",
-    ctaText: "Launch Starter Build",
+    badge: "BUILD · Foundation",
+    targetAudience: "Designed for emerging businesses establishing a credible, search-ready corporate presence.",
+    costSavings: "Bundles domain registration, initial cloud hosting, SSL security, and business email setup into one unified build.",
+    ctaText: "Select Starter Build",
     highlights: {
       website: "5-page SEO-ready website",
       emails: 5,
       socialMedia: "2 Platforms",
-      seo: "Basic",
-      crm: "Basic",
+      seo: "Foundation",
+      crm: "Core Inquiry Funnel",
       management: false,
-      automation: "Basic onboarding",
-      training: "None",
+      automation: "Inquiry capture & WhatsApp link",
+      enablement: "CMS & handover walkthrough"
     },
     summaryFeatures: [
       "1-Year Domain & Web Hosting Included",
-      "5-Page SEO-Ready Website",
-      "Basic CRM for Customer Onboarding",
-      "Social Media Setup (2 Platforms)",
+      "5-Page Responsive SEO-Ready Website",
+      "Core Inquiry Funnel & WhatsApp Routing",
+      "Social Profile Alignment (2 Platforms)",
       "Google Business Profile & 5 Business Emails",
-      "Mobile Responsive & Basic SEO",
-      "Weekly Backups & Updates",
-      "Monthly Performance Reporting",
-    ],
+      "Foundation Schema.org & On-Page SEO",
+      "Scheduled Backups & Security Hygiene",
+      "Launch QA & Handover Documentation"
+    ]
   },
   {
     id: "growth-engine",
     tierNumber: 2,
+    level: "BUILD",
+    engagementModel: "Fixed-Scope Package",
     name: "Growth Engine",
     price: "₦295,000",
     priceNumeric: 295000,
-    targetAudience: "For growing companies ready to attract more clients and automate basic operations.",
-    costSavings: "Reduce manual client onboarding tasks, saving admin labor costs.",
-    ctaText: "Power Up with Growth Engine",
+    badge: "BUILD · Flagship Web",
+    targetAudience: "Built for established contractors and firms ready to present completed portfolios and capture structured RFQs.",
+    costSavings: "Consolidates corporate website engineering, technical SEO schema, and structured lead onboarding under one team.",
+    ctaText: "Select Growth Engine",
     highlights: {
-      website: "Multi-page SEO-ready website",
+      website: "Multi-page corporate platform",
       emails: 10,
       socialMedia: "3 Platforms",
-      seo: "Advanced",
-      crm: "Advanced",
+      seo: "Growth & Local SEO",
+      crm: "Integrated Workflow",
       management: true,
-      automation: "Advanced CRM & Onboarding",
-      training: "None",
+      automation: "CRM & BOQ/RFQ intake workflow",
+      enablement: "Team content & inquiry walkthrough"
     },
     summaryFeatures: [
       "1-Year Domain & Web Hosting Included",
-      "Multi-Page SEO-Ready Website",
-      "Advanced CRM & Onboarding Automation",
-      "Social Media Setup (3 Platforms)",
+      "Multi-Page Corporate & Portfolio Platform",
+      "Structured CRM & Client Intake Workflows",
+      "Social Channel Alignment (3 Platforms)",
       "Google Business Profile & 10 Business Emails",
-      "Project Management Integration",
-      "Advanced SEO Optimization & Mobile Responsive",
-      "Weekly Backups & Monthly Reports",
-    ],
+      "Project & Case Study Showcase Engine",
+      "Local & Technical Schema.org SEO Setup",
+      "Scheduled Backups & Performance Checks"
+    ]
   },
   {
     id: "pro-automation",
     tierNumber: 3,
+    level: "GROW",
+    engagementModel: "Fixed-Scope + Retainer Ready",
     name: "Pro Automation",
     price: "₦375,000",
     priceNumeric: 375000,
-    badge: "High Efficiency",
-    targetAudience: "Designed for companies needing full automation for efficiency and better client experience.",
-    costSavings: "Eliminate the need for separate bookkeeping staff and tools (avg. ₦150,000–₦180,000/month).",
-    ctaText: "Automate with Pro Suite",
+    badge: "GROW · Workflow",
+    targetAudience: "Tailored for growing organizations connecting inbound customer acquisition with project and billing workflows.",
+    costSavings: "Streamlines repetitive manual quoting, client follow-up, and administrative billing coordination.",
+    ctaText: "Select Pro Automation",
     highlights: {
-      website: "Multi-page SEO-ready website",
+      website: "Multi-page corporate platform",
       emails: 15,
-      socialMedia: "4 Platforms (Management)",
-      seo: "Advanced",
-      crm: "Advanced",
+      socialMedia: "4 Platforms (Campaign Setup)",
+      seo: "Growth & Local SEO",
+      crm: "Integrated Workflow",
       management: true,
-      automation: "Sales, Projects & Bookkeeping",
-      training: "None",
+      automation: "Sales, project & billing sync",
+      enablement: "Workflow adoption session"
     },
     summaryFeatures: [
       "Everything in Growth Engine",
-      "Workflow Automation for Projects and Sales",
-      "Social Media Management (4 Platforms)",
-      "Bookkeeping & Finance Automation Tools",
-      "15 Custom Business Emails",
-      "Dedicated Account Manager (Optional)",
-      "Weekly Backups & Monthly Performance Reporting",
-      "Multi-Department Workflow Sync",
-    ],
+      "Sales Pipeline & Project Workflow Sync",
+      "Social Channel Setup & Strategy (4 Platforms)",
+      "Billing & Invoicing Workflow Integration",
+      "15 Custom Corporate Business Emails",
+      "Optional Ongoing Monthly Support Track",
+      "Analytics Attribution & Monthly Reporting",
+      "Cross-Department Inquiry Routing"
+    ]
   },
   {
     id: "enterprise-suite",
     tierNumber: 4,
+    level: "GROW",
+    engagementModel: "Fixed-Scope + Retainer Ready",
     name: "Enterprise Suite",
     price: "₦400,000",
     priceNumeric: 400000,
-    badge: "Most Popular",
+    badge: "Most Popular · GROW",
     isPopular: true,
-    targetAudience: "For larger firms ready for advanced digital operations and lead generation.",
-    costSavings: "Automated HR reduces hiring costs; paid ads generate leads cheaper than traditional marketing.",
-    ctaText: "Scale with Enterprise Suite",
+    targetAudience: "For established companies scaling multi-channel visibility, structured recruitment workflows, and dedicated account stewardship.",
+    costSavings: "Unifies customer acquisition systems, recruitment intake workflows, and technical maintenance with one accountable partner.",
+    ctaText: "Select Enterprise Suite",
     highlights: {
-      website: "Multi-page SEO-ready website",
+      website: "Multi-page corporate platform",
       emails: 20,
-      socialMedia: "5 Platforms (Management)",
-      seo: "Advanced",
-      crm: "Advanced",
+      socialMedia: "5 Platforms (Managed Track)",
+      seo: "Growth & Local SEO",
+      crm: "Integrated Workflow",
       management: true,
-      automation: "HR Portal, Bookkeeping & CRM",
-      training: "None",
+      automation: "HR intake, billing & CRM portals",
+      enablement: "Dedicated Account Stewardship"
     },
     summaryFeatures: [
       "Everything in Pro Automation",
-      "HR Recruitment Portal Automation",
-      "Dedicated Account Manager Included",
-      "Social Media Management Across 5 Platforms",
-      "20 Custom Business Emails",
-      "Automated Candidate Pipeline & Screening",
-      "Project & Financial System Integration",
-      "Weekly Backups & Monthly Reports",
-    ],
+      "Internal Recruitment & Candidate Intake Workflow",
+      "Dedicated Account Stewardship",
+      "Multi-Channel Social Alignment (5 Platforms)",
+      "20 Custom Corporate Business Emails",
+      "Structured Pipeline & Tender Lead Tracking",
+      "Project & Financial System Sync",
+      "Ongoing Maintenance & Reporting"
+    ]
   },
   {
-    id: "ld-suite",
+    id: "operational-consulting-suite",
     tierNumber: 5,
-    name: "L&D Suite",
+    level: "TRANSFORM",
+    engagementModel: "Custom / Advisory Suite",
+    name: "Operational Transformation Suite",
     price: "₦475,000",
     priceNumeric: 475000,
-    badge: "Workforce Upskilling",
-    targetAudience: "Ideal for companies focused on workforce upskilling and digital transformation.",
-    costSavings: "Avoid paying for external Project Management training courses (avg. ₦180,000–₦350,000 per employee).",
-    ctaText: "Empower with L&D Suite",
+    badge: "TRANSFORM · Systems",
+    targetAudience: "Built for organizations modernizing internal project governance, team system adoption, and multi-team workflows.",
+    costSavings: "Unifies custom operational portal modules, CRM infrastructure, and leadership system-adoption workshops in one scope.",
+    ctaText: "Scope Operational Suite",
     highlights: {
-      website: "Multi-page SEO-ready website",
+      website: "Multi-page corporate platform",
       emails: 25,
-      socialMedia: "5 Platforms (Management)",
-      seo: "Advanced",
-      crm: "Advanced",
+      socialMedia: "5 Platforms (Managed Track)",
+      seo: "Growth & Local SEO",
+      crm: "Integrated Workflow",
       management: true,
-      automation: "Full Enterprise Automations",
-      training: "Project Management Portal + Certs",
+      automation: "Custom operations & CRM systems",
+      enablement: "Organizational systems & PM workflow onboarding"
     },
     summaryFeatures: [
       "Everything in Enterprise Suite",
-      "Project Management Training Portal + Certificates",
-      "Dedicated Learning & Development Manager",
-      "25 Custom Business Emails",
-      "Social Media Management (5 Platforms)",
-      "HR Recruitment & Bookkeeping Automations",
-      "Corporate Team Skill Tracking & Badges",
-      "Weekly Backups & Monthly Reports",
-    ],
+      "Project Delivery & Governance Workflow Portal",
+      "Leadership & Staff System Adoption Workshop",
+      "25 Custom Corporate Business Emails",
+      "Multi-Channel Social Alignment (5 Platforms)",
+      "CRM, Billing & Candidate Workflow Automation",
+      "Internal SOP & Team Documentation Hub",
+      "Scheduled Maintenance & Priority Support"
+    ]
   },
   {
-    id: "complete-safety-growth",
+    id: "enterprise-transformation-flagship",
     tierNumber: 6,
-    name: "Complete Safety & Growth",
+    level: "TRANSFORM",
+    engagementModel: "Custom / Advisory Suite",
+    name: "Enterprise Growth & Compliance Flagship",
     price: "₦595,000",
     priceNumeric: 595000,
-    badge: "Ultimate Flagship",
+    badge: "TRANSFORM · Flagship",
     isFlagship: true,
-    targetAudience: "The ultimate package combining digital operations, training, and safety compliance.",
-    costSavings: "No separate cost for HSE certifications (avg. ₦350,000+ per employee) & compliance programs.",
-    ctaText: "Deploy Complete Safety & Growth",
+    targetAudience: "Full-spectrum digital infrastructure, Google Ads demand generation, operational systems, and compliance readiness governance.",
+    costSavings: "Brings web architecture, paid search setup, internal compliance portals, and executive consulting under a single SLA.",
+    ctaText: "Scope Enterprise Flagship",
     highlights: {
-      website: "Multi-page SEO-ready website",
+      website: "Multi-page corporate platform",
       emails: 30,
-      socialMedia: "5 Platforms (Management)",
-      seo: "Advanced",
-      crm: "Advanced",
+      socialMedia: "5 Platforms (Managed Track)",
+      seo: "Growth & Local SEO",
+      crm: "Integrated Workflow",
       management: true,
-      automation: "End-to-End Enterprise Automation",
-      training: "PMP & HSE Portals + Certifications",
+      automation: "End-to-end systems & Google Ads funnel",
+      enablement: "Executive advisory + operational compliance portal"
     },
     summaryFeatures: [
-      "Everything in L&D Suite",
-      "Paid Ads Campaign (Google Ads Setup & Management)",
-      "HSE Training Portal + Certificates for Workplace Safety",
-      "Full Workforce Development Support",
-      "30 Custom Business Emails",
-      "Dedicated Account & L&D Manager",
-      "High-Conversion Inbound Lead Generation",
-      "Complete Regulatory Compliance Readiness",
-    ],
-  },
+      "Everything in Operational Transformation Suite",
+      "Google Ads Demand Generation Campaign Setup",
+      "Internal Operational Compliance & Safety Documentation Hub",
+      "Executive Growth Advisory & Roadmap Session",
+      "30 Custom Corporate Business Emails",
+      "Dedicated Account & Transformation Lead",
+      "Full-Funnel Conversion & Analytics Setup",
+      "Priority Maintenance & Uptime Stewardship"
+    ]
+  }
 ];
 
 export interface MatrixRow {
   feature: string;
-  category: "Web & Digital Presence" | "Operations & Automation" | "Workforce & Compliance" | "Support & Governance";
+  category: "Digital Infrastructure (BUILD)" | "Acquisition & Automation (GROW)" | "Systems & Governance (TRANSFORM)" | "Support & Continuity";
   tiers: (string | boolean)[];
   tooltip?: string;
 }
 
 export const COMPARISON_MATRIX: MatrixRow[] = [
-  // Web & Digital Presence
   {
-    feature: "1-Year Domain & Hosting",
-    category: "Web & Digital Presence",
+    feature: "1-Year Domain & Managed Hosting",
+    category: "Digital Infrastructure (BUILD)",
     tiers: [true, true, true, true, true, true],
-    tooltip: "Included registration and reliable cloud web hosting for 12 months",
+    tooltip: "Initial domain registration and managed cloud hosting for the first 12 months"
   },
   {
-    feature: "SEO-Ready Website",
-    category: "Web & Digital Presence",
-    tiers: ["5 pages", "Multi-page", "Multi-page", "Multi-page", "Multi-page", "Multi-page"],
+    feature: "SEO-Ready Responsive Website",
+    category: "Digital Infrastructure (BUILD)",
+    tiers: ["5 pages", "Multi-page", "Multi-page", "Multi-page", "Multi-page", "Multi-page"]
   },
   {
-    feature: "Business Emails",
-    category: "Web & Digital Presence",
-    tiers: ["5", "10", "15", "20", "25", "30"],
+    feature: "Corporate Business Emails",
+    category: "Digital Infrastructure (BUILD)",
+    tiers: ["5", "10", "15", "20", "25", "30"]
   },
   {
-    feature: "SEO Optimization",
-    category: "Web & Digital Presence",
-    tiers: ["Basic", "Advanced", "Advanced", "Advanced", "Advanced", "Advanced"],
+    feature: "Technical & Local Schema SEO",
+    category: "Digital Infrastructure (BUILD)",
+    tiers: ["Foundation", "Growth + Local", "Growth + Local", "Growth + Local", "Growth + Local", "Growth + Local"]
   },
   {
-    feature: "Mobile Responsive",
-    category: "Web & Digital Presence",
-    tiers: ["Basic", "Advanced", "Advanced", "Advanced", "Advanced", "Advanced"],
+    feature: "Multi-Device Responsive QA",
+    category: "Digital Infrastructure (BUILD)",
+    tiers: ["Standard", "Full Matrix", "Full Matrix", "Full Matrix", "Full Matrix", "Full Matrix"]
   },
   {
-    feature: "Google Business Profile Setup",
-    category: "Web & Digital Presence",
-    tiers: [false, true, true, true, true, true],
+    feature: "Google Business Profile Alignment",
+    category: "Acquisition & Automation (GROW)",
+    tiers: [false, true, true, true, true, true]
   },
   {
-    feature: "Social Media Setup",
-    category: "Web & Digital Presence",
-    tiers: ["2 Platforms", "3 Platforms", "4 Platforms", "5 Platforms", "5 Platforms", "5 Platforms"],
+    feature: "Social Channel Alignment",
+    category: "Acquisition & Automation (GROW)",
+    tiers: ["2 Platforms", "3 Platforms", "4 Platforms", "5 Platforms", "5 Platforms", "5 Platforms"]
   },
   {
-    feature: "Social Media Management",
-    category: "Web & Digital Presence",
-    tiers: [false, false, false, true, true, true],
+    feature: "Social Content & Campaign Track",
+    category: "Acquisition & Automation (GROW)",
+    tiers: [false, false, false, true, true, true]
   },
   {
-    feature: "Paid Ads Campaign (Google Ads)",
-    category: "Web & Digital Presence",
+    feature: "Google Ads Setup & Funnel Link",
+    category: "Acquisition & Automation (GROW)",
     tiers: [false, false, false, false, false, true],
-    tooltip: "Targeted lead generation campaigns configured and launched on Google Search & Display",
-  },
-
-  // Operations & Automation
-  {
-    feature: "CRM & Onboarding Automation",
-    category: "Operations & Automation",
-    tiers: ["Basic", "Advanced", "Advanced", "Advanced", "Advanced", "Advanced"],
+    tooltip: "Structured search advertising setup linked directly to conversion landing pages"
   },
   {
-    feature: "Project Management Integration",
-    category: "Operations & Automation",
-    tiers: [false, true, true, true, true, true],
+    feature: "CRM & Lead Intake Automation",
+    category: "Acquisition & Automation (GROW)",
+    tiers: ["Core Funnel", "Integrated", "Integrated", "Integrated", "Integrated", "Integrated"]
   },
   {
-    feature: "Bookkeeping & Finance Automation",
-    category: "Operations & Automation",
+    feature: "Project & Case Showcase Architecture",
+    category: "Systems & Governance (TRANSFORM)",
+    tiers: [false, true, true, true, true, true]
+  },
+  {
+    feature: "Billing & Finance Workflow Integration",
+    category: "Systems & Governance (TRANSFORM)",
     tiers: [false, false, true, true, true, true],
-    tooltip: "Automated billing, expense tracking, invoice generation, and financial pipeline",
+    tooltip: "Structured quoting, invoice workflow triggers, and client payment tracking"
   },
   {
-    feature: "HR Recruitment Portal Automation",
-    category: "Operations & Automation",
+    feature: "Internal Recruitment Workflow Portal",
+    category: "Systems & Governance (TRANSFORM)",
     tiers: [false, false, false, true, true, true],
-    tooltip: "Candidate application collection, stage tracking, and onboarding pipelines",
+    tooltip: "Direct corporate candidate collection and review workflow"
   },
-
-  // Workforce & Compliance
   {
-    feature: "Project Management Training + Certification",
-    category: "Workforce & Compliance",
+    feature: "Organizational Systems & PM Governance Hub",
+    category: "Systems & Governance (TRANSFORM)",
     tiers: [false, false, false, false, true, true],
-    tooltip: "Structured corporate curriculum, assessments, and recognized certificates",
+    tooltip: "Internal client SOPs, delivery governance portal, and team adoption workshops"
   },
   {
-    feature: "HSE Training Portal + Certification",
-    category: "Workforce & Compliance",
+    feature: "Operational Compliance & HSE Portal",
+    category: "Systems & Governance (TRANSFORM)",
     tiers: [false, false, false, false, false, true],
-    tooltip: "Workplace Health, Safety & Environment compliance training portal and employee certifications",
-  },
-
-  // Support & Governance
-  {
-    feature: "Weekly Backups & Updates",
-    category: "Support & Governance",
-    tiers: [true, true, true, true, true, true],
+    tooltip: "Dedicated internal documentation and readiness hub for corporate compliance operations"
   },
   {
-    feature: "Monthly Performance Reporting",
-    category: "Support & Governance",
-    tiers: [true, true, true, true, true, true],
+    feature: "Scheduled Backups & Security Updates",
+    category: "Support & Continuity",
+    tiers: [true, true, true, true, true, true]
   },
   {
-    feature: "Dedicated Account Manager",
-    category: "Support & Governance",
-    tiers: [false, false, "Optional", true, true, true],
+    feature: "Analytics & Monthly Review Reporting",
+    category: "Support & Continuity",
+    tiers: [true, true, true, true, true, true]
   },
+  {
+    feature: "Dedicated Account Stewardship",
+    category: "Support & Continuity",
+    tiers: [false, false, "Optional", true, true, true]
+  }
 ];

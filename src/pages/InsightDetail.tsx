@@ -48,7 +48,7 @@ export function InsightDetail() {
   if (!article) {
     return (
       <div className="min-h-screen bg-mw-dark pt-36 sm:pt-44 pb-24 flex items-center justify-center text-white px-4">
-        <SEO title="Article Not Found | Mindware Consulting" description="The requested article could not be found." />
+        <SEO title="Article Not Found | Mindware Consulting" description="The requested article could not be found." noindex />
         <div className="text-center max-w-md mx-auto">
           <div className="w-16 h-16 rounded-full bg-mw-orange/10 border border-mw-orange/30 flex items-center justify-center mx-auto mb-6 text-mw-orange">
             <BookOpen className="w-8 h-8" />
@@ -101,14 +101,14 @@ export function InsightDetail() {
     "author": {
       "@type": "Organization",
       "name": "Mindware Consulting Ltd",
-      "url": "https://mindwareconsultingltd.com"
+      "url": "https://mindwareconsult.com.ng"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Mindware Consulting Ltd",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://mindwareconsultingltd.com/assets/images/logo.png"
+        "url": "https://mindwareconsult.com.ng/logo.png"
       }
     }
   };

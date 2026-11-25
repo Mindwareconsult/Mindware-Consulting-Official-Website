@@ -52,7 +52,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
     executiveSummary: "Your website is your company's primary digital asset. At Mindware Consulting, we don't just build aesthetically appealing websites; we engineer high-performance, conversion-optimized digital engines designed to establish instant corporate authority, rank on search engines, and drive measurable revenue growth.",
     whyChooseUs: [
       "Custom, bespoke designs tailored to your corporate brand—no generic, sluggish templates.",
-      "Mobile-first, lightning-fast responsive architecture with Core Web Vitals optimization (90+ score).",
+      "Mobile-first, fast responsive architecture engineered around Core Web Vitals best practices.",
       "Seamless integrations with Paystack, Flutterwave, Stripe, WhatsApp Business, and HubSpot/Zoho CRMs.",
       "Airtight cybersecurity hardening with SSL certificates, brute-force protection, and automated cloud backups.",
       "Full CMS training and handover so your internal team can manage content with zero code knowledge."
@@ -75,7 +75,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
           "Irresistible value propositions with strategic call-to-action (CTA) hierarchies",
           "A/B split testing readiness and heatmapping integration",
           "Zero-distraction checkout flows and dynamic inquiry forms",
-          "Blazing fast sub-second load times that keep bounce rates under 25%"
+          "Clean, fast-loading responsive layouts designed to reduce mobile bounce rates"
         ]
       },
       {
@@ -95,7 +95,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
           "Cloudflare Enterprise CDN integration and global asset caching",
           "Advanced Web Application Firewall (WAF) and DDoS mitigation",
           "Image compression and WebP/AVIF modern format conversion",
-          "Database query indexing and Core Web Vitals 90+ speed compliance"
+          "Database query indexing and Core Web Vitals speed optimization"
         ]
       }
     ],
@@ -126,7 +126,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
         title: "QA Testing, Speed Audits & Go-Live",
         duration: "Week 6",
         description: "Rigorous cross-browser, mobile responsiveness, accessibility, and speed testing. We deploy to production with zero downtime.",
-        deliverables: ["Core Web Vitals 90+ Audit", "DNS & Domain Switchover", "CMS Staff Training Video", "30-Day Post-Launch Warranty"]
+        deliverables: ["Core Web Vitals Audit", "DNS & Domain Switchover", "CMS Staff Training Video", "Post-Launch Technical Handover"]
       }
     ],
     technologies: [
@@ -141,10 +141,10 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
       "Cloudflare CDN"
     ],
     metrics: [
-      { label: "Average Speed Score", value: "95+", subtext: "Google PageSpeed Insights" },
-      { label: "Client Conversion Lift", value: "+85%", subtext: "Average increase in inbound leads" },
-      { label: "Uptime Reliability", value: "99.9%", subtext: "Guaranteed enterprise SLA" },
-      { label: "Projects Completed", value: "150+", subtext: "Across Nigeria & West Africa" }
+      { label: "Speed Focus", value: "Core Web Vitals", subtext: "Lightweight mobile-first architecture" },
+      { label: "Published Builds", value: "15 Live Sites", subtext: "Verified portfolio across industries" },
+      { label: "Sector Specialization", value: "6 Core Verticals", subtext: "Construction, energy, retail & B2B" },
+      { label: "Operating Track Record", value: "Since 2016", subtext: "Mindware Consulting Ltd (RC 1309926)" }
     ],
     idealFor: [
       "Construction, engineering, and infrastructure firms needing a prestigious commercial portfolio.",
@@ -279,10 +279,10 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
       "Schema.org (JSON-LD)"
     ],
     metrics: [
-      { label: "Organic Growth Avg", value: "300%", subtext: "Over 6-12 month campaigns" },
-      { label: "Page 1 Keywords", value: "85%+", subtext: "Target commercial queries" },
-      { label: "Inbound Lead Quality", value: "+140%", subtext: "High-intent buyer traffic" },
-      { label: "Client Retainers", value: "95%", subtext: "Annual renewal satisfaction" }
+      { label: "SEO Discipline", value: "Technical + Local", subtext: "Schema.org, crawl hygiene & GBP setup" },
+      { label: "Geographic Reach", value: "36 States & FCT", subtext: "Regional & national commercial search" },
+      { label: "Keyword Focus", value: "Buyer Intent", subtext: "Commercial & tender search visibility" },
+      { label: "Corporate Standing", value: "Since 2016", subtext: "Incorporated partner (RC 1309926)" }
     ],
     idealFor: [
       "B2B service providers and construction companies wanting to rank for commercial contract keywords.",
@@ -291,7 +291,7 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
       "Companies launching new products or services needing immediate search authority."
     ],
     deliverablesSummary: [
-      "Complete technical SEO remediation resolving 100% of critical crawl and indexing errors",
+      "Comprehensive technical SEO remediation resolving crawl and indexing barriers",
       "Targeted on-page optimization for all high-value core service and solution landing pages",
       "Google Business Profile setup and local citation building to dominate the Google Maps 3-Pack",
       "Authoritative white-hat backlink acquisition strategy that strengthens domain rating safely",
@@ -417,10 +417,10 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
       "WhatsApp Business API"
     ],
     metrics: [
-      { label: "Average ROAS", value: "4.5x+", subtext: "Return on advertising spend" },
-      { label: "Cost Per Lead", value: "-45%", subtext: "Reduction via A/B optimization" },
-      { label: "Lead Response Time", value: "< 5 min", subtext: "Via WhatsApp automation" },
-      { label: "Monthly Impressions", value: "2M+", subtext: "Generated across client accounts" }
+      { label: "Channel Mix", value: "Meta & LinkedIn", subtext: "B2B and high-intent commercial targeting" },
+      { label: "Lead Capture", value: "WhatsApp & CRM", subtext: "Direct routing to sales teams" },
+      { label: "Attribution", value: "Pixel & GA4", subtext: "Structured enquiry event tracking" },
+      { label: "Executive Content", value: "Brand Authority", subtext: "Positioning & campaign creative" }
     ],
     idealFor: [
       "Companies wanting a consistent, predictable stream of qualified customer inquiries every week.",
@@ -437,8 +437,8 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
     ],
     faqs: [
       {
-        question: "How much should our business budget for paid social media advertising?",
-        answer: "We recommend starting with an ad spend budget of ₦150,000 to ₦500,000+ per month depending on your industry and revenue goals. Our team manages your budget strictly to minimize Cost-Per-Lead and maximize return on investment."
+        question: "How should our business budget for paid social media advertising?",
+        answer: "Direct advertising budgets depend on your industry, geography, and sales targets, and are paid directly to ad platforms (Meta, LinkedIn, or Google). During your Business Growth Review, we recommend an appropriate monthly media budget aligned with your commercial objectives."
       },
       {
         question: "Do you create all the graphics, videos, and copywriting in-house?",
@@ -556,10 +556,10 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
       "Git & CI/CD Pipelines"
     ],
     metrics: [
-      { label: "App Store Approval", value: "100%", subtext: "First-time submission pass" },
-      { label: "API Response Time", value: "< 120ms", subtext: "Optimized server queries" },
-      { label: "Concurrent Users", value: "100k+", subtext: "Scalable cloud architecture" },
-      { label: "Code Coverage", value: "90%+", subtext: "Automated test validation" }
+      { label: "Delivery Platforms", value: "Web & Mobile", subtext: "React, TypeScript & Flutter builds" },
+      { label: "Integrations", value: "API & Payment", subtext: "Paystack, Flutterwave, CRM & ERP links" },
+      { label: "IP Ownership", value: "100% Client IP", subtext: "Full codebase & repository handover" },
+      { label: "Governance", value: "Milestone QA", subtext: "Structured sprints & launch verification" }
     ],
     idealFor: [
       "Organizations outgrowing generic software and needing custom internal workflow systems.",
@@ -598,139 +598,133 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
 
   "training": {
     id: "training",
-    shortName: "Training & Workforce",
-    menuDescription: "Digital Skills Academy & Professional Certifications (PMP®, HRM, CRM, HSE 1-3)",
-    badge: "WORKFORCE ACCELERATOR",
-    heroHeadline: "Divided Into 2 Specialized Tracks:",
-    heroHighlight: "Digital Skills & Professional Certifications.",
-    executiveSummary: "Mindware Consulting Academy is divided into two distinct, high-impact learning sub-pages: Digital Skills Training (for creators, developers, and marketers) and Professional Development & Employability Certifications (for engineers, corporate managers, and safety compliance leaders). We bridge the gap between academic theory and practical commercial capability.",
+    shortName: "Capability Enablement",
+    menuDescription: "Corporate workforce enablement, system onboarding, and B2B operational workshops",
+    badge: "B2B WORKFORCE ENABLEMENT",
+    heroHeadline: "Organizational Capability &",
+    heroHighlight: "Corporate Workforce Enablement.",
+    executiveSummary: "Digital transformation only delivers lasting ROI when teams adopt the new platforms, CRM workflows, search systems, and operational standards. Mindware delivers tailored organizational consulting and in-house workforce enablement workshops exclusively for corporate partners—aligning engineering, commercial, project management, and leadership teams around measurable business execution.",
     whyChooseUs: [
-      "Structured into two specialized sub-pages: Digital Skills Track & Professional Development Track.",
-      "Led exclusively by active agency consultants, senior software engineers, and certified project leaders.",
-      "100% hands-on project capstones—students build commercial-grade portfolios, not just theoretical essays.",
-      "Accredited certifications aligned with international standards: PMI® PMBOK, OSHA/ISO HSE, and CIPM.",
-      "Flexible learning options: In-person classrooms, live interactive virtual sessions, and custom corporate retreats."
+      "Delivered exclusively as customized B2B organizational engagements aligned with your company's active systems.",
+      "Led directly by senior digital strategists, engineers, and project governance consultants.",
+      "Practical operational playbooks built around your company's live CRM, web platform, and internal SOPs.",
+      "Project governance, operational management, and statutory HSE readiness workshops for enterprise teams.",
+      "Flexible executive briefing formats: on-site at your corporate offices or structured virtual team cohorts."
     ],
     pillars: [
       {
-        title: "Sub-Page 1: Digital Skills Academy",
-        description: "Practical bootcamps designed to equip students and professionals with high-income tech and creative capabilities.",
+        title: "Digital Systems & Technology Adoption Workshops",
+        description: "Hands-on operational onboarding so your internal staff confidently manage and extract value from newly deployed digital infrastructure.",
         points: [
-          "Web Design & WordPress: Modern UI/UX in Figma, Elementor Pro, e-commerce, and speed optimization",
-          "Social Media Marketing: Meta & LinkedIn paid ads, audience targeting, ROAS, and conversion funnels",
-          "Video Editing & Content Production: Adobe Premiere Pro, CapCut Desktop, color grading, and short-form storytelling",
-          "Data Analytics & Business Intelligence: Advanced Excel, SQL database queries, Power BI dashboards, and Python",
-          "Search Engine Optimization (SEO): Keyword intent, technical site audits, on-page optimization, and local ranking",
-          "Full-Stack Web & Mobile App Development: React, TypeScript, Node.js APIs, MongoDB, and Flutter mobile apps"
+          "Website & CMS governance workflows for internal communications and marketing teams",
+          "CRM adoption, WhatsApp lead routing, and structured pipeline management for sales teams",
+          "Analytics & reporting fluency: interpreting conversion metrics, search traffic, and campaign attribution",
+          "Cyber-hygiene and NDPA data-handling protocols for enterprise staff"
         ]
       },
       {
-        title: "Sub-Page 2: Professional Development & HSE Certifications",
-        description: "Executive programs designed for managers, site supervisors, HR professionals, and engineers.",
+        title: "Project & Operational Management Alignment",
+        description: "Organizational workshops designed for project directors, site managers, and operational leads executing multi-stakeholder mandates.",
         points: [
-          "Project Management Professional (PMP®): PMBOK 7th Ed, Agile/Scrum, WBS, EVM, risk registers, and 35 PDUs",
-          "Strategic Human Resources Management (HRM): Nigerian Labour Act, PENCOM, NSITF, talent acquisition, and KPIs",
-          "Customer Relationship Management (CRM): HubSpot, Salesforce, pipeline automation, WhatsApp Business, and CLV",
-          "Health, Safety & Environment (HSE Levels 1, 2, 3): General Safety, Risk Assessment, PTW, and ISO 45001/14001 audits",
-          "Executive Employability & Leadership: Boardroom presentation, emotional intelligence (EQ), and proposal writing"
+          "Project delivery governance, risk tracking, and milestone accountability frameworks",
+          "Commercial bid coordination and digital capability dossier management for tender teams",
+          "Operational workflow mapping and cross-departmental SLA optimization",
+          "Workplace HSE readiness briefings and statutory compliance documentation for field teams"
         ]
       },
       {
-        title: "Corporate Workforce Training & In-House Retreats",
-        description: "Customized workforce upskilling programs tailored to the unique operational objectives of your company.",
+        title: "Commercial Growth & Business Development Enablement",
+        description: "Equipping internal business development and client acquisition teams with repeatable digital prospecting playbooks.",
         points: [
-          "Bespoke curriculum design aligned with your industry's exact operational workflows",
-          "Corporate group discount packages (10% to 25% savings for cohorts of 3+ staff)",
-          "On-site delivery at your corporate offices or off-site executive retreats",
-          "Pre-training skill diagnostics and post-training impact assessments"
+          "B2B LinkedIn authority, executive account targeting, and inbound lead qualification",
+          "Structured proposal workflows and high-conversion digital discovery frameworks",
+          "Customer retention, lifecycle follow-up, and account expansion workflows",
+          "Pre-engagement diagnostics and post-rollout adoption scorecards"
         ]
       },
       {
-        title: "Career Placement Support & Mentorship",
-        description: "Helping graduates translate their newly acquired skills into promotions, lucrative contracts, and new jobs.",
+        title: "Leadership & Change Management Advisory",
+        description: "Executive alignment sessions ensuring C-suite and middle management sponsor digital transformation without operational friction.",
         points: [
-          "1-on-1 personalized CV audit and LinkedIn profile optimization for inbound recruiters",
-          "Mock technical interviews and executive salary negotiation coaching",
-          "Direct referrals to our network of corporate clients and tech agency partners",
-          "Lifetime access to Mindware alumni community and ongoing masterclasses"
+          "Executive KPI dashboards and quarterly digital performance governance reviews",
+          "Change-management communication plans during software or ERP transitions",
+          "Departmental handover protocols and internal capability documentation",
+          "Retained advisory support for scaling internal teams sustainably"
         ]
       }
     ],
     process: [
       {
         phase: "Step 01",
-        title: "Track Selection & Admissions Consultation",
-        duration: "Pre-Enrollment",
-        description: "Our academic advisors help you evaluate your career background and select either the Digital Skills Track or the Professional Development Track.",
-        deliverables: ["Curriculum Syllabus Pack", "Hardware/Software Checklist", "Flexible Installment Payment Plan", "Cohort Welcome Kit"]
+        title: "Organizational Capability Diagnostic",
+        duration: "Week 1",
+        description: "We audit existing workflows, software utilization, and team skill gaps across operations, marketing, and management.",
+        deliverables: ["Capability Gap Assessment", "Departmental Alignment Plan", "Customized Workshop Agenda", "System Access Checklist"]
       },
       {
         phase: "Step 02",
-        title: "Live Interactive Lectures & Practical Labs",
-        duration: "Weeks 1 - 6",
-        description: "Engage in live weekend or evening classes led by senior consultants. Every module is reinforced with real-world lab exercises.",
-        deliverables: ["Class Recordings & Slide Decks", "Lab Assignments & Code Repositories", "Instructor Mentorship Hours", "Peer Collaborative Projects"]
+        title: "Bespoke Playbook & Curriculum Design",
+        duration: "Week 2",
+        description: "We build practical training modules around your live digital assets, CRM pipelines, and sector compliance benchmarks.",
+        deliverables: ["Company-Specific SOP Playbooks", "Practical Lab Exercises", "Governance Templates", "Role-Based Guides"]
       },
       {
         phase: "Step 03",
-        title: "Capstone Project & Certification Defense",
-        duration: "Weeks 7 - 8",
-        description: "Students build and defend a comprehensive commercial capstone project (live website, safety audit report, PMP project plan, or BI dashboard).",
-        deliverables: ["Commercial Capstone Portfolio", "Faculty Code/Report Review", "Official Credential Verification", "Graduation Ceremony"]
+        title: "On-Site or Virtual Team Workshops",
+        duration: "Weeks 3 - 4",
+        description: "Our senior consultants facilitate interactive sessions with your departments to embed new operational habits.",
+        deliverables: ["Live Facilitated Sessions", "Recorded Reference Walkthroughs", "Hands-On System Drills", "Q&A Advisory"]
       },
       {
         phase: "Step 04",
-        title: "Alumni Network & Career Acceleration",
-        duration: "Post-Graduation",
-        description: "Join our active alumni network, access ongoing job opportunities, and attend quarterly industry masterclasses.",
-        deliverables: ["Accredited Certificate of Competence", "LinkedIn Digital Badge", "Alumni Community Access", "Job Board Referrals"]
+        title: "Adoption Audit & Ongoing Support",
+        duration: "Post-Rollout",
+        description: "We track real workflow usage and provide follow-up coaching to ensure lasting organizational capability.",
+        deliverables: ["30-Day Adoption Review", "Executive Readiness Summary", "Refinement Recommendations", "Retained Support Access"]
       }
     ],
     technologies: [
-      "Figma",
-      "WordPress",
-      "Power BI",
-      "SQL & Python",
-      "Adobe Premiere",
-      "Jira & MS Project",
-      "HubSpot CRM",
-      "OSHA / ISO Safety Standards"
+      "Enterprise CMS",
+      "HubSpot & CRM Workflows",
+      "Power BI & Analytics",
+      "Jira & Project Governance",
+      "NDPA Compliance",
+      "ISO / HSE Frameworks"
     ],
     metrics: [
-      { label: "Graduates Trained", value: "500+", subtext: "Across digital & professional tracks" },
-      { label: "Hands-on Practical", value: "100%", subtext: "Real-world project capstones" },
-      { label: "Corporate Partners", value: "40+", subtext: "Companies trusting our training" },
-      { label: "Employment Lift", value: "78%", subtext: "Career advancement within 6 months" }
+      { label: "Engagement Scope", value: "B2B Only", subtext: "Delivered strictly for corporate teams" },
+      { label: "Practical Relevance", value: "Workflow-Matched", subtext: "Built around your live business tools" },
+      { label: "Core Focus", value: "System Adoption", subtext: "CMS, CRM, analytics & governance alignment" },
+      { label: "Corporate Standing", value: "Since 2016", subtext: "Mindware Consulting Ltd (RC 1309926)" }
     ],
     idealFor: [
-      "Aspiring tech professionals, creators, and freelancers looking to master Web Design, SEO, Video, or Coding.",
-      "Project managers, engineers, and site supervisors needing recognized PMP® and HSE Levels 1, 2, 3 certifications.",
-      "Corporate HR directors and executives seeking customized in-house training for their teams.",
-      "Graduates seeking job-ready employability skills to stand out in competitive multinational interviews."
+      "Enterprises launching new websites, portals, CRM pipelines, or custom software systems that require rapid internal staff adoption.",
+      "Construction, engineering, real estate, and energy firms aligning project and business development teams around modern processes.",
+      "Executive leadership teams seeking structured change management and operational governance workshops.",
+      "Organizations requiring bespoke corporate workforce capability building as part of broader digital transformation."
     ],
     deliverablesSummary: [
-      "Two dedicated sub-pages: Digital Skills Track & Professional Development Track",
-      "Hands-on project-based curriculum ensuring you graduate with a live commercial portfolio",
-      "Accredited Mindware Consulting Certificate of Competence with online verification badge",
-      "Direct mentorship from senior consultants actively working on enterprise projects",
-      "Comprehensive study materials, lecture recordings, and lifetime alumni network access"
+      "Tailored organizational capability assessment mapped to your business outcomes",
+      "Custom internal operational SOPs, system walkthroughs, and playbooks",
+      "On-site or virtual executive and departmental enablement workshops",
+      "30-day post-rollout adoption review and continuous consulting access"
     ],
     faqs: [
       {
-        question: "How do I choose between the Digital Skills page and the Professional Development page?",
-        answer: "If you want to master technical craft like building websites, editing videos, running paid ads, analyzing data, or developing software, choose the Digital Skills Track (/training/digital-skills). If you are looking for corporate leadership credentials like PMP® Project Management, Human Resources (HRM), CRM systems, or Health Safety & Environment (HSE Levels 1, 2, 3), choose the Professional Development Track (/training/professional-development)."
+        question: "Is this for individual students or corporate organizations?",
+        answer: "Corporate Capability & Workforce Enablement on this website is delivered strictly for businesses and organizations as part of our consulting practice. Individual and consumer-focused training programs are separated into the dedicated Mindware Academy platform."
       },
       {
-        question: "Are the classes held online or physically?",
-        answer: "We offer flexible options including physical classes at our training facility, live interactive virtual sessions on Zoom/Google Meet, and hybrid weekend schedules tailored for busy working professionals."
+        question: "Can workshops be tailored around our company's exact software and workflows?",
+        answer: "Yes. Every corporate enablement engagement is customized around your actual systems—whether that includes your website, CRM, project delivery tools, or commercial outreach process."
       },
       {
-        question: "Can these training programs be customized for our company's employees?",
-        answer: "Yes, we routinely deliver customized corporate training for engineering firms, oil & gas contractors, banks, and SMEs with bespoke syllabi, industry-specific case studies, and corporate invoicing."
+        question: "Do you deliver corporate workshops on-site at our offices?",
+        answer: "Yes. We conduct on-site executive and departmental sessions across Lagos, Abuja, Port Harcourt, and client hubs nationwide, as well as live virtual sessions for distributed teams."
       },
       {
-        question: "Are flexible installment payment plans available?",
-        answer: "Yes, we provide flexible installment payment options allowing students to spread tuition across the duration of their training program."
+        question: "Can workforce enablement be bundled with a digital transformation retainer?",
+        answer: "Yes. Most enterprise partners include organizational enablement inside their Digital Transformation & Management Consulting retainer so every new system achieves full team adoption."
       }
     ],
     relatedCaseStudyIds: ["harmostructs-engineering", "quanxi-limited", "osines-group"],
@@ -834,10 +828,10 @@ export const SERVICES_DETAILED: Record<string, ServiceDetailedInfo> = {
       "NDPR & Data Compliance"
     ],
     metrics: [
-      { label: "Operational Cost Cut", value: "35%+", subtext: "Average savings via automation" },
-      { label: "Software ROI", value: "3x - 5x", subtext: "Over 12-month transformation" },
-      { label: "Advisory Hours", value: "1,000+", subtext: "Delivered to enterprise executives" },
-      { label: "Client Retention", value: "98%", subtext: "Long-term retainer relationships" }
+      { label: "Growth Methodology", value: "ACQUIRE → PROTECT", subtext: "Structured 5-stage operating framework" },
+      { label: "Advisory Stance", value: "Vendor-Neutral", subtext: "Objective guidance tied to business ROI" },
+      { label: "Decision Level", value: "Board & Ops", subtext: "Executive alignment & workflow governance" },
+      { label: "Track Record", value: "Since 2016", subtext: "RC 1309926 · Nationwide & diaspora" }
     ],
     idealFor: [
       "Established traditional businesses needing to digitize operations, sales, and client management.",

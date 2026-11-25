@@ -1,3 +1,5 @@
+import { MEDIA_ASSETS } from "../assets/media";
+
 export interface BaseTestimonial {
   id: string;
   name: string;
@@ -276,7 +278,7 @@ export const STUDENT_TESTIMONIALS: StudentGraduateTestimonial[] = [
     careerImpact: "Promoted from Project Coordinator to Senior Project Lead with an 85% salary increment.",
     location: "Lagos, Nigeria",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80",
-    thumbnail: "/src/assets/images/talent_matching_network_1790617842281.jpg",
+    thumbnail: MEDIA_ASSETS.talentMatchingNetwork,
     youtubeVideoId: "ScMzIvxBSi4", // Easily swappable placeholder YouTube ID
     youtubeUrl: "https://www.youtube.com/watch?v=ScMzIvxBSi4",
     videoDuration: "4:12",
@@ -300,7 +302,7 @@ export const STUDENT_TESTIMONIALS: StudentGraduateTestimonial[] = [
     careerImpact: "Secured employment in high-paying offshore maritime sector within 3 weeks of certification.",
     location: "Warri, Delta State, Nigeria",
     avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=250&q=80",
-    thumbnail: "/src/assets/images/careers_hero_workspace_1790617831121.jpg",
+    thumbnail: MEDIA_ASSETS.careersHeroWorkspace,
     youtubeVideoId: "L_LUpnjgPso",
     youtubeUrl: "https://www.youtube.com/watch?v=L_LUpnjgPso",
     videoDuration: "3:30",
@@ -324,7 +326,7 @@ export const STUDENT_TESTIMONIALS: StudentGraduateTestimonial[] = [
     careerImpact: "Transitioned from non-tech retail banking into a remote software engineering position.",
     location: "Ibadan & Remote",
     avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=250&q=80",
-    thumbnail: "/src/assets/images/values_innovation_culture_1790617210723.jpg",
+    thumbnail: MEDIA_ASSETS.valuesInnovationCulture,
     youtubeVideoId: "kJQP7kiw5Fk",
     youtubeUrl: "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
     videoDuration: "3:50",
@@ -348,7 +350,7 @@ export const STUDENT_TESTIMONIALS: StudentGraduateTestimonial[] = [
     careerImpact: "Hired to lead organic customer acquisition across Nigerian and Ghanaian e-commerce operations.",
     location: "Enugu, Nigeria",
     avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=250&q=80",
-    thumbnail: "/src/assets/images/mission_hero_vision_1790617197716.jpg",
+    thumbnail: MEDIA_ASSETS.missionHeroVision,
     youtubeVideoId: "9bZkp7q19f0",
     youtubeUrl: "https://www.youtube.com/watch?v=9bZkp7q19f0",
     videoDuration: "2:40",
@@ -372,7 +374,7 @@ export const STUDENT_TESTIMONIALS: StudentGraduateTestimonial[] = [
     careerImpact: "Appointed to lead landmark state hospital modernization and municipal infrastructure.",
     location: "Kaduna & Abuja, Nigeria",
     avatar: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=250&q=80",
-    thumbnail: "/src/assets/images/leadership_executive_team_1790617221909.jpg",
+    thumbnail: MEDIA_ASSETS.leadershipExecutiveTeam,
     youtubeVideoId: "C0DPdy98e4c",
     youtubeUrl: "https://www.youtube.com/watch?v=C0DPdy98e4c",
     videoDuration: "3:22",
@@ -396,7 +398,7 @@ export const STUDENT_TESTIMONIALS: StudentGraduateTestimonial[] = [
     careerImpact: "Established private consulting practice auditing industrial manufacturing plants and construction sites.",
     location: "Ikeja, Lagos, Nigeria",
     avatar: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=250&q=80",
-    thumbnail: "/src/assets/images/talent_matching_network_1790617842281.jpg",
+    thumbnail: MEDIA_ASSETS.talentMatchingNetwork,
     youtubeVideoId: "fJ9rUzIMcZQ",
     youtubeUrl: "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
     videoDuration: "3:02",

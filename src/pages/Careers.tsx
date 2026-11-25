@@ -1,402 +1,448 @@
-import React, { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { 
-  Sparkles, 
-  Briefcase, 
-  Users, 
-  FileText, 
-  Award, 
-  Building2, 
-  ArrowRight, 
-  CheckCircle2, 
-  Zap, 
-  TrendingUp, 
-  ShieldCheck,
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
+import {
+  Briefcase,
+  Building2,
   ChevronRight,
-  GraduationCap
+  Clock,
+  Compass,
+  Lock,
+  Mail,
+  Phone,
+  Send,
+  ShieldCheck,
+  Sparkles,
+  ArrowRight
 } from "lucide-react";
-import { AICVBuilder, CVData } from "../components/careers/AICVBuilder";
-import { JobBoard } from "../components/careers/JobBoard";
-import { TalentNetwork } from "../components/careers/TalentNetwork";
-import { CareersSubNav } from "../components/careers/CareersSubNav";
+import {
+  INTERNAL_DISCIPLINES,
+  INTERNAL_ENGAGEMENT_TYPES,
+  WORK_CULTURE_PILLARS,
+  RECRUITMENT_STEPS,
+  InternalDiscipline,
+  InternalEngagementType
+} from "../data/careersData";
+import { InternalApplicationModal } from "../components/careers/InternalApplicationModal";
 import { SEO } from "../components/SEO";
-import { getStoredCV, saveStoredCV } from "../lib/cvStorage";
+import { MEDIA_ASSETS } from "../assets/media";
 
 export function Careers() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tabParam = searchParams.get("tab");
+  const [selectedDiscipline, setSelectedDiscipline] = useState<InternalDiscipline>("Website design & development");
+  const [selectedEngagement, setSelectedEngagement] = useState<InternalEngagementType>("Full-time");
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const [activeTab, setActiveTab] = useState<"builder" | "jobs" | "network">(
-    tabParam === "jobs" ? "jobs" : tabParam === "network" ? "network" : "builder"
-  );
-
-  const [userCV, setUserCV] = useState<CVData | null>(null);
-
-  useEffect(() => {
-    const saved = getStoredCV();
-    if (saved) setUserCV(saved);
-  }, []);
-
-  useEffect(() => {
-    if (tabParam === "jobs") setActiveTab("jobs");
-    else if (tabParam === "network") setActiveTab("network");
-    else if (tabParam === "builder") setActiveTab("builder");
-  }, [tabParam]);
-
-  const handleTabChange = (tab: "builder" | "jobs" | "network") => {
-    setActiveTab(tab);
-    setSearchParams({ tab });
-  };
-
-  const handleApplyWithCV = (cv: CVData) => {
-    setUserCV(cv);
-    saveStoredCV(cv);
-    setActiveTab("jobs");
-    setSearchParams({ tab: "jobs" });
-    window.scrollTo({ top: 900, behavior: "smooth" });
-  };
-
-  const handleConnectTalent = (cv: CVData) => {
-    setUserCV(cv);
-    saveStoredCV(cv);
-    setActiveTab("network");
-    setSearchParams({ tab: "network" });
-    window.scrollTo({ top: 900, behavior: "smooth" });
+  const openGeneralInterest = (
+    disciplineOverride?: InternalDiscipline,
+    engagementOverride?: InternalEngagementType
+  ) => {
+    if (disciplineOverride) setSelectedDiscipline(disciplineOverride);
+    if (engagementOverride) setSelectedEngagement(engagementOverride);
+    setModalOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-[#02040a] text-white pt-28 pb-24">
       <SEO
-        title="Careers & Talent Hub | Mindware Consulting"
-        description="Accelerate your career with AI CV Builder (Gemini AI), Explore Job Openings (Direct Apply), and Connect With Employers (Talent Match)."
+        title="Build Your Career at Mindware | Mindware Consulting Ltd"
+        description="Build your career at Mindware Consulting Ltd across web engineering, SEO, digital marketing, software development, business development, project consulting, and operations."
       />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-12 md:py-16">
+      {/* 1. Corporate Recruitment Hero & Intro */}
+      <section className="relative overflow-hidden py-10 md:py-16 border-b border-white/5">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
-          
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-xs md:text-sm text-white/50 mb-6">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs md:text-sm text-white/50 mb-6">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white font-medium">Careers & Talent Hub</span>
-          </div>
+            <span className="text-mw-orange font-medium">Careers at Mindware</span>
+          </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-mw-orange/10 border border-mw-orange/20 text-mw-orange text-xs font-semibold">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>AI CV Builder • Explore Job Openings • Connect With Employers</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-mw-orange/10 border border-mw-orange/25 text-mw-orange text-xs font-semibold uppercase tracking-wider">
+                <Building2 className="w-3.5 h-3.5" />
+                <span>Mindware Consulting Ltd · Internal Careers</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-[1.1]">
-                Launch Your Career with <span className="text-transparent bg-clip-text bg-gradient-to-r from-mw-orange via-amber-400 to-amber-200">AI-Engineered CVs</span> & Enterprise Connections
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-[1.08]">
+                Build Your Career at{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-mw-orange via-amber-400 to-amber-200">
+                  Mindware.
+                </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">
-                Build ATS-proof professional resumes using next-generation Gemini AI, apply directly to verified openings at Mindware and partner enterprises, and connect with hiring employers seeking your specific qualifications.
+              <p className="text-base sm:text-lg text-white/75 max-w-2xl leading-relaxed">
+                Mindware Consulting Ltd partners with businesses across construction, civil engineering, real estate, energy, automotive, and commerce to strengthen digital infrastructure, acquire customers, and streamline operations. We welcome disciplined practitioners interested in joining our internal delivery and advisory teams.
               </p>
 
-              {/* Action Buttons linking directly to the 3 Subpages */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <Link
-                  to="/careers/cv-builder"
-                  className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-mw-orange hover:bg-mw-orange/90 text-white font-bold text-xs md:text-sm transition-all shadow-xl shadow-mw-orange/25 active:scale-95"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-300" />
-                  <span>1. AI CV Builder</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/20 text-white font-mono">Gemini AI</span>
-                </Link>
-
-                <Link
-                  to="/careers/jobs"
-                  className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs md:text-sm border border-white/10 transition-all active:scale-95"
+                <a
+                  href="#open-vacancies"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-semibold text-sm transition-all"
                 >
                   <Briefcase className="w-4 h-4 text-mw-orange" />
-                  <span>2. Explore Job Openings</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/20 text-white font-mono">Direct Apply</span>
-                </Link>
+                  <span>Current Vacancies Status</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
 
-                <Link
-                  to="/careers/employers"
-                  className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 font-semibold text-xs md:text-sm border border-blue-500/30 transition-all active:scale-95"
+                <button
+                  type="button"
+                  onClick={() => openGeneralInterest()}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-mw-orange hover:bg-amber-600 text-white font-semibold text-sm transition-all shadow-lg shadow-mw-orange/25"
                 >
-                  <Users className="w-4 h-4 text-blue-400" />
-                  <span>3. Connect With Employers</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono">Talent Match</span>
-                </Link>
+                  <Send className="w-4 h-4" />
+                  <span>Submit General Expression of Interest</span>
+                </button>
               </div>
 
-              {/* Trust Badges */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10">
                 <div>
-                  <div className="text-2xl font-display font-bold text-white">98%</div>
-                  <div className="text-xs text-white/50 mt-0.5">ATS Pass Rate</div>
+                  <div className="text-2xl font-display font-bold text-white">08</div>
+                  <div className="text-xs text-white/50 mt-0.5">Core Practice Disciplines</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-display font-bold text-mw-orange">₦1.2M+</div>
-                  <div className="text-xs text-white/50 mt-0.5">Avg Placement Comp</div>
+                  <div className="text-2xl font-display font-bold text-mw-orange">05</div>
+                  <div className="text-xs text-white/50 mt-0.5">Engagement Structures</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-display font-bold text-white">3 Mins</div>
-                  <div className="text-xs text-white/50 mt-0.5">AI Generation Speed</div>
+                  <div className="text-2xl font-display font-bold text-white">Direct</div>
+                  <div className="text-xs text-white/50 mt-0.5">Internal Mindware Hiring</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-display font-bold text-emerald-400">100%</div>
-                  <div className="text-xs text-white/50 mt-0.5">Verified Employers</div>
+                  <div className="text-2xl font-display font-bold text-emerald-400">HR-Verified</div>
+                  <div className="text-xs text-white/50 mt-0.5">Official Vacancies Only</div>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual Image Card */}
-            <div className="lg:col-span-5 relative">
+            <div className="lg:col-span-5">
               <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl shadow-black/80 group">
                 <img
-                  src="/src/assets/images/careers_hero_workspace_1790617831121.jpg"
-                  alt="Mindware Careers Tech Workspace"
+                  src={MEDIA_ASSETS.careersHeroWorkspace}
+                  alt="Mindware Consulting Ltd engineering and strategy workspace"
                   className="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#02040a] via-[#02040a]/20 to-transparent" />
 
                 <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#090d16]/90 backdrop-blur-xl border border-white/10 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono text-mw-orange font-bold flex items-center gap-1.5">
-                      <Zap className="w-3.5 h-3.5 text-mw-orange" />
-                      CAREER ACCELERATION
+                    <span className="text-[11px] font-mono text-mw-orange font-bold uppercase tracking-wider flex items-center gap-1.5">
+                      <Compass className="w-3.5 h-3.5" />
+                      GROWTH FRAMEWORK PRACTICE
                     </span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold">
-                      Hiring Active
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-semibold">
+                      Internal Roles Only
                     </span>
                   </div>
-                  <p className="text-xs text-white/80 font-medium">
-                    "Mindware bridges the gap between acquiring high-demand skills and landing lucrative enterprise roles."
+                  <p className="text-xs text-white/80 leading-relaxed">
+                    Every team member at Mindware contributes directly to our ACQUIRE → GROW → OPTIMIZE → ACCELERATE → PROTECT client delivery standard.
                   </p>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Subpage Cards Section */}
-      <section className="container mx-auto px-6 md:px-12 py-12">
-        <div className="mb-8">
-          <div className="text-xs uppercase tracking-widest text-mw-orange font-bold mb-2">Dedicated Subpages</div>
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-white">
-            Choose Your Career Gateway
-          </h2>
-          <p className="text-sm text-white/60 mt-1">
-            Access dedicated modules built to maximize your employment opportunities.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          {/* Subpage Card 1 */}
-          <div className="p-6 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-mw-orange/50 transition-all flex flex-col justify-between group">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-mw-orange/10 border border-mw-orange/20 flex items-center justify-center text-mw-orange">
-                <Sparkles className="w-6 h-6 text-amber-300" />
-              </div>
-              <div>
-                <div className="text-xs font-mono font-bold text-mw-orange uppercase tracking-wider mb-1 flex items-center gap-2">
-                  <span>Subpage 1</span>
-                  <span className="px-2 py-0.5 rounded bg-mw-orange/20 text-mw-orange text-[10px]">Gemini AI</span>
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-mw-orange transition-colors">
-                  AI CV Builder
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-                Harness Gemini AI to generate persuasive summaries, rewrite bullet points with hard metrics, format ATS-proof resumes, and export as clean PDF.
-              </p>
+      {/* 2. Why Work at Mindware */}
+      <section className="py-16 md:py-20 bg-[#03060f] border-b border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-3xl mb-12">
+            <div className="text-xs font-semibold uppercase tracking-widest text-mw-orange mb-2">
+              Why Work at Mindware Consulting Ltd
             </div>
-            <div className="pt-6">
-              <Link
-                to="/careers/cv-builder"
-                className="inline-flex items-center justify-between w-full px-5 py-3 rounded-xl bg-mw-orange text-white font-bold text-xs uppercase tracking-wider transition-all hover:bg-mw-orange/90 shadow-lg shadow-mw-orange/20"
-              >
-                <span>Open AI CV Builder</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+            <h2 className="text-2xl sm:text-4xl font-display font-bold text-white mb-4">
+              High Accountability. Real Craft Standards. Commercial Impact.
+            </h2>
+            <p className="text-white/65 text-sm sm:text-base leading-relaxed">
+              We operate focused consulting and engineering teams where strategists, developers, marketers, and operations coordinators work closely on tangible business outcomes.
+            </p>
           </div>
 
-          {/* Subpage Card 2 */}
-          <div className="p-6 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-blue-500/50 transition-all flex flex-col justify-between group">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                <Briefcase className="w-6 h-6 text-blue-300" />
-              </div>
-              <div>
-                <div className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider mb-1 flex items-center gap-2">
-                  <span>Subpage 2</span>
-                  <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 text-[10px]">Direct Apply</span>
-                </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                  Explore Job Openings
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-                Filter verified enterprise openings across Software, SEO, Marketing, HSE, and Project Management. Apply directly with 1-click submission.
-              </p>
-            </div>
-            <div className="pt-6">
-              <Link
-                to="/careers/jobs"
-                className="inline-flex items-center justify-between w-full px-5 py-3 rounded-xl bg-white/10 hover:bg-blue-600 text-white font-bold text-xs uppercase tracking-wider transition-all"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {WORK_CULTURE_PILLARS.map((pillar, idx) => (
+              <motion.div
+                key={pillar.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.06 }}
+                className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col justify-between gap-4 hover:border-mw-orange/35 transition-colors"
               >
-                <span>Browse All Jobs</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Subpage Card 3 */}
-          <div className="p-6 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] hover:border-emerald-500/50 transition-all flex flex-col justify-between group">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                <Users className="w-6 h-6 text-emerald-300" />
-              </div>
-              <div>
-                <div className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1 flex items-center gap-2">
-                  <span>Subpage 3</span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px]">Talent Match</span>
+                <div className="space-y-3">
+                  <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-mw-orange uppercase tracking-wider">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>{pillar.metric}</span>
+                  </div>
+                  <h3 className="text-lg font-display font-bold text-white leading-snug">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/65 leading-relaxed">
+                    {pillar.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
-                  Connect With Employers
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-                Get discovered by enterprises searching for certified professionals. Employers filter by PMP®, HSE 1/2/3, Google UX, and Meta certifications.
-              </p>
-            </div>
-            <div className="pt-6">
-              <Link
-                to="/careers/employers"
-                className="inline-flex items-center justify-between w-full px-5 py-3 rounded-xl bg-white/10 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider transition-all"
-              >
-                <span>Connect With Employers</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
+              </motion.div>
+            ))}
           </div>
-
         </div>
       </section>
 
-      {/* Subpage Navigation Switcher */}
-      <CareersSubNav activeTab="overview" />
-
-      {/* Interactive Tabs on Hub Page */}
-      <section className="container mx-auto px-6 md:px-12 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h3 className="text-xl font-bold text-white">Hub Live Workspace</h3>
-            <p className="text-xs text-white/50">Preview and work directly, or navigate to individual subpages above.</p>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => handleTabChange("builder")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-                activeTab === "builder" ? "bg-mw-orange text-white" : "bg-white/5 text-white/60 hover:text-white"
-              }`}
-            >
-              CV Builder
-            </button>
-            <button
-              onClick={() => handleTabChange("jobs")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-                activeTab === "jobs" ? "bg-mw-orange text-white" : "bg-white/5 text-white/60 hover:text-white"
-              }`}
-            >
-              Jobs
-            </button>
-            <button
-              onClick={() => handleTabChange("network")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
-                activeTab === "network" ? "bg-mw-orange text-white" : "bg-white/5 text-white/60 hover:text-white"
-              }`}
-            >
-              Talent Pool
-            </button>
-          </div>
-        </div>
-
-        {activeTab === "builder" && (
-          <AICVBuilder
-            onApplyWithCV={handleApplyWithCV}
-            onConnectTalent={handleConnectTalent}
-          />
-        )}
-
-        {activeTab === "jobs" && (
-          <JobBoard
-            activeCV={userCV}
-            onNavigateToBuilder={() => handleTabChange("builder")}
-          />
-        )}
-
-        {activeTab === "network" && (
-          <TalentNetwork
-            activeCV={userCV}
-            onNavigateToBuilder={() => handleTabChange("builder")}
-          />
-        )}
-      </section>
-
-      {/* Dual Mandate / Training to Employment Bridge Banner */}
-      <section className="container mx-auto px-6 md:px-12 pt-16">
-        <div className="rounded-3xl p-8 md:p-12 bg-gradient-to-r from-[#0d1627] via-[#090d16] to-[#140e0a] border border-white/10 relative overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mw-orange/10 border border-mw-orange/20 text-mw-orange text-xs font-semibold">
-                <GraduationCap className="w-3.5 h-3.5" />
-                <span>Upskill & Get Hired Fast</span>
+      {/* 3. Core Teams & Practice Disciplines */}
+      <section className="py-16 md:py-20 border-b border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-2xl">
+              <div className="text-xs font-semibold uppercase tracking-widest text-mw-orange mb-2">
+                Core Internal Teams &amp; Disciplines
               </div>
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-white tracking-tight">
-                Need Accredited Qualifications to Qualify for Top Positions?
-              </h3>
-              <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-2xl">
-                Explore our accredited academies in <strong className="text-white">Digital Skills</strong> (Web Design, SEO, Analytics) and <strong className="text-white">Professional Certifications</strong> (PMP® Project Management, HSE Levels 1, 2, 3). Graduates receive priority recommendation in the Mindware Employer Talent Pool.
-              </p>
+              <h2 className="text-2xl sm:text-4xl font-display font-bold text-white">
+                Eight Specialist Disciplines Across Mindware
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-white/55 max-w-md">
+              Select any discipline below to express interest in joining that team within Mindware Consulting Ltd.
+            </p>
+          </div>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  to="/training/professional-development"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs md:text-sm font-bold transition-all shadow-md shadow-blue-600/20"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {INTERNAL_DISCIPLINES.map((disc) => {
+              const isSelected = selectedDiscipline === disc.name;
+              return (
+                <button
+                  key={disc.name}
+                  type="button"
+                  onClick={() => openGeneralInterest(disc.name, undefined)}
+                  className={`text-left p-5 rounded-2xl border transition-all flex flex-col justify-between gap-4 ${
+                    isSelected
+                      ? "bg-mw-orange/15 border-mw-orange/60 shadow-lg shadow-mw-orange/10"
+                      : "bg-white/[0.025] border-white/10 hover:border-white/25 hover:bg-white/[0.04]"
+                  }`}
                 >
-                  <Award className="w-4 h-4" />
-                  <span>PMP® & HSE Academy</span>
-                </Link>
-
-                <Link
-                  to="/training/digital-skills"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs md:text-sm font-semibold border border-white/10 transition-colors"
-                >
-                  <Sparkles className="w-4 h-4 text-mw-orange" />
-                  <span>Digital Skills Tracks</span>
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-4">
-              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-xl">
-                <img
-                  src="/src/assets/images/talent_matching_network_1790617842281.jpg"
-                  alt="Employer Interview & Talent Connection"
-                  className="w-full h-48 object-cover object-center"
-                />
-              </div>
-            </div>
-
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[11px] font-mono text-mw-orange uppercase tracking-wider">
+                        {disc.shortLabel}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-white/75 font-mono">
+                        Express Interest
+                      </span>
+                    </div>
+                    <h3 className="text-base font-display font-bold text-white">
+                      {disc.name}
+                    </h3>
+                    <p className="text-xs text-white/60 leading-relaxed">
+                      {disc.focus}
+                    </p>
+                  </div>
+                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] text-white/50">
+                    <span className="truncate">{disc.pillar}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-mw-orange shrink-0" />
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
+      {/* Engagement Structures */}
+      <section className="py-12 bg-[#040814] border-b border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="mb-6">
+            <h2 className="text-xl sm:text-2xl font-display font-bold text-white">
+              Internal Engagement Structures
+            </h2>
+            <p className="text-xs sm:text-sm text-white/60 mt-1">
+              Click any engagement structure to indicate your preferred working arrangement in an Expression of Interest.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+            {INTERNAL_ENGAGEMENT_TYPES.map((item) => {
+              const active = selectedEngagement === item.type;
+              return (
+                <button
+                  key={item.type}
+                  type="button"
+                  onClick={() => openGeneralInterest(undefined, item.type)}
+                  className={`text-left p-4 rounded-xl border transition-all ${
+                    active
+                      ? "bg-mw-orange/15 border-mw-orange text-white"
+                      : "bg-white/[0.02] border-white/10 hover:border-white/25 text-white/80"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="font-display font-bold text-sm text-white">
+                      {item.type}
+                    </span>
+                    <Clock className={`w-3.5 h-3.5 ${active ? "text-mw-orange" : "text-white/40"}`} />
+                  </div>
+                  <p className="text-[11px] text-white/60 leading-relaxed">
+                    {item.description}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Current Vacancies Status (Official HR-Verified Only) */}
+      <section id="open-vacancies" className="py-16 md:py-20 border-b border-white/5 scroll-mt-24">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="p-8 sm:p-10 rounded-3xl bg-[#070b18] border border-white/10 space-y-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-6">
+              <div>
+                <div className="text-xs font-semibold uppercase tracking-widest text-mw-orange mb-2 flex items-center gap-2">
+                  <Lock className="w-3.5 h-3.5" />
+                  <span>Direct Opportunities Within Mindware Consulting Ltd</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
+                  Current Internal Vacancies
+                </h2>
+              </div>
+
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold w-fit">
+                <ShieldCheck className="w-4 h-4" />
+                <span>Pending Official HR Role Release</span>
+              </span>
+            </div>
+
+            <div className="grid lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-3">
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
+                  Mindware Consulting Ltd publishes only verified internal openings approved by management—never placeholder listings or third-party employer boards. When active positions open in web design, SEO, software engineering, business development, or project management, full role briefs appear right here.
+                </p>
+                <p className="text-xs sm:text-sm text-white/60 leading-relaxed">
+                  If you would like to be considered ahead of public role releases across full-time, part-time, contract, internship, or project-based engagements, submit a General Expression of Interest directly to our internal hiring team.
+                </p>
+              </div>
+
+              <div className="lg:col-span-4 flex flex-col gap-3">
+                <button
+                  type="button"
+                  onClick={() => openGeneralInterest()}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-mw-orange hover:bg-amber-600 text-white font-semibold text-sm transition-colors shadow-lg shadow-mw-orange/25"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Submit Expression of Interest</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Application & Selection Process */}
+      <section className="py-16 md:py-20 bg-[#03060f] border-b border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-2xl mb-10">
+            <div className="text-xs font-semibold uppercase tracking-widest text-mw-orange mb-2">
+              How We Hire
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-display font-bold text-white mb-3">
+              Application &amp; Selection Process
+            </h2>
+            <p className="text-sm sm:text-base text-white/65">
+              Every direct application or expression of interest receives a thoughtful review from Mindware Consulting leadership and practice leads.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {RECRUITMENT_STEPS.map((stage) => (
+              <div
+                key={stage.step}
+                className="p-6 rounded-2xl bg-white/[0.025] border border-white/10 space-y-3"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl font-display font-bold text-mw-orange">
+                    {stage.step}
+                  </span>
+                  <span className="text-[11px] font-mono text-white/55 px-2.5 py-0.5 rounded bg-white/5">
+                    {stage.timeline}
+                  </span>
+                </div>
+                <h3 className="text-base font-display font-bold text-white">
+                  {stage.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-white/65 leading-relaxed">
+                  {stage.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6 & 7. General Expressions of Interest & Recruitment Contact */}
+      <section className="py-16">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0b132b] via-[#070b18] to-[#120b05] border border-mw-orange/30 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-mw-orange">
+                <Mail className="w-4 h-4" />
+                <span>General Expressions of Interest &amp; Recruitment Contact</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
+                Connect Directly with Mindware Recruitment
+              </h2>
+              <p className="text-sm sm:text-base text-white/70 leading-relaxed">
+                Send your CV, portfolio, and target discipline directly through our application form or reach Mindware HR via email or telephone. Third-party recruitment boards are not accepted.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => openGeneralInterest()}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-mw-orange hover:bg-amber-600 text-white text-sm font-semibold transition-colors shadow-lg shadow-mw-orange/25"
+              >
+                <Send className="w-4 h-4" />
+                <span>Open Expression of Interest Form</span>
+              </button>
+              <a
+                href="mailto:contact@mindwareconsult.com.ng?subject=Career%20Expression%20of%20Interest%20-%20Mindware%20Consulting%20Ltd"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-semibold text-white/85 transition-colors"
+              >
+                <Mail className="w-4 h-4 text-mw-orange" />
+                <span>contact@mindwareconsult.com.ng</span>
+              </a>
+              <a
+                href="tel:+2348125082354"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-semibold text-white/85 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-mw-orange" />
+                <span>+234 812 508 2354</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* General Expression of Interest Modal */}
+      <InternalApplicationModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        vacancy={{
+          id: "general-eoi",
+          code: "MW-EOI",
+          title: `Expression of Interest (${selectedDiscipline})`,
+          discipline: selectedDiscipline,
+          engagementType: selectedEngagement,
+          workModel: "Hybrid (Lagos)",
+          location: "Lagos / Remote (Nigeria)",
+          experienceLevel: "Mid-Level (2-4 yrs)",
+          compensationRange: "",
+          postedDate: "",
+          status: "Open",
+          reportsTo: "Mindware Leadership",
+          summary: "",
+          responsibilities: [],
+          requirements: [],
+          competencies: []
+        }}
+        mode="general"
+      />
     </div>
   );
 }

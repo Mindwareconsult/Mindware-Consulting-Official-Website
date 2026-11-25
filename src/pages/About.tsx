@@ -1,19 +1,42 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Compass, Users, Sparkles, Target, ShieldCheck, Video, Youtube } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Compass,
+  Users,
+  Sparkles,
+  Building2,
+  Cpu,
+  TrendingUp,
+  Briefcase,
+  Video
+} from "lucide-react";
 import { METRICS } from "../data/content";
+import { GROWTH_FRAMEWORK, SOLUTIONS_PILLARS, STRATEGIC_POSITIONING } from "../data/solutionsData";
+import { INDUSTRIES } from "../data/industriesData";
+import { PRACTICE_DIVISIONS, LEADERSHIP_TEAM } from "../data/aboutData";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
+import { MEDIA_ASSETS } from "../assets/media";
 import { AboutSubNav } from "../components/about/AboutSubNav";
 import { AboutCertifications } from "../components/about/AboutCertifications";
 import { GoogleClientReviews } from "../components/reviews/GoogleClientReviews";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackPrimaryCtaClick } from "../lib/analytics";
 
 export function About() {
+  const md = LEADERSHIP_TEAM[0];
+
   return (
-    <div className="bg-mw-dark">
-      <SEO title="About Us | Mindware Consulting" description="Learn about Mindware Consulting, our corporate mission, long-term vision, core philosophy, executive leadership team, and verified client & student testimonials." />
-      {/* Hero */}
+    <div className="bg-mw-dark text-white">
+      <SEO
+        title="About Mindware Consulting Ltd | Business Growth & Digital Transformation Partner"
+        description="Learn how Mindware Consulting Ltd helps businesses strengthen digital infrastructure, acquire customers, optimize operations, and accelerate sustainable growth."
+      />
+
+      {/* 1. Company Overview & Business Growth Positioning */}
       <FadeInSection className="pt-32 sm:pt-40 pb-16 sm:pb-20 border-b border-white/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-mw-orange/5 to-transparent blur-3xl mix-blend-screen" />
         <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
@@ -24,34 +47,42 @@ export function About() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mw-orange/10 border border-mw-orange/20 text-mw-orange text-xs font-semibold uppercase tracking-wider mb-6">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>About Mindware Consulting Ltd</span>
+              <span>{STRATEGIC_POSITIONING.brandLine} · RC 1309926</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-4 sm:mb-8 leading-tight text-white">
-              Mind + Technology <br />
-              + <span className="text-gradient">Growth.</span>
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold font-display tracking-tight mb-5 sm:mb-8 leading-tight text-white">
+              Your Business Growth &amp; <br />
+              <span className="text-gradient">Digital Transformation</span> Partner.
             </h1>
-            <p className="text-base sm:text-xl text-white/60 max-w-2xl leading-relaxed mb-8">
-              We are a premium digital growth partner. We combine human thinking, strategic clarity, and modern technology to help ambitious businesses scale.
+            <p className="text-base sm:text-xl text-white/75 max-w-3xl leading-relaxed mb-8">
+              Incorporated in Nigeria in January 2016, Mindware Consulting Ltd partners with ambitious businesses, civil contractors, real estate developers, energy operators, and commercial organizations to build stronger digital infrastructure, acquire qualified customers, and improve operational execution.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
               <Link
+                to={CONVERSION_CTAS.primaryPath}
+                onClick={() => trackPrimaryCtaClick("about-hero", CONVERSION_CTAS.primaryPath)}
+                className="inline-flex items-center gap-2 bg-mw-orange text-white px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-amber-600 transition-all shadow-lg shadow-mw-orange/20 min-h-[44px]"
+              >
+                <span>{CONVERSION_CTAS.primaryLabel}</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
                 to="/about/mission-vision"
-                className="inline-flex items-center gap-2 bg-white text-mw-dark px-5 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-semibold hover:bg-mw-orange hover:text-white transition-all shadow-lg shadow-white/5"
+                className="inline-flex items-center gap-2 bg-white text-mw-dark px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold hover:bg-mw-orange hover:text-white transition-all"
               >
                 <Compass className="w-4 h-4" />
-                <span>Mission & Values</span>
+                <span>Mission &amp; Values</span>
               </Link>
               <Link
                 to="/about/leadership"
-                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 px-5 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all"
+                className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold transition-all"
               >
                 <Users className="w-4 h-4 text-blue-400" />
-                <span>Leadership Team</span>
+                <span>Leadership &amp; Governance</span>
               </Link>
               <Link
                 to="/about/testimonials"
-                className="inline-flex items-center gap-2 bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/20 px-5 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all"
+                className="inline-flex items-center gap-2 bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-500/20 px-5 sm:px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold transition-all"
               >
                 <Video className="w-4 h-4 text-red-400" />
                 <span>Video Testimonials</span>
@@ -64,347 +95,336 @@ export function About() {
       {/* Sticky About Sub-Navigation */}
       <AboutSubNav activeTab="overview" />
 
-      {/* Sub-Pages Showcase Banner */}
-      <section className="py-12 sm:py-16 bg-[#03060f] border-b border-white/5">
+      {/* Verified Practice Indicators */}
+      <FadeInSection className="py-12 sm:py-16 border-b border-white/5 bg-[#03060f]">
+        <h2 className="sr-only">Verified Practice Indicators</h2>
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
-          <div className="text-xs uppercase tracking-widest text-mw-orange font-bold font-mono mb-2">
-            Explore Dedicated Sub-Pages
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-            Deep-Dive Into Our Institutional Fabric
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Sub-Page 1 Card */}
-            <div className="p-7 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-mw-orange/40 transition-all flex flex-col justify-between group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-mw-orange/5 rounded-full blur-2xl pointer-events-none" />
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-mw-orange/10 border border-mw-orange/20 flex items-center justify-center text-mw-orange">
-                    <Compass className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-mw-orange/10 text-mw-orange font-bold">
-                    Sub-Page 1
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-mw-orange transition-colors">
-                  Company Mission, Vision & Values
-                </h3>
-                <p className="text-xs text-white/60 leading-relaxed mb-5">
-                  Detailed exploration of our commercial mission, our 2030 vision horizons, our 6 operational values, and the foundational "Mind + Technology + Growth" triad.
-                </p>
-
-                <div className="space-y-2 pt-3 border-t border-white/5">
-                  <div className="flex items-center gap-2 text-xs text-white/70">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-mw-orange shrink-0" />
-                    <span>Purpose Preceding Execution</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-white/70">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-mw-orange shrink-0" />
-                    <span>3 Strategic Horizon Milestones</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-5 border-t border-white/5">
-                <Link
-                  to="/about/mission-vision"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-mw-orange hover:text-white transition-colors"
-                >
-                  <span>Explore Mission & Values</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Sub-Page 2 Card */}
-            <div className="p-7 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-blue-500/40 transition-all flex flex-col justify-between group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-2xl pointer-events-none" />
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                    <Users className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 font-bold">
-                    Sub-Page 2
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                  Leadership & Management
-                </h3>
-                <p className="text-xs text-white/60 leading-relaxed mb-5">
-                  Executive governance profiles including Founder & CEO Chike Onyekachukwu, departmental directors in engineering, growth marketing, and advisory counsel.
-                </p>
-
-                <div className="space-y-2 pt-3 border-t border-white/5">
-                  <div className="flex items-center gap-2 text-xs text-white/70">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                    <span>Executive Leadership Profiles</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-white/70">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                    <span>Corporate Governance Mandates</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-5 border-t border-white/5">
-                <Link
-                  to="/about/leadership"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-white transition-colors"
-                >
-                  <span>Meet Leadership Team</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </div>
-
-            {/* Sub-Page 3 Card: Testimonials */}
-            <div className="p-7 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-red-500/40 transition-all flex flex-col justify-between group relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-red-600/5 rounded-full blur-2xl pointer-events-none" />
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-red-600/10 border border-red-500/20 flex items-center justify-center text-red-500">
-                    <Video className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-red-500/10 text-red-400 font-bold">
-                    Sub-Page 3
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">
-                  Testimonials & Video Reviews
-                </h3>
-                <p className="text-xs text-white/60 leading-relaxed mb-5">
-                  Watch authentic video reviews on YouTube from our digital agency clients and certified training academy graduates across two dedicated compartments.
-                </p>
-
-                <div className="space-y-2 pt-3 border-t border-white/5">
-                  <div className="flex items-center gap-2 text-xs text-white/70">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-red-400 shrink-0" />
-                    <span>Compartment 1: Agency Client Reviews</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-white/70">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-red-400 shrink-0" />
-                    <span>Compartment 2: Academy Student Stories</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-5 border-t border-white/5">
-                <Link
-                  to="/about/testimonials"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-red-400 hover:text-white transition-colors"
-                >
-                  <span>Watch Video Testimonials</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </div>
-
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+            {METRICS.map((metric, i) => (
+              <motion.div
+                key={metric.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="p-5 rounded-2xl bg-white/[0.02] border border-white/10"
+              >
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-mw-orange mb-2">{metric.value}</div>
+                <p className="text-white/70 font-medium text-xs sm:text-sm">{metric.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
-
-      {/* Metrics */}
-      <FadeInSection className="py-12 sm:py-24 border-b border-white/5">
-         <h2 className="sr-only">Our Impact Metrics</h2>
-         <div className="container mx-auto px-4 sm:px-6 md:px-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-               {METRICS.map((metric, i) => (
-                  <motion.div
-                    key={metric.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                     <div className="text-3xl sm:text-5xl font-bold font-display text-mw-orange mb-2">{metric.value}</div>
-                     <p className="text-white/60 font-medium text-xs sm:text-base">{metric.label}</p>
-                  </motion.div>
-               ))}
-            </div>
-         </div>
       </FadeInSection>
 
-      {/* Philosophy */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-20%" }}
-        transition={{ duration: 0.8, ease: EASE }}
-        className="py-12 sm:py-24 md:py-32"
-      >
+      {/* 2. Mission, Vision & Strategic Growth Framework */}
+      <FadeInSection className="py-16 sm:py-24 border-b border-white/5">
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
-            <div>
-              <div className="text-xs uppercase tracking-widest text-mw-orange font-bold font-mono mb-2">Cognitive Strategy</div>
-              <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6">Our Growth Philosophy</h2>
-              <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/60 leading-relaxed">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div className="lg:col-span-5">
+              <div className="text-xs uppercase tracking-widest text-mw-orange font-bold font-mono mb-2">
+                Mission, Vision &amp; Growth System
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-bold mb-5 text-white">
+                How We Approach Sustainable Business Growth
+              </h2>
+              <div className="space-y-4 text-sm sm:text-base text-white/70 leading-relaxed mb-6">
                 <p>
-                  We believe that simply "being online" is no longer a competitive advantage. In today's digital economy, businesses need a connected system that turns attention into opportunity.
+                  Simply having a brochure website or sporadic social posts no longer builds commercial advantage. Growing organizations require a unified system connecting credibility, search visibility, lead conversion, and operational follow-through.
                 </p>
                 <p>
-                  Mindware Consulting was founded to bridge the gap between creative marketing and technical execution. We don't just build websites; we build the digital infrastructure that makes businesses visible, credible, and profitable.
-                </p>
-                <p>
-                  Based in Nigeria, we bring world-class digital standards to local and global businesses, helping them navigate complexity and achieve measurable growth.
+                  Mindware bridges management consulting, software engineering, and B2B marketing under one roof using our proprietary five-stage framework.
                 </p>
               </div>
-
-              <div className="mt-8">
-                <Link
-                  to="/about/mission-vision"
-                  className="inline-flex items-center gap-2 text-mw-orange hover:text-white font-semibold text-sm group"
-                >
-                  <span>Explore Mission, Vision & Core Values in depth</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
+              <Link
+                to="/about/mission-vision"
+                className="inline-flex items-center gap-2 text-mw-orange hover:text-white font-semibold text-sm group"
+              >
+                <span>Explore Full Mission, Vision &amp; Core Values</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
-            <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden bg-white/5 border border-white/10">
-              <img 
-                src="/src/assets/images/values_innovation_culture_1790617210723.jpg" 
-                alt="Mindware Consulting team strategizing digital growth"
-                loading="lazy"
-                decoding="async" 
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.src = "/src/assets/images/mission_hero_vision_1790617197716.jpg";
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-mw-dark/80 via-transparent to-mw-orange/20 mix-blend-multiply" />
+
+            <div className="lg:col-span-7 space-y-3">
+              <div className="text-xs font-mono uppercase tracking-widest text-white/50 mb-3">
+                The Mindware Growth Framework: ACQUIRE → GROW → OPTIMIZE → ACCELERATE → PROTECT
+              </div>
+              {GROWTH_FRAMEWORK.map((stage) => (
+                <div
+                  key={stage.step}
+                  className="p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/10 flex items-start gap-4 hover:border-mw-orange/40 transition-colors"
+                >
+                  <div className="px-2.5 py-1 rounded-lg bg-mw-orange/15 border border-mw-orange/30 text-mw-orange font-mono text-xs font-bold shrink-0">
+                    {stage.step}
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <h3 className="text-base font-bold text-white">{stage.title}</h3>
+                      <span className="text-xs text-white/45">— {stage.tagline}</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-white/65 leading-relaxed">{stage.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </motion.section>
+      </FadeInSection>
 
-      {/* Leadership Preview */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-20%" }}
-        transition={{ duration: 0.8, ease: EASE }}
-        className="py-12 sm:py-24 md:py-32 bg-[#02040a] relative overflow-hidden"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-mw-orange/5 rounded-full blur-[100px] pointer-events-none" />
-        
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-          <div className="text-center mb-10 sm:mb-16 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 sm:mb-6">Leadership</h2>
-            <p className="text-white/50 max-w-2xl mx-auto text-base sm:text-lg md:text-xl font-light">
-              Guiding our mission to empower businesses with transformative digital experiences.
+      {/* 3. What Mindware Does & How We Work */}
+      <FadeInSection className="py-16 sm:py-24 bg-[#03060f] border-b border-white/5">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12">
+          <div className="max-w-3xl mb-12">
+            <div className="text-xs uppercase tracking-widest text-mw-orange font-bold font-mono mb-2">
+              Integrated Operating Model
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-4">
+              What Mindware Does &amp; How Our Practice Works
+            </h2>
+            <p className="text-white/65 text-sm sm:text-base leading-relaxed">
+              Rather than splitting strategy, website/software engineering, and customer acquisition across disconnected vendors, Mindware organizes delivery around three unified consulting pillars.
             </p>
           </div>
 
-          <div className="max-w-xl mx-auto relative group">
-            {/* Beautiful Frame Glow */}
-            <div className="absolute -inset-0.5 md:-inset-1 bg-gradient-to-br from-mw-orange via-orange-600/50 to-mw-dark rounded-3xl blur-md opacity-40 group-hover:opacity-100 transition duration-700" />
-            
-            <div className="relative bg-mw-dark rounded-3xl p-2 sm:p-3 border border-white/10 shadow-2xl overflow-hidden transition-all duration-500 group-hover:border-mw-orange/30 group-hover:-translate-y-2">
-              {/* Image Box */}
-              <div className="aspect-[4/5] sm:aspect-square md:aspect-[3/4] rounded-2xl overflow-hidden relative bg-[#0a0a0a]">
-                <img 
-                  src="/mindware-ceo.png" 
-                  alt="Chike Onyekachukwu - Founder, MD and CEO"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  onError={(e) => {
-                     e.currentTarget.src = "/src/assets/images/leadership_executive_team_1790617221909.jpg";
-                  }}
-                />
-                
-                {/* Gradient Overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-mw-dark/95 via-mw-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-                
-                {/* Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-3">Chike Onyekachukwu</h3>
-                   <div className="inline-block bg-mw-orange text-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-3 sm:mb-4 shadow-xl">
-                      Founder / MD / CEO
-                   </div>
-                   <p className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mb-3 sm:mb-4">
-                      Leading the vision to empower businesses with the strategy and technology needed to thrive in the digital economy.
-                   </p>
-                   <Link
-                     to="/about/leadership"
-                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-mw-orange hover:text-white"
-                   >
-                     <span>View Full Executive Team & Advisory Board</span>
-                     <ArrowRight className="w-3.5 h-3.5" />
-                   </Link>
+          <div className="grid md:grid-cols-3 gap-6">
+            {PRACTICE_DIVISIONS.map((div, idx) => {
+              const IconComp = idx === 0 ? Cpu : idx === 1 ? TrendingUp : Briefcase;
+              const matchedPillar = SOLUTIONS_PILLARS[idx];
+              return (
+                <div
+                  key={div.id}
+                  className="p-6 sm:p-7 rounded-3xl bg-white/[0.02] border border-white/10 flex flex-col justify-between hover:border-mw-orange/40 transition-colors"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-11 h-11 rounded-2xl bg-mw-orange/10 border border-mw-orange/25 flex items-center justify-center text-mw-orange">
+                        <IconComp className="w-5 h-5" />
+                      </div>
+                      <span className="text-xs font-mono text-white/45 uppercase">{div.pillar}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{div.title}</h3>
+                    <p className="text-xs sm:text-sm text-white/65 leading-relaxed mb-5">{div.summary}</p>
+                    <ul className="space-y-2 border-t border-white/10 pt-4">
+                      {div.capabilities.map((cap) => (
+                        <li key={cap} className="flex items-start gap-2 text-xs text-white/80">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-mw-orange shrink-0 mt-0.5" />
+                          <span>{cap}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {matchedPillar && (
+                    <div className="mt-6 pt-4 border-t border-white/10">
+                      <Link
+                        to={`/solutions#${matchedPillar.id}`}
+                        className="inline-flex items-center gap-2 text-xs font-bold text-mw-orange hover:text-white transition-colors"
+                      >
+                        <span>Explore Solution Pillar</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </FadeInSection>
+
+      {/* 4. Leadership & Consulting Capability */}
+      <FadeInSection className="py-16 sm:py-24 bg-[#02040a] relative overflow-hidden border-b border-white/5">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-5">
+              <div className="relative group max-w-md mx-auto">
+                <div className="absolute -inset-1 bg-gradient-to-br from-mw-orange via-orange-600/40 to-transparent rounded-3xl blur-md opacity-40" />
+                <div className="relative bg-mw-dark rounded-3xl p-2 border border-white/10 shadow-2xl overflow-hidden">
+                  <div className="aspect-[4/5] rounded-2xl overflow-hidden relative bg-[#0a0a0a]">
+                    <img
+                      src={md.image}
+                      alt={`${md.name} - ${md.role}`}
+                      className="w-full h-full object-cover object-top"
+                      onError={(e) => {
+                        e.currentTarget.src = MEDIA_ASSETS.leadershipExecutiveTeam;
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-mw-dark/95 via-transparent to-transparent opacity-80" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="inline-block bg-mw-orange text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-2">
+                        Founder / MD / CEO
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">{md.name}</h3>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="text-center mt-8 sm:mt-12">
-            <Link
-              to="/about/leadership"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 px-5 sm:px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all text-center"
-            >
-              <Users className="w-4 h-4 text-mw-orange shrink-0" />
-              <span>Explore Complete Leadership Sub-Page</span>
-              <ArrowRight className="w-4 h-4 shrink-0" />
-            </Link>
+            <div className="lg:col-span-7 space-y-5">
+              <div className="text-xs uppercase tracking-widest text-mw-orange font-bold font-mono">
+                Executive Leadership &amp; Consulting Oversight
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                {md.name} — Managing Director &amp; CEO
+              </h2>
+              <p className="text-sm sm:text-base text-white/75 leading-relaxed">{md.bio}</p>
+
+              {md.quote && (
+                <blockquote className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border-l-4 border-mw-orange text-sm text-white/85 italic leading-relaxed">
+                  "{md.quote}"
+                </blockquote>
+              )}
+
+              <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                {md.credentials.map((cred) => (
+                  <div key={cred} className="flex items-start gap-2 text-xs text-white/80 p-3 rounded-xl bg-white/[0.02] border border-white/10">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-mw-orange shrink-0 mt-0.5" />
+                    <span>{cred}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-2">
+                <Link
+                  to="/about/leadership"
+                  className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/15 px-5 py-3 rounded-full text-xs font-semibold transition-all"
+                >
+                  <Users className="w-4 h-4 text-mw-orange" />
+                  <span>View Leadership &amp; Governance Framework</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </motion.section>
+      </FadeInSection>
 
-      {/* Institutional Accreditations & Regulatory Standing */}
+      {/* 5. Credentials, Official Registrations & Practical Client Value */}
       <AboutCertifications />
 
-      {/* Why Choose Us */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-20%" }}
-        transition={{ duration: 0.8, ease: EASE }}
-        className="py-12 sm:py-24 md:py-32"
-      >
+      {/* 6. Core Industries & Sectors Served */}
+      <FadeInSection className="py-16 sm:py-24 bg-[#03060f] border-t border-b border-white/5">
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
-          <div className="text-center mb-10 sm:mb-16 max-w-3xl mx-auto">
-             <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">Why Ambitious Brands Choose Us</h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div className="max-w-2xl">
+              <div className="text-xs uppercase tracking-widest text-mw-orange font-bold font-mono mb-2">
+                Sector Focus · Construction Flagship
+              </div>
+              <h2 className="text-2xl sm:text-4xl font-bold text-white">
+                Industries We Help Transform &amp; Grow
+              </h2>
+            </div>
+            <Link
+              to="/industries"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-mw-orange hover:text-white"
+            >
+              <span>Explore All 6 Focus Sectors</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
-             {[
-               { title: "Strategic Clarity", desc: "We don't just execute tasks. We start with your business goals and build the roadmap to get there." },
-               { title: "Integrated Approach", desc: "Design, technology, and marketing working together in a unified system, not in silos." },
-               { title: "Measurable Impact", desc: "Everything we build is designed to be measured, optimized, and aligned with your bottom line." }
-             ].map(item => (
-                <div key={item.title} className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02]">
-                   <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 text-mw-orange mb-4 sm:mb-6" />
-                   <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4">{item.title}</h3>
-                   <p className="text-white/60 text-sm sm:text-base leading-relaxed">{item.desc}</p>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {INDUSTRIES.map((ind) => (
+              <Link
+                key={ind.id}
+                to={`/industries/${ind.slug}`}
+                className={`p-6 rounded-2xl border transition-all flex flex-col justify-between ${
+                  ind.isFlagship
+                    ? "bg-mw-orange/10 border-mw-orange/40 hover:border-mw-orange"
+                    : "bg-white/[0.02] border-white/10 hover:border-white/25"
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-mw-orange font-semibold">
+                      {ind.isFlagship ? "Flagship Sector" : ind.category}
+                    </span>
+                    <Building2 className="w-4 h-4 text-white/40" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">{ind.name}</h3>
+                  <p className="text-xs text-white/65 leading-relaxed line-clamp-3">{ind.tagline}</p>
                 </div>
-             ))}
+                <div className="pt-4 mt-4 border-t border-white/10 inline-flex items-center gap-1.5 text-xs font-semibold text-white/80">
+                  <span>View Sector Approach</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-mw-orange" />
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
-      </motion.section>
+      </FadeInSection>
 
-      {/* Google Client Reviews */}
+      {/* 7. Why Businesses Trust Mindware */}
+      <FadeInSection className="py-16 sm:py-24 border-b border-white/5">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12">
+          <div className="text-center mb-12 max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white">
+              Why Ambitious Businesses Partner with Mindware
+            </h2>
+            <p className="text-white/65 text-sm sm:text-base">
+              Built on statutory accountability, multi-disciplinary capability, and ongoing support that lasts beyond project launch.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                title: "Strategy + Technology + Acquisition Together",
+                desc: "We align positioning, website and software engineering, SEO, and operational advice inside one unified partner instead of siloed freelancers."
+              },
+              {
+                title: "Deep Real-Economy & Construction Experience",
+                desc: "Proven live work with civil engineers, contractors, industrial operators, and luxury dealerships where buyer trust decides deals."
+              },
+              {
+                title: "Ongoing Maintenance & Ethical Accountability",
+                desc: "Registered RC 1309926 corporate governance, clear scope milestones, and responsive post-launch technical support."
+              }
+            ].map((item) => (
+              <div key={item.title} className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02]">
+                <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8 text-mw-orange mb-4" />
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-white">{item.title}</h3>
+                <p className="text-white/65 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeInSection>
+
+      {/* Verified Google Client Reviews (Preserved Intact) */}
       <GoogleClientReviews
         variant="about"
         heading="Trusted by Businesses. Valued by Clients."
         supportingText="At Mindware Consulting Limited, we believe that successful business relationships are built on trust, consistent delivery and genuine value. Here is what some of our clients have shared about their experience working with us."
       />
 
-      {/* CTA */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-20%" }}
-        transition={{ duration: 0.8, ease: EASE }}
-        className="py-16 sm:py-24 border-t border-white/5"
-      >
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8">Ready to grow online?</h2>
-          <Link
-            to="/contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-mw-dark px-8 py-4 rounded-full font-medium transition-transform hover:scale-105 active:scale-95"
-          >
-            Let's Talk About Your Project <ArrowRight className="w-4 h-4" />
-          </Link>
+      {/* 8. Growth Consultation CTA */}
+      <FadeInSection className="py-16 sm:py-24 border-t border-white/5 bg-gradient-to-t from-mw-orange/10 via-transparent to-transparent">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 text-center max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 text-white">
+            Let&apos;s Discuss Your Next Phase of Growth.
+          </h2>
+          <p className="text-white/65 text-sm sm:text-base mb-8 leading-relaxed">
+            Schedule a Business Growth Review to evaluate your current digital infrastructure, market visibility, and operational priorities with Mindware Consulting Ltd.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <Link
+              to={CONVERSION_CTAS.primaryPath}
+              onClick={() => trackPrimaryCtaClick("about-bottom", CONVERSION_CTAS.primaryPath)}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-xl min-h-[48px]"
+            >
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/business-growth-season"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white px-7 py-4 rounded-full font-semibold text-xs uppercase tracking-wider transition-all min-h-[48px]"
+            >
+              <span>Business Growth Season 2026</span>
+            </Link>
+          </div>
         </div>
-      </motion.section>
+      </FadeInSection>
     </div>
   );
 }

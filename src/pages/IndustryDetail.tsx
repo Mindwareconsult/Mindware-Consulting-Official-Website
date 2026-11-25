@@ -34,6 +34,13 @@ import {
 import { SEO } from "../components/SEO";
 import { FadeInSection } from "../components/FadeInSection";
 import { cn } from "../lib/utils";
+import {
+  getStoredUtmParams,
+  trackFormSubmit,
+  trackIndustryConversion,
+  trackPhoneClick,
+  trackWhatsAppClick,
+} from "../lib/analytics";
 
 function getIndustryIcon(iconName: string) {
   switch (iconName) {
@@ -60,14 +67,24 @@ export function IndustryDetail() {
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formRef, setFormRef] = useState("");
   const [formName, setFormName] = useState("");
   const [formPhone, setFormPhone] = useState("");
+  const [formEmail, setFormEmail] = useState("");
   const [formCompany, setFormCompany] = useState("");
   const [formScope, setFormScope] = useState("Enterprise Web Platform");
+  const [honeypot, setHoneypot] = useState("");
 
   if (!industryData) {
     return (
       <div className="bg-[#02040a] min-h-screen text-white pt-36 pb-24 text-center px-6">
+        <SEO
+          title="Industry Sector Not Found | Mindware Consulting Ltd"
+          description="Explore specialized digital engineering and business growth solutions across Mindware Consulting's six commercial industry sectors."
+          noindex
+        />
         <div className="max-w-xl mx-auto space-y-5">
           <Layers className="w-16 h-16 text-mw-orange mx-auto opacity-70" />
           <h1 className="text-3xl font-bold font-display text-white">Industry Sector Not Found</h1>
@@ -97,13 +114,13 @@ export function IndustryDetail() {
     "@graph": [
       {
         "@type": "Service",
-        "@id": `https://mindwareconsulting.com/industries/${industryData.slug}#service`,
+        "@id": `https://mindwareconsult.com.ng/industries/${industryData.slug}#service`,
         "name": `Digital Engineering for ${industryData.name}`,
         "description": industryData.metaDescription,
         "provider": {
           "@type": "Organization",
           "name": "Mindware Consulting Ltd",
-          "url": "https://mindwareconsulting.com",
+          "url": "https://mindwareconsult.com.ng",
           "telephone": "+2348125082354"
         },
         "areaServed": "Nigeria",
@@ -122,7 +139,7 @@ export function IndustryDetail() {
       },
       {
         "@type": "FAQPage",
-        "@id": `https://mindwareconsulting.com/industries/${industryData.slug}#faq`,
+        "@id": `https://mindwareconsult.com.ng/industries/${industryData.slug}#faq`,
         "mainEntity": industryData.faqs.map((faq) => ({
           "@type": "Question",
           "name": faq.question,
@@ -135,9 +152,60 @@ export function IndustryDetail() {
     ]
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    if (formSubmitting) return;
+    setFormError(null);
+    setFormSubmitting(true);
+
+    const category = industryData.isFlagship
+      ? "construction-business-growth"
+      : "digital-transformation";
+
+    trackFormSubmit(category, "attempt", {
+      industry_slug: industryData.slug,
+    });
+
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: `industry-${industryData.slug}`,
+          pagePath: window.location.pathname,
+          utmParams: getStoredUtmParams(),
+          enquiryCategory: category,
+          industrySector: industryData.name,
+          fullName: formName.trim(),
+          businessName: formCompany.trim(),
+          email: formEmail.trim(),
+          phone: formPhone.trim(),
+          consultationTopic: industryData.name,
+          serviceNeeded: formScope,
+          projectDesc: `Sector Business Growth Review enquiry for ${industryData.name} (${formScope}).`,
+          _hp: honeypot,
+        })
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.error || "Unable to submit your enquiry right now. Please call +234 812 508 2354.");
+      }
+      setFormRef(data.referenceId || "");
+      setFormSubmitted(true);
+      trackFormSubmit(category, "success", {
+        industry_slug: industryData.slug,
+        reference_id: data.referenceId || "",
+      });
+      trackIndustryConversion(industryData.slug, "form_submit_success");
+    } catch (err: any) {
+      setFormSubmitted(false);
+      setFormError(err?.message || "Unable to submit your enquiry right now. Please call +234 812 508 2354.");
+      trackFormSubmit(category, "error", {
+        industry_slug: industryData.slug,
+      });
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   return (
@@ -171,6 +239,14 @@ export function IndustryDetail() {
           <div className="max-w-4xl space-y-6">
             {/* Unboxed Editorial Metadata Kicker */}
             <div className="flex flex-wrap items-center gap-2 text-xs text-white/60 font-medium">
+              {industryData.isFlagship && (
+                <>
+                  <span className="text-white bg-mw-orange px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                    Flagship Specialization
+                  </span>
+                  <span className="text-white/25">·</span>
+                </>
+              )}
               <span className="text-mw-orange font-semibold flex items-center gap-1.5">
                 <IconComponent className="w-3.5 h-3.5 text-mw-orange inline shrink-0" />
                 <span>{industryData.category}</span>
@@ -193,9 +269,10 @@ export function IndustryDetail() {
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <a
                 href="#industry-consultation"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 hover:scale-[1.02] active:scale-[0.98]"
+                onClick={() => trackIndustryConversion(industryData.slug, "hero_proposal_click")}
+                className="min-h-[44px] inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>Request {industryData.shortName} Proposal</span>
+                <span>Request a Business Growth Review</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
@@ -205,7 +282,8 @@ export function IndustryDetail() {
                 )}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98]"
+                onClick={() => trackWhatsAppClick(`industry-${industryData.slug}`, industryData.shortName)}
+                className="min-h-[44px] inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>WhatsApp Sector Desk</span>
@@ -498,9 +576,12 @@ export function IndustryDetail() {
                       <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                         <CheckCircle2 className="w-6 h-6" />
                       </div>
-                      <h4 className="text-xl font-bold text-white">Strategy Request Received!</h4>
+                      <h4 className="text-xl font-bold text-white">Strategy Request Received</h4>
+                      {formRef && (
+                        <div className="text-[11px] font-mono text-emerald-400">Reference: {formRef}</div>
+                      )}
                       <p className="text-xs text-white/70 max-w-sm mx-auto">
-                        Thank you, {formName}. Our lead sector consultant for <strong>{industryData.shortName}</strong> will reach out via phone and email within 2 hours.
+                        Thank you, {formName}. Our lead consultant for <strong>{industryData.shortName}</strong> has logged your brief and will reach out promptly.
                       </p>
                       <button
                         onClick={() => setFormSubmitted(false)}
@@ -511,20 +592,48 @@ export function IndustryDetail() {
                     </div>
                   ) : (
                     <form onSubmit={handleFormSubmit} className="space-y-4">
-                      <div className="text-sm font-bold text-white mb-2">
-                        Get Your {industryData.shortName} Custom Platform Proposal
-                      </div>
+                      <input
+                        type="text"
+                        name="website_url_confirm"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        className="sr-only"
+                      />
 
-                      <div>
-                        <label className="block text-xs text-white/70 mb-1.5 font-medium">Your Full Name</label>
-                        <input
-                          type="text"
-                          required
-                          value={formName}
-                          onChange={(e) => setFormName(e.target.value)}
-                          placeholder="e.g. Engr. Victor Okonjo"
-                          className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/15 text-white text-base placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
-                        />
+                      <div className="text-sm font-bold text-white mb-2">
+                        Request a Business Growth Review ({industryData.shortName})
+                      </div>
+                      {formError && (
+                        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-300">
+                          {formError}
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs text-white/70 mb-1.5 font-medium">Your Full Name</label>
+                          <input
+                            type="text"
+                            required
+                            value={formName}
+                            onChange={(e) => setFormName(e.target.value)}
+                            placeholder="e.g. Engr. Victor Okonjo"
+                            className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white/[0.04] border border-white/15 text-white text-base placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-white/70 mb-1.5 font-medium">Corporate Email (Optional)</label>
+                          <input
+                            type="email"
+                            value={formEmail}
+                            onChange={(e) => setFormEmail(e.target.value)}
+                            placeholder="name@company.com.ng"
+                            className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white/[0.04] border border-white/15 text-white text-base placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
+                          />
+                        </div>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -536,7 +645,7 @@ export function IndustryDetail() {
                             value={formPhone}
                             onChange={(e) => setFormPhone(e.target.value)}
                             placeholder="0801 234 5678"
-                            className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/15 text-white text-base placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
+                            className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white/[0.04] border border-white/15 text-white text-base placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
                           />
                         </div>
                         <div>
@@ -547,7 +656,7 @@ export function IndustryDetail() {
                             value={formCompany}
                             onChange={(e) => setFormCompany(e.target.value)}
                             placeholder="e.g. Vigox Marine Ltd"
-                            className="w-full px-4 py-3 rounded-xl bg-white/[0.04] border border-white/15 text-white text-base placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
+                            className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white/[0.04] border border-white/15 text-white text-base placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
                           />
                         </div>
                       </div>
@@ -557,25 +666,37 @@ export function IndustryDetail() {
                         <select
                           value={formScope}
                           onChange={(e) => setFormScope(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/15 text-white text-base focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
+                          className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-[#090d16] border border-white/15 text-white text-base focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange/30 transition-all"
                         >
-                          <option value="Enterprise Web Platform">Custom Corporate Web Platform & SEO</option>
-                          <option value="Tender / Bidding Portal">Tender & Compliance Audit Portal</option>
+                          <option value="Enterprise Web Platform">Custom Corporate Web Platform &amp; SEO</option>
+                          <option value="Tender / Bidding Portal">Tender &amp; Compliance Audit Portal</option>
                           <option value="Digital Showroom / Catalog">Digital Showroom / Asset Catalog</option>
-                          <option value="E-Commerce & Payments">E-Commerce & Automated Logistics</option>
+                          <option value="E-Commerce & Payments">E-Commerce &amp; Automated Logistics</option>
                           <option value="Complete Digital Transformation">Full Digital Transformation Suite</option>
                         </select>
                       </div>
 
                       <button
                         type="submit"
-                        className="w-full py-3.5 px-6 rounded-xl bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 mt-2 hover:scale-[1.01] active:scale-[0.99]"
+                        disabled={formSubmitting}
+                        className="w-full min-h-[46px] py-3.5 px-6 rounded-xl bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 mt-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60"
                       >
-                        Request {industryData.shortName} Proposal
+                        {formSubmitting ? "Submitting..." : "Request a Business Growth Review"}
                       </button>
 
+                      <p className="text-[11px] text-white/45 text-center leading-relaxed">
+                        Handled confidentially by Mindware Consulting Ltd (RC 1309926) solely for your consultation request.
+                      </p>
+
                       <div className="text-[11px] text-white/40 text-center">
-                        Prefer an instant call? Phone: <a href="tel:+2348125082354" className="text-white/70 hover:text-white underline">+234 812 508 2354</a>
+                        Prefer an instant call? Phone:{" "}
+                        <a
+                          href="tel:+2348125082354"
+                          onClick={() => trackPhoneClick(`industry-${industryData.slug}`)}
+                          className="text-white/70 hover:text-white underline"
+                        >
+                          +234 812 508 2354
+                        </a>
                       </div>
                     </form>
                   )}

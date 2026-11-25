@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Retired Academy & Legacy Marketplace Paths
+Disallow: /training
+Disallow: /training/
+Disallow: /careers/cv-builder
+Disallow: /careers/ai-cv-builder
+Disallow: /careers/jobs
+Disallow: /careers/explore-jobs
+Disallow: /careers/employers
+Disallow: /careers/connect-employers
+Disallow: /careers/talent-match
+Disallow: /careers/talent-network
+
+Sitemap: https://mindwareconsult.com.ng/sitemap.xml

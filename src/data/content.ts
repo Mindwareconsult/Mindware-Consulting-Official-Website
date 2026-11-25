@@ -47,15 +47,15 @@ export const SERVICES = [
     },
     {
         id: "training",
-        title: "Training & Workforce Development",
-        tagline: "Divided into 2 specialized academies: Digital Skills & Professional Certifications.",
-        description: "Practical, career-focused learning accelerators structured into two dedicated academies: Digital Skills (Web Design, Social Media Marketing, Video Editing, Data Analytics, SEO, App Development) and Professional Development & Employability (PMP®, HRM, CRM Systems, HSE Levels 1, 2, 3, and Executive Leadership).",
+        title: "Organizational Capability & Enablement",
+        tagline: "B2B corporate workshops and operational systems adoption for enterprise teams.",
+        description: "Bespoke corporate capability programs delivered strictly as organizational consulting engagements—equipping leadership, project managers, and commercial teams to adopt new digital systems, SEO/growth workflows, and ISO/PMI operational standards.",
         icon: GraduationCap,
         features: [
-            "Digital Skills Track: Web Design, Social Media, Video Editing, Data Analytics, SEO, App Dev",
-            "Professional Development Track: PMP® Project Management, HRM, CRM Systems, HSE Levels 1, 2, 3",
-            "Practical Capstone Projects, Portfolio Reviews & Industry Mentorship",
-            "Accredited Certifications, PMI PMBOK Standards, HSE Compliance & Corporate Bootcamps"
+            "Enterprise Digital Systems & CRM Onboarding Workshops",
+            "Corporate Project Management & Delivery Governance Alignment",
+            "Organizational HSE Compliance & Operational Readiness Briefings",
+            "Executive Digital Transformation & Leadership Enablement"
         ]
     },
     {
@@ -251,21 +251,20 @@ export const PORTFOLIO = [
     }
 ];
 
-export const METRICS = [
-    { label: "Successful Projects", value: "150+" },
-    { label: "Client ROI Avg", value: "300%" },
-    { label: "Years Experience", value: "5+" },
-    { label: "Professionals Trained", value: "500+" }
-];
+import { APPROVED_COMPANY_METRICS } from "./companyStats";
+
+export const METRICS = APPROVED_COMPANY_METRICS.map((m) => ({
+    label: m.label,
+    value: m.value,
+}));
 
 export const NAVIGATION = [
     { name: "Home", path: "/" },
+    { name: "Solutions", path: "/solutions" },
+    { name: "Industries", path: "/industries" },
+    { name: "Our Work", path: "/portfolio" },
     { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Pricing", path: "/pricing" },
-    { name: "Portfolio", path: "/portfolio" },
-    { name: "Academy", path: "/training" },
-    { name: "Careers", path: "/careers" },
     { name: "Insights", path: "/insights" },
+    { name: "Careers", path: "/careers" },
     { name: "Contact", path: "/contact" }
 ];

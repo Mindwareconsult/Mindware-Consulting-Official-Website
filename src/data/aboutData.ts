@@ -21,11 +21,12 @@ export interface LeadershipMember {
   linkedin?: string;
 }
 
-export interface AdvisoryMember {
-  name: string;
+export interface PracticeDivision {
+  id: string;
   title: string;
-  organization: string;
-  focusArea: string;
+  pillar: string;
+  summary: string;
+  capabilities: string[];
 }
 
 export interface GovernancePillar {
@@ -36,48 +37,48 @@ export interface GovernancePillar {
 }
 
 export const MISSION_STATEMENT = {
-  headline: "Empowering Ambitious Enterprises with Transformative Digital Infrastructure and Scalable Growth Engines.",
+  headline: "Helping Businesses Build Stronger Digital Infrastructure, Attract More Customers, and Unlock Sustainable Growth.",
   extended:
-    "Mindware Consulting Ltd exists to bridge the gap between visionary business strategy and flawless technical execution. We engineer high-converting digital ecosystems, deploy enterprise-grade software and search visibility, and equip modern workforces with world-class digital and managerial skills across Nigeria, West Africa, and global markets.",
+    "Mindware Consulting Ltd exists to bridge the gap between commercial strategy, technology engineering, and operational execution. We partner with ambitious organizations across Nigeria and beyond to modernize core digital platforms, acquire qualified B2B demand, optimize internal systems, and govern sustainable growth.",
   pillars: [
     {
       title: "Strategic Clarity over Tactical Noise",
-      desc: "We diagnose root commercial hurdles before writing a single line of code or designing a single ad campaign."
+      desc: "We diagnose commercial bottlenecks across visibility, conversion, and operations before recommending technology or marketing spend."
     },
     {
-      title: "World-Class Engineering & Creative Craft",
-      desc: "Delivering performant, secure, and visually distinctive web architectures that outpace global benchmarks."
+      title: "High-Trust Engineering & Craft",
+      desc: "Delivering responsive, secure, and search-ready web platforms, portals, and business software built around real buyer journeys."
     },
     {
-      title: "Economic Impact & Measurable ROI",
-      desc: "Every project is evaluated on concrete commercial milestones—pipeline generated, conversions, and operational velocity."
+      title: "Accountable Business Outcomes",
+      desc: "Every engagement focuses on practical commercial indicators—qualified inquiries, client trust, tender readiness, and operational velocity."
     },
     {
-      title: "African Talent & Skill Sovereignty",
-      desc: "Upskilling professionals and enterprise teams through PMI-aligned project governance, digital skills, and certified HSE standards."
+      title: "Integrated ACQUIRE → PROTECT Execution",
+      desc: "Connecting digital systems, customer acquisition, and management consulting within one accountable corporate partner."
     }
   ]
 };
 
 export const VISION_STATEMENT = {
-  headline: "To be Africa's Most Trusted Catalyst for Enterprise Digital Modernization and High-Performance Workforce Talent.",
+  headline: "To be the Preferred Business Growth and Digital Transformation Partner for Ambitious Enterprises Across Africa.",
   extended:
-    "We envision a continent where every forward-thinking corporation, SME, and institution harnesses modern web technologies, automated operations, and skilled human capital to compete, lead, and win on the global stage.",
+    "We envision a commercial landscape where civil engineering firms, real estate developers, energy operators, and high-growth SMEs leverage unified digital infrastructure, disciplined customer acquisition, and structured operational systems to compete with confidence.",
   horizons: [
     {
-      period: "Horizon 1 · Present – 2026",
-      title: "Regional Authority & Full-Stack Synergy",
-      focus: "Consolidating our position as Nigeria's premier growth consulting firm for industrial, energy, and corporate digital modernization."
+      period: "Phase 01 · Digital Foundations",
+      title: "Infrastructure, Credibility & Search Presence",
+      focus: "Replacing outdated digital footprints with modern corporate platforms, Schema SEO, and clear sector authority."
     },
     {
-      period: "Horizon 2 · 2026 – 2028",
-      title: "Pan-African Scale & Automated Cloud Ecosystems",
-      focus: "Expanding cross-border consulting, enterprise ERP integrations, and multi-hub training cohorts across Anglophone West Africa."
+      period: "Phase 02 · Operational Integration",
+      title: "CRM, Workflow Automation & Custom Systems",
+      focus: "Connecting inquiry capture directly to structured internal workflows, client portals, and management visibility."
     },
     {
-      period: "Horizon 3 · 2028 – 2030+",
-      title: "Global Technology & Workforce Export",
-      focus: "Positioning African digital engineers, certified project managers, and growth marketers into high-value global corporate supply chains."
+      period: "Phase 03 · Sustained Market Leadership",
+      title: "Compounding Acquisition & Governance",
+      focus: "Protecting uptime, market visibility, and strategic continuity as partner organizations scale across regions."
     }
   ]
 };
@@ -89,58 +90,58 @@ export const CORE_VALUES: CoreValue[] = [
     title: "Strategic Clarity",
     tagline: "Purpose preceding execution",
     description:
-      "We never begin with assumptions or generic templates. We interrogate business models, user behaviors, and revenue drivers so every digital artifact serves a validated strategic purpose.",
-    inAction: "Conducting deep technical audits and stakeholder interviews before recommending any tech stack or marketing spend.",
+      "We never start with generic templates. We interrogate your commercial model, buyer journey, and operational bottlenecks so every platform or campaign serves a clear business objective.",
+    inAction: "Structured consultation discovery, technical site audits, and sector competitor reviews prior to build initiation.",
     iconName: "Compass"
   },
   {
     id: "uncompromising-craft",
     number: "02",
     title: "Uncompromising Craft",
-    tagline: "World-class execution standards",
+    tagline: "High execution standards",
     description:
-      "Good enough is our baseline failure state. From responsive typography and sub-second load times to robust API design and brand aesthetics, we uphold obsessive attention to detail.",
-    inAction: "Rigorous 3-stage QA, 95+ Google Lighthouse scores, and semantic code architectures on every deployment.",
+      "From responsive multi-device layouts and clear typography to structured Schema.org SEO and clean backend integrations, we sweat details that directly affect buyer confidence.",
+    inAction: "Multi-device responsiveness verification, semantic markup, and thorough pre-launch QA across devices.",
     iconName: "Sparkles"
   },
   {
     id: "integrity-transparency",
     number: "03",
     title: "Radical Transparency",
-    tagline: "Open books, honest timelines",
+    tagline: "Open scope, honest timelines",
     description:
-      "We believe high-trust partnerships yield the highest commercial returns. We share real metrics, communicate roadblocks proactively, and never pad hours or inflate projections.",
-    inAction: "Live client dashboards, weekly sprint demos, transparent scope documentation, and zero hidden licensing fees.",
+      "High-trust B2B partnerships rely on realistic expectations. We communicate project progress clearly, deliver formal corporate invoices under RC 1309926, and avoid inflated promises.",
+    inAction: "Clear 60%/40% milestone structures, written scope definitions, and honest reporting.",
     iconName: "ShieldCheck"
   },
   {
     id: "collaborative-ownership",
     number: "04",
     title: "Extreme Ownership",
-    tagline: "Your commercial goals are our personal mandate",
+    tagline: "Reliable post-launch stewardship",
     description:
-      "We do not behave like detached vendors who check out after handoff. We adopt our clients' balance sheets and reputation as if they were our own.",
-    inAction: "Continuous post-launch optimization, proactively monitoring uptime, search ranks, and campaign ROAS without being prompted.",
+      "We do not disappear after launch. Clients count on Mindware for proactive updates, security hygiene, uptime monitoring, and continuous advisory support.",
+    inAction: "Long-term software maintenance, reliable technical support, and uninterrupted site operations.",
     iconName: "Users"
   },
   {
     id: "measurable-impact",
     number: "05",
-    title: "Measurable Impact",
-    tagline: "Data as the ultimate arbiter",
+    title: "Commercial Relevance",
+    tagline: "Grounded in real business value",
     description:
-      "Vanity metrics have no place in enterprise consulting. We measure success strictly by revenue qualified leads, pipeline acceleration, customer acquisition costs, and system efficiency.",
-    inAction: "Building full attribution models and reporting pipeline velocity and conversion lift on every client engagement.",
+      "Vanity metrics do not build durable companies. We align architecture, SEO, and advisory around qualified inquiries, corporate tender readiness, and smoother workflows.",
+    inAction: "Designing direct RFQ, BOQ, and WhatsApp intake pathways matched to how Nigerian B2B buyers buy.",
     iconName: "Target"
   },
   {
     id: "continuous-growth",
     number: "06",
-    title: "Continuous Growth & Mastery",
-    tagline: "Investing deeply in human intellect",
+    title: "Continuous Capability",
+    tagline: "Evolving alongside modern systems",
     description:
-      "Technology evolves exponentially; stagnation is fatal. We relentlessly study emerging frameworks, share knowledge openly, and train the next generation of digital leaders.",
-    inAction: "Hosting the Mindware Training Academy, funding team certifications, and publishing real-world technical case studies.",
+      "Digital infrastructure, search algorithms, and software standards evolve constantly. We continually refine our engineering stack and management advisory playbooks.",
+    inAction: "Adopting modern React/TypeScript architectures, structured CRM workflows, and B2B consulting frameworks.",
     iconName: "GraduationCap"
   }
 ];
@@ -148,22 +149,37 @@ export const CORE_VALUES: CoreValue[] = [
 export const GROWTH_PHILOSOPHY = {
   triad: [
     {
-      title: "Mind (Cognitive Strategy)",
-      subtitle: "The Intelligence Layer",
-      desc: "Deep commercial diagnosis, user journey mapping, and value proposition crystallization. Knowing exactly what to build and why.",
-      points: ["Market & competitor audits", "Commercial positioning strategy", "Conversion architecture", "Data attribution blueprints"]
+      title: "Mind (Strategic Advisory)",
+      subtitle: "The Diagnosis & Positioning Layer",
+      desc: "Commercial clarity, buyer journey architecture, and management consulting grounded in real sector dynamics.",
+      points: [
+        "Commercial positioning & value proposition clarity",
+        "Customer & tender buyer journey mapping",
+        "Management & operational workflow consulting",
+        "Structured growth roadmaps"
+      ]
     },
     {
-      title: "Technology (Digital Architecture)",
-      subtitle: "The Execution Layer",
-      desc: "Robust modern web engineering, speed optimization, CMS scalability, security hardening, and seamless API integrations.",
-      points: ["Sub-second web performance", "Enterprise headless CMS", "Cloud infrastructure & SSL", "Mobile-first responsive UI"]
+      title: "Technology (Digital Infrastructure)",
+      subtitle: "The Engineering & Systems Layer",
+      desc: "Modern corporate websites, custom business software, client portals, CRM workflows, and reliable maintenance.",
+      points: [
+        "Responsive multi-device web platforms",
+        "Custom portals & business applications",
+        "Ongoing software updates & downtime prevention",
+        "Clean semantic markup & security hygiene"
+      ]
     },
     {
-      title: "Growth (Commercial Velocity)",
-      subtitle: "The Scaling Layer",
-      desc: "High-intent organic search domination, paid media performance, continuous A/B experimentation, and workforce capability building.",
-      points: ["Technical SEO & localized search", "Paid media ROAS optimization", "Workforce upskilling & certifications", "Lifecycle retention automation"]
+      title: "Growth (Customer Acquisition)",
+      subtitle: "The Visibility & Pipeline Layer",
+      desc: "Search engine optimization, targeted digital advertising, and conversion architecture built to turn attention into inquiries.",
+      points: [
+        "Technical & local Schema.org SEO",
+        "Google Ads & B2B social demand generation",
+        "Direct RFQ, BOQ & WhatsApp conversion funnels",
+        "Ongoing analytics & iterative refinement"
+      ]
     }
   ]
 };
@@ -172,151 +188,96 @@ export const LEADERSHIP_TEAM: LeadershipMember[] = [
   {
     id: "chike-onyekachukwu",
     name: "Chike Onyekachukwu",
-    role: "Founder, Managing Director & CEO",
+    role: "Founder, Managing Director & Chief Executive Officer",
     division: "Executive Leadership & Strategy",
-    bio: "Chike is the visionary founder and Chief Executive Officer of Mindware Consulting Ltd. With extensive experience spanning digital transformation, software product strategy, search engine optimization, and enterprise consulting, Chike has spearheaded high-impact digital initiatives for leading Nigerian conglomerates, energy operators, and high-growth SMEs. He holds an unwavering conviction that Nigerian enterprises can dominate global benchmarks through strategic design, robust technology, and rigorous workforce capability.",
-    quote: "Our mission is simple yet uncompromising: to dismantle the friction between African businesses and global digital excellence. We do not just build websites; we build the revenue engines and human talent that power the future of commerce.",
+    bio: "Chike Onyekachukwu is the Founder, Managing Director, and CEO of Mindware Consulting Ltd (incorporated RC 1309926, January 2016). He leads strategic direction, client advisory, and multi-disciplinary digital transformation engagements for businesses operating across civil engineering, construction, real estate, oil & gas, automotive, and commercial services.",
+    quote:
+      "Businesses do not just need a website or isolated marketing campaign—they need integrated digital infrastructure, clear positioning, and dependable execution systems that convert market trust into sustainable growth.",
     image: "/mindware-ceo.png",
     credentials: [
-      "Founder & MD, Mindware Consulting Ltd",
-      "Executive Technology Strategist",
-      "Enterprise SEO & Digital Growth Architect",
-      "Lead Advisor on Corporate Digital Modernization"
+      "Founder & Managing Director, Mindware Consulting Ltd (RC 1309926)",
+      "Leading the practice since incorporation in January 2016",
+      "Executive Advisor on Digital Transformation & Business Growth",
+      "Direct Oversight of Construction, Energy & Enterprise Client Mandates"
     ],
     responsibilities: [
-      "Corporate strategy, long-term vision & shareholder governance",
-      "Major enterprise client advisory & strategic architecture",
-      "Curriculum direction for Mindware Academy programs",
-      "Fostering strategic technology partnerships & Pan-African expansion"
-    ],
-    linkedin: "https://linkedin.com"
-  },
-  {
-    id: "anthony-adeleke",
-    name: "Engr. Anthony Adeleke",
-    role: "Chief Technology Officer (CTO)",
-    division: "Engineering & Digital Infrastructure",
-    bio: "Anthony oversees technology infrastructure, systems architecture, and engineering standards across all Mindware client builds. A seasoned full-stack systems engineer with over a decade of experience designing scalable web applications, cloud hosting clusters, and enterprise API integrations, Anthony guarantees sub-second performance, airtight cybersecurity, and high-availability uptime.",
-    image: "/assets/aistudio/hero_marketing_studio.jpg",
-    credentials: [
-      "B.Eng Computer Engineering",
-      "AWS Certified Solutions Architect",
-      "Certified Ethical Hacker (CEH)",
-      "10+ Years Enterprise Full-Stack Engineering"
-    ],
-    responsibilities: [
-      "Engineering architecture & code review standards",
-      "Cloud hosting security, CDN, and high-availability DevOps",
-      "API integrations & custom CRM/ERP workflow automations",
-      "Technical mentorship for digital academy engineering tracks"
-    ]
-  },
-  {
-    id: "sarah-nnamdi-okafor",
-    name: "Sarah Nnamdi-Okafor",
-    role: "Director of Digital Growth & Performance Marketing",
-    division: "Growth, SEO & Paid Acquisition",
-    bio: "Sarah leads Mindware's performance marketing practice, overseeing organic search engine optimization, paid customer acquisition across Meta and Google Ads, and conversion rate optimization (CRO). Her data-rigorous methodologies have propelled dozens of B2B and consumer brands to top Google rankings and multi-fold increases in qualified pipeline.",
-    image: "/assets/images/values_innovation_culture_1790617210723.jpg",
-    credentials: [
-      "B.Sc Mass Communication",
-      "Google Ads & Analytics Certified Professional",
-      "Meta Certified Media Buying Specialist",
-      "Former Senior Growth Strategist at Regional Agency"
-    ],
-    responsibilities: [
-      "Organic SEO strategy & technical search indexing",
-      "Multi-channel paid media budget allocation & ROAS optimization",
-      "Audience intelligence, persona research & creative messaging",
-      "Lead generation funnel analytics & revenue attribution"
-    ]
-  },
-  {
-    id: "dr-emeka-balogun",
-    name: "Dr. Emeka Balogun, PMP®",
-    role: "Head of Training Academy & Workforce Development",
-    division: "Mindware Academy & Corporate Upskilling",
-    bio: "Dr. Balogun leads Mindware Training Academy's corporate and professional certifications division. A certified Project Management Professional (PMP®) and certified HR and HSE director, he oversees curriculum alignment with PMI® PMBOK standards, OSHA/ISO compliance, and modern practical skills that prepare graduates for immediate employability.",
-    image: "/assets/images/leadership_executive_team_1790617221909.jpg",
-    credentials: [
-      "Project Management Professional (PMP® - PMI)",
-      "Chartered Member, CIPM (Human Resources)",
-      "NEBOSH & OSHA Certified HSE Lead Instructor",
-      "12+ Years Corporate Workforce Development"
-    ],
-    responsibilities: [
-      "PMP, HRM, and HSE curriculum design & examination governance",
-      "Corporate workforce upskilling partnerships with enterprise clients",
-      "Instructor certification & training delivery quality control",
-      "Student career placement & employability mentorship"
-    ]
-  },
-  {
-    id: "folake-adele-williams",
-    name: "Folake Adele-Williams",
-    role: "Director of Operations & Client Success",
-    division: "Operations & Governance",
-    bio: "Folake manages client delivery workflows, resource scheduling, and operational governance at Mindware. With a rigorous background in agile project management and client relations, she ensures every engagement is delivered strictly on scope, on budget, and to exemplary quality benchmarks.",
-    image: "/assets/images/mission_hero_vision_1790617197716.jpg",
-    credentials: [
-      "Certified Scrum Master (CSM)",
-      "Prince2 Practitioner",
-      "B.Sc Business Administration",
-      "8+ Years Client Relationship Management"
-    ],
-    responsibilities: [
-      "Sprint planning & cross-functional project delivery",
-      "Client onboarding, SLA monitoring & satisfaction tracking",
-      "Vendor management & resource procurement",
-      "Quality assurance audits and operational standard operating procedures"
+      "Corporate governance, statutory compliance, and executive leadership",
+      "Strategic growth consulting and client transformation architecture",
+      "Oversight of the ACQUIRE → GROW → OPTIMIZE → ACCELERATE → PROTECT framework",
+      "Long-term partner advisory across flagship commercial engagements"
     ]
   }
 ];
 
-export const ADVISORY_BOARD: AdvisoryMember[] = [
+export const PRACTICE_DIVISIONS: PracticeDivision[] = [
   {
-    name: "Chief Olabisi Craig, FNSE",
-    title: "Senior Enterprise Strategy Advisor",
-    organization: "Former Executive Director, Multinational Energy Group",
-    focusArea: "Industrial Sector Strategy & Enterprise Corporate Governance"
+    id: "digital-transformation",
+    title: "Digital Transformation & Technology Practice",
+    pillar: "Pillar 01",
+    summary:
+      "Architects corporate websites, responsive upgrades, custom business software, client portals, and reliable ongoing maintenance SLAs.",
+    capabilities: [
+      "Corporate Web Platforms & Legacy Upgrades",
+      "Custom Business Software & Workflow Portals",
+      "UI/UX Systems & Multi-Device Engineering",
+      "Ongoing Maintenance, Updates & Uptime Protection"
+    ]
   },
   {
-    name: "Barr. Ifeoma Maduka, LL.M",
-    title: "Legal & Corporate Compliance Counsel",
-    organization: "Managing Partner, Maduka & Associates",
-    focusArea: "Intellectual Property, NDPR Data Privacy & Digital Contracts"
+    id: "customer-acquisition",
+    title: "Digital Marketing & Customer Acquisition Practice",
+    pillar: "Pillar 02",
+    summary:
+      "Drives qualified buyer visibility across Google Search, Maps, social platforms, and structured RFQ/WhatsApp lead funnels.",
+    capabilities: [
+      "Technical & Local Schema.org SEO",
+      "Google Ads & B2B Demand Generation",
+      "Executive Social Media Positioning",
+      "Conversion Architecture & Inquiry Routing"
+    ]
   },
   {
-    name: "Tunde Alabi, FCA",
-    title: "Financial & Capital Allocation Advisor",
-    organization: "Principal, Apex Financial Advisory",
-    focusArea: "Corporate Finance, Venture Growth & Strategic Capital Planning"
+    id: "management-consulting",
+    title: "Business Growth & Management Consulting Practice",
+    pillar: "Pillar 03",
+    summary:
+      "Supports leadership teams with business development structure, operational improvement, project governance, and digital system adoption.",
+    capabilities: [
+      "Business Growth Strategy & Commercial Structuring",
+      "Operational Workflow & Process Optimization",
+      "Project Governance & Compliance Readiness",
+      "Enterprise Team Enablement on Adopted Systems"
+    ]
   }
 ];
 
 export const GOVERNANCE_FRAMEWORK: GovernancePillar[] = [
   {
     number: "01",
-    title: "Agile Sprint Methodology",
-    description: "Every development and consulting initiative is divided into tight, two-week sprint cycles with weekly client demos and measurable milestones.",
-    metric: "98.4% On-Time Delivery"
+    title: "Structured Milestone Delivery",
+    description:
+      "Every build and consulting mandate is managed across defined discovery, design, engineering, and handover phases with transparent 60%/40% milestone accountability.",
+    metric: "Written Scope Control"
   },
   {
     number: "02",
-    title: "Data Protection & NDPR Compliance",
-    description: "Strict adherence to the Nigeria Data Protection Act (NDPA) and global GDPR standards. Client proprietary data and source code are safeguarded by enterprise encryption.",
-    metric: "100% Security Audited"
+    title: "Statutory & Tax Accountability",
+    description:
+      "Registered with the Corporate Affairs Commission (RC 1309926) and Federal Inland Revenue Service (TIN 19660429-0001) to support formal corporate contracting and invoicing.",
+    metric: "CAC & FIRS Verified"
   },
   {
     number: "03",
-    title: "Continuous Quality & Performance Audits",
-    description: "Automated regression testing, cross-browser compatibility checks, and mobile performance benchmarks precede any public release.",
-    metric: "Sub-1.2s Load Standard"
+    title: "Cross-Device Quality Verification",
+    description:
+      "Every web platform undergoes structured responsiveness checks across desktop, tablet, and smartphone screens alongside metadata and inquiry path testing before launch.",
+    metric: "Pre-Launch QA Audit"
   },
   {
     number: "04",
-    title: "Social Impact & Talent Empowerment",
-    description: "We allocate a fixed percentage of academy capacity to subsidized scholarships for underprivileged youth seeking high-income digital tech skills.",
-    metric: "40+ Annual Scholarships"
+    title: "Proactive Post-Launch Maintenance",
+    description:
+      "Ongoing software updates, SSL hygiene, and rapid technical support ensure client digital assets stay dependable without disruption or downtime.",
+    metric: "Zero-Downtime Focus"
   }
 ];

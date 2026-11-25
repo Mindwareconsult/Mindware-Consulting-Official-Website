@@ -27,6 +27,8 @@ import { getAllCaseStudies, CaseStudyDetail } from "../data/caseStudies";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
 import { EASE } from "../lib/utils";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackPrimaryCtaClick } from "../lib/analytics";
 
 export function CaseStudies() {
   const caseStudies = useMemo(() => getAllCaseStudies(), []);
@@ -34,7 +36,7 @@ export function CaseStudies() {
   // Filter & Search states
   const [activeIndustry, setActiveIndustry] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [sortBy, setSortBy] = useState<"featured" | "growth" | "duration">("featured");
+  const [sortBy, setSortBy] = useState<"featured" | "client" | "duration">("featured");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   // Interactive ROI Calculator states
@@ -79,12 +81,8 @@ export function CaseStudies() {
     }
 
     // Sorting
-    if (sortBy === "growth") {
-      result.sort((a, b) => {
-        const valA = parseInt(a.metrics?.[0]?.value?.replace(/[^0-9]/g, "") || "0", 10);
-        const valB = parseInt(b.metrics?.[0]?.value?.replace(/[^0-9]/g, "") || "0", 10);
-        return valB - valA;
-      });
+    if (sortBy === "client") {
+      result.sort((a, b) => a.client.localeCompare(b.client));
     } else if (sortBy === "duration") {
       result.sort((a, b) => {
         const durA = parseInt(a.projectDuration?.replace(/[^0-9]/g, "") || "4", 10);
@@ -104,7 +102,7 @@ export function CaseStudies() {
     const currentLeads = Math.round((visitorScale * currentConversionRate) / 100);
     const projectedLeads = Math.round((projectedVisitors * projectedRate) / 100);
     const incrementalLeads = Math.max(0, projectedLeads - currentLeads);
-    const speedRating = "<0.85s TTFB";
+    const speedRating = "Responsive Modern Architecture";
 
     return {
       projectedVisitors,
@@ -119,9 +117,9 @@ export function CaseStudies() {
   // Frequently Asked Questions
   const caseStudyFaqs = [
     {
-      question: "How do you measure and verify the growth metrics cited in these case studies?",
+      question: "How do you measure outcomes across client engagements?",
       answer:
-        "Every client engagement establishes baseline metrics prior to development—including Google Search Console impressions, click-through rates, Core Web Vitals load times, and inbound lead form / WhatsApp consultation volumes. Outcomes are tracked across 30, 60, and 90-day intervals post-launch to document verifiable commercial uplift.",
+        "Prior to launch, we align with client stakeholders on concrete objectives—ranging from multi-device responsiveness and Schema.org indexing to structured RFQ/WhatsApp inquiry pathways. Where clients retain us for ongoing growth, we monitor Google Search Console, GA4 analytics, and inquiry volumes over time.",
     },
     {
       question: "Are these projects built using standard WordPress templates or custom engineering?",
@@ -191,20 +189,20 @@ export function CaseStudies() {
             {/* Quick Metrics Strip */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 pt-6 sm:pt-8 border-t border-white/10">
               <div className="p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 sm:border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">150+</div>
-                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">Platforms Delivered</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">{caseStudies.length}</div>
+                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">Documented Case Studies</div>
               </div>
               <div className="p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 sm:border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-mw-orange tracking-tight">300%</div>
-                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">Average Client ROI</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-mw-orange tracking-tight">06</div>
+                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">Commercial Sectors Served</div>
               </div>
               <div className="p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 sm:border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">85%+</div>
-                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">Avg Search Lift</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">03</div>
+                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">Solution Pillars</div>
               </div>
               <div className="p-3 sm:p-4 rounded-xl bg-white/[0.02] border border-white/5 sm:border-white/10">
-                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-mw-orange tracking-tight">100%</div>
-                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">On-Time Delivery</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-mw-orange tracking-tight">Since 2016</div>
+                <div className="text-[11px] sm:text-xs uppercase tracking-wider text-white/50 mt-1">RC 1309926 Practice</div>
               </div>
             </div>
           </motion.div>
@@ -287,12 +285,12 @@ export function CaseStudies() {
                     <span className="hidden xs:inline">Sort:</span>
                     <select
                       value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value as "featured" | "growth" | "duration")}
+                      onChange={(e) => setSortBy(e.target.value as "featured" | "client" | "duration")}
                       aria-label="Sort case studies"
                       className="bg-transparent text-white font-medium focus:outline-none text-xs cursor-pointer"
                     >
                       <option value="featured" className="bg-[#0a0d14] text-white">Featured</option>
-                      <option value="growth" className="bg-[#0a0d14] text-white">Highest Growth</option>
+                      <option value="client" className="bg-[#0a0d14] text-white">Client A–Z</option>
                       <option value="duration" className="bg-[#0a0d14] text-white">Fastest Delivery</option>
                     </select>
                   </div>
@@ -372,7 +370,7 @@ export function CaseStudies() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
               {filteredStudies.map((study, index) => {
-                const highlightMetric = study.metrics?.[0] || { label: "Performance", value: "+85%" };
+                const highlightMetric = study.metrics?.[0] || { label: "Scope", value: study.service };
 
                 return (
                   <motion.article
@@ -476,9 +474,9 @@ export function CaseStudies() {
                           <div className="flex items-center gap-2.5 sm:gap-3">
                             <TrendingUp className="w-4 h-4 text-mw-orange shrink-0" />
                             <div>
-                              <div className="text-[10px] uppercase tracking-wider text-white/40">Growth Metric</div>
+                              <div className="text-[10px] uppercase tracking-wider text-white/40">{study.metrics[0]?.label || "Scope"}</div>
                               <div className="text-xs sm:text-sm font-bold text-white">
-                                {study.metrics[0]?.value || "+85%"}
+                                {study.metrics[0]?.value || study.service}
                               </div>
                             </div>
                           </div>
@@ -545,13 +543,13 @@ export function CaseStudies() {
           <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-14">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-mw-orange/10 border border-mw-orange/20 text-xs font-semibold text-mw-orange uppercase tracking-wider mb-4">
               <Calculator className="w-3.5 h-3.5 shrink-0" />
-              <span>Interactive Commercial Modeler</span>
+              <span>Illustrative Scenario Modeler</span>
             </div>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Project Your Platform's Commercial Lift.
+              Explore Potential Lead Funnel Scenarios.
             </h2>
             <p className="text-white/70 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
-              Based on historical data from 150+ custom builds, estimate how our high-performance architecture and localized SEO will impact your monthly qualified inquiries.
+              Use this illustrative planner to model how traffic growth and conversion-rate improvements could affect your monthly inquiry pipeline. Outputs are scenario estimates, not guaranteed results.
             </p>
           </div>
 
@@ -677,20 +675,24 @@ export function CaseStudies() {
                   <span className="font-bold text-mw-orange font-mono">{calculatedOutcomes.projectedRate}%</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-white/60">Estimated Load Speed:</span>
+                  <span className="text-white/60">Architecture Standard:</span>
                   <span className="font-bold text-emerald-400 font-mono">{calculatedOutcomes.speedRating}</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-white/60">Target Delivery Timeline:</span>
-                  <span className="font-bold text-white font-mono">4 to 6 Weeks</span>
+                  <span className="text-white/60">Typical Delivery Window:</span>
+                  <span className="font-bold text-white font-mono">3 to 6 Weeks</span>
                 </div>
+                <p className="text-[11px] text-white/45 pt-1 border-t border-white/5 leading-relaxed">
+                  Illustrative scenario estimates only — actual conversion results vary by market demand, offer, and campaign scope.
+                </p>
               </div>
 
               <Link
-                to="/contact"
+                to={CONVERSION_CTAS.primaryPath}
+                onClick={() => trackPrimaryCtaClick("case-studies-modeler", CONVERSION_CTAS.primaryPath)}
                 className="inline-flex items-center justify-center gap-2 w-full bg-mw-orange hover:bg-white hover:text-mw-dark text-white py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all min-h-[44px] shadow-lg active:scale-95"
               >
-                <span>Request Custom Strategy Brief</span>
+                <span>{CONVERSION_CTAS.primaryLabel}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -731,10 +733,10 @@ export function CaseStudies() {
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-white">Precision Engineering</h3>
               <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-4">
-                No templates or bloat. We engineer lightning-fast modern web applications with sub-second response times, immaculate typography, and frictionless UX.
+                No templates or bloat. We engineer responsive, lightweight modern web applications with clean information architecture and frictionless buyer journeys.
               </p>
               <div className="text-[11px] font-semibold text-mw-orange flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5" /> Sub-Second Core Web Vitals
+                <CheckCircle2 className="w-3.5 h-3.5" /> Responsive Modern Web Architecture
               </div>
             </div>
 
@@ -833,10 +835,11 @@ export function CaseStudies() {
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 sm:gap-4 max-w-md sm:max-w-none mx-auto">
             <Link
-              to="/contact"
+              to={CONVERSION_CTAS.primaryPath}
+              onClick={() => trackPrimaryCtaClick("case-studies-bottom", CONVERSION_CTAS.primaryPath)}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 shadow-xl min-h-[48px] active:scale-95"
             >
-              <span>Schedule Strategic Consultation</span>
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
 

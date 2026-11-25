@@ -170,17 +170,27 @@ export function AboutCertifications() {
                     {cert.authority}
                   </p>
 
-                  <p className="text-xs text-white/70 leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-xs text-white/70 leading-relaxed mb-4 line-clamp-2">
                     {cert.summary}
                   </p>
 
+                  {/* Practical Value to Clients */}
+                  <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 mb-3">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-mw-orange mb-1">
+                      What This Means For Your Business
+                    </div>
+                    <p className="text-xs text-white/85 leading-relaxed line-clamp-3">
+                      {cert.clientValue}
+                    </p>
+                  </div>
+
                   {/* Operational Scope */}
                   {cert.officialScope && (
-                    <div className="pt-3 border-t border-white/5 mb-2">
+                    <div className="pt-2 border-t border-white/5 mb-1">
                       <div className="text-[10px] font-mono uppercase tracking-wider text-white/40 mb-1">
                         Authorized Scope
                       </div>
-                      <div className="text-xs text-white/80 font-medium">
+                      <div className="text-xs text-white/70 font-medium">
                         {cert.officialScope}
                       </div>
                     </div>
@@ -345,6 +355,15 @@ export function AboutCertifications() {
                       </div>
                       <p className="text-xs text-white/70 leading-relaxed">
                         {activeCert.summary}
+                      </p>
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-mw-orange/10 border border-mw-orange/25">
+                      <div className="text-[10px] font-mono uppercase tracking-wider text-mw-orange mb-1">
+                        Practical Value to Clients
+                      </div>
+                      <p className="text-xs text-white/90 leading-relaxed">
+                        {activeCert.clientValue}
                       </p>
                     </div>
 

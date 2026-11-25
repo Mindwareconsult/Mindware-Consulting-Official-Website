@@ -198,7 +198,7 @@ export function HomeVideoTestimonials() {
                 Looking for more client case studies and verified reviews?
               </div>
               <div className="text-xs sm:text-sm text-white/60">
-                Explore our full archive of corporate client testimonials and training academy graduate stories.
+                Explore our full archive of verified corporate client video testimonials and commercial case studies.
               </div>
             </div>
           </div>

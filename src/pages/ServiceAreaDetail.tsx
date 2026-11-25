@@ -30,6 +30,12 @@ import { LocalMapEmbed } from "../components/service-areas/LocalMapEmbed";
 import { SEO } from "../components/SEO";
 import { FadeInSection } from "../components/FadeInSection";
 import { cn, EASE } from "../lib/utils";
+import {
+  getStoredUtmParams,
+  trackFormSubmit,
+  trackWhatsAppClick,
+  trackPhoneClick
+} from "../lib/analytics";
 
 export function ServiceAreaDetail() {
   const { stateSlug } = useParams<{ stateSlug: string }>();
@@ -40,15 +46,24 @@ export function ServiceAreaDetail() {
 
   // State for interactive consultation form
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formRef, setFormRef] = useState("");
   const [formName, setFormName] = useState("");
   const [formPhone, setFormPhone] = useState("");
   const [formCompany, setFormCompany] = useState("");
   const [formService, setFormService] = useState("Web Design & SEO");
+  const [honeypot, setHoneypot] = useState("");
 
   // If state not found, redirect to parent service areas directory
   if (!stateData) {
     return (
       <div className="bg-[#02040a] min-h-screen text-white pt-36 pb-24 text-center px-6">
+        <SEO
+          title="State Territory Not Found | Mindware Consulting Ltd"
+          description="Explore Mindware Consulting digital growth and local SEO solutions across all 36 States of Nigeria and FCT Abuja."
+          noindex
+        />
         <div className="max-w-xl mx-auto space-y-5">
           <Compass className="w-16 h-16 text-mw-orange mx-auto opacity-70" />
           <h1 className="text-3xl font-bold font-display text-white">State Territory Not Found</h1>
@@ -77,12 +92,12 @@ export function ServiceAreaDetail() {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": `https://mindwareconsulting.com/service-areas/${stateData.slug}#localbusiness`,
+        "@id": `https://mindwareconsult.com.ng/service-areas/${stateData.slug}#localbusiness`,
         "name": `Mindware Consulting Ltd - ${stateData.name}`,
         "description": stateData.metaDescription,
-        "url": `https://mindwareconsulting.com/service-areas/${stateData.slug}`,
+        "url": `https://mindwareconsult.com.ng/service-areas/${stateData.slug}`,
         "telephone": "+2348125082354",
-        "email": "mindwareconsultingltd@gmail.com",
+        "email": "contact@mindwareconsult.com.ng",
         "priceRange": "₦₦₦",
         "address": {
           "@type": "PostalAddress",
@@ -135,7 +150,7 @@ export function ServiceAreaDetail() {
       },
       {
         "@type": "FAQPage",
-        "@id": `https://mindwareconsulting.com/service-areas/${stateData.slug}#faq`,
+        "@id": `https://mindwareconsult.com.ng/service-areas/${stateData.slug}#faq`,
         "mainEntity": stateData.localFaqs.map((faq) => ({
           "@type": "Question",
           "name": faq.question,
@@ -148,9 +163,57 @@ export function ServiceAreaDetail() {
     ]
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setFormError(null);
+    setFormSubmitting(true);
+
+    const enquiryCategory =
+      formService === "Management & Growth Consulting"
+        ? "business-growth-consulting"
+        : "digital-transformation";
+
+    trackFormSubmit(enquiryCategory, "attempt", {
+      state_territory: stateData.slug,
+    });
+
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          _hp: honeypot,
+          source: `service-area-${stateData.slug}`,
+          enquiryCategory,
+          industrySector: "Other Growing Organization / Institution",
+          fullName: formName.trim(),
+          businessName: formCompany.trim(),
+          phone: formPhone.trim(),
+          consultationTopic: `${stateData.name} Regional Business Growth Review`,
+          serviceNeeded: formService,
+          projectDesc: `Regional consultation request for ${stateData.name} (${formService}).`,
+          pagePath: window.location.pathname,
+          utmParams: getStoredUtmParams(),
+        })
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.error || "Unable to submit your enquiry right now. Please call +234 812 508 2354.");
+      }
+      setFormRef(data.referenceId || "");
+      setFormSubmitted(true);
+      trackFormSubmit(enquiryCategory, "success", {
+        state_territory: stateData.slug,
+      });
+    } catch (err: any) {
+      setFormSubmitted(false);
+      setFormError(err?.message || "Unable to submit your enquiry right now. Please call +234 812 508 2354.");
+      trackFormSubmit(enquiryCategory, "error", {
+        state_territory: stateData.slug,
+      });
+    } finally {
+      setFormSubmitting(false);
+    }
   };
 
   return (
@@ -223,7 +286,8 @@ export function ServiceAreaDetail() {
                 )}.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-all active:scale-[0.98] text-center"
+                onClick={() => trackWhatsAppClick(`service-area-${stateData.slug}`, stateData.name)}
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-all active:scale-[0.98] text-center min-h-[44px]"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>WhatsApp Dedicated Desk</span>
@@ -463,9 +527,12 @@ export function ServiceAreaDetail() {
                       <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                         <CheckCircle2 className="w-6 h-6" />
                       </div>
-                      <h4 className="text-xl font-bold text-white">Consultation Request Received!</h4>
+                      <h4 className="text-xl font-bold text-white">Consultation Request Logged</h4>
+                      {formRef && (
+                        <div className="text-[11px] font-mono text-emerald-400">Reference: {formRef}</div>
+                      )}
                       <p className="text-xs text-white/70 max-w-sm mx-auto">
-                        Thank you, {formName}. Our regional consulting lead for <strong>{stateData.name}</strong> will contact your team via phone and email within 2 hours.
+                        Thank you, {formName}. Our consulting desk for <strong>{stateData.name}</strong> has logged your request and will contact you promptly.
                       </p>
                       <button
                         onClick={() => setFormSubmitted(false)}
@@ -476,9 +543,25 @@ export function ServiceAreaDetail() {
                     </div>
                   ) : (
                     <form onSubmit={handleFormSubmit} className="space-y-4">
+                      {/* Honeypot spam trap */}
+                      <input
+                        type="text"
+                        name="_hp"
+                        value={honeypot}
+                        onChange={(e) => setHoneypot(e.target.value)}
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        className="sr-only"
+                      />
                       <div className="text-sm font-bold text-white mb-2">
-                        Get Your Free {stateData.shortName} Growth Proposal
+                        Get Your {stateData.shortName} Growth Proposal
                       </div>
+                      {formError && (
+                        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-300">
+                          {formError}
+                        </div>
+                      )}
 
                       <div>
                         <label className="block text-xs text-white/70 mb-1.5 font-medium">Your Full Name</label>
@@ -527,20 +610,31 @@ export function ServiceAreaDetail() {
                           <option value="Web Design & SEO">Web Design & Local SEO</option>
                           <option value="E-Commerce & Online Store">E-Commerce & Payment Integration</option>
                           <option value="Corporate Portal & Software">Custom Corporate Web Application</option>
-                          <option value="PMP / HSE Corporate Training">PMP® & HSE Professional Training</option>
+                          <option value="Management & Growth Consulting">Business Growth & Operations Consulting</option>
                           <option value="Full Digital Transformation">Complete Digital Transformation</option>
                         </select>
                       </div>
 
                       <button
                         type="submit"
-                        className="w-full py-3.5 px-6 rounded-xl bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 mt-2 hover:scale-[1.01] active:scale-[0.99]"
+                        disabled={formSubmitting}
+                        className="w-full py-3.5 px-6 rounded-xl bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 mt-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 min-h-[44px]"
                       >
-                        Request {stateData.shortName} Consultation
+                        {formSubmitting ? "Submitting..." : `Request ${stateData.shortName} Growth Review`}
                       </button>
 
-                      <div className="text-[11px] text-white/40 text-center">
-                        Prefer an instant call? Phone: <a href="tel:+2348125082354" className="text-white/70 hover:text-white underline">+234 812 508 2354</a>
+                      <div className="text-[11px] text-white/45 text-center space-y-1">
+                        <div>Confidentially reviewed by Mindware Consulting Ltd (RC 1309926).</div>
+                        <div>
+                          Prefer an instant call? Phone:{" "}
+                          <a
+                            href="tel:+2348125082354"
+                            onClick={() => trackPhoneClick(`service-area-${stateData.slug}`)}
+                            className="text-white/70 hover:text-white underline"
+                          >
+                            +234 812 508 2354
+                          </a>
+                        </div>
                       </div>
                     </form>
                   )}

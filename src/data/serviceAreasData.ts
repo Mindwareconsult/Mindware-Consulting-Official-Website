@@ -342,7 +342,7 @@ export const SERVICE_AREAS: StateServiceArea[] = [
       { title: "Hospitality & Hotel Booking Engines", description: "Direct booking engines with zero commission fees for Enugu luxury hotels and resorts.", benefit: "Maximize direct occupancy and guest revenue." }
     ],
     localFaqs: [
-      { question: "Do you offer digital training programs in Enugu?", answer: "Yes. Mindware's Academy offers virtual and hybrid cohorts in Web Development, Technical SEO, and PMP® certification for professionals across Enugu." }
+      { question: "Do you provide corporate digital enablement workshops in Enugu?", answer: "Yes. Mindware delivers bespoke B2B organizational workshops, digital system onboarding, and operational advisory for corporate teams in Enugu and across Southeastern Nigeria." }
     ]
   },
 

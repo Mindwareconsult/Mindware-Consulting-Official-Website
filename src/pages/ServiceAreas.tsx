@@ -26,6 +26,8 @@ import {
 import { SEO } from "../components/SEO";
 import { FadeInSection } from "../components/FadeInSection";
 import { cn, EASE } from "../lib/utils";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackPrimaryCtaClick, trackWhatsAppClick } from "../lib/analytics";
 
 export function ServiceAreas() {
   const [selectedZone, setSelectedZone] = useState<GeopoliticalZone | "All">("All");
@@ -62,7 +64,7 @@ export function ServiceAreas() {
       "@type": "ListItem",
       "position": index + 1,
       "name": area.name,
-      "url": `https://mindwareconsulting.com/service-areas/${area.slug}`,
+      "url": `https://mindwareconsult.com.ng/service-areas/${area.slug}`,
       "item": {
         "@type": "AdministrativeArea",
         "name": area.name,
@@ -378,17 +380,19 @@ export function ServiceAreas() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
             <Link
-              to="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20"
+              to={CONVERSION_CTAS.primaryPath}
+              onClick={() => trackPrimaryCtaClick("service-areas-bottom", CONVERSION_CTAS.primaryPath)}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 min-h-[44px]"
             >
-              <span>Schedule Strategy Call</span>
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
               href="https://wa.me/2348125082354?text=Hello%20Mindware%20Consulting%2C%20I%20want%20to%20discuss%20web%20design%20and%20local%20SEO%20for%20my%20state."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-colors"
+              onClick={() => trackWhatsAppClick("service-areas-bottom", "Regional Growth Review")}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-colors min-h-[44px]"
             >
               <span>Chat on WhatsApp</span>
             </a>

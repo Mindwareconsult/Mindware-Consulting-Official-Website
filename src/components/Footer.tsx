@@ -14,31 +14,57 @@ import {
   Layers
 } from "lucide-react";
 import React, { useState } from "react";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import {
+  trackEmailClick,
+  trackPrimaryCtaClick,
+  trackWhatsAppClick,
+} from "../lib/analytics";
 
 const PARENT_NAVIGATION = [
   { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
-  { name: "Services", path: "/services" },
-  { name: "Pricing Packages", path: "/pricing" },
-  { name: "Portfolio & Works", path: "/portfolio" },
-  { name: "Academy", path: "/training" },
+  { name: "Solutions", path: "/solutions" },
+  { name: "Industries", path: "/industries" },
+  { name: "Our Work", path: "/portfolio" },
+  { name: "About", path: "/about" },
+  { name: "Insights", path: "/insights" },
+  { name: "Careers at Mindware", path: "/careers" },
+  { name: "Business Growth Season 2026", path: "/business-growth-season" },
+  { name: "Growth Packages", path: "/pricing" },
   { name: "Service Areas (36 States & FCT)", path: "/service-areas" },
-  { name: "Industries We Serve", path: "/industries" },
-  { name: "Careers & Talent Hub", path: "/careers" },
-  { name: "Insights & Research", path: "/insights" },
-  { name: "Contact Us", path: "/contact" }
+  { name: "Contact", path: "/contact" }
 ];
 
 export function Footer() {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [subError, setSubError] = useState<string | null>(null);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email.trim() || submitting) return;
+    setSubmitting(true);
+    setSubError(null);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), source: "footer", _hp: honeypot }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || "Unable to subscribe right now.");
+      }
       setSubscribed(true);
       setEmail("");
-      setTimeout(() => setSubscribed(false), 4000);
+      setTimeout(() => setSubscribed(false), 5000);
+    } catch (err: any) {
+      setSubscribed(false);
+      setSubError(err?.message || "Unable to subscribe right now.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -64,7 +90,7 @@ export function Footer() {
             </Link>
 
             <p className="text-white/60 text-sm leading-relaxed max-w-sm">
-              Your premier digital transformation and growth partner. We engineer high-converting digital platforms, technical SEO dominance, custom software systems, and certified professional training across Nigeria and globally.
+              Mindware Consulting — Your Business Growth and Digital Transformation Partner. We build resilient digital infrastructure, expand search visibility, accelerate customer acquisition, and strengthen business operations across Nigeria and globally.
             </p>
 
             {/* Newsletter Subscription Box */}
@@ -77,6 +103,16 @@ export function Footer() {
               </p>
 
               <form onSubmit={handleSubscribe} className="relative max-w-md">
+                <input
+                  type="text"
+                  name="company_website_confirm"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="sr-only"
+                />
                 <div className="relative flex items-center">
                   <Mail className="absolute left-3.5 w-4 h-4 text-white/40" />
                   <input
@@ -91,11 +127,15 @@ export function Footer() {
                   />
                   <button
                     type="submit"
-                    className="absolute right-1 top-1 bottom-1 bg-white text-mw-dark font-bold text-xs px-4 rounded-full hover:bg-mw-orange hover:text-white transition-all shadow-sm"
+                    disabled={submitting}
+                    className="absolute right-1 top-1 bottom-1 bg-white text-mw-dark font-bold text-xs px-4 rounded-full hover:bg-mw-orange hover:text-white transition-all shadow-sm disabled:opacity-60"
                   >
-                    {subscribed ? "Subscribed" : "Subscribe"}
+                    {submitting ? "Saving..." : subscribed ? "Subscribed" : "Subscribe"}
                   </button>
                 </div>
+                {subError && (
+                  <div className="text-xs text-red-400 mt-2 font-medium">{subError}</div>
+                )}
                 {subscribed && (
                   <div className="flex items-center gap-1.5 text-xs text-emerald-400 mt-2 font-medium">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -108,10 +148,10 @@ export function Footer() {
 
           {/* Column 2: Parent Navigation (spans 3 cols) */}
           <div className="lg:col-span-3 lg:pl-6">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5 flex items-center gap-2">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5 flex items-center gap-2">
               <span>Navigation</span>
               <span className="w-8 h-[1px] bg-white/10" />
-            </h4>
+            </h2>
             <ul className="space-y-3 text-sm">
               {PARENT_NAVIGATION.map((item) => (
                 <li key={item.name}>
@@ -128,10 +168,10 @@ export function Footer() {
 
           {/* Column 3: Core Services (spans 2 cols) */}
           <div className="lg:col-span-2">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5 flex items-center gap-2">
-              <span>Services</span>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5 flex items-center gap-2">
+              <span>Capabilities</span>
               <span className="w-8 h-[1px] bg-white/10" />
-            </h4>
+            </h2>
             <ul className="space-y-3 text-sm">
               {SERVICES.map((s) => (
                 <li key={s.id}>
@@ -157,10 +197,10 @@ export function Footer() {
 
           {/* Column 4: Contact & Office (spans 3 cols) */}
           <div className="lg:col-span-3 lg:pl-4 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5 flex items-center gap-2">
+            <h2 className="text-xs font-bold uppercase tracking-widest text-white/50 mb-5 flex items-center gap-2">
               <span>Contact & Office</span>
               <span className="w-8 h-[1px] bg-white/10" />
-            </h4>
+            </h2>
 
             <div className="space-y-3.5 text-xs md:text-sm text-white/70">
               {/* Email */}
@@ -170,6 +210,7 @@ export function Footer() {
                   <div className="text-[11px] text-white/40 uppercase tracking-wider font-semibold">Corporate Email</div>
                   <a 
                     href="mailto:contact@mindwareconsult.com.ng" 
+                    onClick={() => trackEmailClick("footer")}
                     className="hover:text-white hover:underline transition-colors break-all"
                   >
                     contact@mindwareconsult.com.ng
@@ -186,6 +227,7 @@ export function Footer() {
                     href="https://wa.me/2348125082354" 
                     target="_blank" 
                     rel="noopener noreferrer" 
+                    onClick={() => trackWhatsAppClick("footer")}
                     className="hover:text-white hover:underline transition-colors"
                   >
                     +234 812 508 2354
@@ -199,7 +241,7 @@ export function Footer() {
                 <div>
                   <div className="text-[11px] text-white/40 uppercase tracking-wider font-semibold">Headquarters</div>
                   <p className="text-white/70 leading-snug">
-                    Nigeria • Serving Pan-African & Global Clients
+                    Nigeria • Serving Pan-African &amp; Global Clients
                   </p>
                 </div>
               </div>
@@ -219,11 +261,12 @@ export function Footer() {
             {/* Quick Action Consultation Button */}
             <div className="pt-2">
               <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-white/5 hover:bg-white text-white hover:text-mw-dark border border-white/10 hover:border-white text-xs font-bold uppercase tracking-wider transition-all duration-300"
+                to={CONVERSION_CTAS.primaryPath}
+                onClick={() => trackPrimaryCtaClick("footer", CONVERSION_CTAS.primaryPath)}
+                className="inline-flex items-center justify-center gap-2 w-full min-h-[44px] py-2.5 px-4 rounded-xl bg-white/5 hover:bg-mw-orange text-white border border-white/10 hover:border-mw-orange text-xs font-bold uppercase tracking-wider transition-all duration-300"
               >
-                <span>Schedule Consultation</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>{CONVERSION_CTAS.primaryLabel}</span>
+                <ArrowRight className="w-3.5 h-3.5 shrink-0" />
               </Link>
             </div>
           </div>
@@ -246,16 +289,16 @@ export function Footer() {
             </Link>
           </div>
           <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-white/60">
-            <Link to="/industries/oil-and-gas-marine" className="hover:text-mw-orange transition-colors">
-              Oil & Gas, Offshore Marine & Energy
-            </Link>
-            <span>•</span>
-            <Link to="/industries/construction-civil-engineering" className="hover:text-mw-orange transition-colors">
-              Civil Engineering & Construction
+            <Link to="/industries/construction-civil-engineering" className="text-mw-orange font-semibold hover:underline transition-colors">
+              Civil Engineering & Construction (Flagship)
             </Link>
             <span>•</span>
             <Link to="/industries/real-estate-property-development" className="hover:text-mw-orange transition-colors">
               Real Estate & Property Development
+            </Link>
+            <span>•</span>
+            <Link to="/industries/oil-and-gas-marine" className="hover:text-mw-orange transition-colors">
+              Oil, Gas, Offshore Marine & Energy
             </Link>
             <span>•</span>
             <Link to="/industries/automotive-car-dealerships" className="hover:text-mw-orange transition-colors">
@@ -334,7 +377,7 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-center md:text-left">
             <p>© {new Date().getFullYear()} Mindware Consulting Ltd. All rights reserved.</p>
-            <p className="text-[11px] text-white/30 mt-0.5">Enterprise Digital Strategy • Custom Engineering • Certified Workforce Academy</p>
+            <p className="text-[11px] text-white/30 mt-0.5">Digital Transformation • Customer Acquisition • Business Growth Consulting</p>
           </div>
 
           {/* Social Icons */}
@@ -409,7 +452,11 @@ export function Footer() {
           </div>
 
           {/* Legal / Policy Links */}
-          <div className="flex items-center gap-5 text-white/40">
+          <div className="flex items-center gap-4 text-white/40 flex-wrap justify-center">
+            <Link to="/privacy" className="hover:text-white transition-colors">
+              Privacy Notice
+            </Link>
+            <span>•</span>
             <Link to="/contact" className="hover:text-white transition-colors">
               Client Support
             </Link>

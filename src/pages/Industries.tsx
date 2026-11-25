@@ -28,6 +28,9 @@ import {
 import { SEO } from "../components/SEO";
 import { FadeInSection } from "../components/FadeInSection";
 import { cn, EASE } from "../lib/utils";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackIndustryConversion, trackPrimaryCtaClick, trackWhatsAppClick } from "../lib/analytics";
+import { MEDIA_ASSETS } from "../assets/media";
 
 // Map icon string to Lucide icon component
 function getIndustryIcon(iconName: string) {
@@ -79,7 +82,7 @@ export function Industries() {
       "@type": "ListItem",
       "position": index + 1,
       "name": ind.name,
-      "url": `https://mindwareconsulting.com/industries/${ind.slug}`,
+      "url": `https://mindwareconsult.com.ng/industries/${ind.slug}`,
       "description": ind.metaDescription
     }))
   };
@@ -124,26 +127,26 @@ export function Industries() {
             </h1>
 
             <p className="text-base sm:text-lg text-white/70 max-w-3xl leading-relaxed">
-              Generic web agencies use generic WordPress templates that fail technical audits and procurement screenings. Mindware engineers custom web platforms, compliance architectures, and digital sales engines tailored to the strict operational, legal, and financial realities of your exact sector.
+              Standard templates fail technical due diligence, procurement reviews, and modern commercial buyers. Mindware engineers digital platforms, visibility engines, and business systems structured around the operational, regulatory, and revenue priorities of each industry.
             </p>
 
-            {/* Quick Metrics Bar */}
+            {/* Quick Sector Benchmarks Bar */}
             <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10">
                 <div className="text-2xl font-display font-bold text-mw-orange">6 Sectors</div>
-                <div className="text-xs text-white/60">High-Margin Focus Lineup</div>
+                <div className="text-xs text-white/60">Core Commercial Focus Areas</div>
               </div>
               <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-2xl font-display font-bold text-white">₦2.5B+</div>
-                <div className="text-xs text-white/60">Client Pipeline Enabled</div>
+                <div className="text-2xl font-display font-bold text-white">Flagship</div>
+                <div className="text-xs text-white/60">Construction & Civil Engineering</div>
               </div>
               <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-2xl font-display font-bold text-emerald-400">+45%</div>
-                <div className="text-xs text-white/60">Avg. Tender / Deal Win Lift</div>
+                <div className="text-2xl font-display font-bold text-emerald-400">36 States + FCT</div>
+                <div className="text-xs text-white/60">National & Diaspora Reach</div>
               </div>
               <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10">
-                <div className="text-2xl font-display font-bold text-blue-400">100%</div>
-                <div className="text-xs text-white/60">Mobile-First Security & Speed</div>
+                <div className="text-2xl font-display font-bold text-blue-400">Mobile-First</div>
+                <div className="text-xs text-white/60">Procurement & Security Ready</div>
               </div>
             </div>
           </div>
@@ -203,6 +206,56 @@ export function Industries() {
           </div>
         </div>
 
+        {/* Flagship Sector Spotlight: Construction & Civil Engineering */}
+        {(() => {
+          const flagship = INDUSTRIES.find((i) => i.isFlagship);
+          if (!flagship) return null;
+          return (
+            <div className="rounded-3xl border border-mw-orange/35 bg-gradient-to-br from-mw-orange/15 via-[#090d16] to-white/[0.02] p-6 sm:p-8 lg:p-10 shadow-2xl">
+              <div className="grid lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-4">
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold text-mw-orange uppercase tracking-wider">
+                    <Building2 className="w-4 h-4" />
+                    <span>Flagship Market Specialization · Construction & Civil Engineering</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white">
+                    {flagship.name}
+                  </h2>
+                  <p className="text-sm text-white/75 leading-relaxed">
+                    {flagship.heroSubheadline} Trusted by Temamost Nigeria Ltd, Solugans & Associates, Cosmozel Nigeria Limited, Bcale Associates, Harmostructs Engineering, Crescon Projects, Watech, and Efudo Construction.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <Link
+                      to={`/industries/${flagship.slug}`}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white text-xs font-bold uppercase tracking-wider transition-all"
+                    >
+                      <span>Explore Construction Flagship Solutions</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <Link
+                      to="/contact?industry=construction&category=construction-business-growth&cta=business-growth-review"
+                      onClick={() => trackIndustryConversion("construction-civil-engineering", "spotlight_review_click")}
+                      className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-semibold uppercase tracking-wider border border-white/10 transition-colors"
+                    >
+                      <span>{CONVERSION_CTAS.primaryLabel}</span>
+                    </Link>
+                  </div>
+                </div>
+                <div className="lg:col-span-5">
+                  <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 shadow-xl relative">
+                    <img
+                      src={MEDIA_ASSETS.heroConstructionFlagship}
+                      alt="Construction and Civil Engineering flagship sector specialization"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Industry Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {filteredIndustries.map((ind, index) => {
@@ -213,17 +266,27 @@ export function Industries() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: index * 0.08, ease: EASE }}
-                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent hover:border-mw-orange/50 hover:bg-white/[0.05] transition-all p-7 flex flex-col justify-between group shadow-xl"
+                className={cn(
+                  "rounded-3xl border bg-gradient-to-br from-white/[0.03] to-transparent hover:border-mw-orange/50 hover:bg-white/[0.05] transition-all p-7 flex flex-col justify-between group shadow-xl",
+                  ind.isFlagship ? "border-mw-orange/40" : "border-white/10"
+                )}
               >
                 <div className="space-y-4">
                   {/* Category & Icon */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <div className="w-12 h-12 rounded-2xl bg-mw-orange/10 border border-mw-orange/20 flex items-center justify-center text-mw-orange group-hover:bg-mw-orange group-hover:text-white transition-colors">
                       <IconComponent className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-mw-orange px-2.5 py-0.5 rounded-full bg-mw-orange/10 border border-mw-orange/20">
-                      {ind.category}
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      {ind.isFlagship && (
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-white px-2.5 py-0.5 rounded-full bg-mw-orange">
+                          Flagship
+                        </span>
+                      )}
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-mw-orange px-2.5 py-0.5 rounded-full bg-mw-orange/10 border border-mw-orange/20">
+                        {ind.category}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Title & Tagline */}
@@ -258,10 +321,10 @@ export function Industries() {
                     </div>
                   </div>
 
-                  {/* Verified Client Badge */}
+                  {/* Sector Portfolio / Focus Note */}
                   <div className="pt-2 text-[11px] text-emerald-400 flex items-center gap-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                    <span>Proven in Portfolio: {ind.caseStudy.companyName}</span>
+                    <span>{ind.caseStudy.companyName}</span>
                   </div>
                 </div>
 
@@ -307,7 +370,7 @@ export function Industries() {
               <ul className="space-y-2 text-xs text-white/70 leading-relaxed">
                 <li>• Use cookie-cutter foreign templates with zero understanding of Nigerian tender rules.</li>
                 <li>• No NipeX pre-qualification, COREN engineering, or statutory compliance structure.</li>
-                <li>• Sluggish mobile loading speeds that cause over 60% of smartphone visitors to bounce.</li>
+                <li>• Sluggish mobile loading speeds that cause smartphone visitors to exit before browsing services.</li>
                 <li>• Basic contact forms with no automated WhatsApp routing or lead qualification.</li>
               </ul>
             </div>
@@ -318,13 +381,36 @@ export function Industries() {
                 <span>✓ Mindware Industry-Engineered Architecture</span>
               </div>
               <ul className="space-y-2 text-xs text-white/80 leading-relaxed">
-                <li>• Tailored modules (NipeX compliance, 3D site plans, VIN vehicle filters, sub-second checkout).</li>
-                <li>• Embedded trust centers (CAC certificates, HSE metrics, verified title deeds, Carfax reports).</li>
-                <li>• Sub-1.5 second loading speeds on Nigerian 3G/4G networks with edge CDN optimization.</li>
-                <li>• Automated WhatsApp lead routing with instant customer dispatch and CRM integration.</li>
+                <li>• Tailored modules (NipeX compliance, 3D site plans, VIN vehicle filters, streamlined checkout).</li>
+                <li>• Embedded trust centers (CAC certificates, HSE metrics, verified title deeds, inspection checklists).</li>
+                <li>• Fast, lightweight mobile-first delivery tuned for Nigerian 3G/4G networks.</li>
+                <li>• Automated WhatsApp lead routing with structured intake and CRM readiness.</li>
               </ul>
             </div>
           </div>
+        </FadeInSection>
+
+        {/* Other Growing Organizations & Institutions Pathway */}
+        <FadeInSection className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <div className="text-xs font-mono uppercase tracking-wider text-blue-400 font-bold">
+              NOT IN THE SIX SECTORS ABOVE?
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-white">
+              Other Growing Organizations, Professional Firms &amp; Institutions
+            </h3>
+            <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+              We also partner with healthcare practices, logistics firms, schools/training organizations, manufacturing companies, and corporate service providers across Nigeria to strengthen infrastructure, visibility, and growth operations.
+            </p>
+          </div>
+          <Link
+            to="/contact?category=other-organization&industry=other&cta=business-growth-review"
+            onClick={() => trackIndustryConversion("other-organization", "other_sector_click")}
+            className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-mw-dark hover:bg-mw-orange hover:text-white font-bold text-xs uppercase tracking-wider transition-all shrink-0"
+          >
+            <span>Request Review for Your Sector</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </FadeInSection>
 
         {/* Executive Consultation Call to Action */}
@@ -343,17 +429,19 @@ export function Industries() {
 
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
             <Link
-              to="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20"
+              to={CONVERSION_CTAS.primaryPath}
+              onClick={() => trackPrimaryCtaClick("industries-bottom", CONVERSION_CTAS.primaryPath)}
+              className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20"
             >
-              <span>Schedule Strategy Call</span>
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
               href="https://wa.me/2348125082354?text=Hello%20Mindware%20Consulting%2C%20I%20want%20to%20discuss%20a%20digital%20platform%20for%20my%20industry%20sector."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-colors"
+              onClick={() => trackWhatsAppClick("industries-bottom")}
+              className="w-full sm:w-auto min-h-[46px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider transition-colors"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Chat on WhatsApp</span>

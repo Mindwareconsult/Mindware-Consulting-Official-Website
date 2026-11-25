@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 import {
-  Video,
   Youtube,
   Play,
   Star,
   CheckCircle2,
   Building2,
-  GraduationCap,
   ArrowRight,
   ExternalLink,
-  ChevronRight,
-  Sparkles,
-  Award,
-  Filter,
-  Info,
-  Clock,
-  Briefcase
+  ChevronRight
 } from "lucide-react";
 import {
   AGENCY_TESTIMONIALS,
@@ -27,21 +19,11 @@ import {
 import { AboutSubNav } from "../components/about/AboutSubNav";
 import { YouTubeModal } from "../components/testimonials/YouTubeModal";
 import { SEO } from "../components/SEO";
-import { EASE, cn } from "../lib/utils";
-import { FadeInSection } from "../components/FadeInSection";
+import { cn } from "../lib/utils";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackPrimaryCtaClick } from "../lib/analytics";
 
 export function Testimonials() {
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const compartmentParam = searchParams.get("compartment");
-
-  // Redirect old student/graduate queries to the new Academy sub-page
-  useEffect(() => {
-    if (compartmentParam === "students" || compartmentParam === "graduates") {
-      navigate("/training/testimonials", { replace: true });
-    }
-  }, [compartmentParam, navigate]);
-
   // Active filter for agency clients
   const [agencyFilter, setAgencyFilter] = useState<string>("All");
 
@@ -112,13 +94,12 @@ export function Testimonials() {
                 <ExternalLink className="w-3 h-3 ml-0.5 opacity-60 shrink-0" />
               </a>
 
-              {/* Sub-page switch to Academy Graduate Reviews */}
               <Link
-                to="/training/testimonials"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 text-emerald-400 text-xs font-semibold transition-colors text-center"
+                to="/portfolio/case-studies"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-semibold transition-colors text-center"
               >
-                <GraduationCap className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Graduate Reviews & Certifications</span>
+                <Building2 className="w-4 h-4 text-mw-orange shrink-0" />
+                <span>View Client Case Studies</span>
                 <ArrowRight className="w-3.5 h-3.5 shrink-0" />
               </Link>
             </div>
@@ -131,31 +112,6 @@ export function Testimonials() {
 
       {/* Main Content Area */}
       <main className="container mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12 md:py-16 space-y-8 sm:space-y-12">
-        {/* Dedicated Academy Graduate Videos Notice Banner */}
-        <div className="p-4 sm:p-5 rounded-2xl border border-emerald-500/20 bg-emerald-950/20 backdrop-blur-md flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3 text-left">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
-              <GraduationCap className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-xs sm:text-sm font-bold text-white">
-                Student & Graduate Video Testimonials have moved to the Academy Section
-              </div>
-              <div className="text-[11px] sm:text-xs text-white/60">
-                Explore real career transitions, PMP® pass proof, and HSE alumni reviews under Academy Sub-Page 3.
-              </div>
-            </div>
-          </div>
-
-          <Link
-            to="/training/testimonials"
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shrink-0 w-full sm:w-auto text-center"
-          >
-            <span>View Graduate Videos</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
         {/* Corporate Agency Clients Showcase */}
         <div className="space-y-6 sm:space-y-10">
           {/* Header & Filter Pills */}
@@ -477,18 +433,18 @@ export function Testimonials() {
           </Link>
 
           <Link
-            to="/training/testimonials"
+            to="/portfolio/case-studies"
             className="p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-emerald-500/40 transition-all flex items-center justify-between group"
           >
             <div className="space-y-1">
               <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-bold flex items-center gap-1.5">
-                Academy Sub-Page 3
+                Commercial Proof
               </span>
               <h4 className="text-sm sm:text-base font-bold text-white group-hover:text-emerald-400 transition-colors">
-                Graduate Video Testimonials
+                Verified Client Case Studies
               </h4>
               <p className="text-xs text-white/60">
-                Watch certified alumni share their PMP®, HSE & tech career transformations.
+                Examine full architecture breakdowns and ROI across construction, energy & automotive.
               </p>
             </div>
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
@@ -509,23 +465,24 @@ export function Testimonials() {
               Ready to Accelerate Your Enterprise Commercial Growth?
             </h3>
             <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-              Partner with Mindware Consulting to build custom web platforms, search engine dominance, and high-converting customer acquisition systems.
+              Partner with Mindware Consulting to build stronger digital infrastructure, expand search authority, and accelerate customer acquisition.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
             <Link
-              to="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange/90 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 text-center"
+              to={CONVERSION_CTAS.primaryPath}
+              onClick={() => trackPrimaryCtaClick("testimonials-bottom", CONVERSION_CTAS.primaryPath)}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange/90 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl shadow-mw-orange/20 text-center min-h-[44px]"
             >
-              <span>Schedule Strategy Call</span>
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              to="/training/testimonials"
+              to="/solutions"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-semibold text-xs uppercase tracking-wider border border-white/10 transition-colors text-center"
             >
-              <span>View Graduate Reviews</span>
+              <span>Explore Growth Solutions</span>
             </Link>
           </div>
         </div>

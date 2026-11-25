@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Sparkles,
   Briefcase,
-  GraduationCap,
   ShieldCheck,
   Clock,
   Layers,
@@ -23,6 +22,8 @@ import {
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackPrimaryCtaClick, trackWhatsAppClick } from "../lib/analytics";
 
 export function ServiceDetail() {
   const { id } = useParams();
@@ -113,58 +114,46 @@ export function ServiceDetail() {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-              {isTraining ? (
-                <>
-                  <Link
-                    to="/training/digital-skills"
-                    className="inline-flex items-center justify-center gap-2 bg-mw-orange hover:bg-mw-orange-hover text-white px-6 sm:px-7 py-3.5 rounded-full font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-mw-orange/25 text-xs sm:text-sm min-h-[48px] w-full sm:w-auto"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    <span>Digital Skills Sub-Page</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    to="/training/professional-development"
-                    className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 sm:px-7 py-3.5 rounded-full font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg shadow-blue-600/25 text-xs sm:text-sm min-h-[48px] w-full sm:w-auto"
-                  >
-                    <Briefcase className="w-4 h-4" />
-                    <span>Professional & HSE Sub-Page</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    to="/training"
-                    className="inline-flex items-center justify-center gap-2 border border-white/20 hover:bg-white/5 text-white px-5 sm:px-6 py-3.5 rounded-full font-medium transition-colors text-xs sm:text-sm min-h-[48px] w-full sm:w-auto"
-                  >
-                    <GraduationCap className="w-4 h-4 text-mw-orange" />
-                    <span>Academy Hub Overview</span>
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center justify-center gap-2 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl min-h-[48px] w-full sm:w-auto"
-                  >
-                    <span>Discuss Your Project</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    to="/pricing"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/15 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider transition-all hover:scale-105 active:scale-95 min-h-[48px] w-full sm:w-auto"
-                  >
-                    <span>View Pricing Packages</span>
-                  </Link>
-                  <a
-                    href={`https://wa.me/2348125082354?text=${encodeURIComponent(`Hello Mindware Consulting, I would like to inquire about your ${service.title} services.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 sm:px-6 py-3.5 sm:py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-emerald-900/20 min-h-[48px] w-full sm:w-auto"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>WhatsApp Inquiry</span>
-                  </a>
-                </>
-              )}
+              <Link
+                to={`/contact?category=${
+                  service.id === "seo" || service.id === "social-media-marketing"
+                    ? "marketing-customer-acquisition"
+                    : service.id === "consultancy" || service.id === "training"
+                    ? "business-growth-consulting"
+                    : "digital-transformation"
+                }&service=${service.id}&cta=business-growth-review`}
+                onClick={() =>
+                  trackPrimaryCtaClick(
+                    `service-detail-hero-${service.id}`,
+                    `/contact?service=${service.id}`,
+                    service.id === "seo" || service.id === "social-media-marketing"
+                      ? "marketing-customer-acquisition"
+                      : service.id === "consultancy" || service.id === "training"
+                      ? "business-growth-consulting"
+                      : "digital-transformation"
+                  )
+                }
+                className="inline-flex items-center justify-center gap-2 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl min-h-[48px] w-full sm:w-auto"
+              >
+                <span>{CONVERSION_CTAS.primaryLabel}</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/solutions"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/15 px-6 sm:px-7 py-3.5 sm:py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider transition-all hover:scale-105 active:scale-95 min-h-[48px] w-full sm:w-auto"
+              >
+                <span>View Growth Solutions</span>
+              </Link>
+              <a
+                href={`https://wa.me/2348125082354?text=${encodeURIComponent(`Hello Mindware Consulting, I would like to inquire about your ${service.title} services.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackWhatsAppClick(`service-detail-${service.id}`, service.title)}
+                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 sm:px-6 py-3.5 sm:py-4 rounded-full font-semibold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-emerald-900/20 min-h-[48px] w-full sm:w-auto"
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>WhatsApp Inquiry</span>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -193,105 +182,29 @@ export function ServiceDetail() {
         </section>
       )}
 
-      {/* Special Dedicated Section for Training (Dual Tracks) */}
+      {/* B2B Capability Engagement Scope */}
       {isTraining && (
-        <section className="py-12 sm:py-16 md:py-20 border-b border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent">
+        <section className="py-12 sm:py-16 border-b border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent">
           <div className="container mx-auto px-4 sm:px-6 md:px-12">
-            <div className="max-w-3xl mb-8 sm:mb-12">
-              <span className="text-xs font-bold uppercase tracking-wider text-mw-orange px-3 py-1 rounded-full bg-mw-orange/10 border border-mw-orange/20">
-                TWO ACCREDITED LEARNING PATHWAYS
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold font-display tracking-tight text-white mt-3 sm:mt-4 mb-3 sm:mb-4">
-                Specialized Training Academies
-              </h2>
-              <p className="text-white/60 text-xs sm:text-base md:text-lg leading-relaxed font-light">
-                To maximize learner outcomes and corporate workforce compliance, our academy is divided into two specialized tracks with dedicated curriculum pages.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
-              {/* Track 1: Digital Skills */}
-              <div className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/[0.04] to-mw-orange/5 border border-white/10 hover:border-mw-orange/40 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-mw-orange/20 text-mw-orange text-xs font-bold uppercase">
-                      <Sparkles className="w-3.5 h-3.5" /> Sub-Page 1
-                    </span>
-                    <span className="text-[11px] sm:text-xs text-white/50">6 Core Programs</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3">
-                    Digital Skills Training
-                  </h3>
-                  <p className="text-white/70 text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-6 font-light">
-                    Designed for individuals, creators, and freelancers seeking high-demand digital craft and commercial freelance or tech agency roles.
-                  </p>
-
-                  <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
-                    {[
-                      { title: "Web Design & Modern CMS", desc: "WordPress, Elementor, Figma UX, responsive layouts & e-commerce" },
-                      { title: "Social Media Marketing & Paid Ads", desc: "Meta Ads, TikTok, LinkedIn B2B targeting, and conversion funnels" },
-                      { title: "Video Editing & Content Production", desc: "Adobe Premiere Pro, CapCut Desktop, color grading & motion graphics" },
-                      { title: "Data Analytics & Business Intelligence", desc: "Advanced Excel, SQL queries, Power BI DAX dashboards, and Python" },
-                      { title: "Search Engine Optimization (SEO)", desc: "Technical audits, keyword intent, on-page optimization & local ranking" },
-                      { title: "Full-Stack Web & Mobile App Development", desc: "React, TypeScript, Node.js APIs, MongoDB/PostgreSQL & Flutter apps" }
-                    ].map((prog, pidx) => (
-                      <div key={pidx} className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/[0.02] border border-white/5">
-                        <div className="font-semibold text-white text-xs sm:text-sm">{prog.title}</div>
-                        <div className="text-[11px] sm:text-xs text-white/50">{prog.desc}</div>
-                      </div>
-                    ))}
-                  </div>
+            <div className="rounded-2xl sm:rounded-3xl border border-white/10 bg-[#090d16] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="space-y-2 max-w-2xl">
+                <div className="text-xs font-mono font-bold uppercase tracking-wider text-mw-orange">
+                  Corporate Engagement Model
                 </div>
-
-                <Link
-                  to="/training/digital-skills"
-                  className="inline-flex items-center justify-between w-full p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-mw-orange hover:bg-mw-orange-hover text-white text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-mw-orange/20 min-h-[44px] active:scale-[0.99]"
-                >
-                  <span>Explore Digital Skills Sub-Page</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                <h2 className="text-xl sm:text-2xl font-display font-bold text-white">
+                  Delivered Exclusively as Organizational B2B Consulting
+                </h2>
+                <p className="text-xs sm:text-sm text-white/65 leading-relaxed">
+                  All workshops, technical systems onboarding, and governance capability programs under Mindware Consulting Ltd are structured strictly for corporate teams and institutional partners alongside digital transformation deployments.
+                </p>
               </div>
-
-              {/* Track 2: Professional Development & HSE */}
-              <div className="p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white/[0.04] to-blue-900/10 border border-white/10 hover:border-blue-500/40 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold uppercase">
-                      <Briefcase className="w-3.5 h-3.5" /> Sub-Page 2
-                    </span>
-                    <span className="text-[11px] sm:text-xs text-white/50">5 Accredited Certifications</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3">
-                    Professional & Employability Skills
-                  </h3>
-                  <p className="text-white/70 text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-6 font-light">
-                    Designed for managers, site supervisors, HR professionals, and engineers requiring international accreditations and workplace excellence.
-                  </p>
-
-                  <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
-                    {[
-                      { title: "Project Management Professional (PMP®)", desc: "PMBOK® 7th Ed, Agile/Scrum, WBS, EVM, risk registers, 35 PDUs" },
-                      { title: "Strategic Human Resources Management (HRM)", desc: "Nigerian Labour Act, PENCOM, NSITF, KPIs, talent acquisition & HR analytics" },
-                      { title: "Customer Relationship Management (CRM)", desc: "HubSpot, Salesforce, pipeline automation, WhatsApp Business & CLV" },
-                      { title: "Health, Safety & Environment (HSE Levels 1, 2, 3)", desc: "General safety, PTW hazard control, OSHA & ISO 45001/14001 audits" },
-                      { title: "Workplace Employability & Leadership", desc: "Executive presentation, EQ, business proposals, and interview mastery" }
-                    ].map((prog, pidx) => (
-                      <div key={pidx} className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/[0.02] border border-white/5">
-                        <div className="font-semibold text-white text-xs sm:text-sm">{prog.title}</div>
-                        <div className="text-[11px] sm:text-xs text-white/50">{prog.desc}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <Link
-                  to="/training/professional-development"
-                  className="inline-flex items-center justify-between w-full p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-blue-600/20 min-h-[44px] active:scale-[0.99]"
-                >
-                  <span>Explore Professional & HSE Sub-Page</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              <Link
+                to="/contact?service=training"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider shrink-0 transition-colors"
+              >
+                <span>Request Corporate Workshop Scope</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </section>
@@ -628,10 +541,11 @@ export function ServiceDetail() {
           </p>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
             <Link
-              to="/contact"
+              to={CONVERSION_CTAS.primaryPath}
+              onClick={() => trackPrimaryCtaClick(`service-detail-bottom-${service.id}`, CONVERSION_CTAS.primaryPath)}
               className="inline-flex items-center justify-center gap-2 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-7 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl min-h-[48px] w-full sm:w-auto"
             >
-              <span>Schedule Free Strategy Call</span>
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link

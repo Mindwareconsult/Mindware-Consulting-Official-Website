@@ -22,6 +22,9 @@ export function Insights() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterHp, setNewsletterHp] = useState("");
+  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
+  const [newsletterError, setNewsletterError] = useState<string | null>(null);
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   // Categories extraction
@@ -45,12 +48,33 @@ export function Insights() {
 
   const featuredArticle = INSIGHTS[0];
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (newsletterEmail.trim()) {
+    if (!newsletterEmail.trim() || newsletterSubmitting) return;
+    setNewsletterSubmitting(true);
+    setNewsletterError(null);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: newsletterEmail.trim(),
+          source: "insights-page",
+          _hp: newsletterHp,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.error || "Unable to complete subscription right now.");
+      }
       setIsSubscribed(true);
       setNewsletterEmail("");
-      setTimeout(() => setIsSubscribed(false), 5000);
+      setTimeout(() => setIsSubscribed(false), 6000);
+    } catch (err: any) {
+      setIsSubscribed(false);
+      setNewsletterError(err?.message || "Unable to complete subscription right now.");
+    } finally {
+      setNewsletterSubmitting(false);
     }
   };
 
@@ -289,28 +313,44 @@ export function Insights() {
               className="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 font-semibold text-sm inline-flex items-center gap-2"
             >
               <Check className="w-4 h-4" />
-              <span>Thank you for subscribing! Your confirmation is on its way.</span>
+              <span>Thank you! Your Mindware Insights subscription has been received and recorded.</span>
             </motion.div>
           ) : (
-            <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onSubmit={handleSubscribe}>
-              <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-              <input 
-                id="newsletter-email"
-                name="newsletter-email"
-                type="email" 
-                required
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="Enter your corporate email address..." 
-                className="flex-grow bg-white/[0.04] border border-white/10 rounded-full px-6 py-3.5 text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange transition-all min-h-[48px]"
-              />
-              <button
-                type="submit" 
-                className="bg-mw-orange hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-mw-orange/20 whitespace-nowrap min-h-[48px]"
-              >
-                Join Free
-              </button>
-            </form>
+            <>
+              <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onSubmit={handleSubscribe}>
+                <input
+                  type="text"
+                  name="company_website_confirm"
+                  value={newsletterHp}
+                  onChange={(e) => setNewsletterHp(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="sr-only"
+                />
+                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+                <input 
+                  id="newsletter-email"
+                  name="newsletter-email"
+                  type="email" 
+                  required
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder="Enter your corporate email address..." 
+                  className="flex-grow bg-white/[0.04] border border-white/10 rounded-full px-6 py-3.5 text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none focus:border-mw-orange focus:ring-1 focus:ring-mw-orange transition-all min-h-[48px]"
+                />
+                <button
+                  type="submit" 
+                  disabled={newsletterSubmitting}
+                  className="bg-mw-orange hover:bg-orange-600 text-white px-8 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-mw-orange/20 whitespace-nowrap min-h-[48px] disabled:opacity-60"
+                >
+                  {newsletterSubmitting ? "Saving..." : "Join Free"}
+                </button>
+              </form>
+              {newsletterError && (
+                <p className="text-xs text-red-400 mt-3">{newsletterError}</p>
+              )}
+            </>
           )}
 
           <p className="text-[11px] text-white/40 mt-3">

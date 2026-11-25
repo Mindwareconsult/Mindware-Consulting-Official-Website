@@ -22,10 +22,10 @@ export function PricingComparisonTable() {
 
   const categories = [
     { id: "all", label: "All Deliverables" },
-    { id: "Web & Digital Presence", label: "Web & Digital" },
-    { id: "Operations & Automation", label: "Operations & Automation" },
-    { id: "Workforce & Compliance", label: "Workforce & Safety" },
-    { id: "Support & Governance", label: "Support & Management" },
+    { id: "Digital Infrastructure (BUILD)", label: "Infrastructure (BUILD)" },
+    { id: "Acquisition & Automation (GROW)", label: "Acquisition (GROW)" },
+    { id: "Systems & Governance (TRANSFORM)", label: "Systems (TRANSFORM)" },
+    { id: "Support & Continuity", label: "Support & Continuity" },
   ];
 
   // Grouped rows
@@ -52,10 +52,10 @@ export function PricingComparisonTable() {
     // Group by category in consistent order
     const groups: { category: string; rows: MatrixRow[] }[] = [];
     const categoryOrder = [
-      "Web & Digital Presence",
-      "Operations & Automation",
-      "Workforce & Compliance",
-      "Support & Governance"
+      "Digital Infrastructure (BUILD)",
+      "Acquisition & Automation (GROW)",
+      "Systems & Governance (TRANSFORM)",
+      "Support & Continuity"
     ];
 
     categoryOrder.forEach((cat) => {
@@ -87,7 +87,7 @@ export function PricingComparisonTable() {
           </h2>
 
           <p className="text-lg md:text-xl text-white/60 font-light leading-relaxed">
-            See exactly how each of our 6 tiers scales in scope, infrastructure, automated workflows, and corporate workforce certifications.
+            Compare exactly how our BUILD, GROW, and TRANSFORM scopes expand across digital infrastructure, customer acquisition, workflow systems, and governance continuity.
           </p>
         </div>
 
@@ -207,7 +207,7 @@ export function PricingComparisonTable() {
 
                         <div className="pt-2">
                           <span className="block text-[11px] font-mono uppercase tracking-widest text-white/40 mb-1">
-                            Tier {tier.tierNumber}
+                            {tier.level} · Tier {tier.tierNumber}
                           </span>
                           <span className="block text-sm font-bold text-white leading-tight min-h-[38px] flex items-center justify-center">
                             {tier.name}
@@ -326,7 +326,7 @@ export function PricingComparisonTable() {
                                   )
                                 ) : (
                                   <span className={`inline-block font-medium text-xs px-2.5 py-1 rounded-lg border leading-tight ${
-                                    val === "Advanced" || val === "Full Enterprise Automations" || val.includes("PMP")
+                                    val.includes("Full") || val.includes("Integrated") || val.includes("Growth")
                                       ? "bg-white/10 text-white border-white/20 font-semibold"
                                       : "bg-white/[0.03] text-white/80 border-white/10"
                                   }`}>

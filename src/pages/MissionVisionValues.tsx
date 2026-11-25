@@ -27,6 +27,7 @@ import {
 import { SEO } from "../components/SEO";
 import { EASE } from "../lib/utils";
 import { AboutSubNav } from "../components/about/AboutSubNav";
+import { MEDIA_ASSETS } from "../assets/media";
 
 const ICONS_MAP = {
   Compass,
@@ -93,21 +94,21 @@ export function MissionVisionValues() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl leading-relaxed mb-6 sm:mb-8">
-              At Mindware Consulting Ltd, our foundational architecture is built on strategic clarity, world-class digital craft, and measurable commercial value. Here is the compass that guides every partnership, technology deployment, and workforce training program we lead.
+              At Mindware Consulting Ltd, our foundational architecture is built on strategic clarity, dependable digital engineering, and practical commercial value across every client partnership and operational advisory mandate we lead.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-4 text-xs sm:text-sm text-white/60">
               <div className="flex items-center gap-2 bg-white/5 px-3 py-2 sm:py-1.5 rounded-lg border border-white/5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Empowering 100+ Enterprise Brands</span>
+                <span>RC 1309926 Operating Since 2016</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 px-3 py-2 sm:py-1.5 rounded-lg border border-white/5">
                 <CheckCircle2 className="w-4 h-4 text-mw-orange shrink-0" />
-                <span>African Talent Sovereignty</span>
+                <span>Integrated Strategy &amp; Engineering</span>
               </div>
               <div className="flex items-center gap-2 bg-white/5 px-3 py-2 sm:py-1.5 rounded-lg border border-white/5">
                 <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                <span>PMI & ISO Compliant Governance</span>
+                <span>IMC-Nigeria &amp; Statutory Governance</span>
               </div>
             </div>
           </div>
@@ -119,7 +120,7 @@ export function MissionVisionValues() {
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/9] bg-white/5">
             <img
-              src="/src/assets/images/mission_hero_vision_1790617197716.jpg"
+              src={MEDIA_ASSETS.missionHeroVision}
               alt="Mindware Consulting strategic technology laboratory and consultants collaborating"
               className="w-full h-full object-cover object-center"
               loading="lazy"

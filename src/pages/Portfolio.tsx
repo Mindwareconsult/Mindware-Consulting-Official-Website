@@ -6,7 +6,8 @@ import { useState } from "react";
 import { EASE } from "../lib/utils";
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
-import { MetricChart } from "../components/MetricChart";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackPrimaryCtaClick } from "../lib/analytics";
 
 export function Portfolio() {
   const [filter, setFilter] = useState("All");
@@ -38,16 +39,24 @@ export function Portfolio() {
               Selected <span className="text-gradient">Work.</span>
             </h1>
             <p className="text-base sm:text-xl text-white/70 max-w-2xl leading-relaxed mb-6 sm:mb-8">
-              We turn ideas and insights into action that people feel, use and remember. See how we've helped ambitious businesses grow across the UK and internationally.
+              Selected live digital platforms, corporate re-architectures, and search visibility systems engineered for construction, real estate, energy, and automotive organizations across Nigeria and international markets.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
+              <Link
+                to="/contact?category=digital-transformation&cta=business-growth-review"
+                onClick={() => trackPrimaryCtaClick("portfolio-hero", "/contact?category=digital-transformation", "digital-transformation")}
+                className="inline-flex items-center justify-center gap-2 bg-mw-orange hover:bg-amber-600 text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-colors shadow-lg shadow-mw-orange/20 min-h-[44px]"
+              >
+                <span>{CONVERSION_CTAS.primaryLabel}</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
+              </Link>
               <Link
                 to="/portfolio/case-studies"
                 className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold text-mw-orange hover:text-white transition-colors py-2.5 sm:py-1 px-4 sm:px-0 rounded-xl sm:rounded-none bg-mw-orange/10 sm:bg-transparent border border-mw-orange/30 sm:border-0 sm:border-b sm:border-mw-orange/40 hover:border-white w-full sm:w-auto"
               >
                 <BookOpen className="w-4 h-4 shrink-0" />
-                <span className="text-center">Explore Case Studies & Technical Breakdowns</span>
+                <span className="text-center">Explore Case Studies & Architectural Breakdowns</span>
                 <ArrowRight className="w-4 h-4 shrink-0" />
               </Link>
             </div>
@@ -183,18 +192,15 @@ export function Portfolio() {
                   </h3>
                   <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-5 sm:mb-6">{project.challenge}</p>
 
-                  {(project as any).projectMetrics && (
+                  {project.projectMetrics && (
                     <div className="pt-4 sm:pt-6 border-t border-white/10 flex items-center justify-between gap-3 mb-5 sm:mb-6 bg-white/[0.02] sm:bg-transparent -mx-2 sm:mx-0 px-3 py-2 sm:px-0 sm:py-0 rounded-xl sm:rounded-none">
-                      <div className="flex items-center gap-3 sm:gap-4">
-                        <MetricChart value={(project as any).projectMetrics.growth} />
-                        <div>
-                          <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50">Growth</div>
-                          <div className="text-base sm:text-lg font-bold text-mw-orange">+{(project as any).projectMetrics.growth}%</div>
-                        </div>
+                      <div>
+                        <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50">Delivered Scope</div>
+                        <div className="text-sm sm:text-base font-bold text-mw-orange">{project.service}</div>
                       </div>
                       <div className="text-right">
-                        <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50">Duration</div>
-                        <div className="text-base sm:text-lg font-bold text-white">{(project as any).projectMetrics.duration} Wks</div>
+                        <div className="text-[10px] sm:text-xs uppercase tracking-wider text-white/50">Timeline</div>
+                        <div className="text-base sm:text-lg font-bold text-white">{project.projectMetrics.duration} Wks</div>
                       </div>
                     </div>
                   )}
@@ -239,17 +245,18 @@ export function Portfolio() {
       >
         <div className="container mx-auto px-4 sm:px-6 md:px-12 text-center">
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-8 text-white">
-            Ready to be our next success story?
+            Ready to Strengthen Your Digital Infrastructure?
           </h2>
           <p className="text-sm sm:text-base text-white/60 max-w-xl mx-auto mb-6 sm:mb-8">
-            Let's discuss how our design, development, and strategic digital services can elevate your business.
+            Let's discuss how Mindware Consulting's web engineering, search visibility, and business growth systems can serve your next commercial milestone.
           </p>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
             <Link
-              to="/contact"
+              to={CONVERSION_CTAS.primaryPath}
+              onClick={() => trackPrimaryCtaClick("portfolio-bottom", CONVERSION_CTAS.primaryPath)}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-mw-dark hover:bg-mw-orange hover:text-white px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all shadow-lg min-h-[48px]"
             >
-              Start Your Project
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
             </Link>
             <Link
               to="/portfolio/case-studies"

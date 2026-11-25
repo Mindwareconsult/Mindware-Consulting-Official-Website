@@ -24,6 +24,7 @@ export interface CaseStudyDetail {
   executiveSummary: string;
   challenge: string;
   challengeDetails: string[];
+  objectives: string[];
   solution: string;
   strategySteps: CaseStudyStrategyStep[];
   keyDeliverables: string[];
@@ -40,676 +41,832 @@ export interface CaseStudyDetail {
 
 export const BESPOKE_CASE_STUDIES: Record<string, Partial<CaseStudyDetail>> = {
   "solugans-construction": {
-    tagline: "Precision Civil Engineering, Architectural Distinction & Turnkey Infrastructure Delivery in Awka, Nigeria",
-    executiveSummary: "Solugans & Associates Engineering Ltd (RC 1207219), a registered civil and structural engineering, architectural design, and turnkey building construction practice based in Awka, Anambra State, partnered with Mindware Consulting to engineer a comprehensive digital flagship. The platform showcases their 70+ completed landmark commercial, residential, and institutional projects, establishes undeniable technical authority, and dominates regional search rankings across Eastern Nigeria and beyond.",
-    challenge: "Despite an illustrious track record spanning over 70 multi-storey commercial plazas, luxury residential mansions, institutional hostels, deep foundation piling works, and tubular steel space frames across Nigeria, Solugans & Associates lacked a centralized, high-performance web platform to project their full engineering capabilities. Prospective commercial developers, corporate institutions, and diaspora investors lacked direct access to verifiable project portfolios, COREN-certified engineering faculties, and structured consultation channels.",
+    tagline: "Civil Engineering, Architectural Design & Turnkey Construction Flagship in Awka, Nigeria",
+    executiveSummary:
+      "Solugans & Associates Engineering Ltd (RC 1207219), a registered civil and structural engineering, architectural design, and turnkey building construction firm based in Awka, Anambra State, engaged Mindware Consulting to build a structured digital flagship that reflects its completed commercial, residential, and institutional track record.",
+    challenge:
+      "Despite extensive multi-storey commercial plaza, residential, and structural steel frame experience, Solugans & Associates lacked a dedicated digital platform to present verified capabilities, COREN-registered engineering leadership, and structured tender consultation workflows to commercial developers and diaspora investors.",
     challengeDetails: [
-      "Absence of an authoritative, mobile-first digital portfolio to exhibit completed and ongoing residential mansions, commercial plazas, and tubular steel framework installations across Anambra and southeastern Nigeria",
-      "Intense market noise in the Nigerian built environment sector where uncertified builders obscure legitimate COREN-registered engineering firms",
-      "Zero search engine presence for high-intent regional engineering queries such as 'construction company in Awka', 'civil engineering company in Anambra', and 'architectural design Awka'",
-      "High-friction prospective client intake with no structured digital funnel for project estimation, BOQ requests, or direct WhatsApp engineering consultations"
+      "No centralized mobile-friendly portfolio exhibiting completed residential, commercial, and structural works across southeastern Nigeria",
+      "Difficulty distinguishing COREN-registered engineering competence from informal contractors online",
+      "Limited search engine coverage for regional construction queries across Awka and Anambra State",
+      "High friction for prospective clients attempting to submit drawings, BOQ inquiries, or consultation briefs"
     ],
-    solution: "Mindware Consulting architected a bespoke, lightning-fast digital platform featuring categorized project showcases, verified engineering leadership profiles, interactive BOQ & quotation funnels, and deep local SEO schema targeting commercial developers, institutional procurement boards, and diaspora investors.",
+    objectives: [
+      "Establish a credible corporate platform reflecting COREN-registered civil and structural engineering standards",
+      "Organize multi-disciplinary construction works into navigable category showcases for institutional and diaspora buyers",
+      "Deploy direct BOQ quotation intake and structured WhatsApp consultation pathways",
+      "Implement technical SEO and ProfessionalService schema targeting Awka, Anambra State, and southeastern Nigeria"
+    ],
+    solution:
+      "Mindware Consulting designed and engineered a fast, mobile-first corporate flagship featuring categorized project galleries, engineering accreditation visibility, interactive quotation intake workflows, and structured regional SEO schema.",
     strategySteps: [
       {
-        title: "Architectural & Engineering Brand Prestige",
-        description: "Developed an imposing, high-contrast dark aesthetic with vibrant amber and slate accents, echoing precision drafting and engineering rigor. Integrated high-resolution photography of completed commercial buildings, residential duplexes, and foundation works."
+        title: "Architectural & Engineering Brand Positioning",
+        description:
+          "Established an authoritative visual hierarchy combining clear project photography with structured civil engineering and architectural discipline breakdowns."
       },
       {
-        title: "Interactive Built-Environment Portfolio Engine",
-        description: "Constructed an organized project showcase categorizing works into Commercial Plazas, Luxury Residential Mansions, Substructure & Deep Foundations, and Tubular Steel Frameworks."
+        title: "Categorized Built-Environment Portfolio",
+        description:
+          "Organized construction capabilities across commercial plazas, residential buildings, substructure/deep foundation works, and steel frameworks."
       },
       {
-        title: "Frictionless BOQ & Consultation Conversion Funnels",
-        description: "Designed dedicated Request for Quotation (RFQ) pathways, Bill of Quantities (BOQ) consultation forms, and pre-filled WhatsApp engineering prompts connecting clients directly with project managers."
+        title: "BOQ & Direct Consultation Pathways",
+        description:
+          "Implemented structured Request for Quotation (RFQ), Bill of Quantities consultation workflows, and direct WhatsApp project routing."
       },
       {
-        title: "Hyper-Localized Awka & Anambra Construction SEO",
-        description: "Configured comprehensive ProfessionalService JSON-LD structured data, geographic geo-coordinates for Awka (Aroma Junction / Secretariat Road), and targeted high-intent commercial keywords across Eastern Nigeria."
+        title: "Technical & Regional Search Foundations",
+        description:
+          "Configured ProfessionalService JSON-LD structured data, geographic metadata for Awka, and indexed service landing pages."
       }
     ],
     keyDeliverables: [
-      "Enterprise Engineering & Construction Web Platform",
+      "Custom Engineering & Construction Web Platform",
       "Categorized Commercial & Residential Project Showcase",
-      "Direct WhatsApp Engineering Consultation & BOQ Intake Funnels",
-      "Comprehensive Construction & Engineering SEO Suite (Schema.org)",
-      "Sub-Second Mobile-First Core Web Vitals Optimization",
-      "Verified COREN & NSE Institutional Accreditation Badges"
+      "Direct WhatsApp & BOQ Consultation Intake Workflows",
+      "Construction & Engineering Schema.org SEO Setup",
+      "Mobile-First Responsive Experience",
+      "Engineering Accreditation & Compliance Presentation"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org ProfessionalService", "Cloudflare CDN", "Google Search Console"],
-    result: "Within weeks of deployment, Solugans & Associates achieved Page 1 Google rankings for premier engineering and construction queries in Awka and Anambra State, experienced an 88% surge in verified commercial inquiries and diaspora mansion project consultations, and solidified their reputation as a premier engineering firm in the region.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org ProfessionalService", "Google Search Console"],
+    result:
+      "Delivered a production corporate flagship within 4 weeks that equips Solugans & Associates with structured regional search readiness, clear capability proof, and low-friction commercial and diaspora consultation pathways.",
     metrics: [
-      { label: "Qualified Project Inquiries", value: "+88%", subtext: "WhatsApp & BOQ requests" },
-      { label: "Local Search Ranking", value: "Page 1", subtext: "'construction company in Awka'" },
-      { label: "Performance Score", value: "98/100", subtext: "Google PageSpeed Insights" },
-      { label: "Turnaround Time", value: "4 Weeks", subtext: "From concept to deployment" }
+      { label: "Delivered Platform", value: "Live Site", subtext: "Verified production deployment" },
+      { label: "Regional SEO Scope", value: "Awka & East", subtext: "Schema & regional keywords" },
+      { label: "Lead Capture", value: "BOQ + Chat", subtext: "Structured intake & WhatsApp" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "From discovery to launch" }
     ],
-    projectDuration: "4 Weeks",
-    testimonial: {
-      quote: "Mindware Consulting understood our engineering standards from day one. Our new digital platform reflects the true scale and quality of our work, and prospective clients now reach out with complete confidence before we even visit the site.",
-      author: "Management Team",
-      role: "Solugans & Associates Engineering Ltd, Awka"
-    }
+    projectDuration: "4 Weeks"
   },
   "juptree-automobile": {
-    tagline: "Prestige Automotive Showroom & Digital Inventory Architecture in Abuja, Nigeria",
-    executiveSummary: "Juptree Automobiles, a verified luxury car dealership located in Abuja, Nigeria, partnered with Mindware Consulting to architect a high-performance digital showroom and multi-device inventory platform. The solution showcases brand-new and premium foreign-used SUVs, sedans, and utility trucks, equipped with instant WhatsApp reservation funnels, transparent pricing, and targeted Abuja automotive SEO.",
-    challenge: "In Nigeria's luxury automotive marketplace, high-net-worth buyers and corporate fleet managers demand transparency, verified vehicle condition, and immediate access to specifications before visiting a showroom. Juptree Automobiles needed a credible, prestigious digital platform to distinguish their verified dealership standards, eliminate buyer hesitations, and dominate local search rankings for luxury cars in Abuja.",
+    tagline: "Automotive Dealership Showcase & Responsive Buyer Inventory Architecture in Abuja",
+    executiveSummary:
+      "Juptree Automobiles, an automotive dealership operating in Abuja, partnered with Mindware Consulting to design and deploy a transparent, responsive digital showroom presenting brand-new and foreign-used vehicles alongside instant WhatsApp inspection and test-drive booking flows.",
+    challenge:
+      "Automotive buyers and corporate fleet managers in Abuja routinely require verified vehicle listings, transparent specifications, and fast mobile access before visiting a physical lot. Juptree Automobiles needed an authoritative digital platform to build immediate buyer confidence and convert online inquiries.",
     challengeDetails: [
-      "Absence of a centralized, interactive digital showroom where buyers can filter inventory by vehicle categories (SUVs, Sedans, Buses, Trucks) with transparent pricing and detailed specs",
-      "Widespread buyer hesitation in Nigeria regarding vehicle condition, Customs duty authenticity, and verified dealership credentials",
-      "Zero search engine presence for high-intent regional automotive queries like 'buy luxury cars in Abuja', 'Toyota Land Cruiser dealer Abuja', and 'foreign used Mercedes-Benz in Nigeria'",
-      "Cumbersome prospective buyer intake with no direct, one-click mechanism to request vehicle inspection, video walkaround, or physical test drives"
+      "Lack of an organized digital inventory catalog allowing buyers to filter SUVs, sedans, buses, and utility trucks online",
+      "Widespread buyer skepticism around vehicle authenticity, condition transparency, and dealership credibility",
+      "Absence of structured search engine architecture targeting high-intent Abuja dealership queries",
+      "Slow manual communication when prospective buyers requested vehicle pricing, walkarounds, or inspections"
     ],
-    solution: "Mindware Consulting engineered an elite, responsive automotive dealership platform with dynamic inventory filtering, high-resolution multi-angle vehicle galleries, direct WhatsApp vehicle reservation funnels, and localized automotive SEO architecture.",
+    objectives: [
+      "Create a fast, mobile-first automotive showroom that projects trust and dealership professionalism",
+      "Structure vehicle categories with clear specs, pricing presentation, and condition visibility",
+      "Enable one-click WhatsApp vehicle reservations and inspection scheduling directly from listing views",
+      "Configure AutoDealer Schema.org markup and local Abuja automotive SEO foundations"
+    ],
+    solution:
+      "Mindware Consulting built an elite responsive dealership platform pairing categorized vehicle browsing with streamlined inspection request flows and localized Abuja automotive search architecture.",
     strategySteps: [
       {
-        title: "Showroom Brand Identity & Luxury Aesthetics",
-        description: "Created an immersive, high-contrast visual design echoing prestigious automotive showrooms, featuring warm luxury copper and amber accents, crystal-clear typography, and premium vehicle photography."
+        title: "Showroom Brand Presentation",
+        description:
+          "Crafted a high-contrast visual layout highlighting showroom standards, transparent inventory photography, and buyer assurance."
       },
       {
-        title: "Interactive Multi-Device Inventory Catalog",
-        description: "Engineered a rapid-filtering vehicle catalog allowing buyers to sort across SUVs, Sedans, Buses, and Trucks with instant price tags, specs, and condition badges."
+        title: "Categorized Multi-Device Vehicle Catalog",
+        description:
+          "Engineered fast vehicle filtering across SUVs, sedans, commercial buses, and utility trucks usable seamlessly on mobile devices."
       },
       {
-        title: "Frictionless WhatsApp Reservation & Test Drive Funnels",
-        description: "Integrated one-click WhatsApp inquiry buttons directly on car cards pre-filling vehicle make, model, and price, facilitating instant buyer-to-salesperson conversations."
+        title: "Contextual WhatsApp Inspection Funnels",
+        description:
+          "Embedded pre-filled WhatsApp inquiry actions directly on vehicle cards so serious buyers connect with dealership advisors in one tap."
       },
       {
-        title: "Hyper-Local Abuja Automotive SEO",
-        description: "Implemented rich Vehicle Schema.org structured data, location geo-tagging, and high-intent automotive keywords targeting car buyers in Abuja and nationwide."
+        title: "Abuja Automotive Search Optimization",
+        description:
+          "Configured AutoDealer structured data, localized metadata, and image optimization for smooth mobile browsing."
       }
     ],
     keyDeliverables: [
-      "Next-Gen Luxury Dealership Web Platform",
-      "Interactive Car Inventory Catalog & Category Filter",
-      "Contextual 1-Click WhatsApp Lead & Test Drive Funnels",
-      "Automotive & Local Business Schema.org SEO Suite",
-      "Sub-Second Mobile-First Responsive Experience",
-      "Optimized High-Resolution Vehicle Media Pipeline"
+      "Responsive Automotive Dealership Web Platform",
+      "Categorized Vehicle Inventory Showcase",
+      "1-Click WhatsApp Inquiry & Test-Drive Funnels",
+      "AutoDealer & LocalBusiness Schema.org Setup",
+      "Mobile-First Responsive Design",
+      "Optimized Vehicle Media Pipeline"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org AutoDealer", "Cloudflare CDN", "Google Search Console"],
-    result: "The platform launched with immediate commercial resonance, securing top search positions for regional automotive searches, reducing initial bounce rates by 65%, and delivering a 90% surge in verified buyer inquiries within the first quarter.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org AutoDealer", "Google Search Console"],
+    result:
+      "Launched a verified digital dealership flagship within 4 weeks that streamlines buyer inspection scheduling via WhatsApp and establishes searchable authority for Juptree Automobiles in Abuja.",
     metrics: [
-      { label: "Qualified Buyer Leads", value: "+90%", subtext: "Direct WhatsApp & test drives" },
-      { label: "Organic Search Discovery", value: "Top 3", subtext: "Abuja luxury car queries" },
-      { label: "Average Page Load", value: "0.7s", subtext: "Core Web Vitals green score" },
-      { label: "Turnaround Time", value: "4 Weeks", subtext: "Design to production deployment" }
+      { label: "Platform Architecture", value: "Mobile-First", subtext: "Responsive showroom catalog" },
+      { label: "Conversion Flow", value: "1-Tap RFQ", subtext: "Pre-filled WhatsApp inquiries" },
+      { label: "SEO Schema", value: "AutoDealer", subtext: "Abuja dealership indexing" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "Design to production launch" }
     ],
-    projectDuration: "4 Weeks",
-    testimonial: {
-      quote: "Mindware Consulting brought our vision to life with precision. The new platform gives our showroom international-standard credibility, and car buyers in Abuja now contact us directly through the website every day.",
-      author: "Management Team",
-      role: "Juptree Automobiles, Abuja"
-    }
+    projectDuration: "4 Weeks"
   },
   "osines-group": {
-    tagline: "Architectural Distinction & Luxury Construction Authority in Nigeria",
-    executiveSummary: "Osines Construction Company Ltd (OSINES GROUP) required a high-converting, authoritative digital flagship to showcase their elite architectural design, luxury residential duplexes, and turnkey commercial developments in Awka, Anambra State, and across Nigeria.",
-    challenge: "Despite an impressive track record in luxury residential builds and large-scale structural contracts, OSINES GROUP's previous digital footprint did not adequately reflect their technical craftsmanship or capture prospective high-net-worth clients searching for reliable developers in southeastern Nigeria.",
+    tagline: "Architectural Design & Building Construction Authority in Anambra & Nigeria",
+    executiveSummary:
+      "Osines Construction Company Ltd (OSINES GROUP) engaged Mindware Consulting to engineer a modern digital flagship highlighting architectural design, luxury residential developments, and turnkey commercial construction across Awka and wider Nigeria.",
+    challenge:
+      "Prospective property developers and corporate project sponsors needed clear visibility into OSINES GROUP's architectural workmanship and engineering track record alongside straightforward channels to initiate design-and-build consultations.",
     challengeDetails: [
-      "Lack of a centralized, visual project showcase for prospective luxury homeowners and commercial investors",
-      "Limited organic search visibility for high-intent queries like 'architectural design Awka' and 'building construction Anambra'",
-      "Slow inquiry conversions with high friction in prospective client intake and project estimation consultations",
-      "Need to establish undeniable legitimacy and certified construction authority to combat widespread industry mistrust"
+      "Lack of a unified digital showcase presenting residential and commercial construction projects to investors",
+      "Limited search engine visibility for regional architectural design and building construction queries",
+      "Fragmented inquiry pathways delaying early-stage project consultations",
+      "Need to differentiate certified engineering delivery in a trust-sensitive construction market"
     ],
-    solution: "Mindware Consulting engineered a state-of-the-art web platform, integrated project showcase, and structured SEO ecosystem specifically tailored to affluent real estate investors and corporate project developers.",
+    objectives: [
+      "Present architectural concepts and completed builds in a high-trust corporate showcase",
+      "Structure regional search optimization covering Awka, Anambra State, and national projects",
+      "Reduce friction between initial prospect discovery and direct consultation booking",
+      "Ensure dependable mobile usability for local and diaspora real estate clients"
+    ],
+    solution:
+      "Mindware Consulting engineered an authoritative web platform combining high-clarity architectural showcases, structured regional SEO, and direct WhatsApp and consultation intake pathways.",
     strategySteps: [
       {
-        title: "Brand Authority & Visual Storytelling",
-        description: "Curated high-resolution structural renderings, on-site construction galleries, and comprehensive service tiering that establishes instant prestige and technical credibility."
+        title: "Brand Authority & Visual Presentation",
+        description:
+          "Curated architectural renderings and construction project imagery paired with structured service positioning."
       },
       {
-        title: "High-Performance Next-Gen Web Engineering",
-        description: "Built on modern, ultra-responsive frontend architecture delivering sub-second load times, smooth micro-interactions, and flawless mobile experiences."
+        title: "Responsive Frontend Engineering",
+        description:
+          "Built on clean React and TypeScript architecture for consistent cross-device browsing and reliable performance."
       },
       {
-        title: "Localized & Commercial SEO Architecture",
-        description: "Implemented granular geo-targeted schema, architectural keywords, and localized metadata capturing commercial and residential construction inquiries across Nigeria."
+        title: "Commercial & Regional SEO Setup",
+        description:
+          "Implemented localized Schema.org metadata covering architectural planning and turnkey construction services."
       },
       {
-        title: "Streamlined Consultation Funnel",
-        description: "Embedded direct WhatsApp consultation endpoints and quick architectural consultation request workflows to dramatically reduce lead drop-off."
+        title: "Direct Consultation Routing",
+        description:
+          "Integrated immediate WhatsApp and project consultation forms to capture prospective builds cleanly."
       }
     ],
     keyDeliverables: [
-      "Enterprise Corporate Web Platform",
-      "Interactive Architectural & Building Portfolio",
-      "High-Performance Mobile-First Experience",
-      "Local & Technical SEO Schema Suite",
-      "Instant WhatsApp & Direct Lead Funnels",
-      "Optimized Media & Structural Asset Pipeline"
+      "Corporate Construction Web Platform",
+      "Architectural & Project Showcase Galleries",
+      "Mobile-First Responsive Interface",
+      "Technical & Local SEO Schema Suite",
+      "Direct WhatsApp & Consultation Funnels"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Schema.org", "Vite", "Google Search Console", "Cloudflare CDN"],
-    result: "The platform launched with immediate commercial resonance, securing top search positions for regional construction searches, reducing initial bounce rates by 68%, and delivering an 85% surge in verified contract consultations within the first quarter.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Schema.org", "Vite", "Google Search Console"],
+    result:
+      "Deployed a unified digital headquarters in 4 weeks giving OSINES GROUP a clean, searchable platform to showcase construction capability and convert prospective residential and commercial inquiries.",
     metrics: [
-      { label: "Consultation Inquiries", value: "+85%", subtext: "Commercial & luxury leads" },
-      { label: "Organic Search Discovery", value: "Top 3", subtext: "Regional construction queries" },
-      { label: "Average Page Load", value: "0.8s", subtext: "Core Web Vitals green score" },
-      { label: "Turnaround Time", value: "4 Weeks", subtext: "Design to production deployment" }
+      { label: "Delivered Platform", value: "Live Site", subtext: "Production corporate build" },
+      { label: "Search Foundation", value: "Technical SEO", subtext: "Schema & localized metadata" },
+      { label: "Lead Capture", value: "Direct CTA", subtext: "Consultation & WhatsApp" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "End-to-end delivery" }
     ],
-    projectDuration: "4 Weeks",
-    testimonial: {
-      quote: "Mindware Consulting delivered beyond our expectations. Our new digital platform perfectly conveys the precision and elegance of Osines Group's construction standards, and our direct client inquiries have soared.",
-      author: "Engr. O. Osita",
-      role: "Managing Director, OSINES GROUP"
-    }
+    projectDuration: "4 Weeks"
   },
   "quanxi-limited": {
-    tagline: "Empowering Agricultural & Heavy Equipment Sourcing Across Africa",
-    executiveSummary: "Quanxi Limited, a premier provider of heavy road construction machinery and agricultural farm equipment, needed a powerhouse digital platform to showcase machinery inventories, streamline corporate tenders, and drive regional B2B inquiries across Nigeria and East Africa.",
-    challenge: "Operating in the heavy machinery and tractor import sector requires communicating immediate operational reliability and inventory clarity. Prospective civil contractors and agribusinesses faced cumbersome inquiry processes and lacked transparent digital equipment specifications.",
+    tagline: "Agricultural & Road Construction Machinery Sourcing Portal Across Nigeria",
+    executiveSummary:
+      "Quanxi Limited, a commercial supplier of heavy road construction machinery and agricultural tractors/implements, partnered with Mindware Consulting to build a structured B2B equipment portal facilitating procurement inquiries.",
+    challenge:
+      "Contractors and agribusiness buyers sourcing high-value machinery require transparent model specifications and clear quotation pathways rather than generic brochure websites.",
     challengeDetails: [
-      "Need for categorized cataloging of heavy equipment, road building machines, and agricultural implements",
-      "Absence of a seamless corporate quotation system for public infrastructure tenders and corporate farms",
-      "Fragmented digital presence that failed to convey their strategic global sourcing and after-sales support",
-      "Zero optimization for equipment model numbers, tractor searches, and industrial machinery queries"
+      "Diverse heavy equipment and agricultural machinery lines needing structured categorization",
+      "Lack of streamlined digital Request for Quote (RFQ) channels for corporate and public tenders",
+      "Low discoverability for model-specific tractor and road machinery search queries",
+      "Need to communicate equipment durability and regional procurement readiness"
     ],
-    solution: "We designed a robust, industrial-grade machinery portal equipped with comprehensive equipment specifications, direct procurement request workflows, and targeted B2B SEO indexing.",
+    objectives: [
+      "Categorize tractors, agricultural implements, and road construction equipment cleanly",
+      "Enable direct contextual quotation inquiries directly from equipment categories",
+      "Structure technical SEO metadata around industrial and agricultural machinery procurement",
+      "Deliver reliable browsing performance across mobile and desktop procurement teams"
+    ],
+    solution:
+      "Mindware Consulting built a structured industrial equipment portal with intuitive machinery segmentation, contextual RFQ workflows, and technical B2B search optimization.",
     strategySteps: [
       {
-        title: "Industrial Information Architecture",
-        description: "Categorized complex machinery inventories into intuitive segments (Agricultural Implements, Tractors, Road Construction Machinery, and Road Maintenance Materials)."
+        title: "Industrial Catalog Architecture",
+        description:
+          "Organized complex machinery inventories into distinct lines covering tractors, implements, and road construction machinery."
       },
       {
-        title: "Rapid Technical Inquiry Engines",
-        description: "Built contextual 'Request a Quote' mechanisms on individual equipment pages, routing machinery specifications directly to technical sales reps."
+        title: "Contextual Quote Request Flows",
+        description:
+          "Connected equipment categories directly to structured quotation forms and direct sales routing."
       },
       {
-        title: "B2B Heavy Machinery SEO Strategy",
-        description: "Optimized technical specifications, equipment capacities, and industrial search terms to capture infrastructure and farming procurement managers."
+        title: "B2B Machinery SEO Structuring",
+        description:
+          "Applied descriptive equipment metadata and semantic markup for agricultural and civil procurement searches."
       },
       {
-        title: "Cross-Border Performance Tuning",
-        description: "Optimized image compression and data delivery so regional buyers on constrained networks experience instantaneous browsing."
+        title: "Network-Conscious Optimization",
+        description:
+          "Optimized image weights and clean UI hierarchy for dependable viewing across regional mobile networks."
       }
     ],
     keyDeliverables: [
-      "Heavy Equipment & Machinery Portal",
-      "Interactive Product Catalog & Specs",
-      "B2B RFQ (Request for Quote) Funnel",
-      "Industrial Technical SEO Framework",
-      "Multi-device Responsive Optimization"
+      "Heavy Equipment & Machinery Web Portal",
+      "Categorized Catalog & Specifications",
+      "B2B RFQ Inquiry System",
+      "Industrial SEO Markup",
+      "Multi-Device Responsive Experience"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Semantic HTML5", "B2B Lead Architecture"],
-    result: "Transformed Quanxi Limited's online footprint into an active lead engine, accelerating corporate tractor and road machinery quotes by 85% and significantly expanding inbound inquiries from agricultural cooperatives and construction contractors.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Semantic HTML5", "Schema.org"],
+    result:
+      "Delivered a structured digital machinery portal within 4 weeks that clearly presents Quanxi Limited's equipment range and accelerates commercial quotation intake.",
     metrics: [
-      { label: "B2B Machinery Inquiries", value: "+85%", subtext: "Direct equipment RFQs" },
-      { label: "Catalog Page Engagement", value: "3.8m", subtext: "Average user session duration" },
-      { label: "Regional Reach", value: "5+ States", subtext: "Nationwide and regional expansion" },
-      { label: "Deployment Duration", value: "4 Weeks", subtext: "Turnkey delivery" }
+      { label: "Catalog Structure", value: "Multi-Line", subtext: "Agri & road equipment specs" },
+      { label: "Procurement Flow", value: "Direct RFQ", subtext: "Contextual quote intake" },
+      { label: "Search Readiness", value: "B2B SEO", subtext: "Indexed equipment pages" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "Turnkey execution" }
     ],
-    projectDuration: "4 Weeks",
-    testimonial: {
-      quote: "Mindware Consulting understood the nuances of industrial machinery procurement. Our website now serves as an indispensable sales instrument that wins tenders and connects us with serious corporate clients.",
-      author: "Sales Operations Lead",
-      role: "Quanxi Limited"
-    }
+    projectDuration: "4 Weeks"
   },
   "harmostructs-engineering": {
-    tagline: "Authoritative Civil, Structural & Agricultural Engineering Showcase",
-    executiveSummary: "Harmostructs Engineering Company Limited required an authoritative, modern platform to present their multidisciplinary capabilities spanning structural engineering, civil infrastructure, building construction, and agricultural infrastructure across Nigeria.",
-    challenge: "Harmostructs possessed extensive engineering certifications and high-value project delivery credentials, but their previous lack of a digital footprint left prospective corporate developers and government infrastructure agencies without a credible online verification portal.",
+    tagline: "Civil, Structural & Agricultural Engineering Capability Showcase",
+    executiveSummary:
+      "Harmostructs Engineering Company Limited partnered with Mindware Consulting to build a clear, authoritative corporate platform presenting multidisciplinary expertise across structural engineering, civil works, and building construction in Nigeria.",
+    challenge:
+      "Harmostructs needed an accessible corporate website where institutional developers, private clients, and tender reviewers could verify their multidisciplinary engineering scope online.",
     challengeDetails: [
-      "Need to display multidisciplinary engineering competencies in civil, structural, and agro-allied construction",
-      "Inability to showcase technical project case studies and completed engineering works online",
-      "Absence of search engine presence for certified engineering contractors in Nigeria",
-      "Need for high-trust digital collateral for institutional and commercial bidding"
+      "Multidisciplinary engineering services spanning civil, structural, and agro-infrastructure lacked unified digital presentation",
+      "Institutional and corporate procurement teams needed an online reference point for capabilities and project history",
+      "Absence of structured search indexing for certified structural and civil engineering terms",
+      "Lack of direct digital bidding and consultation channels"
     ],
-    solution: "Mindware Consulting built an authoritative, high-performance corporate platform highlighting technical accreditations, turnkey project execution capabilities, and interactive project galleries.",
+    objectives: [
+      "Establish an authoritative digital footprint matching Harmostructs' engineering rigor",
+      "Map end-to-end engineering capabilities clearly from feasibility to execution",
+      "Create structured consultation and project inquiry intake",
+      "Implement semantic Schema.org markup and Google Search Console indexing"
+    ],
+    solution:
+      "Mindware Consulting built a high-clarity engineering flagship highlighting technical scope, delivery methodology, visual galleries, and direct consultation pathways.",
     strategySteps: [
       {
-        title: "Technical Credibility & Process Mapping",
-        description: "Outlined the full engineering lifecycle—from structural feasibility analysis to turnkey handover—establishing deep engineering rigor."
+        title: "Engineering Capability Architecture",
+        description:
+          "Mapped the full engineering lifecycle clearly for commercial developers and infrastructure stakeholders."
       },
       {
-        title: "Visual Portfolio Showcase",
-        description: "Engineered responsive project galleries with clean aspect containment and rapid loading for on-site civil works."
+        title: "Clean Visual Portfolio Galleries",
+        description:
+          "Designed responsive project showcases highlighting civil and structural execution."
       },
       {
-        title: "National & Regional SEO Indexing",
-        description: "Structured metadata and Schema markup focused on civil engineering, structural consultancy, and commercial project delivery."
+        title: "Technical SEO & Search Console Alignment",
+        description:
+          "Structured service metadata and schema targeting civil and structural consultancy queries."
       }
     ],
     keyDeliverables: [
-      "Full Corporate Engineering Web Platform",
-      "Interactive Engineering Portfolio",
-      "Technical Capabilities & Process Architecture",
-      "Enterprise SEO & Schema Markup",
-      "Direct Bidding & Consultation Intake System"
+      "Corporate Engineering Web Platform",
+      "Responsive Project Gallery",
+      "Technical Scope & Methodology Breakdown",
+      "Search Console & Schema Setup",
+      "Direct Consultation Intake System"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org", "Core Web Vitals Optimization"],
-    result: "Harmostructs established commanding digital authority, securing an 85% growth in commercial project inquiries, achieving 100% Google Search Console indexing, and strengthening their institutional bid proposals.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org", "Google Search Console"],
+    result:
+      "Delivered a production corporate engineering flagship in 4 weeks, providing institutional buyers with transparent capability verification and direct tender communication.",
     metrics: [
-      { label: "Inquiry Growth", value: "+85%", subtext: "Commercial & civil contracts" },
-      { label: "Search Indexing", value: "100%", subtext: "All core service pages indexed" },
-      { label: "Mobile Performance", value: "98/100", subtext: "Lighthouse mobile score" },
-      { label: "Delivery Timeline", value: "4 Weeks", subtext: "From concept to deployment" }
+      { label: "Delivered Platform", value: "Live Site", subtext: "Production engineering portal" },
+      { label: "Capability Scope", value: "Multi-Sector", subtext: "Civil, structural & agro works" },
+      { label: "Search Indexing", value: "Schema + GSC", subtext: "Structured service indexing" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "Concept to deployment" }
     ],
-    projectDuration: "4 Weeks",
-    testimonial: {
-      quote: "The platform developed by Mindware Consulting has elevated our engineering firm into the top tier of digital presentation. It has made an undeniable difference in our corporate client presentations.",
-      author: "Principal Engineer",
-      role: "Harmostructs Engineering Company Limited"
-    }
+    projectDuration: "4 Weeks"
   },
   "crescon-projects": {
-    tagline: "Elevating Turnkey Construction & Civil Engineering in Lagos",
-    executiveSummary: "Crescon Projects Ltd required a commanding digital identity to showcase their architectural design, structural engineering, and turnkey building construction capabilities across Lagos and southwest Nigeria.",
-    challenge: "Operating in Lagos's fiercely competitive construction landscape, Crescon needed to differentiate its rigorous project management methodology and certified structural integrity from non-certified competitors.",
+    tagline: "Turnkey Building Construction & Civil Engineering Flagship in Lagos",
+    executiveSummary:
+      "Crescon Projects Ltd commissioned Mindware Consulting to build an authoritative corporate website presenting architectural design, structural engineering, and turnkey building construction services across Lagos.",
+    challenge:
+      "In Lagos's competitive construction environment, differentiating legitimate engineering rigor and transparent milestone delivery—especially for diaspora project sponsors—requires authoritative online presentation.",
     challengeDetails: [
-      "High competition in the Lagos luxury residential and commercial property market",
-      "Need to build trust with diaspora Nigerians seeking transparent, reliable builders back home",
-      "Lack of real-time project progress showcases and quality assurance guarantees online"
+      "High market noise in residential and commercial construction across Lagos",
+      "Need to communicate transparent process rigor to local and diaspora investors",
+      "Absence of structured digital project showcases and direct consultation routing"
     ],
-    solution: "We engineered an authoritative, SEO-driven corporate platform highlighting their proven construction process, architectural blueprints, and certified engineering standards.",
+    objectives: [
+      "Articulate Crescon's end-to-end architectural and construction delivery methodology clearly",
+      "Build credibility with Lagos commercial buyers and international diaspora sponsors",
+      "Implement localized Lagos construction SEO and responsive UI performance"
+    ],
+    solution:
+      "Mindware Consulting developed a disciplined corporate construction website foregrounding execution methodology, structural competence, and low-friction inquiry workflows.",
     strategySteps: [
       {
-        title: "Diaspora-Friendly Trust Architecture",
-        description: "Created transparent step-by-step construction updates, milestone tracking breakdowns, and direct executive channels."
+        title: "Process & Trust Architecture",
+        description:
+          "Presented step-by-step construction stages and quality governance clearly for remote and local clients."
       },
       {
-        title: "Lagos Construction SEO Dominance",
-        description: "Targeted competitive search keywords such as 'turnkey construction Lagos' and 'civil engineering building contractors'."
+        title: "Lagos Construction SEO Structure",
+        description:
+          "Configured technical metadata targeting commercial building contractors and civil engineering searches in Lagos."
       },
       {
-        title: "Conversion-Focused Project Showcases",
-        description: "Showcased high-end residential and commercial builds with clear breakdown of structural specifications and timelines."
+        title: "Conversion-Focused Project Galleries",
+        description:
+          "Structured project highlights paired with direct consultation triggers."
       }
     ],
     keyDeliverables: [
-      "Modern Construction Platform",
-      "Project Blueprint & Progress Portfolio",
-      "Diaspora Consultation Funnel",
-      "Local Lagos SEO Strategy"
+      "Corporate Construction Platform",
+      "Project Portfolio Showcase",
+      "Direct Client Consultation Funnel",
+      "Local Lagos SEO Architecture"
     ],
     technologies: ["React", "Tailwind CSS", "TypeScript", "Vite", "Local SEO Suite"],
-    result: "Generated an 80% increase in qualified project inquiries, with significant uptake from international diaspora clients contracting residential developments in Lagos.",
+    result:
+      "Completed and launched in 5 weeks, giving Crescon Projects Ltd a high-trust digital headquarters built to support Lagos corporate bids and diaspora residential inquiries.",
     metrics: [
-      { label: "Lead Growth", value: "+80%", subtext: "Verified building inquiries" },
-      { label: "Diaspora Inbound", value: "45%", subtext: "Of all new qualified leads" },
-      { label: "Project Duration", value: "5 Weeks", subtext: "Comprehensive delivery" }
+      { label: "Target Market", value: "Lagos & Diaspora", subtext: "Corporate & residential builds" },
+      { label: "Process Clarity", value: "Structured UI", subtext: "Step-by-step delivery view" },
+      { label: "Delivery Timeline", value: "5 Weeks", subtext: "Full corporate rollout" }
     ],
-    projectDuration: "5 Weeks",
-    testimonial: {
-      quote: "Mindware Consulting gave Crescon Projects the exact digital presence we needed. Their focus on SEO and credibility has brought us multiple multi-million naira projects.",
-      author: "Project Director",
-      role: "Crescon Projects Ltd"
-    }
+    projectDuration: "5 Weeks"
   },
   "bcale-associates": {
-    tagline: "Certified NIOB & CORBON Architectural and Construction Platform",
-    executiveSummary: "Bcale Associates required a prestigious digital showcase for their certified architectural planning, building construction, and project management services across Nigeria.",
-    challenge: "Bcale's professional NIOB (Nigerian Institute of Building) and CORBON certifications set them apart in technical credibility, yet their lack of a modern digital home made it difficult to communicate their standards to institutional clients.",
+    tagline: "NIOB & CORBON Certified Architectural & Building Construction Portal",
+    executiveSummary:
+      "Bcale Associates partnered with Mindware Consulting to craft a credible digital platform showcasing NIOB and CORBON certified architectural planning, building construction, and project management across Nigeria.",
+    challenge:
+      "Bcale's formal NIOB (Nigerian Institute of Building) and CORBON accreditations represent vital regulatory assurance, yet needed clear digital presentation to command immediate confidence among institutional property developers.",
     challengeDetails: [
-      "Need to highlight formal regulatory certifications (NIOB, CORBON)",
-      "Showcase complex architectural plans alongside executed physical builds",
-      "Attract commercial real estate developers and residential estate planners"
+      "Regulatory credentials (NIOB, CORBON) lacked prominent online presentation",
+      "Architectural planning and executed construction works needed a unified digital portfolio",
+      "Need for streamlined project estimation and discovery booking"
     ],
-    solution: "Developed an elegant, SEO-optimized digital platform that foregrounds professional accreditations, precision planning, and verified project deliveries.",
+    objectives: [
+      "Foreground NIOB and CORBON professional standing cleanly for due diligence reviewers",
+      "Exhibit planning-to-execution project capabilities in a clean visual system",
+      "Optimize site structure for commercial building and architectural consultancy search"
+    ],
+    solution:
+      "Mindware Consulting designed and launched an SEO-ready corporate website centering certified professional standing, portfolio clarity, and direct project inquiry routing.",
     strategySteps: [
       {
-        title: "Certification & Compliance Showcase",
-        description: "Positioned their professional regulatory credentials prominently to reassure corporate boards and institutional clients."
+        title: "Regulatory & Accreditation Positioning",
+        description:
+          "Integrated professional building body credentials cleanly into corporate trust architecture."
       },
       {
-        title: "Integrated Architectural Gallery",
-        description: "Built smooth split-view before-and-after showcases demonstrating transition from CAD designs to completed edifices."
+        title: "Architectural & Construction Portfolio",
+        description:
+          "Organized executed projects alongside architectural planning capabilities."
       },
       {
-        title: "Commercial SEO Positioning",
-        description: "Optimized content for architectural consultation, structural planning, and urban development searches."
+        title: "Search Visibility Structuring",
+        description:
+          "Configured technical SEO metadata targeting certified building contractors and development advisory."
       }
     ],
     keyDeliverables: [
-      "Architectural & Engineering Portfolio",
-      "Accreditation & Certification Suite",
-      "Commercial Project Estimator Consultation",
+      "Architectural & Construction Web Platform",
+      "Regulatory Credential Presentation",
+      "Commercial Inquiry & Consultation Funnel",
       "Technical SEO Infrastructure"
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Semantic Web"],
-    result: "Achieved a 75% rise in inbound architectural and building consultations, cementing Bcale Associates as a top-tier choice for certified construction projects.",
+    result:
+      "Launched in 4 weeks as a clear, authoritative digital platform enabling institutional and residential clients to verify Bcale Associates' credentials and initiate consultations smoothly.",
     metrics: [
-      { label: "Consultation Uplift", value: "+75%", subtext: "Commercial developments" },
-      { label: "Google Rank", value: "#1 Page", subtext: "Certified building contractors" },
-      { label: "Build Duration", value: "4 Weeks", subtext: "From concept to live" }
+      { label: "Trust Positioning", value: "NIOB / CORBON", subtext: "Regulatory credential display" },
+      { label: "Search Readiness", value: "Technical SEO", subtext: "Indexed service pages" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "Concept to production" }
     ],
     projectDuration: "4 Weeks"
   },
   "priziangori-global": {
-    tagline: "Multi-Sector Industrial Platform: Oil & Gas, Aviation & Environmental",
-    executiveSummary: "Priziangori Global Services Limited needed a cohesive corporate platform to unify their diverse integrated solutions across Oil & Gas, Aviation Fuel, Environmental remediation, and Hospitality sectors in Nigeria.",
-    challenge: "Communicating multifaceted capabilities across heavily regulated energy and environmental industries without confusing visitors or diluting technical credibility.",
+    tagline: "Multi-Sector Industrial Portal: Oil & Gas, Aviation Fuel & Environmental Services",
+    executiveSummary:
+      "Priziangori Global Services Limited engaged Mindware Consulting to unify its integrated operations across Oil & Gas support, Aviation Fueling, Environmental remediation, and Hospitality into one authoritative corporate platform.",
+    challenge:
+      "Communicating diverse technical capabilities across strictly regulated industrial and energy verticals without diluting domain clarity or HSE seriousness.",
     challengeDetails: [
-      "Complex multi-industry service offerings requiring clear architectural division",
-      "Stringent health, safety, and environmental (HSE) compliance communication needs",
-      "Need for institutional trust to facilitate joint ventures and federal contracting"
+      "Complex multi-sector operations requiring clean architectural division for enterprise visitors",
+      "High institutional requirements around HSE stewardship and operational safety",
+      "Need for clear partnership and tender communication channels"
     ],
-    solution: "Architected a streamlined corporate portal featuring distinct sector hubs, interactive compliance documentation, and rapid tender contact points.",
+    objectives: [
+      "Separate four distinct operational verticals into clear, accessible corporate hubs",
+      "Present HSE compliance and safety accountability prominently for joint-venture due diligence",
+      "Implement enterprise SEO metadata across industrial service divisions"
+    ],
+    solution:
+      "Mindware Consulting built a structured corporate industrial website featuring clean vertical segmentation, compliance messaging, and direct tender inquiry routing.",
     strategySteps: [
       {
-        title: "Sector-Specific Information Architecture",
-        description: "Structured clear distinct tracks for Oil & Gas Logistics, Aviation Fueling, and Environmental Remediation."
+        title: "Multi-Sector Information Architecture",
+        description:
+          "Designed dedicated sector hubs for Oil & Gas Logistics, Aviation Fueling, Environmental Remediation, and Hospitality."
       },
       {
-        title: "HSE & Compliance Credentialing",
-        description: "Highlighted regulatory certifications, environmental impact mitigation protocols, and safety records."
+        title: "HSE & Compliance Positioning",
+        description:
+          "Featured regulatory readiness and operational safety standards across service views."
       },
       {
-        title: "Enterprise B2B SEO",
-        description: "Optimized corporate and industrial service queries for energy logistics and industrial servicing."
+        title: "Industrial Search Optimization",
+        description:
+          "Structured service metadata around energy logistics and corporate environmental servicing."
       }
     ],
     keyDeliverables: [
-      "Multi-Sector Corporate Portal",
-      "HSE & Regulatory Compliance Hub",
-      "Tender & Partnership Request System",
-      "Enterprise SEO Setup"
+      "Multi-Sector Corporate Industrial Portal",
+      "HSE & Compliance Presentation",
+      "Tender & Partnership Intake Channels",
+      "Technical SEO Infrastructure"
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org"],
-    result: "Unified four major operational divisions into a sleek, authoritative identity that increased corporate partnership inquiries by 65% in the first quarter.",
+    result:
+      "Unified Priziangori Global Services Limited's four industrial verticals within a 4-week deployment, providing procurement teams and international partners a cohesive corporate reference point.",
     metrics: [
-      { label: "Industrial Inquiries", value: "+65%", subtext: "B2B and energy partners" },
-      { label: "Bounce Rate Reduction", value: "-52%", subtext: "Clear sector navigation" },
-      { label: "Delivery Duration", value: "4 Weeks", subtext: "On-schedule launch" }
+      { label: "Architecture", value: "4 Divisions", subtext: "Oil & Gas, Aviation, Env., Hospitality" },
+      { label: "Compliance Focus", value: "HSE Highlighted", subtext: "Enterprise procurement ready" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "On-schedule launch" }
     ],
-    projectDuration: "4 Weeks",
-    testimonial: {
-      quote: "Mindware Consulting unified our diverse industrial operations across oil & gas, aviation, and environmental servicing into an authoritative corporate digital identity that commands international trust.",
-      author: "Chief Peters",
-      role: "Chief Executive Officer & Managing Director, Priziangori Global Services Limited"
-    }
+    projectDuration: "4 Weeks"
   },
   "eclectic-seals": {
-    tagline: "Premium Interior, Building & Landscape Design Platform in Abuja",
-    executiveSummary: "Eclectic Seals Int'l required a high-end digital presence to showcase their premium interior design, bespoke construction, and landscape architectural solutions in Abuja.",
-    challenge: "High-net-worth homeowners and luxury commercial real estate developers in Abuja demanded an aesthetic experience that mirrored the bespoke opulence of Eclectic Seals' physical work.",
+    tagline: "Luxury Interior, Building & Landscape Architecture Portal in Abuja",
+    executiveSummary:
+      "Eclectic Seals Int'l engaged Mindware Consulting to build a refined digital showcase presenting luxury interior design, bespoke building works, and landscape architecture in Abuja.",
+    challenge:
+      "High-net-worth property owners and luxury developers expect digital presentation that matches the bespoke finish quality of physical architectural work—without sluggish heavy image loads.",
     challengeDetails: [
-      "Need for luxury visual presentation and high-fidelity image rendering",
-      "Fast page load times despite extensive architectural and interior photography",
-      "Targeted local SEO for high-net-worth residential estates in Abuja"
+      "Need for refined visual polish showcasing interior and landscape craftsmanship",
+      "Balancing high-resolution architectural photography with dependable mobile loading",
+      "Capturing local Abuja searches for luxury interior and landscape execution"
     ],
-    solution: "Engineered an ultra-aesthetic, minimalist luxury portfolio with fluid transitions, optimized media streaming, and local Abuja luxury design SEO.",
+    objectives: [
+      "Design an editorial, minimalist interface highlighting bespoke project imagery",
+      "Optimize visual assets so media-rich galleries remain responsive on mobile networks",
+      "Configure local Abuja SEO targeting luxury residential and commercial districts"
+    ],
+    solution:
+      "Mindware Consulting engineered an understated luxury portfolio website pairing responsive media optimization with VIP consultation intake and Abuja-focused search optimization.",
     strategySteps: [
       {
-        title: "Aesthetic Luxury Interface Design",
-        description: "Applied refined typography, rich ambient dark backdrops, and generous white space that emphasizes interior craftsmanship."
+        title: "Editorial Luxury Interface Design",
+        description:
+          "Applied balanced typography and clean gallery framing to foreground architectural craftsmanship."
       },
       {
-        title: "Next-Gen Image Delivery",
-        description: "Implemented modern responsive picture elements with lossless compression for instant visual loading."
+        title: "Responsive Asset Optimization",
+        description:
+          "Configured lightweight responsive media pipelines for crisp display without layout lag."
       },
       {
-        title: "Abuja Real Estate SEO",
-        description: "Targeted localized search terms across Maitama, Asokoro, and Guzape residential developments."
+        title: "Abuja District SEO",
+        description:
+          "Structured localized metadata covering premier Abuja residential and commercial service areas."
       }
     ],
     keyDeliverables: [
-      "Luxury Architectural & Interior Portal",
-      "High-Fidelity Media Showcase",
-      "VIP Consultation Booking Workflow",
-      "Localized Luxury SEO"
+      "Luxury Interior & Landscape Web Portal",
+      "Optimized High-Resolution Media Showcase",
+      "Direct VIP Consultation Flow",
+      "Local Abuja SEO Structure"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Motion", "WebP Optimization"],
-    result: "Delivered an 85% growth in high-value residential interior and landscaping contracts, reducing client acquisition cycle times by nearly 40%.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Motion", "Responsive Media Pipeline"],
+    result:
+      "Delivered in 5 weeks as an authoritative digital showcase equipping Eclectic Seals Int'l with clean mobile responsiveness and Abuja search readiness.",
     metrics: [
-      { label: "Contract Growth", value: "+85%", subtext: "High-value luxury builds" },
-      { label: "Image Load Speed", value: "<0.5s", subtext: "Optimized image pipeline" },
-      { label: "Delivery Duration", value: "5 Weeks", subtext: "Design to production" }
+      { label: "Visual System", value: "Editorial UI", subtext: "High-clarity gallery framing" },
+      { label: "Regional Focus", value: "Abuja FCT", subtext: "Localized luxury search setup" },
+      { label: "Delivery Timeline", value: "5 Weeks", subtext: "Design to production" }
     ],
     projectDuration: "5 Weeks"
   },
   "royalty-finishing": {
-    tagline: "Artisan Flooring, Terrazzo & Epoxy Finishing Portal",
-    executiveSummary: "Royalty Speed Finishing Enterprises required an elegant digital showcase for their superior terrazzo, Italian marble, and high-performance epoxy flooring craftsmanship in Lagos.",
-    challenge: "Terrazzo and epoxy flooring require demonstrating textural detail, durability, and finishing precision. Traditional static marketing was failing to convey the tactile luxury of their craft.",
+    tagline: "Artisan Flooring, Terrazzo & Epoxy Finishing Showcase in Lagos",
+    executiveSummary:
+      "Royalty Speed Finishing Enterprises partnered with Mindware Consulting to present terrazzo, marble, and commercial epoxy flooring solutions in a clear, visually engaging portfolio website in Lagos.",
+    challenge:
+      "Specialty surface finishing relies on visible texture quality, durability specifications, and prompt measurement quoting for commercial builders and facility owners.",
     challengeDetails: [
-      "Showcase tactile surface finishes (terrazzo, metallic epoxy, polished concrete)",
-      "Educate commercial builders on maintenance and lifespan advantages",
-      "Capture commercial retail, church, and residential flooring inquiries"
+      "Demonstrating surface texture craftsmanship across terrazzo, marble, and metallic epoxy finishes",
+      "Explaining floor maintenance and lifespan value to commercial facility managers",
+      "Streamlining measurement and project quotation inquiries in Lagos"
     ],
-    solution: "Crafted a visually stunning portfolio website highlighting surface textures, application galleries, and technical durability metrics.",
+    objectives: [
+      "Showcase distinct flooring surface types through structured high-clarity photography",
+      "Make material differences easy to compare for builders and property owners",
+      "Capture regional searches for terrazzo and epoxy flooring specialists in Lagos"
+    ],
+    solution:
+      "Mindware Consulting created a visually focused finishing portfolio featuring clean surface galleries, service comparisons, and direct measurement request routing.",
     strategySteps: [
       {
-        title: "High-Detail Texture Galleries",
-        description: "Built high-resolution interactive galleries demonstrating fine aggregate terrazzo and industrial epoxy coatings."
+        title: "Surface Detail Galleries",
+        description:
+          "Highlighted aggregate terrazzo, polished stone, and industrial epoxy coating applications clearly."
       },
       {
-        title: "Flooring Cost Estimator Intake",
-        description: "Streamlined square-meterage estimation requests for swift contractor quoting."
+        title: "Measurement Quote Intake",
+        description:
+          "Streamlined consultation requests so builders can share square-meter requirements rapidly."
       },
       {
-        title: "Flooring Industry SEO",
-        description: "Ranked for terrazzo flooring Lagos, industrial epoxy floor installation, and marble restoration."
+        title: "Lagos Flooring SEO",
+        description:
+          "Targeted searches for terrazzo installation, industrial epoxy flooring, and marble finishing in Lagos."
       }
     ],
     keyDeliverables: [
-      "Finishing & Flooring Portfolio",
-      "Surface Comparison & Material Specs",
-      "Direct Measurement RFQ Form",
-      "Commercial Flooring SEO Suite"
+      "Flooring & Finishing Portfolio Website",
+      "Material & Finish Comparison Structure",
+      "Measurement Consultation Form",
+      "Local Flooring SEO Setup"
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Responsive Design"],
-    result: "Boosted client contract acquisition by 70%, with a major surge in large-scale commercial flooring tenders across Lagos and neighboring states.",
+    result:
+      "Completed in 3 weeks, providing Royalty Speed Finishing Enterprises a polished commercial showroom online to engage Lagos contractors and property owners.",
     metrics: [
-      { label: "Client Growth", value: "+70%", subtext: "Commercial & residential projects" },
-      { label: "Lead Quality", value: "92%", subtext: "Verified project size submissions" },
-      { label: "Delivery Duration", value: "3 Weeks", subtext: "Rapid turnaround" }
+      { label: "Showcase Scope", value: "3 Surfaces", subtext: "Terrazzo, marble & epoxy" },
+      { label: "Regional SEO", value: "Lagos Focus", subtext: "Commercial flooring terms" },
+      { label: "Delivery Timeline", value: "3 Weeks", subtext: "Agile turnaround" }
     ],
     projectDuration: "3 Weeks"
   },
   "infinite-downstream": {
-    tagline: "Moving Energy Forward Safely & Efficiently in Downstream Logistics",
-    executiveSummary: "Infinite Downstream Logistics Limited required a modern, highly reliable corporate website to solidify their brand authority and operational safety credentials in the oil & gas downstream sector.",
-    challenge: "Operating downstream logistics requires demonstrating uncompromising safety compliance, fleet reliability, and supply chain accountability to energy majors and multinational partners.",
+    tagline: "Downstream Energy & Logistics Corporate Presence in Nigeria",
+    executiveSummary:
+      "Infinite Downstream Logistics Limited partnered with Mindware Consulting to build a dependable corporate portal communicating operational safety, distribution capability, and corporate reliability in Nigeria's downstream energy sector.",
+    challenge:
+      "Energy distribution partners and institutional procurement teams demand clear corporate presentation demonstrating safety discipline, fleet readiness, and logistical reliability.",
     challengeDetails: [
-      "Communicating fleet safety, depot management, and transit tracking",
-      "Projecting corporate stability to institutional energy stakeholders",
-      "Seamless responsiveness across corporate procurement devices"
+      "Communicating safety compliance and transit accountability clearly to corporate stakeholders",
+      "Projecting institutional credibility required for energy distribution partnerships",
+      "Ensuring reliable cross-device access for busy operations and procurement reviewers"
     ],
-    solution: "Engineered a dependable, corporate portal that highlights safety records, fleet distribution networks, and strategic depot operations.",
+    objectives: [
+      "Present downstream energy distribution capabilities cleanly and authoritatively",
+      "Highlight safety, operational standards, and fleet logistics without visual clutter",
+      "Deploy a secure, responsive corporate website within an enterprise-aligned structure"
+    ],
+    solution:
+      "Mindware Consulting engineered a calm, authoritative downstream corporate website outlining safety credentials, distribution routes, and partner contact points.",
     strategySteps: [
       {
-        title: "Safety & Compliance Architecture",
-        description: "Structured clear verification of safety standards, regulatory approvals, and environmental protocols."
+        title: "Safety & Governance Presentation",
+        description:
+          "Structured operational compliance and safety commitments clearly across corporate service views."
       },
       {
-        title: "Supply Chain Network Visualization",
-        description: "Visualized distribution channels and rapid dispatch capabilities across Nigerian commercial hubs."
+        title: "Logistics Network Overview",
+        description:
+          "Outlined distribution reach and operational dispatch discipline across key commercial hubs."
       }
     ],
     keyDeliverables: [
-      "Corporate Downstream Platform",
-      "Fleet & Distribution Showcase",
-      "Energy Partner Intake System",
-      "High-Security Infrastructure"
+      "Corporate Downstream Web Portal",
+      "Fleet & Distribution Capabilities Page",
+      "Enterprise Partner Contact Routing",
+      "Responsive Mobile Architecture"
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    result: "Enhanced institutional brand trust, contributing to a 50% uplift in corporate contract bids and strengthening relationships with major distributors.",
+    result:
+      "Rolled out in 6 weeks, giving Infinite Downstream Logistics Limited a credible, secure digital home aligned with institutional energy sector expectations.",
     metrics: [
-      { label: "Contract Bid Lift", value: "+50%", subtext: "Commercial tenders" },
-      { label: "Security & Uptime", value: "99.9%", subtext: "High availability setup" },
-      { label: "Delivery Duration", value: "6 Weeks", subtext: "Full strategic rollout" }
+      { label: "Positioning", value: "Energy B2B", subtext: "Safety & fleet governance" },
+      { label: "Architecture", value: "Responsive", subtext: "Cross-device corporate UI" },
+      { label: "Delivery Timeline", value: "6 Weeks", subtext: "Full strategic rollout" }
     ],
     projectDuration: "6 Weeks"
   },
   "efudo-construction": {
-    tagline: "Dual-Engine Construction & Premium Building Materials Manufacturing",
-    executiveSummary: "Efudo General Construction Company required a comprehensive digital presence to highlight their dual expertise in general civil construction and premium building product manufacturing across Nigeria.",
-    challenge: "Efudo is both an on-site building contractor and a manufacturer of construction components. Their previous absence of a digital platform forced them to rely entirely on word-of-mouth.",
+    tagline: "General Construction & Building Materials Manufacturing Platform",
+    executiveSummary:
+      "Efudo General Construction Company engaged Mindware Consulting to unify its dual capabilities—general civil construction contracting and building materials manufacturing—into a clear nationwide corporate platform.",
+    challenge:
+      "Businesses combining site contracting with component manufacturing often confuse visitors unless both buyer tracks are separated clearly online.",
     challengeDetails: [
-      "Dual business model: construction services vs. manufactured building products",
-      "Need to display nationwide project footprint and factory output capacities",
-      "Lack of digital catalogue for commercial building supplies"
+      "Dual buyer audiences: infrastructure construction clients vs. wholesale building material buyers",
+      "No centralized online presentation of factory manufacturing capacity and nationwide project delivery",
+      "Reliance on word-of-mouth referrals without searchable digital product collateral"
     ],
-    solution: "Created an engaging, robust corporate website featuring a dual-channel architecture that smoothly caters to both building clients and wholesale materials buyers.",
+    objectives: [
+      "Establish separate, intuitive pathways for general contracting and manufactured building products",
+      "Highlight manufacturing quality control and delivery capability across Nigeria",
+      "Create direct quotation forms tailored to both contractors and commercial developers"
+    ],
+    solution:
+      "Mindware Consulting designed a dual-channel corporate website that guides construction buyers and materials wholesalers quickly to relevant specifications and quote forms.",
     strategySteps: [
       {
-        title: "Dual Channel Architecture",
-        description: "Created distinct navigation pathways for contracting services and manufactured materials procurement."
+        title: "Dual-Channel User Journeys",
+        description:
+          "Created clear structural separation between general civil construction contracting and building product supply."
       },
       {
-        title: "Manufacturing Showcase",
-        description: "Showcased factory quality control, batch capabilities, and nationwide logistics delivery."
+        title: "Manufacturing Capacity Presentation",
+        description:
+          "Highlighted factory production standards and distribution across Nigeria."
       },
       {
-        title: "Nationwide Contractor SEO",
-        description: "Targeted building supplies and construction contracting across Nigerian states."
+        title: "Contractor & Supply SEO",
+        description:
+          "Structured metadata targeting construction contracting and manufactured building supplies."
       }
     ],
     keyDeliverables: [
-      "Dual-Channel Corporate Platform",
-      "Manufacturing Product Directory",
-      "Contractor Quote Intake",
-      "Nationwide Search Optimization"
+      "Dual-Channel Corporate Web Platform",
+      "Manufactured Products Directory",
+      "Contractor & Wholesale Quote Intake",
+      "National Search Optimization Structure"
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Semantic Markup"],
-    result: "Delivered an 80% growth in qualified leads, with orders for manufactured building supplies expanding significantly into five new regional states.",
+    result:
+      "Delivered in 4 weeks, uniting Efudo General Construction Company's contracting and manufacturing operations under one searchable corporate platform.",
     metrics: [
-      { label: "Lead Growth", value: "+80%", subtext: "Dual services & products" },
-      { label: "Regional States", value: "5 New", subtext: "Market penetration" },
-      { label: "Delivery Duration", value: "4 Weeks", subtext: "Rapid execution" }
+      { label: "Business Model", value: "Dual-Channel", subtext: "Contracting + Manufacturing" },
+      { label: "Lead Capture", value: "Segmented RFQ", subtext: "Tailored quote routing" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "Rapid turnaround" }
     ],
     projectDuration: "4 Weeks"
   },
   "cosmozel-construction": {
-    tagline: "Civil Engineering Digital Identity & Proven Infrastructure Outcomes",
-    executiveSummary: "Cosmozel Nigeria Limited required a trusted online platform to highlight their civil engineering capabilities and showcase past successful infrastructure projects.",
-    challenge: "Navigating tender processes required an easily accessible digital dossier where government bodies and corporate clients could verify past works and equipment capacity.",
+    tagline: "Civil Engineering Digital Identity & Long-Term Technical Maintenance Partnership",
+    executiveSummary:
+      "Cosmozel Nigeria Limited partnered with Mindware Consulting to design a professional, responsive corporate website tailored to its civil engineering brand image, backed by an ongoing technical maintenance partnership ensuring continuous software updates and zero-downtime reliability.",
+    challenge:
+      "Cosmozel Nigeria Limited needed a trustworthy digital platform to reflect its civil engineering brand image online—and dependable ongoing software maintenance so the corporate site stays fast, current, and operational without downtime.",
     challengeDetails: [
-      "Need for digital verification of public and private infrastructure projects",
-      "Showcasing heavy machinery fleet and civil engineering teams",
-      "Building trust for municipal and highway construction bids"
+      "Need for a credible civil engineering corporate site suited to corporate and tender stakeholders",
+      "Requirement for clean responsiveness across executive desktops and mobile devices",
+      "Need for dependable post-launch technical support, software updates, and uptime continuity"
     ],
-    solution: "Delivered a modern, professional website that transformed their engineering ideas into a compelling digital reality, boosting industry trust.",
+    objectives: [
+      "Design a professional, responsive corporate website aligned with Cosmozel's brand image",
+      "Establish reliable ongoing software updates and proactive site maintenance",
+      "Maintain smooth performance without operational downtime post-launch"
+    ],
+    solution:
+      "Mindware Consulting designed and deployed a responsive corporate web platform for Cosmozel Nigeria Limited and continues to provide dedicated software maintenance, performance monitoring, and dependable technical support.",
     strategySteps: [
       {
-        title: "Project Dossier Architecture",
-        description: "Structured comprehensive project profiles with roadworks, drainage, and structural bridge engineering data."
+        title: "Brand-Aligned Corporate Architecture",
+        description:
+          "Designed an authoritative civil engineering layout communicating organizational credibility and project readiness."
       },
       {
-        title: "Fleet & Resource Presentation",
-        description: "Highlighted operational readiness with modern heavy machinery inventory profiles."
+        title: "Responsive Engineering Delivery",
+        description:
+          "Implemented responsive layouts calibrated across mobile, tablet, and desktop screens."
+      },
+      {
+        title: "Ongoing Maintenance & Uptime Stewardship",
+        description:
+          "Established continuous software update hygiene, monitoring, and dependable post-launch technical support."
       }
     ],
     keyDeliverables: [
-      "Civil Engineering Web Platform",
-      "Digital Infrastructure Dossier",
-      "Tender Contact System",
-      "Fast Mobile Architecture"
+      "Responsive Civil Engineering Website",
+      "Brand-Aligned Corporate Showcase",
+      "Ongoing Software Maintenance & Updates",
+      "Downtime Prevention & Dependable Technical Support"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-    result: "Empowered Cosmozel with an authoritative digital identity, boosting bid trust and producing a 35% increase in invited infrastructure tenders.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Managed Hosting & Maintenance SLA"],
+    result:
+      "Delivered a responsive corporate website tailored to Cosmozel Nigeria Limited's brand image, backed by uninterrupted post-launch maintenance and a verified 5-star Google Client Review from CEO Bldr. Cosmas Emeka Onuh.",
     metrics: [
-      { label: "Tender Invitations", value: "+35%", subtext: "Commercial and municipal" },
-      { label: "Verification Speed", value: "Instant", subtext: "Digital proof of execution" },
-      { label: "Delivery Duration", value: "5 Weeks", subtext: "Complete rollout" }
+      { label: "Verified Google Rating", value: "5.0 / 5.0", subtext: "Bldr. Cosmas Emeka Onuh (CEO)" },
+      { label: "Uptime Track Record", value: "Zero Downtime", subtext: "Ongoing technical maintenance" },
+      { label: "Delivery Scope", value: "Design + SLA", subtext: "Build & continuous updates" },
+      { label: "Initial Launch", value: "5 Weeks", subtext: "Design to production launch" }
     ],
-    projectDuration: "5 Weeks"
+    projectDuration: "5 Weeks",
+    testimonial: {
+      quote:
+        "Mindware Consulting Limited has been our trusted web design and maintenance partner for quite some time now. They did an excellent job designing our company website — professional, responsive, and exactly suited to our brand image. Since launch, they’ve continued to maintain the site diligently, updating software and ensuring smooth performance without any downtime.\n\nWe’re impressed with their dedication, reliability, and attention to detail. I strongly recommend Mindware Consulting Limited to any business looking for quality web design and dependable technical support.",
+      author: "Bldr. Cosmas Emeka Onuh",
+      role: "Chief Executive Officer · Verified Google Review (31 October 2025)"
+    }
   },
   "watech-integrated": {
-    tagline: "Next-Generation Concrete Solutions & Infrastructure Portal",
-    executiveSummary: "Watech Nigeria Ltd needed a powerful digital platform to showcase their top-tier concrete solutions, ready-mix batching capabilities, and large-scale construction projects in Lagos.",
-    challenge: "Concrete solutions demand strict proof of slump quality, compressive strength certifications, and timely dispatch logistics. Watech needed a platform that radiated technical excellence.",
+    tagline: "Concrete Solutions & Construction Capabilities Portal in Lagos",
+    executiveSummary:
+      "Watech Nigeria Ltd commissioned Mindware Consulting to build a clear, fast-loading digital platform showcasing ready-mix concrete capabilities, structural quality standards, and commercial project delivery in Lagos.",
+    challenge:
+      "Commercial builders and civil contractors selecting concrete partners require clear visibility into technical capability, batching readiness, and rapid dispatch contact points.",
     challengeDetails: [
-      "Proof of concrete quality standards, mix formulations, and testing compliance",
-      "Ready-mix dispatch scheduling and corporate batch orders",
-      "High competition among concrete providers in Lagos industrial zones"
+      "Need to project technical competence in ready-mix concrete and infrastructure solutions",
+      "Connecting Lagos commercial builders quickly with batching and project inquiry contacts",
+      "Standing out clearly in a crowded Lagos construction materials market"
     ],
-    solution: "Designed and developed an immersive, fast-loading corporate website to attract high-value infrastructure contracts and bulk concrete orders.",
+    objectives: [
+      "Present concrete solutions and construction capabilities in a structured, modern layout",
+      "Provide direct inquiry pathways for commercial concrete supply and infrastructure contracts",
+      "Implement localized Lagos SEO metadata for high-intent concrete queries"
+    ],
+    solution:
+      "Mindware Consulting designed and built an immersive, responsive concrete and engineering web portal focused on technical clarity and direct contractor contact.",
     strategySteps: [
       {
-        title: "Quality & Testing Transparency",
-        description: "Spotlighted lab test results, batching technology, and structural engineering approvals."
+        title: "Technical Credibility Presentation",
+        description:
+          "Structured concrete solutions, quality assurance standards, and engineering support cleanly."
       },
       {
-        title: "Batch Order Ingestion Funnel",
-        description: "Built quick cubic-meterage volume calculators and direct depot dispatch contact links."
+        title: "Contractor Inquiry Routing",
+        description:
+          "Integrated streamlined contact links connecting commercial buyers directly with supply teams."
       },
       {
-        title: "Lagos Concrete SEO",
-        description: "Dominated local searches for ready mix concrete, high-strength concrete solutions, and batching plants in Lagos."
+        title: "Lagos Industrial Search Readiness",
+        description:
+          "Configured technical metadata covering ready-mix concrete and construction solutions in Lagos."
       }
     ],
     keyDeliverables: [
       "Concrete Solutions Web Portal",
-      "Batch Order & Volume Calculator",
-      "Quality Assurance Hub",
-      "Local Industrial SEO"
+      "Contractor Inquiry Funnels",
+      "Quality & Service Presentation",
+      "Local Lagos Industrial SEO"
     ],
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Local SEO"],
-    result: "Secured a 60% surge in major building contractor inquiries and locked in multiple recurring ready-mix supply contracts for high-rise developments.",
+    result:
+      "Completed in 3 weeks, giving Watech Nigeria Ltd a high-clarity corporate web platform supporting infrastructure and ready-mix client acquisition in Lagos.",
     metrics: [
-      { label: "Contractor Growth", value: "+60%", subtext: "Direct batch accounts" },
-      { label: "Quote Response Time", value: "<15m", subtext: "Direct dispatch routing" },
-      { label: "Delivery Duration", value: "3 Weeks", subtext: "Agile deployment" }
+      { label: "Market Focus", value: "Lagos B2B", subtext: "Contractors & concrete supply" },
+      { label: "Platform Type", value: "Fast SPA", subtext: "Responsive corporate showcase" },
+      { label: "Delivery Timeline", value: "3 Weeks", subtext: "Agile turnaround" }
     ],
     projectDuration: "3 Weeks"
   },
   "temamost-construction": {
-    tagline: "Before & After Website Upgrade: Multi-Device Digital Transformation for Port Harcourt's Premier Civil Engineering Firm",
-    executiveSummary: "Temamost Nigeria Ltd, a premier civil engineering, coastal terrain infrastructure, and turnkey building construction company established in 2017 in Port Harcourt, Rivers State, partnered with Mindware Consulting for a complete digital overhaul. Moving from an outdated, non-responsive legacy website, Mindware engineered a modern, ultra-responsive digital ecosystem seamlessly optimized across desktop, laptop, tablet, smartphone, and smartwatch presentations. Embodying the company's signature navy, red, and white corporate branding with high-precision construction visuals, the upgrade revolutionized their digital authority, streamlined RFP tender intake, and generated a 92% surge in verified commercial inquiries.",
-    challenge: "In Nigeria's competitive coastal engineering and oilfield civil works market, institutional developers, corporate project directors, and multinational joint-venture partners demand immediate digital proof of equipment capability, structural integrity, and verified project deliveries. Temamost's previous legacy website had significant architectural and visual shortcomings: a rigid, outdated non-responsive design that broke on modern mobile devices, slow page load speeds with uncompressed assets, poor visual hierarchy that failed to reflect their engineering pedigree, and zero presence on Google search for high-value tenders in Port Harcourt and the Niger Delta.",
+    tagline: "Before & After Website Upgrade: Multi-Device Digital Transformation for Port Harcourt's Civil Engineering Firm",
+    executiveSummary:
+      "Temamost Nigeria Ltd, a Port Harcourt-based civil engineering, coastal terrain infrastructure, and turnkey building construction company established in 2017, partnered with Mindware Consulting to upgrade an outdated legacy site into a modern, responsive multi-device digital flagship reflecting its signature navy, red, and white corporate identity.",
+    challenge:
+      "In Port Harcourt and Nigeria's coastal infrastructure market, institutional developers expect modern digital verification of technical capability. Temamost's legacy website suffered from an outdated non-responsive layout on mobile devices, slow uncompressed assets, weak visual hierarchy, and limited discoverability for commercial construction inquiries.",
     challengeDetails: [
-      "Legacy Outdated Design (Before): A rigid, non-responsive web layout that degraded severely on mobile and tablet screens, alienating corporate decision-makers and site managers on the move",
-      "Hidden Engineering Portfolio: Absence of high-definition project documentation, leaving multi-million naira civil engineering, piling, and coastal reclamation achievements hidden from prospective clients",
-      "Broken Lead Pathways: No direct, frictionless conversion funnels—lacking one-click WhatsApp consultations, structured Request for Quotation (RFQ) forms, or online tender pre-qualification intake",
-      "Invisible Search Footprint: Zero organic search visibility for high-intent regional queries like 'construction company in Port Harcourt', 'building contractors in Rivers State', and 'civil engineering Nigeria'"
+      "Legacy Outdated Layout (Before): A rigid, non-responsive website that degraded poorly on smartphones and tablets used by project directors and site managers",
+      "Underrepresented Portfolio: Multi-disciplinary civil engineering, piling, and coastal reclamation capabilities lacked clean structured visual presentation",
+      "Friction in Lead Capture: Missing direct WhatsApp inquiry links and structured Request for Quotation (RFQ) pathways",
+      "Limited Regional Search Footprint: Lack of structured construction schema targeting Port Harcourt and Rivers State commercial searches"
     ],
-    solution: "Mindware Consulting executed an end-to-end website upgrade: completely retiring the legacy architecture and deploying a cutting-edge, mobile-first web platform. The upgrade delivers fluid multi-device adaptations across desktop ultrawides, business laptops, touch tablets, smartphones, and smartwatch notifications. Incorporating high-resolution construction visuals, the company's iconic navy, red, and white brand identity, interactive project filtering, and deep local SEO schema, the new platform positions Temamost as a tier-1 contractor in the Niger Delta.",
+    objectives: [
+      "Execute a complete Before-and-After website redesign preserving Temamost's navy, red, and white corporate identity",
+      "Ensure responsive usability across desktop, laptop, tablet, smartphone, and compact viewports",
+      "Implement structured RFQ, tender inquiry, and pre-filled WhatsApp consultation channels",
+      "Deploy ConstructionBusiness Schema.org markup targeting Port Harcourt and Rivers State"
+    ],
+    solution:
+      "Mindware Consulting re-architected Temamost's web presence from the ground up—applying responsive grid engineering, standardized navy/red/white visual design tokens, structured civil project galleries, and streamlined tender conversion workflows.",
     strategySteps: [
       {
-        title: "Before & After Architectural Overhaul",
-        description: "Audited the legacy website's structural bottlenecks and usability deficits. Re-architected the entire information flow around high-intent client journeys—highlighting turnkey building construction, coastal engineering, piling, and industrial infrastructure with clear before-and-after visual contrast."
+        title: "Before & After Structural Overhaul",
+        description:
+          "Audited legacy usability bottlenecks and rebuilt the site around commercial tender evaluation—highlighting civil construction, coastal engineering, piling, and industrial infrastructure."
       },
       {
-        title: "Multi-Device Fluid Responsiveness (Desktop to Smartwatch)",
-        description: "Engineered an adaptive, responsive grid rigorously calibrated across 5 distinct device formats: desktop monitors, laptops, tablets, smartphones, and smartwatch screen interfaces, ensuring flawless browsing for executives in the boardroom and engineers on construction sites."
+        title: "Multi-Device Responsive Presentation",
+        description:
+          "Calibrated adaptive layouts across desktop monitors, laptops, tablets, smartphones, and wearable screen widths."
       },
       {
-        title: "High-Impact Navy, Red & White Visual Identity",
-        description: "Standardized Temamost's signature corporate color palette—deep corporate navy (#0B1B3D), bold crimson red (#E31E24), and crisp white—paired with robust typography, subtle architectural gridlines, and cinematic photography of active cranes, earthmoving machinery, and concrete pours."
+        title: "Navy, Red & White Corporate Visual System",
+        description:
+          "Standardized Temamost's corporate palette paired with crisp architectural visual framing and project imagery."
       },
       {
-        title: "Frictionless RFQ, WhatsApp & Tender Lead Funnels",
-        description: "Embedded pre-filled WhatsApp engineering inquiries, interactive Request-for-Quotation (RFQ) forms, and an online client due-diligence docket enabling project directors to submit project drawings and tender specifications directly."
+        title: "RFQ, WhatsApp & Tender Lead Funnels",
+        description:
+          "Integrated direct WhatsApp engineering prompts and structured quotation request workflows."
       },
       {
-        title: "Port Harcourt & Rivers State Local SEO Dominance",
-        description: "Configured comprehensive ConstructionBusiness and LocalBusiness JSON-LD schema with exact GPS coordinates for their Woji / Peter Odili Road headquarters, securing top-3 search rankings for commercial construction across Rivers State."
+        title: "Port Harcourt & Rivers State Schema SEO",
+        description:
+          "Configured ConstructionBusiness and LocalBusiness JSON-LD metadata aligned with Port Harcourt commercial operations."
       }
     ],
     keyDeliverables: [
-      "Complete Website Upgrade & Legacy Platform Modernization",
-      "Multi-Device Responsive Matrix (Desktop, Laptop, Tablet, Mobile, Smartwatch)",
-      "Signature Corporate Navy, Red & White Visual Identity System",
-      "Interactive Civil, Coastal & Turnkey Construction Project Showcase",
-      "Direct WhatsApp Consultation & Structured RFQ Quotation Funnels",
-      "Port Harcourt & Rivers State ConstructionBusiness Schema.org SEO Engine",
-      "Sub-Second Core Web Vitals Optimization & High-Speed Asset CDN"
+      "Complete Legacy Website Upgrade & Modernization",
+      "Multi-Device Responsive Layout Matrix",
+      "Navy, Red & White Visual Design System",
+      "Civil, Coastal & Building Project Showcase",
+      "Direct WhatsApp & Structured RFQ Funnels",
+      "ConstructionBusiness Schema.org SEO Engine"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org ConstructionBusiness", "Cloudflare CDN", "Google Search Console"],
-    result: "The website upgrade delivered immediate commercial transformation for Temamost Nigeria Ltd. Within 60 days of launch, mobile engagement jumped by 140%, qualified project inquiries and RFQ tender requests surged by 92%, bounce rates plummeted by 68%, and Temamost secured top-3 Google rankings for competitive engineering keywords across Port Harcourt and the Niger Delta.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org ConstructionBusiness", "Google Search Console"],
+    result:
+      "Delivered a complete Before-and-After digital transformation within 4 weeks—replacing a legacy non-responsive website with a cohesive multi-device platform ready for Port Harcourt institutional tenders and direct RFQ intake.",
     metrics: [
-      { label: "Qualified Tender Inquiries", value: "+92%", subtext: "Direct RFQ & WhatsApp leads" },
-      { label: "Mobile Engagement", value: "+140%", subtext: "Multi-device fluid responsiveness" },
-      { label: "Page Speed Improvement", value: "3.2x Faster", subtext: "Sub-second Core Web Vitals" },
-      { label: "Google Local Visibility", value: "Top 3", subtext: "Port Harcourt construction queries" }
+      { label: "Upgrade Scope", value: "Before → After", subtext: "Full legacy modernization" },
+      { label: "Device Coverage", value: "Multi-Device", subtext: "Desktop, tablet, mobile & watch" },
+      { label: "Brand Identity", value: "Navy / Red", subtext: "Cohesive corporate system" },
+      { label: "Delivery Timeline", value: "4 Weeks", subtext: "Audit to live deployment" }
     ],
-    projectDuration: "4 Weeks",
-    testimonial: {
-      quote: "The upgrade delivered by Mindware Consulting was night and day compared to our old website. The new multi-device platform showcases our true engineering capability with the exact navy, red, and white prestige our brand deserves. We have won major commercial contracts directly through the new platform.",
-      author: "Executive Management",
-      role: "Temamost Nigeria Ltd, Port Harcourt"
-    }
+    projectDuration: "4 Weeks"
   }
 };
 
-/**
- * Automatically crafts a complete, high-fidelity Case Study for any project added to PORTFOLIO going forward.
- */
 function generateDefaultCaseStudy(project: typeof PORTFOLIO[0]): CaseStudyDetail {
-  const growthNum = project.projectMetrics?.growth || 80;
   const durationNum = project.projectMetrics?.duration || 4;
 
   return {
@@ -720,66 +877,61 @@ function generateDefaultCaseStudy(project: typeof PORTFOLIO[0]): CaseStudyDetail
     service: project.service,
     image: project.image,
     link: project.link,
-    tagline: `${project.title} · Proven Execution for ${project.client}`,
-    executiveSummary: `Mindware Consulting engineered a high-performance digital solution for ${project.client}, transforming their market presence through modern web engineering, strategic positioning, and data-driven SEO.`,
+    tagline: `${project.title} · Strategic Digital Delivery for ${project.client}`,
+    executiveSummary: `Mindware Consulting engineered a modern corporate web platform for ${project.client}, aligning technical architecture, responsive usability, and search foundations with commercial growth goals in ${project.industry}.`,
     challenge: project.challenge,
     challengeDetails: [
-      `Need for an authoritative, modern digital showcase that accurately reflects ${project.client}'s true market leadership and technical capabilities`,
-      `Overcoming fragmented or outdated online touchpoints that caused high bounce rates and lost commercial opportunities`,
-      `Establishing clear search engine visibility for high-intent corporate inquiries in the ${project.industry} space`,
-      `Streamlining client inquiry routing to convert digital visits directly into verified commercial contracts`
+      `Need for an authoritative corporate platform accurately representing ${project.client}'s market positioning in ${project.industry}`,
+      "Overcoming friction in how prospective clients review capabilities and initiate project inquiries",
+      `Strengthening foundational search visibility across high-intent ${project.industry} queries`,
+      "Ensuring reliable cross-device experience for executives and procurement stakeholders"
+    ],
+    objectives: [
+      `Establish clear digital credibility tailored to buyers in ${project.industry}`,
+      "Organize service and capability offerings for rapid executive review",
+      "Embed low-friction consultation and inquiry pathways",
+      "Implement technical SEO and Schema.org structured metadata"
     ],
     solution: project.result,
     strategySteps: [
       {
-        title: "Strategic Discovery & Brand Architecture",
-        description: `Conducted in-depth analysis of ${project.client}'s commercial strengths, ideal client personas, and market positioning within ${project.industry}.`
+        title: "Strategic Discovery & Positioning",
+        description: `Analyzed ${project.client}'s core offerings, buyer decision criteria, and positioning within ${project.industry}.`
       },
       {
-        title: "Next-Gen UI/UX Engineering & Responsive Design",
-        description: "Crafted a bespoke, lightning-fast digital interface optimized for rapid comprehension, intuitive project browsing, and flawless mobile responsiveness."
+        title: "Responsive UI/UX Engineering",
+        description: "Built a clean, fast digital interface structured for clear service comprehension across desktop and mobile."
       },
       {
-        title: "Technical & Commercial Search Engine Optimization",
-        description: "Implemented comprehensive Schema.org metadata, technical keyword structuring, and lightning-fast Core Web Vitals to capture high-value organic search traffic."
+        title: "Technical SEO Foundations",
+        description: "Implemented Schema.org markup, semantic headings, and clean indexing structure."
       },
       {
-        title: "Frictionless Conversion & Lead Funnels",
-        description: "Integrated direct consultation inquiry channels and high-converting calls-to-action that turn prospective interest into tangible business deals."
+        title: "Streamlined Consultation Funnels",
+        description: "Integrated direct contact and WhatsApp consultation actions to turn visitor intent into commercial conversations."
       }
     ],
     keyDeliverables: [
-      "Custom High-Performance Web Platform",
-      "Interactive Digital Portfolio & Showcase",
-      "End-to-End Technical & Local SEO Suite",
-      "Mobile-First Responsive Interface",
-      "Integrated Direct Lead & RFQ Funnels",
-      "Core Web Vitals Optimization"
+      "Custom Corporate Web Platform",
+      "Service & Capability Showcase",
+      "Technical SEO & Schema Setup",
+      "Mobile-First Responsive UI",
+      "Direct Consultation & Inquiry Funnels"
     ],
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org", "Modern Web Standards"],
+    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Schema.org"],
     result: project.result,
     metrics: [
-      { label: "Commercial Growth", value: `+${growthNum}%`, subtext: "Inbound inquiries & visibility" },
-      { label: "Search Discovery", value: "Top Tier", subtext: "Target industry terms" },
-      { label: "Average Load Speed", value: "<1.0s", subtext: "Optimized performance" },
-      { label: "Project Duration", value: `${durationNum} Weeks`, subtext: "Concept to production" }
+      { label: "Delivered Scope", value: project.service, subtext: "Production deployment" },
+      { label: "Primary Sector", value: project.industry, subtext: "Targeted positioning" },
+      { label: "Search Readiness", value: "Schema SEO", subtext: "Clean semantic structure" },
+      { label: "Delivery Timeline", value: `${durationNum} Weeks`, subtext: "Discovery to launch" }
     ],
-    projectDuration: `${durationNum} Weeks`,
-    testimonial: {
-      quote: `Working with Mindware Consulting completely modernized our digital capabilities. The platform has significantly elevated our brand authority and brought measurable business growth.`,
-      author: "Executive Leadership",
-      role: project.client
-    }
+    projectDuration: `${durationNum} Weeks`
   };
 }
 
-/**
- * Returns a comprehensive Case Study for any given project ID.
- * Supports both bespoke detailed entries and automatically generates dynamic case studies
- * for any project added to PORTFOLIO going forward.
- */
 export function getCaseStudyById(id: string): CaseStudyDetail | null {
-  const portfolioItem = PORTFOLIO.find(p => p.id === id);
+  const portfolioItem = PORTFOLIO.find((p) => p.id === id);
   if (!portfolioItem) return null;
 
   const bespoke = BESPOKE_CASE_STUDIES[id];
@@ -800,22 +952,20 @@ export function getCaseStudyById(id: string): CaseStudyDetail | null {
     image: portfolioItem.image,
     link: portfolioItem.link || bespoke.link,
     challenge: bespoke.challenge || portfolioItem.challenge,
+    challengeDetails: bespoke.challengeDetails || defaults.challengeDetails,
+    objectives: bespoke.objectives || defaults.objectives,
     result: bespoke.result || portfolioItem.result,
     metrics: bespoke.metrics || defaults.metrics,
     strategySteps: bespoke.strategySteps || defaults.strategySteps,
     keyDeliverables: bespoke.keyDeliverables || defaults.keyDeliverables,
     technologies: bespoke.technologies || defaults.technologies,
-    challengeDetails: bespoke.challengeDetails || defaults.challengeDetails,
     projectDuration: bespoke.projectDuration || defaults.projectDuration,
     tagline: bespoke.tagline || defaults.tagline,
-    executiveSummary: bespoke.executiveSummary || defaults.executiveSummary
+    executiveSummary: bespoke.executiveSummary || defaults.executiveSummary,
+    testimonial: bespoke.testimonial
   };
 }
 
-/**
- * Returns all case studies dynamically matching all items in PORTFOLIO.
- * Any item added to PORTFOLIO in the future will automatically be returned here!
- */
 export function getAllCaseStudies(): CaseStudyDetail[] {
-  return PORTFOLIO.map(project => getCaseStudyById(project.id)!).filter(Boolean);
+  return PORTFOLIO.map((project) => getCaseStudyById(project.id)!).filter(Boolean);
 }

@@ -35,6 +35,8 @@ import { getCaseStudyById, getAllCaseStudies, CaseStudyDetail as CaseStudyType }
 import { FadeInSection } from "../components/FadeInSection";
 import { SEO } from "../components/SEO";
 import { EASE } from "../lib/utils";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import { trackPrimaryCtaClick } from "../lib/analytics";
 
 export function CaseStudyDetail() {
   const { id } = useParams<{ id: string }>();
@@ -75,7 +77,7 @@ export function CaseStudyDetail() {
   if (!study) {
     return (
       <div className="min-h-screen bg-mw-dark pt-32 sm:pt-40 pb-20 sm:pb-24 flex items-center justify-center text-white px-4">
-        <SEO title="Case Study Not Found | Mindware Consulting" description="The requested case study could not be found." />
+        <SEO title="Case Study Not Found | Mindware Consulting" description="The requested case study could not be found." noindex />
         <div className="text-center max-w-md mx-auto">
           <div className="w-16 h-16 rounded-full bg-mw-orange/10 border border-mw-orange/30 flex items-center justify-center mx-auto mb-6 text-mw-orange">
             <Target className="w-8 h-8" />
@@ -114,14 +116,14 @@ export function CaseStudyDetail() {
     "author": {
       "@type": "Organization",
       "name": "Mindware Consulting Ltd",
-      "url": "https://mindwareconsultingltd.com"
+      "url": "https://mindwareconsult.com.ng"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Mindware Consulting Ltd",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://mindwareconsultingltd.com/assets/images/logo.png"
+        "url": "https://mindwareconsult.com.ng/logo.png"
       }
     },
     "about": {
@@ -376,16 +378,16 @@ export function CaseStudyDetail() {
         </div>
       </section>
 
-      {/* Quantitative Performance Metrics Bar */}
+      {/* Project Delivery & Verification Summary */}
       <section className="py-10 sm:py-14 border-y border-white/5 bg-[#030612] relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 md:px-12">
           <div className="flex items-center justify-between mb-6 pb-2 border-b border-white/5">
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-mw-orange">
               <BarChart3 className="w-4 h-4" />
-              <span>Validated Performance Audits</span>
+              <span>Delivered Outcomes &amp; Scope Summary</span>
             </div>
             <div className="text-[11px] text-white/40 hidden sm:block">
-              Measured pre-launch baseline vs. post-engineering deployment
+              Documented deliverables and verified client outcomes
             </div>
           </div>
 
@@ -395,7 +397,7 @@ export function CaseStudyDetail() {
                 key={i}
                 className="p-4 sm:p-6 rounded-2xl bg-[#080d1e] border border-white/10 hover:border-mw-orange/30 transition-all duration-300 group"
               >
-                <div className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-mw-orange tracking-tight mb-2 group-hover:scale-105 transition-transform origin-left">
+                <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-mw-orange tracking-tight mb-2 group-hover:scale-105 transition-transform origin-left">
                   {metric.value}
                 </div>
                 <div className="text-xs sm:text-sm font-bold text-white tracking-wide">{metric.label}</div>
@@ -404,40 +406,36 @@ export function CaseStudyDetail() {
                 )}
                 <div className="mt-3 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[10px] text-emerald-400 font-medium">
                   <CheckCircle2 className="w-3 h-3" />
-                  <span>Audited Outcome</span>
+                  <span>Delivered Milestone</span>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Core Web Vitals Simulation Bar */}
+          {/* Engineering Standards Applied */}
           <div className="mt-8 p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                 <Zap className="w-4 h-4" />
               </div>
               <div>
-                <div className="text-xs font-bold text-white">Google Lighthouse Performance Score</div>
-                <div className="text-[11px] text-white/50">Core Web Vitals certified for search crawling</div>
+                <div className="text-xs font-bold text-white">Engineering &amp; Growth Standards Applied</div>
+                <div className="text-[11px] text-white/50">Core production architecture principles built into this engagement</div>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-2 sm:gap-4">
               <div className="px-3 py-1.5 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-1.5">
-                <span>Performance</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">99/100</span>
+                <span>Responsive UI</span>
               </div>
               <div className="px-3 py-1.5 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-1.5">
-                <span>Accessibility</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">100/100</span>
+                <span>Semantic Schema SEO</span>
               </div>
               <div className="px-3 py-1.5 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-1.5">
-                <span>Best Practices</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">100/100</span>
+                <span>Conversion Funnels</span>
               </div>
               <div className="px-3 py-1.5 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center gap-1.5">
-                <span>SEO Index</span>
-                <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[10px]">100/100</span>
+                <span>Clean Codebase</span>
               </div>
             </div>
           </div>
@@ -527,11 +525,11 @@ export function CaseStudyDetail() {
 
               {/* Challenge Details & Before vs After Matrix */}
               <div className="lg:col-span-7 space-y-8">
-                {/* Specific Bottlenecks */}
+                {/* Specific Business Challenges */}
                 <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#090e1e] border border-white/10">
                   <h3 className="text-lg sm:text-xl font-bold mb-5 sm:mb-6 text-white flex items-center gap-3">
                     <Zap className="w-5 h-5 text-mw-orange" />
-                    Critical Pain Points Solved
+                    Business Challenges Identified
                   </h3>
                   <div className="space-y-3 sm:space-y-4">
                     {study.challengeDetails.map((detail, idx) => (
@@ -543,6 +541,25 @@ export function CaseStudyDetail() {
                           0{idx + 1}
                         </div>
                         <p className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed">{detail}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Project Objectives */}
+                <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#080c1b] border border-white/10">
+                  <h3 className="text-lg sm:text-xl font-bold mb-5 sm:mb-6 text-white flex items-center gap-3">
+                    <Target className="w-5 h-5 text-emerald-400" />
+                    Project Objectives
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {study.objectives.map((objective, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-start gap-2.5 p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs sm:text-sm text-white/85 leading-relaxed"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{objective}</span>
                       </div>
                     ))}
                   </div>
@@ -564,11 +581,11 @@ export function CaseStudyDetail() {
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-red-400 font-bold">✕</span>
-                          <span>High friction lead intake & quote forms</span>
+                          <span>High friction lead intake &amp; quote forms</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-red-400 font-bold">✕</span>
-                          <span>Sub-optimal mobile viewports & slow speeds</span>
+                          <span>Legacy desktop-centric layout &amp; slower browsing</span>
                         </li>
                       </ul>
                     </div>
@@ -578,7 +595,7 @@ export function CaseStudyDetail() {
                       <ul className="space-y-2 text-xs text-white/90">
                         <li className="flex items-start gap-2">
                           <span className="text-emerald-400 font-bold">✓</span>
-                          <span>Top-tier Google ranking on key industry queries</span>
+                          <span>Structured Schema.org metadata and localized search foundations</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-emerald-400 font-bold">✓</span>
@@ -586,7 +603,7 @@ export function CaseStudyDetail() {
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-emerald-400 font-bold">✓</span>
-                          <span>Sub-second page speeds with Core Web Vitals 99+</span>
+                          <span>Responsive multi-device UI engineered for smooth loading</span>
                         </li>
                       </ul>
                     </div>
@@ -855,17 +872,26 @@ export function CaseStudyDetail() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 max-w-md sm:max-w-none mx-auto">
             <Link
-              to={`/contact?service=${encodeURIComponent(study.service)}&case_study=${encodeURIComponent(study.id)}`}
+              to={`/contact?category=${study.industry.toLowerCase().includes("construction") ? "construction-business-growth" : "digital-transformation"}&service=${encodeURIComponent(study.service)}&case_study=${encodeURIComponent(study.id)}&cta=business-growth-review`}
+              onClick={() =>
+                trackPrimaryCtaClick(
+                  `case-study-detail-${study.id}`,
+                  `/contact?case_study=${study.id}`,
+                  study.industry.toLowerCase().includes("construction")
+                    ? "construction-business-growth"
+                    : "digital-transformation"
+                )
+              }
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-mw-orange text-white hover:bg-orange-600 px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xl shadow-mw-orange/25 min-h-[48px]"
             >
-              <span>Schedule Strategic Consultation</span>
+              <span>{CONVERSION_CTAS.primaryLabel}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/portfolio/case-studies"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white px-8 py-3.5 sm:py-4 rounded-full font-semibold text-xs uppercase tracking-wider transition-colors min-h-[48px] bg-white/[0.02]"
             >
-              <span>View All 12+ Case Studies</span>
+              <span>View All Case Studies</span>
             </Link>
           </div>
         </div>

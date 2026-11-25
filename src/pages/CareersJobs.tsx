@@ -56,23 +56,23 @@ export function CareersJobs() {
               Find positions matched to your certified qualifications across engineering, enterprise platforms, technical SEO, and project governance. Apply directly with complete salary transparency.
             </p>
 
-            {/* Quick Metrics */}
+            {/* Quick Facts */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10">
               <div>
-                <div className="text-2xl font-display font-bold text-white">150+</div>
-                <div className="text-xs text-white/50 mt-0.5">Active Enterprise Roles</div>
+                <div className="text-2xl font-display font-bold text-white">Direct</div>
+                <div className="text-xs text-white/50 mt-0.5">Internal Hiring Team</div>
               </div>
               <div>
-                <div className="text-2xl font-display font-bold text-mw-orange">₦1.2M+</div>
-                <div className="text-xs text-white/50 mt-0.5">Average Compensation</div>
+                <div className="text-2xl font-display font-bold text-mw-orange">Structured</div>
+                <div className="text-xs text-white/50 mt-0.5">Role-Specific Evaluation</div>
               </div>
               <div>
-                <div className="text-2xl font-display font-bold text-white">48 Hrs</div>
-                <div className="text-xs text-white/50 mt-0.5">Fast Direct Feedback</div>
+                <div className="text-2xl font-display font-bold text-white">Confidential</div>
+                <div className="text-xs text-white/50 mt-0.5">Candidate Handling</div>
               </div>
               <div>
-                <div className="text-2xl font-display font-bold text-emerald-400">100%</div>
-                <div className="text-xs text-white/50 mt-0.5">Verified Employers</div>
+                <div className="text-2xl font-display font-bold text-emerald-400">RC 1309926</div>
+                <div className="text-xs text-white/50 mt-0.5">Registered Employer</div>
               </div>
             </div>
           </div>

@@ -15,6 +15,12 @@ import {
   FileText
 } from "lucide-react";
 import { EASE } from "../lib/utils";
+import { CONVERSION_CTAS } from "../data/companyStats";
+import {
+  trackPhoneClick,
+  trackPrimaryCtaClick,
+  trackWhatsAppClick,
+} from "../lib/analytics";
 
 export interface PricingFAQItem {
   id: string;
@@ -29,82 +35,82 @@ export const PRICING_FAQS: PricingFAQItem[] = [
   {
     id: "which-tier",
     category: "packages",
-    categoryLabel: "Packages & Scope",
-    question: "Which digital package is the right fit for my construction or engineering company?",
-    answer: "Our packages match distinct organizational stages: Tier 1 (Starter Build, ₦175,000) is tailored for new startups needing an instant professional web presence and corporate emails. Tier 2 (Growth Engine, ₦295,000) is built for growing subcontractors and builders ready for client project showcases and CRM onboarding. Tiers 3 & 4 (Pro Automation & Enterprise Suite, ₦375,000–₦400,000) provide full workflow automation, bookkeeping integrations, and HR recruitment portals. Tiers 5 & 6 (₦475,000–₦595,000) are all-in-one institutional suites that include internal Project Management and HSE Safety Training Portals with corporate certifications.",
-    highlight: "Not sure? Book a 15-min discovery call and our team will evaluate your operational needs free of charge."
+    categoryLabel: "BUILD · GROW · TRANSFORM",
+    question: "How do I choose between BUILD, GROW, TRANSFORM packages and custom engagements?",
+    answer: "Our packages follow your business growth stage: BUILD tiers (Starter Build ₦175,000 and Growth Engine ₦295,000) establish strong corporate websites, brand positioning, and inquiry capture. GROW tiers (Pro Automation ₦375,000 and Enterprise Suite ₦400,000) connect multi-channel visibility, SEO, and operational workflows. TRANSFORM tiers (₦475,000 and ₦595,000) add internal governance hubs, compliance documentation portals, and paid acquisition setup—while monthly retainers and custom software scopes are available whenever your requirements go beyond fixed tiers.",
+    highlight: "Request a Business Growth Review to confirm the right fixed-scope, retainer, or custom engagement structure."
   },
   {
     id: "hidden-fees",
     category: "packages",
     categoryLabel: "Packages & Scope",
-    question: "Are there any hidden costs, setup charges, or surprise monthly fees?",
-    answer: "No. Every package is a 100% transparent, done-for-you turnkey solution. What you see is exactly what you pay. Every single package includes your official domain name registration (.com or .com.ng), high-speed cloud web hosting, SSL certificate, professional business emails, weekly backups, and monthly performance reports for an entire 12-month cycle at zero extra cost.",
-    highlight: "1 full year of domain registration and premium cloud web hosting is included in every package."
+    question: "Are there any hidden setup charges within fixed-scope packages?",
+    answer: "No. Fixed-scope packages clearly define all included deliverables upfront—covering initial domain registration, 12 months of managed cloud hosting, SSL setup, corporate emails, backups, and launch QA with formal invoicing.",
+    highlight: "1 full year of domain registration and managed cloud hosting is included in every package."
   },
   {
     id: "payment-milestones",
     category: "payments",
     categoryLabel: "Payments & Invoicing",
-    question: "What is your payment structure and invoicing process?",
-    answer: "We support flexible corporate payment terms. Projects commence with a 60% mobilization deposit, with the remaining 40% balance payable only upon project completion, quality assurance sign-off, and deployment. We issue formal Corporate Invoices and official receipts registered under Mindware Consulting Ltd (RC 1309926) for your company's accounting records.",
-    highlight: "Official corporate invoices issued with corporate bank transfer options."
+    question: "What is your payment structure and corporate invoicing process?",
+    answer: "Fixed-scope and custom projects generally commence with a 60% mobilization deposit, with the remaining 40% balance payable upon completion, quality assurance sign-off, and handover. Mindware Consulting Ltd (RC 1309926 · FIRS TIN 19660429-0001) issues formal corporate invoices and official receipts.",
+    highlight: "Formal RC 1309926 corporate invoices issued with corporate bank transfer options."
   },
   {
     id: "turnaround-timeline",
     category: "delivery",
     categoryLabel: "Delivery & Setup",
-    question: "How quickly will our website and digital systems be completed and live?",
-    answer: "Our delivery timelines are strictly managed to keep your projects on schedule: Tier 1 & 2 packages launch within 7 to 14 business days. Tier 3 & 4 (Pro Automation and Enterprise Suite) deploy within 14 to 21 business days. Tier 5 & 6 suites (including custom L&D and HSE portals) deploy in 3 to 4 weeks, including complete testing, data migration, and team onboarding sessions.",
-    highlight: "Express delivery sprints are also available for urgent tender and pre-qualification deadlines."
+    question: "How quickly will our digital platform or workflow system go live?",
+    answer: "Typical delivery timelines run 2–4 weeks for BUILD platforms, 3–5 weeks for GROW automation and multi-channel systems, and 4–8 weeks for custom TRANSFORM portals or tailored software scopes.",
+    highlight: "Milestone schedules are agreed upfront before engineering starts."
   },
   {
     id: "existing-domain-migration",
     category: "delivery",
     categoryLabel: "Delivery & Setup",
-    question: "What if we already have an existing domain name, website, or business emails?",
-    answer: "We can easily connect your existing domain or migrate your digital presence seamlessly with zero downtime. If you already own your domain and hosting, our engineering team can allocate that budget toward custom CRM workflows, extra pages, or custom portal features.",
-    highlight: "Zero downtime migration with full transfer assistance from our engineering team."
+    question: "What if we already own a domain name, legacy website, or corporate email setup?",
+    answer: "We handle zero-downtime migrations—upgrading legacy sites seamlessly without breaking existing corporate emails or search equity, and redirecting existing URLs cleanly into your upgraded structure.",
+    highlight: "Safe legacy-to-modern website upgrades with email continuity preserved."
   },
   {
     id: "tier-upgrades",
     category: "packages",
     categoryLabel: "Packages & Scope",
-    question: "Can we start with a lower tier and upgrade later as our company expands?",
-    answer: "Absolutely. All Mindware digital solutions are engineered with modular scalability. If you begin with Tier 1 or Tier 2 today, you can upgrade to Tier 3, 4, or 6 at any point within 6 months simply by paying the price difference. Your initial investment is 100% protected and credited toward your upgrade.",
-    highlight: "100% credit rollover when upgrading your tier within 6 months."
+    question: "Can we start with BUILD or GROW and transition to monthly retainers or TRANSFORM later?",
+    answer: "Yes. Every Mindware build is modularly architected so businesses can launch foundational infrastructure quickly and add monthly SEO/visibility retainers, custom client portals, or consulting engagements as commercial volume expands.",
+    highlight: "Modular scalability from foundational BUILD platforms into full TRANSFORM systems."
   },
   {
-    id: "hse-pmp-training",
+    id: "systems-governance",
     category: "training",
-    categoryLabel: "Training & Compliance",
-    question: "How do the Project Management and HSE Training Portals work, and are certificates recognized?",
-    answer: "Tiers 5 and 6 come pre-loaded with an internal corporate Learning & Development portal. Your site engineers, project managers, and field staff can log in, take structured modules, and complete compliance assessments. Certificates are issued with verifiable credentials that demonstrate regulatory safety readiness (HSE) and standard project management competence for corporate pre-qualifications and bids.",
-    highlight: "Saves companies an estimated ₦180,000 to ₦350,000+ per employee in external training fees."
+    categoryLabel: "Consulting & Systems",
+    question: "How do the Operational Governance & Compliance Portals in TRANSFORM packages work?",
+    answer: "TRANSFORM suites equip internal teams with structured operational workflow portals, documented SOP hubs, project tracking governance, and team onboarding sessions so adopted CRM and business systems actually stick inside daily operations.",
+    highlight: "Focuses on corporate system adoption and organizational workflow readiness."
   },
   {
     id: "google-ads-roi",
     category: "packages",
-    categoryLabel: "Packages & Scope",
-    question: "What is included in the Tier 6 Paid Ads Campaign (Google Ads)?",
-    answer: "The Tier 6 Google Ads package includes in-depth construction and B2B keyword research, high-converting ad copy creation, negative keyword filtering, conversion tracking setup, and 30 days of active campaign management. It connects directly to your high-conversion landing page to capture inbound commercial and residential client inquiries.",
-    highlight: "Targeted to reach procurement leads, property developers, and corporate project owners."
+    categoryLabel: "Acquisition & GROW",
+    question: "What is included when we add Google Ads or ongoing SEO retainers?",
+    answer: "Search and paid acquisition scopes include high-intent commercial keyword research, structured campaign setup, conversion event tracking, negative keyword filtering, and landing page alignment to connect buyer searches straight to consultation and WhatsApp inquiry channels.",
+    highlight: "Available inside the Tier 6 Flagship or as an ongoing Monthly Growth Retainer."
   },
   {
     id: "post-launch-support",
     category: "support",
     categoryLabel: "Support & Ownership",
-    question: "What ongoing support, maintenance, and backups do we receive?",
-    answer: "Every package includes automated weekly cloud backups, routine WordPress/framework security updates, SSL monitoring, and monthly performance analytics. For Tiers 4, 5, and 6, you also receive a Dedicated Account Manager reachable via direct WhatsApp and telephone for priority assistance.",
-    highlight: "Dedicated Account Manager included on Tiers 4, 5, and 6."
+    question: "What ongoing technical maintenance and downtime protection do you provide?",
+    answer: "Every package includes initial scheduled backups, security updates, and monthly check-ins. For continuous software updates, proactive monitoring, and priority support without downtime, organizations can remain on a flexible Monthly Maintenance & Growth Retainer.",
+    highlight: "Proactive ongoing software updates and reliable technical support post-launch."
   },
   {
     id: "year-two-renewal",
     category: "support",
     categoryLabel: "Support & Ownership",
-    question: "What happens after the first year? Do we own our website and data?",
-    answer: "You retain 100% complete ownership of your domain, website codebase, corporate emails, CRM data, and portal content. After year one, you simply renew domain registration and cloud hosting at standard, transparent market rates (with zero markup or lock-in), or you are free to self-host wherever you prefer.",
-    highlight: "100% intellectual property and asset ownership transferred directly to your company."
+    question: "Do we retain full ownership of our domain, codebase, and business data?",
+    answer: "Yes. You retain complete ownership of your domain name, corporate website assets, business email accounts, and customer data—with transparent standard annual hosting/domain renewals and zero lock-in.",
+    highlight: "100% domain, asset, and client data ownership transferred to your company."
   }
 ];
 
@@ -115,10 +121,10 @@ export function PricingFAQ() {
 
   const categories = [
     { id: "all", label: "All Questions" },
-    { id: "packages", label: "Packages & Scope" },
+    { id: "packages", label: "BUILD · GROW · TRANSFORM" },
     { id: "payments", label: "Payments & Invoicing" },
     { id: "delivery", label: "Delivery & Setup" },
-    { id: "training", label: "Training & Compliance" },
+    { id: "training", label: "Consulting & Systems" },
     { id: "support", label: "Support & Ownership" },
   ];
 
@@ -178,7 +184,7 @@ export function PricingFAQ() {
           </h2>
 
           <p className="text-lg md:text-xl text-white/60 font-light leading-relaxed">
-            Everything you need to know about our 6 done-for-you digital growth packages, payment milestones, delivery process, and ROI guarantees.
+            Everything you need to know about our BUILD, GROW, and TRANSFORM tiers, retainers, custom scopes, invoicing, and post-launch support.
           </p>
         </div>
 
@@ -191,7 +197,7 @@ export function PricingFAQ() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search pricing questions (e.g. payment terms, hosting, timeline, HSE training)..."
+              placeholder="Search pricing questions (e.g. retainers, payment terms, hosting, timeline)..."
               className="w-full bg-white/[0.03] border border-white/10 rounded-2xl py-4 pl-14 pr-12 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-mw-orange focus:bg-white/[0.05] focus:ring-1 focus:ring-mw-orange transition-all"
             />
             {searchQuery && (
@@ -344,23 +350,26 @@ export function PricingFAQ() {
                   href="https://wa.me/2348125082354?text=Hello%20Mindware%20Consulting%2C%20I%20have%20a%20question%20regarding%20your%20digital%20growth%20pricing%20packages."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 px-5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-95"
+                  onClick={() => trackWhatsAppClick("pricing-faq", "packages")}
+                  className="w-full min-h-[44px] py-3.5 px-5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 active:scale-95"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Chat on WhatsApp Now</span>
                 </a>
 
                 <Link
-                  to="/contact"
-                  className="w-full py-3.5 px-5 rounded-full bg-white text-mw-dark hover:bg-mw-orange hover:text-white font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 shadow-md active:scale-95"
+                  to={CONVERSION_CTAS.primaryPath}
+                  onClick={() => trackPrimaryCtaClick("pricing-faq", CONVERSION_CTAS.primaryPath)}
+                  className="w-full min-h-[44px] py-3.5 px-5 rounded-full bg-white text-mw-dark hover:bg-mw-orange hover:text-white font-bold text-xs uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 shadow-md active:scale-95"
                 >
-                  <span>Request Custom Proposal</span>
+                  <span>{CONVERSION_CTAS.primaryLabel}</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
                 <a
                   href="tel:+2348125082354"
-                  className="w-full py-2.5 px-4 text-center text-xs text-white/50 hover:text-white transition-colors flex items-center justify-center gap-2"
+                  onClick={() => trackPhoneClick("pricing-faq")}
+                  className="w-full min-h-[44px] py-2.5 px-4 text-center text-xs text-white/50 hover:text-white transition-colors flex items-center justify-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-mw-orange" />
                   <span>Or call +234 812 508 2354</span>
