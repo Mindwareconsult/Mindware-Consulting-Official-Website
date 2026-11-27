@@ -29,7 +29,7 @@ const PARENT_NAVIGATION = [
   { name: "About", path: "/about" },
   { name: "Insights", path: "/insights" },
   { name: "Careers at Mindware", path: "/careers" },
-  { name: "Business Growth Season 2026", path: "/business-growth-season" },
+  { name: "Business Growth Season 2026", path: "/business-growth-season-2026/" },
   { name: "Growth Packages", path: "/pricing" },
   { name: "Service Areas (36 States & FCT)", path: "/service-areas" },
   { name: "Contact", path: "/contact" }

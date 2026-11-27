@@ -1509,7 +1509,7 @@ function BusinessGrowthSeasonBanner() {
               </p>
             </div>
             <Link
-              to="/business-growth-season"
+              to="/business-growth-season-2026/"
               onClick={() => trackCampaignConversion("overview", "cta_click")}
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-mw-orange hover:bg-mw-orange-hover text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-mw-orange/20 shrink-0 min-h-[48px]"
             >
@@ -1522,7 +1522,7 @@ function BusinessGrowthSeasonBanner() {
             {GROWTH_SEASON_TRACKS.map((track) => (
               <Link
                 key={track.id}
-                to={`/business-growth-season?track=${track.id}`}
+                to={`/business-growth-season-2026/?track=${track.id}`}
                 onClick={() => trackCampaignConversion(track.id, "select_track")}
                 className="p-4 rounded-2xl border border-white/10 bg-black/30 hover:border-mw-orange/50 hover:bg-white/[0.04] transition-all flex flex-col justify-between gap-2 group"
               >

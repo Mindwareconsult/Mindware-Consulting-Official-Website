@@ -9,6 +9,7 @@ interface GoogleClientReviewsProps {
   reviews?: GoogleReviewData[];
   variant?: "homepage" | "about";
   id?: string;
+  className?: string;
 }
 
 export function GoogleClientReviews({
@@ -17,6 +18,7 @@ export function GoogleClientReviews({
   reviews = GOOGLE_CLIENT_REVIEWS,
   variant = "homepage",
   id = "google-client-reviews",
+  className,
 }: GoogleClientReviewsProps) {
   const isHomepage = variant === "homepage";
 
@@ -32,7 +34,8 @@ export function GoogleClientReviews({
         "relative overflow-hidden border-t border-white/5",
         isHomepage
           ? "py-20 sm:py-28 lg:py-36 bg-[#040711]"
-          : "py-16 sm:py-24 bg-[#03060f]"
+          : "py-16 sm:py-24 bg-[#03060f]",
+        className
       )}
     >
       {/* Subtle ambient glow aligned with Mindware brand palette */}

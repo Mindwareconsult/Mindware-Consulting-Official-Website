@@ -417,7 +417,7 @@ export function About() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              to="/business-growth-season"
+              to="/business-growth-season-2026/"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white px-7 py-4 rounded-full font-semibold text-xs uppercase tracking-wider transition-all min-h-[48px]"
             >
               <span>Business Growth Season 2026</span>

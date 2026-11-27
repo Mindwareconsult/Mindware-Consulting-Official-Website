@@ -76,7 +76,7 @@ export function Solutions() {
                 </Link>
 
                 <Link
-                  to="/business-growth-season"
+                  to="/business-growth-season-2026/"
                   className="min-h-[48px] inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/15 font-semibold text-xs uppercase tracking-wider transition-colors whitespace-nowrap"
                 >
                   <span>Growth Season 2026</span>

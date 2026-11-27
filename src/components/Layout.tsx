@@ -1,6 +1,8 @@
 import { ReactNode, useState, useEffect } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { GrowthSeasonHeader } from "./campaigns/GrowthSeasonHeader";
+import { GrowthSeasonFooter } from "./campaigns/GrowthSeasonFooter";
 import { useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll } from "motion/react";
 import { ArrowUp, Calendar, MessageSquare, Phone } from "lucide-react";
@@ -16,6 +18,8 @@ export function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const { scrollYProgress } = useScroll();
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const isCampaign2026Page = normalizedPath === "/business-growth-season-2026";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,17 +43,27 @@ export function Layout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-mw-dark text-mw-light font-sans selection:bg-mw-orange selection:text-white relative pb-[68px] sm:pb-0">
+    <div
+      className={`min-h-screen flex flex-col bg-mw-dark text-mw-light font-sans selection:bg-mw-orange selection:text-white relative ${
+        isCampaign2026Page ? "" : "pb-[68px] sm:pb-0"
+      }`}
+    >
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-mw-orange origin-left z-[100]"
         style={{ scaleX: scrollYProgress }}
       />
-      <Navbar />
+      {isCampaign2026Page ? <GrowthSeasonHeader /> : <Navbar />}
       <main className="flex-grow">{children}</main>
-      <Footer />
+      {isCampaign2026Page ? <GrowthSeasonFooter /> : <Footer />}
 
       {/* Desktop & Tablet Floating Conversion Action */}
-      <div className="hidden sm:flex fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex-col items-end gap-3 pointer-events-none">
+      <div
+        className={`hidden sm:flex fixed right-6 md:right-8 z-50 flex-col items-end gap-3 pointer-events-none ${
+          isCampaign2026Page
+            ? "bottom-[88px] md:bottom-[96px]"
+            : "bottom-6 md:bottom-8"
+        }`}
+      >
         <AnimatePresence>
           {showBackToTop && (
             <motion.button
@@ -66,55 +80,59 @@ export function Layout({ children }: { children: ReactNode }) {
           )}
         </AnimatePresence>
 
-        <Link
-          to={CONVERSION_CTAS.primaryPath}
-          onClick={() =>
-            trackPrimaryCtaClick("floating-desktop", CONVERSION_CTAS.primaryPath)
-          }
-          className="group flex items-center justify-center gap-2.5 bg-mw-orange text-white px-5 py-3.5 rounded-full font-bold text-xs md:text-sm shadow-[0_4px_24px_rgba(249,115,22,0.4)] hover:bg-orange-500 hover:shadow-[0_4px_32px_rgba(249,115,22,0.6)] hover:-translate-y-1 transition-all active:scale-95 pointer-events-auto"
-          aria-label={CONVERSION_CTAS.primaryLabel}
-        >
-          <Calendar className="w-4 h-4 transition-transform group-hover:scale-110 shrink-0" />
-          <span>{CONVERSION_CTAS.primaryLabel}</span>
-        </Link>
+        {!isCampaign2026Page && (
+          <Link
+            to={CONVERSION_CTAS.primaryPath}
+            onClick={() =>
+              trackPrimaryCtaClick("floating-desktop", CONVERSION_CTAS.primaryPath)
+            }
+            className="group flex items-center justify-center gap-2.5 bg-mw-orange text-white px-5 py-3.5 rounded-full font-bold text-xs md:text-sm shadow-[0_4px_24px_rgba(249,115,22,0.4)] hover:bg-orange-500 hover:shadow-[0_4px_32px_rgba(249,115,22,0.6)] hover:-translate-y-1 transition-all active:scale-95 pointer-events-auto"
+            aria-label={CONVERSION_CTAS.primaryLabel}
+          >
+            <Calendar className="w-4 h-4 transition-transform group-hover:scale-110 shrink-0" />
+            <span>{CONVERSION_CTAS.primaryLabel}</span>
+          </Link>
+        )}
       </div>
 
-      {/* Compact Sticky Mobile Quick-Action Conversion Bar */}
-      <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#02040a]/95 backdrop-blur-xl border-t border-white/10 px-3 py-2 flex items-center gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.65)]">
-        <Link
-          to={CONVERSION_CTAS.primaryPath}
-          onClick={() =>
-            trackPrimaryCtaClick("mobile-sticky-bar", CONVERSION_CTAS.primaryPath)
-          }
-          className="flex-1 min-h-[44px] inline-flex items-center justify-center gap-1.5 bg-mw-orange hover:bg-orange-500 text-white font-bold text-xs px-3 rounded-xl shadow-md active:scale-95 transition-all"
-        >
-          <Calendar className="w-4 h-4 shrink-0" />
-          <span className="truncate">{CONVERSION_CTAS.primaryLabel}</span>
-        </Link>
+      {/* Compact Sticky Mobile Quick-Action Conversion Bar (hidden on campaign page to avoid competing with campaign WhatsApp CTA) */}
+      {!isCampaign2026Page && (
+        <div className="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#02040a]/95 backdrop-blur-xl border-t border-white/10 px-3 py-2 flex items-center gap-2 shadow-[0_-8px_24px_rgba(0,0,0,0.65)]">
+          <Link
+            to={CONVERSION_CTAS.primaryPath}
+            onClick={() =>
+              trackPrimaryCtaClick("mobile-sticky-bar", CONVERSION_CTAS.primaryPath)
+            }
+            className="flex-1 min-h-[44px] inline-flex items-center justify-center gap-1.5 bg-mw-orange hover:bg-orange-500 text-white font-bold text-xs px-3 rounded-xl shadow-md active:scale-95 transition-all"
+          >
+            <Calendar className="w-4 h-4 shrink-0" />
+            <span className="truncate">{CONVERSION_CTAS.primaryLabel}</span>
+          </Link>
 
-        <a
-          href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(
-            "Hello Mindware Consulting, I would like to discuss a Business Growth Review."
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackWhatsAppClick("mobile-sticky-bar")}
-          aria-label="WhatsApp Mindware Consulting"
-          className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center gap-1.5 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/30 font-semibold text-xs px-3 rounded-xl active:scale-95 transition-all shrink-0"
-        >
-          <MessageSquare className="w-4 h-4 shrink-0" />
-          <span className="sr-only">WhatsApp</span>
-        </a>
+          <a
+            href={`${COMPANY_INFO.whatsappUrl}?text=${encodeURIComponent(
+              "Hello Mindware Consulting, I would like to discuss a Business Growth Review."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("mobile-sticky-bar")}
+            aria-label="WhatsApp Mindware Consulting"
+            className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center gap-1.5 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/30 font-semibold text-xs px-3 rounded-xl active:scale-95 transition-all shrink-0"
+          >
+            <MessageSquare className="w-4 h-4 shrink-0" />
+            <span className="sr-only">WhatsApp</span>
+          </a>
 
-        <a
-          href={`tel:${COMPANY_INFO.phoneTel}`}
-          onClick={() => trackPhoneClick("mobile-sticky-bar")}
-          aria-label={`Call ${COMPANY_INFO.phoneDisplay}`}
-          className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center bg-white/10 border border-white/15 text-white hover:bg-white/20 rounded-xl active:scale-95 transition-all shrink-0"
-        >
-          <Phone className="w-4 h-4 shrink-0" />
-        </a>
-      </div>
+          <a
+            href={`tel:${COMPANY_INFO.phoneTel}`}
+            onClick={() => trackPhoneClick("mobile-sticky-bar")}
+            aria-label={`Call ${COMPANY_INFO.phoneDisplay}`}
+            className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center bg-white/10 border border-white/15 text-white hover:bg-white/20 rounded-xl active:scale-95 transition-all shrink-0"
+          >
+            <Phone className="w-4 h-4 shrink-0" />
+          </a>
+        </div>
+      )}
     </div>
   );
 }

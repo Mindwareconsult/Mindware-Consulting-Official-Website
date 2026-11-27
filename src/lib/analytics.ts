@@ -10,6 +10,7 @@ declare global {
 
 export type ConversionEventName =
   | "primary_cta_click"
+  | "growth_review_form_start"
   | "growth_review_submit_attempt"
   | "growth_review_submit_success"
   | "growth_review_submit_error"
@@ -295,6 +296,16 @@ export function trackPrimaryCtaClick(
     cta_location: location,
     destination,
     category,
+  });
+}
+
+export function trackFormStart(
+  category: CanonicalEnquiryCategory | string,
+  extra: Record<string, string | undefined> = {}
+): void {
+  trackConversionEvent("growth_review_form_start", {
+    category,
+    ...extra,
   });
 }
 

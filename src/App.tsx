@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Suspense, lazy, useEffect } from "react";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
@@ -29,7 +29,7 @@ const ServiceAreas = lazy(() => import("./pages/ServiceAreas").then(module => ({
 const ServiceAreaDetail = lazy(() => import("./pages/ServiceAreaDetail").then(module => ({ default: module.ServiceAreaDetail })));
 const Industries = lazy(() => import("./pages/Industries").then(module => ({ default: module.Industries })));
 const IndustryDetail = lazy(() => import("./pages/IndustryDetail").then(module => ({ default: module.IndustryDetail })));
-const BusinessGrowthSeason = lazy(() => import("./pages/BusinessGrowthSeason").then(module => ({ default: module.BusinessGrowthSeason })));
+const BusinessGrowthSeason2026 = lazy(() => import("./pages/BusinessGrowthSeason2026").then(module => ({ default: module.BusinessGrowthSeason2026 })));
 const Privacy = lazy(() => import("./pages/Privacy").then(module => ({ default: module.Privacy })));
 const NotFound = lazy(() => import("./pages/NotFound").then(module => ({ default: module.NotFound })));
 
@@ -40,6 +40,11 @@ function PageLoader() {
       <div className="w-8 h-8 rounded-full border-2 border-white/10 border-t-mw-orange animate-spin" />
     </div>
   );
+}
+
+function LegacyCampaignRedirect() {
+  const { search } = useLocation();
+  return <Navigate to={`/business-growth-season-2026/${search}`} replace />;
 }
 
 export default function App() {
@@ -87,9 +92,14 @@ export default function App() {
             <Route path="/service-industries" element={<Navigate to="/industries" replace />} />
             <Route path="/service-industries/:industrySlug" element={<Navigate to="/industries/:industrySlug" replace />} />
             <Route path="/sectors" element={<Navigate to="/industries" replace />} />
-            <Route path="/business-growth-season" element={<BusinessGrowthSeason />} />
-            <Route path="/campaigns/business-growth-season-2026" element={<BusinessGrowthSeason />} />
-            <Route path="/campaign" element={<Navigate to="/business-growth-season" replace />} />
+            <Route path="/business-growth-season-2026" element={<BusinessGrowthSeason2026 />} />
+            <Route path="/business-growth-season-2026/" element={<BusinessGrowthSeason2026 />} />
+            <Route path="/business-growth-season" element={<LegacyCampaignRedirect />} />
+            <Route path="/business-growth-season/" element={<LegacyCampaignRedirect />} />
+            <Route path="/campaigns/business-growth-season-2026" element={<LegacyCampaignRedirect />} />
+            <Route path="/campaigns/business-growth-season-2026/" element={<LegacyCampaignRedirect />} />
+            <Route path="/campaign" element={<LegacyCampaignRedirect />} />
+            <Route path="/campaign/" element={<LegacyCampaignRedirect />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/privacy-policy" element={<Navigate to="/privacy" replace />} />

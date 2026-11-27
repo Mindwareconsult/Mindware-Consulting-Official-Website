@@ -7,7 +7,47 @@
       "maxDuration": 10
     }
   },
+  "redirects": [
+    {
+      "source": "/business-growth-season",
+      "destination": "/business-growth-season-2026/",
+      "statusCode": 301
+    },
+    {
+      "source": "/business-growth-season/",
+      "destination": "/business-growth-season-2026/",
+      "statusCode": 301
+    },
+    {
+      "source": "/campaigns/business-growth-season-2026",
+      "destination": "/business-growth-season-2026/",
+      "statusCode": 301
+    },
+    {
+      "source": "/campaigns/business-growth-season-2026/",
+      "destination": "/business-growth-season-2026/",
+      "statusCode": 301
+    },
+    {
+      "source": "/campaign",
+      "destination": "/business-growth-season-2026/",
+      "statusCode": 301
+    },
+    {
+      "source": "/campaign/",
+      "destination": "/business-growth-season-2026/",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
+    {
+      "source": "/business-growth-season-2026",
+      "destination": "/business-growth-season-2026/index.html"
+    },
+    {
+      "source": "/business-growth-season-2026/",
+      "destination": "/business-growth-season-2026/index.html"
+    },
     {
       "source": "/((?!api/).*)",
       "destination": "/index.html"

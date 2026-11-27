@@ -115,7 +115,7 @@ export const ENQUIRY_CATEGORIES: EnquiryCategoryOption[] = [
     shortLabel: "Growth Season 2026",
     description:
       "Structured 2026 advisory review across Foundation, Visibility, Construction, Advisory, or Launch tracks.",
-    defaultPath: "/business-growth-season",
+    defaultPath: "/business-growth-season-2026/",
   },
   {
     id: "other-organization",

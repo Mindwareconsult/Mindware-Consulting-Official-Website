@@ -218,7 +218,7 @@ export function Navbar() {
 
                               <div className="mt-1.5 px-2 grid grid-cols-1 gap-1.5">
                                 <Link
-                                  to="/business-growth-season"
+                                  to="/business-growth-season-2026/"
                                   onClick={() => setSolutionsDropdownOpen(false)}
                                   className="flex items-center justify-between p-2 rounded-xl bg-mw-orange/15 hover:bg-mw-orange/25 border border-mw-orange/30 text-xs font-semibold text-white transition-colors"
                                 >
@@ -687,7 +687,7 @@ export function Navbar() {
                               <span>Technical Capabilities</span>
                             </Link>
                             <Link
-                              to="/business-growth-season"
+                              to="/business-growth-season-2026/"
                               onClick={() => setMobileMenuOpen(false)}
                               className="flex items-center gap-2.5 text-sm sm:text-base py-2 text-mw-orange hover:text-white transition-colors font-semibold"
                             >
